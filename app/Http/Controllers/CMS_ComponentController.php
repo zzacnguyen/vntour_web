@@ -145,4 +145,9 @@ class CMS_ComponentController extends Controller
             return view('CMS.components.error');
         }
     }
+
+
+    
+
+
 }
