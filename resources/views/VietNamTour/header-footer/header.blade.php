@@ -100,7 +100,7 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto col-md-9 col-12" style="padding: 0;">
 								<li class="nav-item btn-select" >
-									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP" data-id="all">Tất cả 
+									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP" data-id="all" data-name="Tất cả">Tất cả 
 										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
 									</a>
 
@@ -118,7 +118,7 @@
 
 								</li> <!-- end btn-select -->
 								<li class="nav-item btn-select">
-									<a id="a-danhmuc" class="nav-link a-select" data-hienthi="danhmuc" title="" data-type="all">
+									<a id="a-danhmuc" class="nav-link a-select" data-hienthi="danhmuc" title="" data-type="all" data-name="Tất cả">
 										Tất cả 
 										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
 									</a>
@@ -265,19 +265,18 @@
 							</ul>
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto col-md-12 col-12" style="padding: 0;">
-									<h5>{{Session::get('lam')}}</h5>
 									@if(Session::has('login') && Session::get('login') == true)
 									<li class="nav-item" style="position: relative; margin-right: 2px;">
 											<!-- hien thi khi dang nhap thanh cong -->
 											<a class="nav-link btn-login" style="padding: 0; border: none !important;" id="id-user-form">
-												<img src="resource/images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
-												lamthemen <i class="fas fa-caret-down"></i>
+												<img src="public/resource/images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
+												{{Session::get('user_info')->username}} <i class="fas fa-caret-down"></i>
 											</a>
 											<div class="user-form">
 												<ul>
 													<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
 													<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
-													<li><a href="{{route('loginW')}}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
+													<li><a href="{{route('logoutW')}}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
 												</ul>
 											</div> <!-- end hien thi khi dang nhap thanh cong -->
 											<a href="{{route('loginW')}}" class="nav-link btn-login hidden" id="btn-dangnhap">Đăng nhập</a>
@@ -414,6 +413,14 @@
 													<li style="height: 27px;">
 														<a href="" class="a-content-nofi">
 															<p class="text-nofi" style="height: auto;width: auto;">
+																<i class="fas fa-archive"></i> 
+																Lịch trình
+															</p>	
+														</a>
+													</li>
+													<li style="height: 27px;">
+														<a href="" class="a-content-nofi">
+															<p class="text-nofi" style="height: auto;width: auto;">
 																<i class="fas fa-bomb"></i> 
 																Góp ý
 															</p>	
@@ -434,11 +441,11 @@
 									</li>
 									<li id="id-language">
 										<a href="" id="language">
-											<img src="resource/images/icons/vn.png" alt="" style="width: 20px; height: 20px;">
+											<img src="public/resource/images/icons/vn.png" alt="" style="width: 20px; height: 20px;">
 										</a>
 										  <div class="" id="content-language">
 										    <a class="" href="####">
-										    	<img src="resource/images/icons/us.png" alt="" style="width: 20px; height: 20px;">
+										    	<img src="public/resource/images/icons/us.png" alt="" style="width: 20px; height: 20px;">
 										    </a>
 										  </div>
 									</li>

@@ -7,15 +7,14 @@ Route::get('/','pageController@getindex')->name('/');
 
 
 // ====== LOGIN ======
-Route::get('checkLogin','pageController@checkLogin');
 
 
 Route::get('registerW','pageController@getregister')->name('registerW');
 Route::get('registersuccess','pageController@getregisterSuccess')->name('registersuccess');
-Route::get('logoutW','loginController@logoutW')->name('logoutW');
+Route::get('logoutW','pageController@LogoutSession')->name('logoutW'); // logout
 Route::get('loginW','pageController@getlogin')->name('loginW');
 
-Route::post('loginpost','pageController@postLoginW')->name('loginpost');
+Route::post('loginpost','pageController@LoginSession')->name('loginpost');
 Route::post('registerWpost','loginController@registerW')->name('registerWpost');
 // login facebook
 Route::get('login/facebook/redirect', 'loginController@redirectToProvider')->name('loginfacebook');
@@ -76,8 +75,8 @@ Route::get('count_city_service_all_image','pageController@count_city_service_all
 Route::get('searchServices_All/keyword={k}','pageController@searchServices_All');
 Route::get('getlam/id={id}&l={l}','pageController@getServicesTake');
 Route::get('likelam/{idser}','publicDetail@like_service');
-Route::get('checklogin','pageController@checkLogin');
 
+Route::get('addview/{id}','publicDetail@addview');//test add view service
 
 
 //================================ NEW ========================================
@@ -100,17 +99,20 @@ Route::get('loadWard/{id}','publicaddplaceController@loadWard');
 //================== search header =============
 Route::get('searchServices_All/keyword={k}','pageController@searchServices_All');
 
+Route::get('searchService_City_AllType/idcity={id}&keyword={k}','pageController@searchService_City_AllType');
+
+Route::get('searchService_City_Type/idcity={id}&type={t}&keyword={k}','pageController@searchService_City_Type');
+
+Route::get('searchServices_AllCity_idType/type={t}&keyword={k}','pageController@searchServices_AllCity_idType');
 
 
 
 
+//================= detail ==================
+Route::get('checkLogin','pageController@checkLogin');
 
-
-
-
-
-
-
+//============ check like
+Route::get('checkLike/userid={d}&svid={s}','publicDetail@checkLike');
 
 
 

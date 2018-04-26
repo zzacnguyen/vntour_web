@@ -13,7 +13,7 @@
 				    			<div class="ribbon">
 				    				<span>{{$value['num_service']}}</span>
 				    			</div>
-					    		<a href="http://chinhlytailieu/doan3_canthotour/public/city/{{$value['id_city']}}">
+					    		<a href="city/{{$value['id_city']}}">
 					    			<img src="public/thumbnails/{{$value['image']}}" alt="" style="height: 214px;"></a>
 					    	</div>
 					    	<div class="grid-content">
@@ -60,7 +60,7 @@
 
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
-							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$see['id_service']}}&type={{$see['sv_type']}}" class="click_view">
+							<a href="detail/id={{$see['id_service']}}&type={{$see['sv_type']}}" class="click_view">
 								<img src="public/thumbnails/{{$see['image']}}" alt="">
 							</a>
 							<div class="destination-name">

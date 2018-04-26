@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use DB;
 use App\touristPlacesModel;
 use App\likesModel;
+use App\servicesModel;
 
 class publicDetail extends Controller
 {
     public function get_detail($id,$type)
     {
+        $this::addview($id);
     	$sv = $this::get_service_id($id,$type);
 
         $sv_lancan = $this::dichvu_lancan($sv['city_id'],$id,20);
@@ -205,15 +207,29 @@ class publicDetail extends Controller
 
     }
 
-    public function like_service($idservice)
+    public function checkLike($userid,$idservice)
     {
-        $like = likesModel::findOrFail($idservice);
+        // kiem tra nguoi dung co login hay chưa
+        $like = DB::table('vnt_likes')->where('user_id',$userid)->where('service_id',$idservice)->select('id')->first();
         if ($like == null) {
-            return "lam";
+            $result = -1;
         }
         else{
-            return "l";
+            $result = 1;
         }
-        
+        return json_encode($result);
+    }
+
+    public function addview($idservice)
+    {
+        $result = servicesModel::findOrFail($idservice);
+        if ($result == null) {
+            $view = 1;
+        }else{
+            $view = $result->sv_counter_view + 1;
+        }
+        $result->sv_counter_view = $view;
+
+        $result->save();
     }
 }

@@ -2,11 +2,11 @@
 
 
 
-<link rel="stylesheet" href="resource/css/hotel.css">
-<link rel="stylesheet" href="resource/css/hotel-detail.css">
-<link rel="stylesheet" href="resource/css/lightbox.min.css">
-<link rel="stylesheet" href="resource/css/detail-tab.css">
-<link rel="stylesheet" href="resource/css/chat.css">
+<link rel="stylesheet" href="public/resource/css/hotel.css">
+<link rel="stylesheet" href="public/resource/css/hotel-detail.css">
+<link rel="stylesheet" href="public/resource/css/lightbox.min.css">
+<link rel="stylesheet" href="public/resource/css/detail-tab.css">
+<link rel="stylesheet" href="public/resource/css/chat.css">
 
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD4NgGvVNbWb_bMXOdeHLMWVhHm_HITw34&sensor=false"></script>
 
@@ -22,17 +22,17 @@
 							<ul>
 								<li>
 									<a>
-										<img src="thumbnails/{{$sv['image_details_1']}}"/>
+										<img src="public/thumbnails/{{$sv['image_details_1']}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="thumbnails/{{$sv['image_details_2']}}"/>
+										<img src="public/thumbnails/{{$sv['image_details_2']}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="thumbnails/{{$sv['image_banner']}}"/>
+										<img src="public/thumbnails/{{$sv['image_banner']}}"/>
 									</a>
 								</li>
 								
@@ -87,7 +87,7 @@
 								<div class="col-md-3 text-center">
 									<a id="like01">
 										<i id="color-like" class="fas fa-heart"></i>
-										{{$sv['sv_like']}}
+										<span id="num_like">{{$sv['sv_like']}}</span>
 									</a>
 								</div>
 								<div class="col-md-3 text-center">
@@ -252,8 +252,8 @@
 								<div class="item-cafe">
 									<ul>
 										<li>
-											<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$s['sv_id']}}&type={{$s['sv_type']}}">
-												<img src="thumbnails/{{$s['image_banner']}}" alt="loi" style="height: 100%;width: 110px;">
+											<a href="detail/id={{$s['sv_id']}}&type={{$s['sv_type']}}">
+												<img src="public/thumbnails/{{$s['image_banner']}}" alt="loi" style="height: 100%;width: 110px;">
 												<div class="text-item-cafe text-left">
 													<h6 style="margin-bottom: 0;display: inline-block;text-overflow: ellipsis;">	<b style="font-weight: 600;">{{$s['sv_name']}}</b>
 													</h6>
@@ -362,12 +362,12 @@
 
 
 
-	<script src="resource/js/lightbox.min.js"></script>
-	<script src="resource/js/detail-hotel.js"></script>
-	<script src="resource/js/menu-style.js"></script>
+	<script src="public/resource/js/lightbox.min.js"></script>
+	<script src="public/resource/js/detail-hotel.js"></script>
+	<script src="public/resource/js/menu-style.js"></script>
 
 	{{-- <script src="resource/js/menu-style.js"></script> --}}
-	<script src="resource/lightbox/jquery.fluidbox.min.js"></script>
+	<script src="public/resource/lightbox/jquery.fluidbox.min.js"></script>
 
 	<script>
 		$(function () {			
@@ -391,5 +391,7 @@
 		    
 		},false);
 	</script>
+	
+	<script src="public/resource/js/p/detail.js"></script>
 
 @include('VietNamTour.header-footer.footer')
