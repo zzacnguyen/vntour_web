@@ -46,7 +46,6 @@ Route::get('count_place_display','pageController@count_place_display');
 
 Route::get('lamindex/id={id}','publicDetail@get_service_id');
 
-Route::get('lamdeptrai/{l},{log}&type={t},radius={r}','publicDetail@searchServicesVicinity');
 
 
 // detail service
@@ -62,7 +61,7 @@ Route::get('diadiem2/id={id}','publicDetail@dichvu_lancan');
 Route::get('p_search','publicSearchController@get_search');
 
 // place_city
-Route::get('city/{id}','publicSearchController@get_place_city');
+// Route::get('city/{id}','publicSearchController@get_place_city');
 
 Route::get('count_ser/{id}','publicSearchController@count_servies_type');
 Route::get('get_all_place_city_type/{id}&type={t}','publicSearchController@get_all_place_city_type');
@@ -74,10 +73,10 @@ Route::get('image_city/{id}','pageController@image_city');
 Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
 Route::get('searchServices_All/keyword={k}','pageController@searchServices_All');
 Route::get('getlam/id={id}&l={l}','pageController@getServicesTake');
-Route::get('likelam/{idser}','publicDetail@like_service');
+Route::get('likelam/{idser}','publicDetail@count_service_all_and_type');
 
-Route::get('addview/{id}','publicDetail@addview');//test add view service
-
+Route::get('count_service_all_and_type/{id}','publicCityController@count_service_all_and_type');//test add view service
+Route::get('phantrang/{id}','publicCityController@checkPaginate');
 
 //================================ NEW ========================================
 
@@ -115,7 +114,8 @@ Route::get('checkLogin','pageController@checkLogin');
 Route::get('checkLike/userid={d}&svid={s}','publicDetail@checkLike');
 
 
-
+// ================ serviece city ==============
+Route::get('city/{id}&page={p}&limit={l}','publicCityController@getCity');
 
 
 

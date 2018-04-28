@@ -9,7 +9,7 @@ class publicSearchController extends Controller
 {
     public function get_search()
     {
-    	$placecount       = $this::count_place_display();
+    	// $placecount       = $this::count_place_display();
     	return view('VietNamTour.content.search',compact('placecount'));
     }
 
@@ -47,9 +47,9 @@ class publicSearchController extends Controller
                 foreach ($s as $v) {
                     $image = $v->image_details_1;
                 }
-            }    
+            }
         }
-            
+
         return $image;
     }
 
@@ -66,7 +66,7 @@ class publicSearchController extends Controller
     	}
     	else{
     		return view('VietNamTour.content.place_city',compact('placecount','sum','count_sv','all_place'));
-    	}	
+    	}
     }
 
     public function count_place_city($idcity)
@@ -158,7 +158,7 @@ class publicSearchController extends Controller
 					'rating'   =>$ratings
 	    		);
 			}
-	    		
+
     	}
 
     	if (!isset($result)) {
@@ -202,7 +202,7 @@ class publicSearchController extends Controller
 					'rating'   =>$ratings
 	    		);
     		}
-	    		
+
     	}
     	if (!isset($result)) {
     		return "null";
@@ -210,6 +210,6 @@ class publicSearchController extends Controller
     	else{
     		return $result;
     	}
-    		
+
     }
 }

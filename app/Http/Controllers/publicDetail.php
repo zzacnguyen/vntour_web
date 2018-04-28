@@ -106,14 +106,14 @@ class publicDetail extends Controller
                         $result['image_details_1'] = $image->image_details_1;
                         $result['image_details_2'] = $image->image_details_2;
                     }
-                        
+
                     $result['sv_open'] = $value->sv_open;
                     $result['sv_open'] = $value->sv_open;
                     $result['sv_open'] = $value->sv_open;
                 }
-            }      
+            }
         }
-    	
+
     	if ($result == null || !isset(($result))) {
     		echo "404";
     	}
@@ -141,9 +141,9 @@ class publicDetail extends Controller
                 foreach ($s as $v) {
                     $image = $v->image_details_1;
                 }
-            }    
+            }
         }
-            
+
         return $image;
     }
 
@@ -151,7 +151,7 @@ class publicDetail extends Controller
     {
         $result_sv = DB::select("CALL load_service_idcity(?,?,?)",array($id_city,$id_service,$limit));
         foreach ($result_sv as $sv) {
-            $image = DB::table('vnt_images')->where('service_id',$sv->id_service)->first();// load anh cua 
+            $image = DB::table('vnt_images')->where('service_id',$sv->id_service)->first();// load anh cua
             $sv_name = $this::getname_Service($sv->id_service,$sv->sv_types);
             if ($image == null) {
                 $image_banner = "null";
@@ -172,7 +172,7 @@ class publicDetail extends Controller
         }else{
             return $result;
         }
-            
+
     }
 
     public function getname_Service($id_service,$type)
@@ -204,7 +204,6 @@ class publicDetail extends Controller
         else{
             return $dv->sv_name;
         }
-
     }
 
     public function checkLike($userid,$idservice)
