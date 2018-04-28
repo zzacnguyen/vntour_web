@@ -3,8 +3,7 @@
 
 
 <div id="page-title">
-    <h2>Danh sách quản trị viên</h2>
-    <p>Dưới đây là dữ liệu của quản trị viên.</p>
+    <h2>Danh sách người dùng doanh nghiệp</h2>
     <div id="theme-options" class="admin-options">
     <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
         <i class="glyph-icon icon-linecons-cog icon-spin"></i>
@@ -13,7 +12,7 @@
 <div class="panel">
     <div class="panel-body">
     <h3 class="title-hero">
-        DANH SÁCH ADMIN
+        DANH SÁCH DOANH NGHIỆP
     </h3>
         <div class="example-box-wrapper">
             <table id="datatable-reorder" class="table table-striped table-bordered" cellspacing="0" width="100%">

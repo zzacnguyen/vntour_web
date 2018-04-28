@@ -1,3 +1,11 @@
+
+<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot.js')}}"></script>
+<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-resize.js')}}"></script>
+<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-stack.js')}}"></script>
+<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-pie.js')}}"></script>
+<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-tooltip.js')}}"></script>
+<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-demo-1.js')}}"></script>
+
 <div class="row">
     <div class="col-md-4">
         <div class="dashboard-box dashboard-box-chart bg-white content-box">

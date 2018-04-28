@@ -2,6 +2,8 @@
 @extends('CMS.components.index')
 
 @section('content')
+
+                @include('CMS.script.container-charts-srcipt')
 <script type="text/javascript" src="{{asset('public/resourceAdminTemplate/assets\myscript\style.js')}}"></script>
 <div id="page-title">
     <h2>Dashboard</h2>

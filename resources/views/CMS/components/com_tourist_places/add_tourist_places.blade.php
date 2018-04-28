@@ -1,40 +1,5 @@
 @extends('CMS.components.index')
 @section('content')
-<script type="text/javascript">
-
-    /* Datatables export */
-
-    $(document).ready(function() {
-        var table = $('#datatable-tabletools').DataTable();
-        var tt = new $.fn.dataTable.TableTools( table );
-
-        $( tt.fnContainer() ).insertBefore('#datatable-tabletools_wrapper div.dataTables_filter');
-
-        $('.DTTT_container').addClass('btn-group');
-        $('.DTTT_container a').addClass('btn btn-default btn-md');
-
-        $('.dataTables_filter input').attr("placeholder", "Search...");
-
-    } );
-
-    /* Datatables reorder */
-
-    $(document).ready(function() {
-        $('#datatable-reorder').DataTable( {
-            dom: 'Rlfrtip'
-        });
-
-        $('#datatable-reorder_length').hide();
-        $('#datatable-reorder_filter').hide();
-
-    });
-
-    $(document).ready(function() {
-        $('.dataTables_filter input').attr("placeholder", "Search...");
-    });
-
-</script>
-
 <div id="page-title">
     <h2>Thêm địa điểm</h2>
     
@@ -64,7 +29,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="task_description" >Tỉnh / thành phố: </label>                      
-                        <select class="form-control" name="assigner_user_id" id="city">
+                        <select class="form-control" name="city" id="city">
                             @foreach($data1 as $item)
                                 <option value="{{$item->id}}">{{$item->province_city_name}}</option>
                             @endforeach()
@@ -74,19 +39,13 @@
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
                         <label for="task_start_date">Quận / huyện: </label>
-                        <select class="form-control" name="assigner_user_id">
-                            @foreach($data2 as $item)
-                                <option value="{{$item->id}}">{{$item->district_name}}</option>
-                            @endforeach()
+                            <select class="form-control" id="district" name="districtt">
+                           
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="task_end_date">Phường / xã: </label>
-                        <select class="form-control" name="assigner_user_id">
-                            @foreach($data3 as $item)
-                                <option lat="{{$item->latitude}}" long="{{$item->longtitude}}" value="{{$item->id}}">{{$item->ward_name}}</option>
-                                
-                            @endforeach()
+                        <select class="form-control" id="ward" name="ward">
                         </select>
 
                      </div>
@@ -99,7 +58,9 @@
                     </div>
                     <div class="col-md-6">
                          <label for="content" >Tọa độ: </label>
-                         <input type="text" id="task_end_date" required class="form-control" name="task_end_date" placeholder="Có thể chọn ở bản đồ"> 
+                         <input type="text" id="lat_and_long" required class="form-control" name="lat_and_long" placeholder="Có thể chọn ở bản đồ"> 
+                         <input type="hidden" name="kinhdo" id="kinhdo" value="">
+                         <input type="hidden" name="vido" id="vido" value="">
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -122,6 +83,7 @@
                 
                 <div class="clearfix"></div>
                 <div class="col-md-12" style="padding-bottom: 15px">
+                    <label for="map">Bản đồ</label>
                     <div id="map" style="height:400px;"></div>
                 </div>
                 <input  class="btn btn-success" style=";margin-bottom: 20px; margin-left: 90%" type="submit" value="Xong">
@@ -130,32 +92,98 @@
     </div>
 </div>
 
+<script type="text/javascript" >
+    
+$(document).ready(function () {
+    
+    load_district();
+    load_ward();
+    
+})
 
+
+//load quan theo tinh thanh pho
+function load_district() {
+    $('select[name=city]').change(function () {
+        var path = 'loadDistrict/' + $(this).val();
+        console.log(path);
+        $.ajax({
+            url: path,
+            type: 'GET'
+        })
+        .done(function (response) {
+            var lam = new String(); // khoi tao bien luu pha hien thi len view
+            response.forEach(function (data) {
+                lam += '<option value="' + data.id + '">' + data.district_name +'</option>';
+            })
+            $('#district').html(lam);
+        })
+    })
+}
+
+// load ward
+function load_ward() {
+    $('select[name=districtt]').change(function () {
+        var path = 'loadWard/' + $(this).val();
+        $.ajax({
+            url: path,
+            type: 'GET'
+        })
+        .done(function (response) {
+            var lam = new String(); // khoi tao bien luu pha hien thi len view
+            response.forEach(function (data) {
+                lam += '<option data-longtitude="' + data.longtitude + '" data-latitude="' + data.latitude + '" value="' + data.id + '">' + data.ward_name +'</option>';
+            })
+            $('#ward').html(lam);
+        })
+    })
+}
+
+function Load_toado() {
+     $('select[name=ward]').change(function () {
+        var path = 'loadWard/' + $(this).val();
+        $.ajax({
+            url: path,
+            type: 'GET'
+        })
+        .done(function (response) {
+            var lam = new String(); // khoi tao bien luu pha hien thi len view
+            response.forEach(function (data) {
+                lam += '<option value="' + data.id + '">' + data.ward_name +'</option>';
+            })
+            $('#ward').html(lam);
+        })
+    })
+}
+
+</script>
 
 <script>
+    function myMap(argument) {
+         var map;
+         var lat;
+         var long;
 
-function myMap() {
-  var mapCanvas = document.getElementById("map");
-  var myCenter=new google.maps.LatLng(115,10);
-  var mapOptions = {center: myCenter, zoom: 6};
-  var map = new google.maps.Map(mapCanvas, mapOptions);
-  google.maps.event.addListener(map, 'click', function(event) {
-    placeMarker(map, event.latLng);
-  });
-}
+        function init_map() {
+            var opts = { 'center': new google.maps.LatLng(35.567980458012094,51.4599609375), 'zoom': 5, 'mapTypeId': google.maps.MapTypeId.ROADMAP }
+                map = new google.maps.Map(document.getElementById('map'), opts);
 
-function placeMarker(map, location) {
-  var marker = new google.maps.Marker({
-    position: location,
-    map: map
-  });
-  alert(location.lat());
-  var infowindow = new google.maps.InfoWindow({
-    content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-  });
-  infowindow.open(map,marker);
-}
+            
+            google.maps.event.addListener(map, 'click', function (e) {
+                // alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
+                document.getElementById("kinhdo").value = e.latLng.lat() ;
+                document.getElementById("vido").value = e.latLng.lng() ;
+                var sum =  e.latLng.lat() + '____'+  e.latLng.lng() ;
+                document.getElementById("lat_and_long").value = sum;
+
+            });
+            
+
+        } 
+        google.maps.event.addDomListener(window, 'load', init_map);
+    }
+
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQnUfJIUr14br8WuniuuUMGkq0zDFoAc4&callback=myMap"></script>
-@endsection
+@endsection 

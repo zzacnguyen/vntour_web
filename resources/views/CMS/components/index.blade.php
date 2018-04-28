@@ -44,7 +44,6 @@
         <div id="page-content-wrapper">
             <div id="page-content">
                 <div class="container">
-                @include('CMS.script.container-charts-srcipt')
 <!-- Sparklines charts -->
                     @yield('content')
                 </div>

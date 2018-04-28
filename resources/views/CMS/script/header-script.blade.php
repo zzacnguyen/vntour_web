@@ -1,3 +1,5 @@
+
+<script src="resource/js/p/addplace.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('public/resourceAdminTemplate/assets/images/icons/apple-touch-icon-144-precomposed.png')}}">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('public/resourceAdminTemplate/assets/images/icons/apple-touch-icon-114-precomposed.png')}}">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('public/resourceAdminTemplate/assets/images/icons/apple-touch-icon-72-precomposed.png')}}">
