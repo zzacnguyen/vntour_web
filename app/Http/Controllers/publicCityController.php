@@ -11,17 +11,18 @@ class publicCityController extends Controller
     {
         $service_city = $this::paginate($this::get_service_city($idcity), $current_page,$limit);
         $count_sv     = $this::count_service_all_and_type($idcity);
+        $district      = $this::get_district_city($idcity);
         if ($service_city == null) {
             return view('VietNamTour.404');
         }
         else{
-            return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity'));
+            return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district'));
         }
     }
 
     public function get_service_city($idcity)
     {
-        $result = DB::select("SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity'");
+        $result = DB::select("SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' ORDER BY c.sv_counter_view desc");
         if ($result == null) {
             return null;
         }
@@ -133,10 +134,14 @@ class publicCityController extends Controller
         $result_paginate['total_page'] = $total_page;
         $result_paginate['current_page'] = $current_page;
         $result_paginate['limit'] = $limit;
-
         return $result_paginate;
 
     }
 
-
+    //load distric theo city_id
+    public function get_district_city($idcity)
+    {
+        $result = DB::select("SELECT * FROM c_city_district AS c WHERE c.id_city = '$idcity'");
+        return $result;
+    }
 }

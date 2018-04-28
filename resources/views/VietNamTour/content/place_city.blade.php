@@ -26,18 +26,20 @@
 							<!-- filter select -->
 							<div class="select-filter">
 								<select name="" id="">
-									<option value="">Mới nhất</option>
-									<option selected>Xem nhiều nhất</option>
-									<option>Điểm cao nhất</option>
+									<option value="">Đánh giá cao nhất</option>
+									<option selected>Lượt xem nhiều nhất</option>
+									<option selected>Lượt thích</option>
+									<option>Điểm cao</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-3 col-6">
 							<div class="select-filter">
 								<select name="" id="">
-									<option value="">Quận ninh Kiều</option>
-									<option selected>Quận Bình Thủy</option>
-									<option>Quận Cái Răng</option>
+									<option value="0" selected>Tất cả</option>
+									@foreach($district as $d)
+									<option value="{{$d->id_district}}">{{$d->name_district}}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -82,7 +84,7 @@
 						@foreach($service_city['data'] as $sv)
 						<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top:0;">
 							<div class="destination-grid">
-								<a href="">
+								<a href="detail/id={{$sv['id_service']}}&type={{$sv['sv_type']}}">
 									<img src="public/thumbnails/{{$sv['image']}}" alt="" style="min-height:269px;">
 								</a>
 								<div class="destination-name">
