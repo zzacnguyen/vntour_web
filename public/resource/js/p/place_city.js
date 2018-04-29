@@ -1,6 +1,9 @@
 $(document).ready(function () {
 	var path = window.location.pathname;
-	
+
+	select_sapxep();
+
+
 	$('#see').click(function () {
 		var city_id = path.slice(path.lastIndexOf("/") + 1,path.length);
 		var path_city = "http://chinhlytailieu/doan3_canthotour/public/get_all_place_city_type/" + city_id + "&type=4";
@@ -9,7 +12,7 @@ $(document).ready(function () {
 					type: 'GET'
 				}).done(function(response){
 					var lam = new String();
-					
+
 					if (response == "null") {
 						$('#content_place').html("<h2>Không có dịch vụ để hiển thị</h2>");
 					}
@@ -47,7 +50,7 @@ $(document).ready(function () {
 					type: 'GET'
 				}).done(function(response){
 					var lam = new String();
-					
+
 					if (response == "null") {
 						$('#content_place').html("<h2>Không có dịch vụ để hiển thị</h2>");
 					}
@@ -85,7 +88,7 @@ $(document).ready(function () {
 					type: 'GET'
 				}).done(function(response){
 					var lam = new String();
-					
+
 					if (response == "null") {
 						$('#content_place').html("<h2>Không có dịch vụ để hiển thị</h2>");
 					}
@@ -123,7 +126,7 @@ $(document).ready(function () {
 					type: 'GET'
 				}).done(function(response){
 					var lam = new String();
-					
+
 					if (response == "null") {
 						$('#content_place').html("<h2>Không có dịch vụ để hiển thị</h2>");
 					}
@@ -161,7 +164,7 @@ $(document).ready(function () {
 					type: 'GET'
 				}).done(function(response){
 					var lam = new String();
-					
+
 					if (response == "null") {
 						$('#content_place').html("<h2>Không có dịch vụ để hiển thị</h2>");
 					}
@@ -191,3 +194,25 @@ $(document).ready(function () {
 				});
 	})
 })
+
+function select_sapxep(type) {
+	// console.log(type);
+}
+function select_sapxep() {
+	$('select[name=boloc_sapxep]').change(function () {
+		console.log('hello');
+		// var path = 'loadDistrict/' + $(this).val();
+		// console.log(path);
+		// $.ajax({
+		// 	url: path,
+		// 	type: 'GET'
+		// })
+		// .done(function (response) {
+		// 	var lam = new String(); // khoi tao bien luu pha hien thi len view
+		// 	response.forEach(function (data) {
+		// 		lam += '<option value="' + data.id + '">' + data.district_name +'</option>';
+		// 	})
+		// 	$('#district').html(lam);
+		// })
+	})
+}

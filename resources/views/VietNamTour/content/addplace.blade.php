@@ -110,15 +110,17 @@
 					<div class="input-text col-md-12" style="margin-bottom: 10px;">
 						<label class="col-md-2">Tỉnh thành</label>
 						<select class="js-example-basic-single col-md-4" name="city">
+              <option value="0">Chọn tỉnh thành phố</option>
 							@foreach($city as $c)
 							  <option value="{{$c->id}}">{{$c->province_city_name}}</option>
 							@endforeach
 						</select>
 						<label class="col-md-2" style="margin-right: -10px;display: inline-block;">Quận huyện</label>
 						<select class="js-example-basic-single col-md-3" name="districtt" id="district">
+              <option value="0">Chọn quận huyện</option>
 						</select>
 					</div>
-					
+
 					<div class="col-md-12" style="margin-bottom: 10px;">
 						<label class="col-md-2" style="width: 150px;font-size: 14px;font-weight: bold;">Khu vực</label>
 						<select class="js-example-basic-single col-md-9" name="" id="ward" style="padding: 0">

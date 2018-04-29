@@ -25,11 +25,11 @@
 						<div class="col-md-2 col-sm-3 col-6" style="padding-left: 2px;">
 							<!-- filter select -->
 							<div class="select-filter">
-								<select name="" id="">
-									<option value="">Đánh giá cao nhất</option>
-									<option selected>Lượt xem nhiều nhất</option>
-									<option selected>Lượt thích</option>
-									<option>Điểm cao</option>
+								<select name="boloc_sapxep" id="boloc_sapxep">
+									<option value="1">Đánh giá cao nhất</option>
+									<option value="2" selected>Lượt xem nhiều nhất</option>
+									<option value="3">Lượt thích</option>
+									<option value="4">Điểm cao</option>
 								</select>
 							</div>
 						</div>
@@ -164,8 +164,8 @@
 	</div>
 </section>
 
-	<script src="resource/js/lightbox.min.js"></script>
-	<script src="resource/js/menu-style.js"></script>
-	<script src="resource/js/p/place_city.js"></script>
+	<!-- <script src="resource/js/lightbox.min.js"></script> -->
+	<!-- <script src="resource/js/menu-style.js"></script> -->
+	<script src="public/resource/js/p/place_city.js"></script>
 
 @include('VietNamTour.header-footer.footer')
