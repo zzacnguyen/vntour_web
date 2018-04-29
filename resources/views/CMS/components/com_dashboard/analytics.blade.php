@@ -7,7 +7,7 @@
                     <span>Người dùng đăng ký mới</b></span>
                 </div>
                 <div class="bs-label bg-green">+18%</div>
-            <div class="center-div sparkline-big-alt"><?php echo $data1 ?></div>
+            <div class="center-div sparkline-big-alt">{{ $data1  }}</div>
                 <div class="row list-grade">
                     <div class="col-md-2" id="thang-hien-tai-5"></div>
                     <div class="col-md-2" id="thang-hien-tai-4">Tháng 2</div>

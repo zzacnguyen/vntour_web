@@ -1,7 +1,7 @@
 <div id="header-nav-left">
     <div class="user-account-btn dropdown">
         <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
-            <img width="28" src="{{ asset('resourceAdminTemplate/assets/image-resources/gravatar.jpg')}}" alt="Profile image">
+            <img width="28" src="{{ asset('public/resourceAdminTemplate/assets/image-resources/gravatar.jpg')}}" alt="Profile image">
             <span>Tính Phan</span>
             <i class="glyph-icon icon-angle-down"></i>
         </a>
@@ -10,7 +10,7 @@
                 <div class="login-box clearfix">
                     <div class="user-img">
                         <a href="#" title="" class="change-img">Chọn ảnh</a>
-                        <img src="{{ asset('resourceAdminTemplate/assets/image-resources/gravatar.jpg')}}" alt="">
+                        <img src="{{ asset('public/resourceAdminTemplate/assets/image-resources/gravatar.jpg')}}" alt="">
                     </div>
                     <div class="user-info">
                         <span>
@@ -37,7 +37,6 @@
                             
                         </a>
                     </li>
-
                 </ul>
                 <div class="pad5A button-pane button-pane-alt text-center">
                     <a href="#" class="btn display-block font-normal btn-danger">

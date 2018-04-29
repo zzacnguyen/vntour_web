@@ -61,16 +61,10 @@
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/widgets/calendar/calendar.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/widgets/carousel/carousel.css')}}">
 
-
-
-
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/widgets/charts/justgage/justgage.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/widgets/charts/morris/morris.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/widgets/charts/piegage/piegage.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/widgets/charts/xcharts/xcharts.css')}}">
-
-
-
 
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/widgets/chosen/chosen.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/widgets/colorpicker/colorpicker.css')}}">
@@ -160,8 +154,8 @@
     <script type="text/javascript">
         $(window).load(function(){
             setTimeout(function() {
-                $('#loading').fadeOut( 200, "linear" );
-            }, 200);
+                $('#loading').fadeOut( 400, "linear" );
+            }, 300);
         });
     </script>
 

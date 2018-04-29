@@ -1,5 +1,7 @@
 @extends('CMS.components.index')
 @section('content')
+
+
 <div id="page-title">
     <h2>Thêm địa điểm</h2>
     
@@ -11,25 +13,24 @@
     <div class="row" style="padding-top: 25px;">
         <div class="content-box bg-white post-box col-md-12 ">
             <form id="frm_add_task" name="frm_add_task" action="" method="post"  enctype="multipart/form-data"  >
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
-                        <label for="placename">Tên địa điểm: </label>
-                        <input type="text" id="placename" required  class="form-control" name="name" >
+                        <label for="task_name">Tên địa điểm: </label>
+                        <input type="text" id="task_name" required  class="form-control" name="task_name" >
                     </div>
                      <div class="col-md-6">
-                        <label for="address">Địa chỉ: </label>
-                        <input type="text" id="address" required  class="form-control" name="address" >
+                        <label for="task_description">Địa chỉ: </label>
+                        <input type="text" id="task_name" required  class="form-control" name="task_name" >
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
-                        <label for="phone" >Số điện thoại: </label>
-                        <input type="tel" id="phone" required class="form-control" name="phone" > 
+                        <label for="task_description" >Số điện thoại: </label>
+                        <input type="tel" id="task_end_date" required class="form-control" name="task_end_date" > 
                     </div>
                     <div class="col-md-6">
-                        <label for="city" >Tỉnh / thành phố: </label>                      
+                        <label for="task_description" >Tỉnh / thành phố: </label>                      
                         <select class="form-control" name="city" id="city">
                             @foreach($data1 as $item)
                                 <option value="{{$item->id}}">{{$item->province_city_name}}</option>
@@ -39,23 +40,22 @@
                 </div>
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
-                        <label for="district">Quận / huyện: </label>
+                        <label for="task_start_date">Quận / huyện: </label>
                             <select class="form-control" id="district" name="districtt">
-                            <option value="">Vui lòng chọn quận huyện</option>
+                           
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label for="ward">Phường / xã: </label>
+                        <label for="task_end_date">Phường / xã: </label>
                         <select class="form-control" id="ward" name="ward">
-                            <option value="">Vui lòng chọn xã</option>
                         </select>
 
                      </div>
                 </div> 
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
-                         <label for="description" >Mô tả: </label>
-                         <input type="text" id="description" required class="form-control" name="description" > 
+                         <label for="content" >Mô tả: </label>
+                         <input type="text" id="task_end_date" required class="form-control" name="task_end_date" > 
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-md-6">
@@ -167,15 +167,15 @@ function Load_toado() {
          var long;
 
         function init_map() {
-            var opts = { 'center': new google.maps.LatLng(15.990132007337193,108.20620104078228), 'zoom': 5, 'mapTypeId': google.maps.MapTypeId.ROADMAP }
+            var opts = { 'center': new google.maps.LatLng(35.567980458012094,51.4599609375), 'zoom': 5, 'mapTypeId': google.maps.MapTypeId.ROADMAP }
                 map = new google.maps.Map(document.getElementById('map'), opts);
 
             
             google.maps.event.addListener(map, 'click', function (e) {
                 // alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
-                document.getElementById("kinhdo").value = e.latLng.lng() ;
-                document.getElementById("vido").value = e.latLng.lat() ;
-                var sum =  e.latLng.lat() + ' - '+  e.latLng.lng() ;
+                document.getElementById("kinhdo").value = e.latLng.lat() ;
+                document.getElementById("vido").value = e.latLng.lng() ;
+                var sum =  e.latLng.lat() + '____'+  e.latLng.lng() ;
                 document.getElementById("lat_and_long").value = sum;
 
             });

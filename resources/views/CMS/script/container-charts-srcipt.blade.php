@@ -1,11 +1,7 @@
-
-
-
 <script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/sparklines/sparklines.js')}}"></script>
 <script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/sparklines/sparklines-demo.js')}}"></script>
 
 <!-- Flot charts -->
-
 
 <script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot.js')}}"></script>
 <script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-resize.js')}}"></script>

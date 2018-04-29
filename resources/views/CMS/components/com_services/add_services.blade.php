@@ -50,11 +50,7 @@
                     <div class="col-md-6">
                         <label for="task_description" >Chọn loại hình: </label>
                         <select class="form-control" name="assigner_user_id">
-                                <option value="1">Ăn uống - Ẩm thực</option>
-                                <option value="2">Khách sạn - Nơi ở</option>
-                                <option value="3">Phương tiện - Vận chuyển</option>
-                                <option value="4">Tham quan</option>
-                                <option value="5">Vui chơi - Giải trí</option>
+                                <option>TEXT</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -64,37 +60,33 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-md-6 form-group" style="padding-top: 20px" >
-
-                        <label for="giomocua" class="inline">Giờ mở cửa</label>
-                        <div class="inline">
-                            <div class="col-md-3 form-group" >
-                                <label for="task_description" >Từ: </label>
-                                <input type="number" id="task_end_date" required class="form-control" name="task_end_date">    
-                            </div>
-                            <div class="col-md-2" class="inline">
-                                <label for="task_description" >Đến: </label>
-                                <input type="number" id="task_end_date" required class="form-control" name="task_end_date">    
-                            </div>
+                    
+                        <div class="col-md-3">
+                            <label for="task_description" >Từ: </label>
+                            <input type="number" id="task_end_date" required class="form-control" name="task_end_date">    
                         </div>
-                        
+                        <div class="col-md-3">
+                            <label for="task_description" >Đến: </label>
+                            <input type="number" id="task_end_date" required class="form-control" name="task_end_date">    
+                        </div>
               
                 </div>
                 <div class="col-md-6 form-group" style="padding-top: 20px" >
                     <label for="gia">Giá</label>
                     <div class="d-inline" id="gia">
                         
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                                 <label for="task_description" >Từ: </label>
                                 <input type="number" id="task_end_date" required class="form-control" name="task_end_date">    
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <label for="task_description" >đến: </label>
                                 <input type="number" id="task_end_date" required class="form-control" name="task_end_date"> 
                         </div> 
                     </div>
                 </div>
                <div class="col-md-6 form-group" style="padding-top: 20px" >
-                    
+                    <label for="giomocua">Giờ mở cửa</label>
                     <div class="d-inline" id="giomocua" >
                         
                         <div class="col-md-6">

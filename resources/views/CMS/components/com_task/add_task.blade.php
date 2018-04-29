@@ -4,7 +4,7 @@
     <h2>Thêm nhiệm vụ mới</h2>
     <div class="content-box bg-white post-box">
         <form id="frm_add_task" name="frm_add_task" action="" method="post"  enctype="multipart/form-data"  >
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            
             <div class="col-md-12 form-group" style="padding-top: 20px" >
                 <div class="col-md-6">
                     <label for="task_name">Tên nhiệm vụ: </label>

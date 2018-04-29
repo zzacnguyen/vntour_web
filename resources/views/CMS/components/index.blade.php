@@ -24,7 +24,7 @@
         
         @include('CMS.layout.sidebar_overlay.overlay')
         @include('CMS.layout.sidebar_overlay.scrollable')
-        <div id="loading"> 
+        <div id="loading">
             <div class="spinner">
                 <div class="bounce1"></div>
                 <div class="bounce2"></div>
@@ -39,13 +39,14 @@
             </div>
         </div>
         <div id="page-sidebar">
+
                 @include('CMS.layout.sidebar_overlay.menu-sidebar')
         </div>
-
         <div id="page-content-wrapper">
             <div id="page-content">
-                @include('CMS.script.container-charts-srcipt')
                 <div class="container">
+
+
 <!-- Sparklines charts -->
                     @yield('content')
                 </div>
@@ -54,7 +55,6 @@
     </div>
     
 @include('CMS.script.footer-script')
-
 
 </body>
 </html>
