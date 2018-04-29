@@ -34,7 +34,7 @@ class publicaddplaceController extends Controller
     //load ward
     public function loadWard($idDistrict)
     {
-    	$result = DB::select("SELECT * FROM vnt_ward WHERE district_id = '$idDistrict'");
+    	$result = DB::select("SELECT * FROM vnt_ward WHERE district_id = '$idDistrict' AND enable=1");
     	return $result;
     }
 }

@@ -1,11 +1,3 @@
-
-<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot.js')}}"></script>
-<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-resize.js')}}"></script>
-<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-stack.js')}}"></script>
-<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-pie.js')}}"></script>
-<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-tooltip.js')}}"></script>
-<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/widgets/charts/flot/flot-demo-1.js')}}"></script>
-
 <div class="row">
     <div class="col-md-4">
         <div class="dashboard-box dashboard-box-chart bg-white content-box">
@@ -15,7 +7,7 @@
                     <span>Người dùng đăng ký mới</b></span>
                 </div>
                 <div class="bs-label bg-green">+18%</div>
-            <div class="center-div sparkline-big-alt">{{ $data1  }}</div>
+            <div class="center-div sparkline-big-alt"><?php echo $data1 ?></div>
                 <div class="row list-grade">
                     <div class="col-md-2" id="thang-hien-tai-5"></div>
                     <div class="col-md-2" id="thang-hien-tai-4">Tháng 2</div>

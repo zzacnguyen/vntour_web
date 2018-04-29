@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\taskModel;
+use App\touristPlacesModel;
 class CMS_AddDataController extends Controller
 {
     public function _POST_TASK(Request $request)
@@ -25,5 +26,26 @@ class CMS_AddDataController extends Controller
         {
             return view('CMS.components.error');
         }
+    }
+
+
+
+    public function _POST_TOURIST_PLACES(Request $request)
+    {
+        $place = new touristPlacesModel();
+        $place->pl_name=$request->input('name');
+        $place->pl_details=$request->input('description');
+        
+        $place->pl_content=$request->input('content');
+        $place->pl_address=$request->input('address');
+        $place->pl_phone_number=$request->input('phone');
+        $place->pl_latitude=$request->input('vido');
+        $place->pl_longitude=$request->input('kinhdo');
+        $place->id_ward=$request->input('ward');
+        $place->pl_status=1;
+        $place->user_partner_id =1;
+        $place->save();
+        return redirect('/lvtn-dashboard');
+       
     }
 }

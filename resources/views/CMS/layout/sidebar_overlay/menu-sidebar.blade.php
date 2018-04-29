@@ -27,10 +27,10 @@
                     <li><a href="{{ route('ALL_LIST_ADMIN') }}" title="Danh sách quản trị viên"><span>Quản trị viên</span></a></li>
                     <li><a href="{{ route('ALL_LIST_MOD') }}" title="Moderater"><span>Moderater</span></a></li>
                     <li><a href="{{ route('ALL_LIST_PARTNER') }}" title="Danh sách cộng tác viên"><span>Cộng tác viên</span></a></li>
-                    <li><a href="#" title="Checklist"><span>Doanh nghiệp</span></a></li>
+                    <li><a href="{{  route('ALL_LIST_ENTERPRISE') }}" title="Danh sách người dùng doanh nghiệp"><span>Doanh nghiệp</span></a></li>
                     <li><a href="{{ route('ALL_LIST_TOURGUIDE') }}" title="Checklist"><span>Hướng dẫn viên du lịch</span>
                     </a></li>
-                    <li><a href="#" title="Checklist"><span>Người dùng cá nhân</span></a></li>
+                    <li><a href="{{ route('ALL_LIST_USER')}}" title="Checklist"><span>Người dùng cá nhân</span></a></li>
                 </ul>
 
             </div><!-- .sidebar-submenu -->

@@ -364,8 +364,11 @@ class CMS_ModuleController extends Controller
 	}
 
     public function getDashboard(){
+
+
 		$data_couter_user_six_month =  $this::Couter_User_Six_Month();
 		$data_couter_user_one_month = $this::_DISPLAY_NEW_USER();
+		// return $data_couter_places_one_month;
 		$data_couter_places_six_month =  $this::Couter_Places_Six_Month();
 		$data_couter_places_one_month = $this::_DISPLAY_NEW_TOURIST_PLACES();
 		$data_couter_services_six_month =  $this::Couter_Services_Six_Month();

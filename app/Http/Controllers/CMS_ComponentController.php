@@ -25,6 +25,7 @@ class CMS_ComponentController extends Controller
 			return view('CMS.components.error');
 		}
     }
+
     public function _DISPLAY_LIST_ADMIN_USER()
     {
         $data = DB::table('vnt_user') 
@@ -62,6 +63,9 @@ class CMS_ComponentController extends Controller
             return view('CMS.components.error');
         }
     }
+
+
+
     public function _DISPLAY_LIST_PARTNER()
     {
         $data = DB::table('vnt_user') 
@@ -80,7 +84,68 @@ class CMS_ComponentController extends Controller
             return view('CMS.components.error');
         }
     }
+
+
+    //     public function _DISPLAY_LIST_PARTNER()
+    // {
+    //     $data = DB::table('vnt_user') 
+    //     ->select( DB::raw('DATE_FORMAT(vnt_user.created_at, "%d-%m-%Y") as created_at'),
+    //         'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
+    //     )
+    //     ->join('vnt_partner_user', 'vnt_partner_user.user_id', '=', 'vnt_user.user_id')
+    //     ->leftJoin('vnt_contact_info', 'vnt_contact_info.user_id', '=', 'vnt_user.user_id')
+    //     ->join('vnt_active_accounts', 'vnt_active_accounts.user_moderator_id')
+    //     ->orderBy('vnt_user.user_id', 'desc')
+    //     ->paginate(4);
+    //     // return $data;
+    //     if (view()->exists('CMS.components.com_user.partner.list')){
+    //         return view('CMS.components.com_user.partner.list', ['data'=>$data]);
+    //     }
+    //     else {
+    //         return view('CMS.components.error');
+    //     }
+    // }
+
     
+    public function _DISPLAY_LIST_ENTERPRISE()
+    {
+        $data = DB::table('vnt_user') 
+        ->select( DB::raw('DATE_FORMAT(vnt_user.created_at, "%d-%m-%Y") as created_at'),
+            'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
+        )
+        ->join('vnt_enterprise_user', 'vnt_enterprise_user.user_id', '=', 'vnt_user.user_id')
+        ->leftJoin('vnt_contact_info', 'vnt_contact_info.user_id', '=', 'vnt_user.user_id')
+        ->orderBy('vnt_user.user_id', 'desc')
+        ->paginate(4);
+        // return $data;
+        if (view()->exists('CMS.components.com_user.enterprise.list_enterprise')){
+            return view('CMS.components.com_user.enterprise.list_enterprise', ['data'=>$data]);
+        }
+        else {
+            return view('CMS.components.error');
+        }
+    }
+
+
+    public function _DISPLAY_LIST_PERSIONAL()
+    {
+        $data = DB::table('vnt_user') 
+        ->select( DB::raw('DATE_FORMAT(vnt_user.created_at, "%d-%m-%Y") as created_at'),
+            'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
+        )
+        ->leftJoin('vnt_contact_info', 'vnt_contact_info.user_id', '=', 'vnt_user.user_id')
+        ->orderBy('vnt_user.user_id', 'desc')
+        ->paginate(4);
+        // return $data;
+        if (view()->exists('CMS.components.com_user.list_user')){
+            return view('CMS.components.com_user.list_user', ['data'=>$data]);
+        }
+        else {
+            return view('CMS.components.error');
+        }
+    }
+
+
     public function _DISPLAY_TOURIST_PLACES()
     {
         $data = DB::table('vnt_tourist_places') 
@@ -100,6 +165,9 @@ class CMS_ComponentController extends Controller
 		}
 		
     }
+
+
+
 
     public function _DISPLAY_LIST_SERVICES()
     {
