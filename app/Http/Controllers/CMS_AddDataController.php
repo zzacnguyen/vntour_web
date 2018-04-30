@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CheckTaskRequest;
 use App\Http\Requests\CheckAddTouristPlacesRequest;
 use App\taskModel;
+use DB;
 use App\touristPlacesModel;
 class CMS_AddDataController extends Controller
 {
@@ -45,8 +46,27 @@ class CMS_AddDataController extends Controller
         $place->id_ward=$request->input('ward');
         $place->pl_status=0;
         $place->user_partner_id =1;
-        $place->save();
-        return redirect('/lvtn-dashboard');
-       
+        if ($request->get('action') == 'save_close') {
+            $place->save();
+            return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một địa điểm!");
+        } 
+        else if ($request->get('action') == 'save_and_add_service') {
+            $place->save();
+            $get_last_place = DB::table('vnt_tourist_places')
+            ->select('id', 'pl_name')
+            ->orderBy('created_at', 'desc')->first();
+            if (view()->exists('view.CMS.components.com_services.add_services'))
+            {
+                return view('CMS.components.error');
+            }
+            else    {
+                
+                return view('CMS.components.com_services.add_services', ['data_place'=>$get_last_place]);
+            }
+        }
+        else
+        {
+            return view('CMS.components.error');
+        }
     }
 }

@@ -78,4 +78,16 @@
 
 
 
+<script>
+function myMap() {
+var mapOptions = {
+    center: new google.maps.LatLng(10.5,105.5),
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+}
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQnUfJIUr14br8WuniuuUMGkq0zDFoAc4&callback=myMap"></script>
 @endsection

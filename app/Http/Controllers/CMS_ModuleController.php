@@ -503,8 +503,12 @@ class CMS_ModuleController extends Controller
 	}
 	public function _GETVIEW_ADD_SERVICES()
 	{
-		if (view()->exists('view.CMS.components.com_services.add_services')){return view('CMS.components.error');}
+		if (view()->exists('view.CMS.components.com_services.add_services'))
+		{
+			return view('CMS.components.error');
+		}
     	else	{
+			
 			return view('CMS.components.com_services.add_services');
 		}
 	}

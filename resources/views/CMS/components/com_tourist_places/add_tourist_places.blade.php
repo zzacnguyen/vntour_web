@@ -104,7 +104,15 @@
                     <label for="map">Bản đồ</label>
                     <div id="map" style="height:400px;"></div>
                 </div>
-                <input  class="btn btn-success" style=";margin-bottom: 20px; margin-left: 90%" type="submit" value="Xong">
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-info "  type="submit" name="action" value="save_close"><span class="glyph-icon icon-elusive-ok">Lưu và thoát</span></button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-success " style="float: right; margin-bottom: 25px; " type="submit" name="action" value="save_and_add_service">Lưu và thêm dịch vụ</button>    
+                    </div>
+                </div>
+                
             </form>
         </div>
     </div>
