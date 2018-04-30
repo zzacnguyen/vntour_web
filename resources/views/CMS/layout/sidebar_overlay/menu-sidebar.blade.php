@@ -9,7 +9,7 @@
         </li>
         <li class="divider"></li>
         <li class="no-menu">
-            <a href="{{  route('/') }}" title="Trang public">
+            <a href="{{  route('/') }}" target="_blank" title="Trang public">
                 <i class="glyph-icon icon-linecons-paper-plane"></i>
                 <span>VietNamTour</span><span class="bs-label label-danger">MỚI</span>
             </a>
@@ -22,7 +22,6 @@
                 <span>Thông tin người dùng</span>
             </a>
             <div class="sidebar-submenu">
-
                 <ul>
                     <li><a href="{{ route('ALL_LIST_ADMIN') }}" title="Danh sách quản trị viên"><span>Quản trị viên</span></a></li>
                     <li><a href="{{ route('ALL_LIST_MOD') }}" title="Moderater"><span>Moderater</span></a></li>

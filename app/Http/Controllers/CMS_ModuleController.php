@@ -363,6 +363,91 @@ class CMS_ModuleController extends Controller
 		return $data;
 	}
 
+
+	public function _DISPLAY_PERCENT_USER()
+	{
+		$month = $this::_GET_MONTH();
+		$year = $this::_GET_YEAR();
+		$data_1 = DB::table('vnt_user') 
+		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
+		->whereMonth('created_at', '=', $month[0])
+		->whereYear('created_at', '=', $year[0])
+        ->count();
+        $data_2 = DB::table('vnt_user') 
+		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
+        ->whereMonth('created_at', '=', $month[1])
+		->whereYear('created_at', '=', $year[1])
+        ->count();
+        $tmp = 0;
+        if($data_2 == 0 )
+        {
+        	$tmp = 1;
+        }
+        else{
+        	$tmp = $data_2;
+        }
+        $percent =  (($data_1-$data_2)/$tmp)*100;
+        return CEIL($percent);
+	}
+
+
+	public function _DISPLAY_PERCENT_PLACES()
+	{
+		$month = $this::_GET_MONTH();
+		$year = $this::_GET_YEAR();
+		$data_1 = DB::table('vnt_tourist_places') 
+		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
+		->whereMonth('created_at', '=', $month[0])
+		->whereYear('created_at', '=', $year[0])
+		->where('pl_status', '=', 1)
+		->count();
+		$data_2 = DB::table('vnt_tourist_places') 
+		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
+		->whereMonth('created_at', '=', $month[1])
+		->whereYear('created_at', '=', $year[1])
+		->where('pl_status', '=', 1)
+		->count();
+        $tmp = 0;
+        if($data_2 == 0 )
+        {
+        	$tmp = 1;
+        }
+        else{
+        	$tmp = $data_2;
+        }
+        $percent =  (($data_1-$data_2)/$tmp)*100;
+        return CEIL($percent);
+	}
+
+
+	public function _DISPLAY_PERCENT_SERVICES()
+	{
+		$month = $this::_GET_MONTH();
+		$year = $this::_GET_YEAR();
+		$data_1 = DB::table('vnt_services') 
+		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
+		->whereMonth('created_at', '=', $month[0])
+		->whereYear('created_at', '=', $year[0])
+		->where('sv_status', '=', 1)
+		->count();
+		$data_2 = DB::table('vnt_services') 
+		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
+		->whereMonth('created_at', '=', $month[1])
+		->whereYear('created_at', '=', $year[1])
+		->where('sv_status', '=', 1)
+		->count();
+        $tmp = 0;
+        if($data_2 == 0 )
+        {
+        	$tmp = 1;
+        }
+        else{
+        	$tmp = $data_2;
+        }
+        $percent =  (($data_1-$data_2)/$tmp)*100;
+        return CEIL($percent);
+	}
+
     public function getDashboard(){
 
 
@@ -378,6 +463,9 @@ class CMS_ModuleController extends Controller
 		$data_counter_user_not_active = $this::_COUNTER_WAITING_USER_ACTIVE();
 		$data_task_list = $this::_DISPLAY_TASK_LIST();
 		$data_task_list_guide =  $this::_DISPLAY_USER_PARTNER_MODERATOR();
+		$data_percent_user = $this::_DISPLAY_PERCENT_USER();
+		$data_percent_place = $this::_DISPLAY_PERCENT_PLACES();
+		$data_percent_services = $this::_DISPLAY_PERCENT_SERVICES();
     	if (view()->exists('view.CMS.master')){return view('CMS.components.error');}
     	else	{
 			return view('CMS.master', [
@@ -391,7 +479,10 @@ class CMS_ModuleController extends Controller
 					'data8'=>$data_counter_places_not_active,
 					'data9'=>$data_counter_user_not_active,
 					'data10'=>$data_task_list,
-					'data11'=>$data_task_list_guide
+					'data11'=>$data_task_list_guide,
+					'data12'=>$data_percent_user,
+					'data13'=>$data_percent_place,
+					'data14'=>$data_percent_services,
 			]);
 		}
 

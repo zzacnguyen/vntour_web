@@ -6,8 +6,8 @@
 <link rel="apple-touch-icon-precomposed" href="{{asset('public/resourceAdminTemplate/assets/images/icons/apple-touch-icon-57-precomposed.png')}}">
 <link rel="shortcut icon" href="{{asset('public/resourceAdminTemplate/assets/images/icons/favicon.png')}}">
 
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+{{-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> --}}
+{{-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script> --}}
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/bootstrap/css/bootstrap.css')}}">
 
 

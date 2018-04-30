@@ -2,6 +2,21 @@
 @section('content')
 
 
+@if(!empty($errors->first()))
+    <div class=" error row col-lg-12" >
+        <div class="alert alert-danger">
+            <span>{{ $errors->first() }}</span>
+        </div>
+    </div>
+@endif
+<script >
+ $(document).ready(function () {          
+        setTimeout(function() {
+            $('.error').slideUp("slow");
+        }, 10000);
+});
+</script>
+
 <div id="page-title">
     <h2>Thêm địa điểm</h2>
     
@@ -15,23 +30,24 @@
             <form id="frm_add_task" name="frm_add_task" action="" method="post"  enctype="multipart/form-data"  >
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
-                        <label for="task_name">Tên địa điểm: </label>
-                        <input type="text" id="task_name" required  class="form-control" name="task_name" >
+                        <label for="place_name">Tên địa điểm: </label>
+                        <input type="text" id="place_name" title="Vui lòng nhập tên địa điểm" required  class="form-control" name="place_name">
                     </div>
                      <div class="col-md-6">
-                        <label for="task_description">Địa chỉ: </label>
-                        <input type="text" id="task_name" required  class="form-control" name="task_name" >
+                        <label for="address">Địa chỉ: </label>
+                        <input type="text" id="address" required  title="Vui lòng nhập địa chỉ" class="form-control" name="address"  placeholder="Số 194/9, đường Cách Mạng Tháng 8">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
-                        <label for="task_description" >Số điện thoại: </label>
-                        <input type="tel" id="task_end_date" required class="form-control" name="task_end_date" > 
+                        <label for="phonenumber" >Số điện thoại: </label>
+                        {{-- <input type="tel" id="phonenumber" required class="form-control" name="phonenumber">  --}}
+                        <input type='tel' id="phonenumber" required class="form-control" name="phonenumber" data-inputmask="'mask':'(999) 999-9999'" title='Số điện thoại (Định dạng: (999) 999-9999'>
                     </div>
                     <div class="col-md-6">
                         <label for="task_description" >Tỉnh / thành phố: </label>                      
-                        <select class="form-control" name="city" id="city">
+                        <select class="form-control" title="Chọn một tỉnh/thành phố để hiện danh sách các quận/huyện" name="city" id="city">
                             @foreach($data1 as $item)
                                 <option value="{{$item->id}}">{{$item->province_city_name}}</option>
                             @endforeach()
@@ -41,33 +57,33 @@
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
                         <label for="task_start_date">Quận / huyện: </label>
-                            <select class="form-control" id="district" name="districtt">
+                            <select class="form-control" title="Chọn một quận/huyện để hiển thị danh sách các xã/phường " id="district" name="districtt">
                            
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="task_end_date">Phường / xã: </label>
-                        <select class="form-control" id="ward" name="ward">
+                        <select class="form-control" title="Vui lòng chọn phường xã để tiếp tục" id="ward" name="ward">
                         </select>
 
                      </div>
                 </div> 
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
-                         <label for="content" >Mô tả: </label>
-                         <input type="text" id="task_end_date" required class="form-control" name="task_end_date" > 
+                         <label for="description" >Mô tả: </label>
+                         <input type="text" title="Vui lòng nhập mô tả cho địa điểm" id="description" required class="form-control" name="description" > 
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-md-6">
                          <label for="content" >Tọa độ: </label>
-                         <input type="text" id="lat_and_long" required class="form-control" name="lat_and_long" placeholder="Có thể chọn ở bản đồ"> 
+                         <input type="text" title="Kinh độ, vĩ độ không được để trống!" id="lat_and_long" required class="form-control" name="lat_and_long" readonly placeholder="Vui lòng chọn tọa độ chính xác ở bản đồ!"> 
                          <input type="hidden" name="kinhdo" id="kinhdo" value="">
                          <input type="hidden" name="vido" id="vido" value="">
                         <div class="clearfix"></div>
                     </div>
                 </div>
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
-                    <label for="content" >Nội dung chi tiết: </label>
+                    <label for="content"  title="Nội dung giới thiệu địa điểm">Nội dung chi tiết: </label>
                     <textarea style="height: 500px" id="content" ></textarea>
                     <input type="hidden" name="content" id="content2">
                     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
@@ -167,7 +183,7 @@ function Load_toado() {
          var long;
 
         function init_map() {
-            var opts = { 'center': new google.maps.LatLng(35.567980458012094,51.4599609375), 'zoom': 5, 'mapTypeId': google.maps.MapTypeId.ROADMAP }
+            var opts = { 'center': new google.maps.LatLng(10.5404526,106.0088311), 'zoom': 8, 'mapTypeId': google.maps.MapTypeId.ROADMAP }
                 map = new google.maps.Map(document.getElementById('map'), opts);
 
             
@@ -175,7 +191,7 @@ function Load_toado() {
                 // alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
                 document.getElementById("kinhdo").value = e.latLng.lat() ;
                 document.getElementById("vido").value = e.latLng.lng() ;
-                var sum =  e.latLng.lat() + '____'+  e.latLng.lng() ;
+                var sum = 'Vĩ độ: ' + e.latLng.lat() + ', Kinh độ: '+  e.latLng.lng() ;
                 document.getElementById("lat_and_long").value = sum;
 
             });
