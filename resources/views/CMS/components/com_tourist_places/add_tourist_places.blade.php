@@ -26,7 +26,12 @@
     </a>
 </div>
     <div class="row" style="padding-top: 25px;">
-        <div class="content-box bg-white post-box col-md-12 ">
+        <div class="frm-heading">
+                THÔNG TIN ĐỊA ĐIỂM
+                <span></span>
+        </div>
+        <div class=" content-box bg-white post-box col-md-12 ">
+            
             <form id="frm_add_task" name="frm_add_task" action="" method="post"  enctype="multipart/form-data"  >
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
@@ -82,6 +87,7 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
+
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <label for="content"  title="Nội dung giới thiệu địa điểm">Nội dung chi tiết: </label>
                     <textarea style="height: 500px" id="content" ></textarea>
