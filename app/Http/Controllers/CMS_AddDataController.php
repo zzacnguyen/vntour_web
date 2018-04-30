@@ -22,7 +22,7 @@ class CMS_AddDataController extends Controller
         $task->assigner_user_id =$request->input('assigner_user_id');
         if($task->save())
         {
-            return redirect('/lvtn-dashboard')->with('message', "Thanks, message has been sent");
+            return redirect('/lvtn-dashboard')->with('message', "Hoàn tất, Nhiệm vụ đã được gửi đi!");
         }
         else
         {

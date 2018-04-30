@@ -419,7 +419,6 @@ class CMS_ModuleController extends Controller
         return CEIL($percent);
 	}
 
-
 	public function _DISPLAY_PERCENT_SERVICES()
 	{
 		$month = $this::_GET_MONTH();

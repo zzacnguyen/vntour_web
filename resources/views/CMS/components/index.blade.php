@@ -45,8 +45,20 @@
         <div id="page-content-wrapper">
             <div id="page-content">
                 <div class="container">
-
-
+                    @if(session()->has('message'))
+                    <div class=" success row col-lg-12" >
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    </div>
+                    @endif
+                    <script >
+                     $(document).ready(function () {          
+                            setTimeout(function() {
+                                $('.success').slideUp("slow");
+                            }, 10000);
+                    });
+                    </script>
 <!-- Sparklines charts -->
                     @yield('content')
                 </div>
