@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CheckTaskRequest;
 use App\taskModel;
 use App\touristPlacesModel;
 class CMS_AddDataController extends Controller
 {
-    public function _POST_TASK(Request $request)
+    public function _POST_TASK(CheckTaskRequest $request)
     {
         $task = new taskModel();
         $task->task_title=$request->input('task_name');
