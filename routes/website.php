@@ -77,6 +77,7 @@ Route::get('likelam/{idser}','publicDetail@count_service_all_and_type');
 
 Route::get('count_service_all_and_type/{id}','publicCityController@count_service_all_and_type');//test add view service
 Route::get('phantrang/{id}','publicCityController@checkPaginate');
+Route::get('city-all/city={c}&distric={d}&type={type}&fil={fil}','publicCityController@get_service_city_new');
 
 //================================ NEW ========================================
 
@@ -115,10 +116,13 @@ Route::get('checkLike/userid={d}&svid={s}','publicDetail@checkLike');
 
 
 // ================ serviece city ==============
-Route::get('city/{id}&page={p}&limit={l}','publicCityController@getCity');
+Route::get('city/{id}&page={p}','publicCityController@getCity');
 
+Route::get('city/fillter/{id}&page={p}&l={l}','publicCityController@getCity_boloc'); // lọc theo điểm hoặc theo lượt xem
 
+Route::get('city/fillters/{id}&page={p}&l={l}&limit={limit}','publicCityController@getCity_boloc_limit'); // lọc theo điểm hoặc theo lượt xem
 
+Route::get('city/fillterDistrict/{id}&page={p}&l={l}&limit={limit}&district={district}','publicCityController@getCity_boloc_limit_district');
 
 
 

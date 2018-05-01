@@ -7,22 +7,150 @@ use DB;
 use Illuminate\Support\Str;
 class publicCityController extends Controller
 {
-    public function getCity($idcity,$current_page,$limit)
+    public function getCity($idcity,$current_page)
     {
-        $service_city = $this::paginate($this::get_service_city($idcity), $current_page,$limit);
+        $boloc = 1;
+        $limit = 9;
+        if ($current_page == null) {
+            $current_page = 1;
+        }
+        $service_city = $this::paginate($this::get_service_city($idcity,$boloc), $current_page,$limit);
         $count_sv     = $this::count_service_all_and_type($idcity);
         $district      = $this::get_district_city($idcity);
         if ($service_city == null) {
             return view('VietNamTour.404');
         }
         else{
-            return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district'));
+            return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district','boloc'));
         }
     }
 
-    public function get_service_city($idcity)
+    public function getCity_boloc($idcity,$current_page,$boloc,$limit,$district,$type) // loc theo luot xem haoc diem cua dich vu
     {
-        $result = DB::select("SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' ORDER BY c.sv_counter_view desc");
+        $limit = 9;
+        $service_city = $this::paginate($this::get_service_city($idcity,$boloc), $current_page,$limit);
+        $count_sv     = $this::count_service_all_and_type($idcity);
+        $district      = $this::get_district_city($idcity);
+
+        if ($service_city == null) {
+            return view('VietNamTour.404');
+        }
+        else{
+            return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district','boloc'));
+        }
+    }
+
+    public function getCity_boloc_limit($idcity,$current_page,$boloc,$limit) // gioi han hienthi so dich vu
+    {
+        $service_city = $this::paginate($this::get_service_city($idcity,$boloc), $current_page,$limit);
+        $count_sv     = $this::count_service_all_and_type($idcity);
+        $district      = $this::get_district_city($idcity);
+        if ($service_city == null) {
+            return view('VietNamTour.404');
+        }
+        else{
+            return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district','boloc'));
+        }
+    }
+
+    public function getCity_boloc_limit_district($idcity,$current_page,$boloc,$limit,$id_district) //
+    {
+        $service_city = $this::paginate($this::get_service_city($idcity,$boloc,$id_district), $current_page,$limit);
+        $count_sv     = $this::count_service_all_and_type($idcity);
+        $district      = $this::get_district_city($idcity);
+        if ($service_city == null) {
+            return view('VietNamTour.404');
+        }
+        else{
+            return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district','boloc'));
+        }
+    }
+
+
+    public function FunctionName($value='')
+    {
+        // code...
+    }
+
+    public function get_service_city($idcity, $boloc,$id_district = null)
+    {
+        if ($id_district == null) {
+            if ($boloc == 1) {
+              $result = DB::select("SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' ORDER BY c.sv_counter_view desc");
+            }
+            else if($boloc == 2){
+              $result = DB::select("SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' ORDER BY c.sv_counter_point desc");
+            }
+            else{
+                $result = DB::select("SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' ORDER BY c.sv_counter_view desc");
+            }
+        }
+        else{
+            if ($boloc == 1) {
+              $result = DB::select("SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND id_district = '$id_district' ORDER BY c.sv_counter_view desc");
+            }
+            else if($boloc == 2){
+              $result = DB::select("SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND id_district = '$id_district' ORDER BY c.sv_counter_point desc");
+            }
+            else{
+                $result = DB::select("SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND id_district = '$id_district' ORDER BY c.sv_counter_view desc");
+            }
+        }
+
+        if ($result == null) {
+            return null;
+        }
+        else {
+            foreach ($result as $value) {
+                $sv_id = $value->id_service;
+                $name    = $this::getname_Service($sv_id,$value->sv_types);
+                $image = $this::get_image($sv_id);
+                $likes   = DB::table('vnt_likes')->where('service_id', '=',$sv_id)->count();
+                $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$sv_id)->first();
+                if (!empty($ratings)) { $ponit_rating = $ratings->vr_rating; }else{ $ponit_rating = 0; }
+
+                $mang[] = array(
+                    'id_service'        => $sv_id,
+                    'name'              => $name,
+                    'description'       => $value->sv_description,
+                    'image'             => $image,
+                    'sv_highest_price'  => $value->sv_highest_price,
+                    'sv_lowest_price'   => $value->sv_lowest_price,
+                    'like'              => $likes,
+                    'view'              => $value->sv_counter_view,
+                    'point'             => $value->sv_counter_point,
+                    'rating'            => $ponit_rating,
+                    'sv_type'           => $value->sv_types);
+            }
+            return $mang;
+        }
+    }
+
+    public function get_service_city_new($idcity, $id_district, $type, $boloc)
+    {
+        // city-all/id=6&district=1&type=1&fil=1
+        $type_boloc = ""; // 1-theo view; 2-theo point
+        $boloc == 1 ? $type_boloc = 'c.sv_counter_view' : $type_boloc = 'c.sv_counter_point';
+        // neu $type_boloc = 0 -> mặc định load theo view
+        // neu id_district = 0 -> load het dich vu cua city
+        // neu $type       = 0 -> load het dich vu
+
+        // query district = 0 & type = 0
+        if ($id_district == 0 && $type == 0) {
+            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' ORDER BY c.sv_counter_view DESC";
+        }
+        elseif ($id_district != 0 && $type == 0) { // query district <> 0 & type <> 0
+            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND c.id_district = '$id_district' AND c.sv_types = '$type' ORDER BY '$type_boloc' DESC";
+        }
+        else if($id_district == 0 && $type != 0){ // query district = 0 & type <> 0
+            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND c.sv_types = '$type' ORDER BY '$type_boloc' DESC";
+        }
+        else { // query_all
+            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND c.id_district = 916 AND c.sv_types = '$type' ORDER BY '$type_boloc' DESC";
+        }
+
+        $result = DB::select($query);
+
         if ($result == null) {
             return null;
         }

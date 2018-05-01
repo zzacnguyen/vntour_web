@@ -1,11 +1,11 @@
 
 @include('VietNamTour.header-footer.header')
-	
+
 	<!-- ==================TINH TP============= -->
 	<section class="tinhthanhpho">
 		<div class="container">
 			<div class="owl-carousel owl-theme" id="display-city">
-				
+
 				@foreach($placecount as $value)
 					<div class="item">
 				    	<div class="grid-item">
@@ -13,7 +13,7 @@
 				    			<div class="ribbon">
 				    				<span>{{$value['num_service']}}</span>
 				    			</div>
-					    		<a href="city/{{$value['id_city']}}">
+					    		<a href="city/{{$value['id_city']}}&page=1">
 					    			<img src="public/thumbnails/{{$value['image']}}" alt="" style="height: 214px;"></a>
 					    	</div>
 					    	<div class="grid-content">
@@ -32,7 +32,7 @@
 				    				</span>
 					    		</div>
 					    	</div>
-				    	</div>    	
+				    	</div>
 				    </div>
 				@endforeach
 
@@ -52,7 +52,7 @@
 						<p>Những địa điểm tham quan tuyệt vời</p>
 					</div>
 				</div>
-					
+
 			</div>
 			<div class="row">
 
@@ -67,8 +67,8 @@
 								<h4>{{$see['name']}}</h4>
 								<h5>{{$see['name_city']}}</h5>
 							</div>
-							<div class="destination-icon">	
-								<a>{{$see['rating']}} <i class="far fa-star"></i></a>	
+							<div class="destination-icon">
+								<a>{{$see['rating']}} <i class="far fa-star"></i></a>
 								<a>{{$see['view']}} <i class="fas fa-eye"></i></a>
 								<a>{{$see['like']}} <i class="far fa-thumbs-up"></i></a>
 								<a>{{$see['point']}} <i class="far fa-bookmark"></i></a>
@@ -77,7 +77,7 @@
 					</div>
 
 				@endforeach
-				
+
 				<div class="col-md-12">
 					<div class="float-right"><a href="#" class="" style="color: black !important; font-weight: 500;">Xem tất cả <i class="fas fa-angle-double-right"></i></a></div>
 				</div>
@@ -97,7 +97,7 @@
 						<p>Những địa điểm ăn uống hấp dẫn !</p>
 					</div>
 				</div>
-					
+
 			</div>
 			<div class="row">
 
@@ -112,8 +112,8 @@
 								<h4>{{$eat['name']}}</h4>
 								<h5>{{$eat['name_city']}}</h5>
 							</div>
-							<div class="destination-icon">	
-								<a>{{$eat['rating']}} <i class="far fa-star"></i></a>	
+							<div class="destination-icon">
+								<a>{{$eat['rating']}} <i class="far fa-star"></i></a>
 								<a>{{$eat['view']}} <i class="fas fa-eye"></i></a>
 								<a>{{$eat['like']}} <i class="far fa-thumbs-up"></i></a>
 								<a>{{$eat['point']}} <i class="far fa-bookmark"></i></a>
@@ -122,7 +122,7 @@
 					</div>
 
 				@endforeach
-					
+
 
 				<div class="col-md-12">
 					<div class="float-right"><a href="#" class="" style="color: black !important; font-weight: 500;">Xem tất cả <i class="fas fa-angle-double-right"></i></a></div>
@@ -143,7 +143,7 @@
 						<div class="" style="border: 1px solid #FF6E41; height: 1px; width: 100%;"></div>
 						<p>Khách sạn đẳng cấp</p>
 					</div>
-				</div>	
+				</div>
 			</div>
 			<div class="row">
 
@@ -165,7 +165,7 @@
 								<h4>{{$hotel['name']}}</h4>
 								<p class="">{{$hotel['description']}}</p>
 								<div class="free-service">
-									<a>{{$hotel['rating']}}  <i class="far fa-star"></i></a>	
+									<a>{{$hotel['rating']}}  <i class="far fa-star"></i></a>
 									<a>{{$hotel['view']}} <i class="fas fa-eye"></i></a>
 									<a>{{$hotel['like']}}  <i class="far fa-thumbs-up"></i></a>
 									<a>{{$hotel['point']}} <i class="far fa-bookmark"></i></a>
@@ -186,7 +186,7 @@
 					</div>
 
 				@endforeach
-		
+
 				<div class="col-md-12">
 					<div class="float-right"><a href="#" class="" style="color: black !important; font-weight: 500;">Xem tất cả <i class="fas fa-angle-double-right"></i></a></div>
 				</div>
@@ -206,7 +206,7 @@
 						<p>Bạn không thể bỏ qua những điểm đến này</p>
 					</div>
 				</div>
-					
+
 			</div>
 			<div class="row">
 
@@ -220,8 +220,8 @@
 								<h4>{{$enter['name']}}</h4>
 								<h5>{{$enter['name_city']}}</h5>
 							</div>
-							<div class="destination-icon">	
-								<a>{{$enter['rating']}} <i class="far fa-star"></i></a>	
+							<div class="destination-icon">
+								<a>{{$enter['rating']}} <i class="far fa-star"></i></a>
 								<a>{{$enter['view']}} <i class="fas fa-eye"></i></a>
 								<a>{{$enter['like']}} <i class="far fa-thumbs-up"></i></a>
 								<a>{{$enter['point']}} <i class="far fa-bookmark"></i></a>
@@ -229,7 +229,7 @@
 						</div>
 					</div>
 				@endforeach
-					
+
 				<div class="col-md-12">
 					<div class="float-right"><a href="#" class="" style="color: black !important; font-weight: 500;">Xem tất cả <i class="fas fa-angle-double-right"></i></a></div>
 				</div>
@@ -249,7 +249,7 @@
 						<p>Tổng hợp những phương tiện di chuyển</p>
 					</div>
 				</div>
-					
+
 			</div>
 			<div class="row">
 
@@ -263,8 +263,8 @@
 								<h4>{{$stran['name']}}</h4>
 								<h5>{{$stran['name_city']}}</h5>
 							</div>
-							<div class="destination-icon">	
-								<a>{{$stran['rating']}} <i class="far fa-star"></i></a>	
+							<div class="destination-icon">
+								<a>{{$stran['rating']}} <i class="far fa-star"></i></a>
 								<a>{{$stran['view']}} <i class="fas fa-eye"></i></a>
 								<a>{{$stran['like']}} <i class="far fa-thumbs-up"></i></a>
 								<a>{{$stran['point']}} <i class="far fa-bookmark"></i></a>

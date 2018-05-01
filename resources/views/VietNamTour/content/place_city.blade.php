@@ -26,10 +26,10 @@
 							<!-- filter select -->
 							<div class="select-filter">
 								<select name="boloc_sapxep" id="boloc_sapxep">
-									<option value="1">Đánh giá cao nhất</option>
-									<option value="2" selected>Lượt xem nhiều nhất</option>
-									<option value="3">Lượt thích</option>
-									<option value="4">Điểm cao</option>
+									<!-- <option value="1">Đánh giá cao nhất</option>
+									<option value="2" selected>Lượt xem nhiều nhất</option> -->
+									<option value="1">Lượt thích</option>
+									<option value="2">Điểm cao</option>
 								</select>
 							</div>
 						</div>
@@ -47,10 +47,10 @@
 						<div class="col-md-1 text-right-filter"><span>Hiển thị</span></div>
 						<div class="col-md-1 float-right">
 							<div class="select-filter" style="width: 55px;">
-								<select name="" id="">
-									<option value="">9</option>
-									<option selected>18</option>
-									<option>27</option>
+								<select name="hienthi" id="hienthi">
+									<option value="1" selected>9</option>
+									<option value="2">18</option>
+									<option value="3">27</option>
 								</select>
 							</div>
 						</div>
@@ -80,7 +80,7 @@
 			<!-- right -->
 			<div class="col-md-9 .col-sm-8">
 				<div class="place-list-content">
-					<div class="row">
+					<div class="row" id="content_place">
 						@foreach($service_city['data'] as $sv)
 						<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top:0;">
 							<div class="destination-grid">
@@ -110,7 +110,7 @@
 						</div>
 						<div class="col-md-8 col-sm-8 col-12">
 							<div class="float-center">
-								<ul class="pagination">
+								<ul class="pagination" id="pagination_id">
 									@if($service_city['total_page'] > 1)
 										@if($service_city['current_page'] == 1)
 											<li class="page-item">
@@ -120,7 +120,7 @@
 											</li>
 										@else
 										<li class="page-item">
-											<a class="page-link" href="city/{{$idcity}}&page={{$service_city['current_page'] - 1 }}&limit={{$service_city['limit']}}" disabled="disabled" style="">
+											<a class="page-link" href="city/{{$idcity}}&page={{$service_city['current_page'] - 1 }}" disabled="disabled" style="">
 												<i class="fas fa-arrow-left"></i>
 											</a>
 										</li>
@@ -128,9 +128,9 @@
 
 										@for($i = 1; $i <= $service_city['total_page']; $i++)
 											@if($service_city['current_page'] == $i)
-												<li class="page-item activee"><a class="page-link" href="city/{{$idcity}}&page={{$i}}&limit={{$service_city['limit']}}">{{$i}}</a></li>
+												<li class="page-item activee"><a class="page-link" href="city/{{$idcity}}&page={{$i}}">{{$i}}</a></li>
 											@else
-												<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$i}}&limit={{$service_city['limit']}}">{{$i}}</a></li>
+												<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$i}}">{{$i}}</a></li>
 											@endif
 										@endfor
 
@@ -142,7 +142,7 @@
 											</li>
 										@else
 										<li class="page-item">
-											<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$service_city['current_page'] + 1}}&limit={{$service_city['limit']}}"><i class="fas fa-arrow-right"></i></a></li>
+											<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$service_city['current_page'] + 1}}"><i class="fas fa-arrow-right"></i></a></li>
 										</li>
 										@endif
 
