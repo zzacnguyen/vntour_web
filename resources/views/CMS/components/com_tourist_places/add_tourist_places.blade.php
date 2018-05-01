@@ -19,7 +19,6 @@
 
 <div id="page-title">
     <h2>Thêm địa điểm</h2>
-    
     <div id="theme-options" class="admin-options">
     <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
         <i class="glyph-icon icon-linecons-cog icon-spin"></i>
@@ -32,15 +31,16 @@
         </div>
         <div class=" content-box bg-white post-box col-md-12 ">
             
-            <form id="frm_add_task" name="frm_add_task" action="" method="post"  enctype="multipart/form-data"  >
+            <form id="frm_add_task" class="bg-success" name="frm_add_task" action="" method="post"  enctype="multipart/form-data"  >
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
                         <label for="place_name">Tên địa điểm: </label>
-                        <input type="text" id="place_name" title="Vui lòng nhập tên địa điểm" required  class="form-control" name="place_name">
+                        <input type="text" id="place_name" value="{{ old('place_name') }}" title="Vui lòng nhập tên địa điểm" required  class="form-control" name="place_name">
                     </div>
                      <div class="col-md-6">
                         <label for="address">Địa chỉ: </label>
-                        <input type="text" id="address" required  title="Vui lòng nhập địa chỉ" class="form-control" name="address"  placeholder="Số 194/9, đường Cách Mạng Tháng 8">
+                        <input type="text" id="address" required  title="Vui lòng nhập địa chỉ" class="form-control" value="{{ old('address') }}" name="address"  placeholder="Số 194/9, đường Cách Mạng Tháng 8">
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -48,11 +48,11 @@
                     <div class="col-md-6">
                         <label for="phonenumber" >Số điện thoại: </label>
                         {{-- <input type="tel" id="phonenumber" required class="form-control" name="phonenumber">  --}}
-                        <input type='tel' id="phonenumber" required class="form-control" name="phonenumber" data-inputmask="'mask':'(999) 999-9999'" title='Số điện thoại (Định dạng: (999) 999-9999'>
+                        <input type='tel' value="{{ old('phonenumber') }}" id="phonenumber" required class="form-control" name="phonenumber" data-inputmask="'mask':'(999) 999-9999'" title='Số điện thoại (Định dạng: (999) 999-9999'>
                     </div>
                     <div class="col-md-6">
                         <label for="task_description" >Tỉnh / thành phố: </label>                      
-                        <select class="form-control" title="Chọn một tỉnh/thành phố để hiện danh sách các quận/huyện" name="city" id="city">
+                        <select class="form-control"  title="Chọn một tỉnh/thành phố để hiện danh sách các quận/huyện" name="city" id="city">
                             @foreach($data1 as $item)
                                 <option value="{{$item->id}}">{{$item->province_city_name}}</option>
                             @endforeach()
@@ -76,22 +76,22 @@
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
                          <label for="description" >Mô tả: </label>
-                         <input type="text" title="Vui lòng nhập mô tả cho địa điểm" id="description" required class="form-control" name="description" > 
+                         <input type="text" value="{{ old('description') }}" title="Vui lòng nhập mô tả cho địa điểm" id="description" required class="form-control" name="description" > 
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-md-6">
-                         <label for="content" >Tọa độ: </label>
-                         <input type="text" title="Kinh độ, vĩ độ không được để trống!" id="lat_and_long" required class="form-control" name="lat_and_long" readonly placeholder="Vui lòng chọn tọa độ chính xác ở bản đồ!"> 
-                         <input type="hidden" name="kinhdo" id="kinhdo" value="">
-                         <input type="hidden" name="vido" id="vido" value="">
+                         <label for="lat_and_long">Tọa độ: </label>
+                         <input type="text" title="Kinh độ, vĩ độ không được để trống!" id="lat_and_long" value="{{ old('lat_and_long') }}" required class="form-control" name="lat_and_long" readonly placeholder="Vui lòng chọn tọa độ chính xác ở bản đồ!"> 
+                         <input type="hidden" value="{{ old('kinhdo') }}" name="kinhdo" id="kinhdo" value="">
+                         <input type="hidden" value="{{ old('vido') }}" name="vido" id="vido" value="">
                         <div class="clearfix"></div>
                     </div>
                 </div>
 
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
-                    <label for="content"  title="Nội dung giới thiệu địa điểm">Nội dung chi tiết: </label>
+                    <label for="content"   title="Nội dung giới thiệu địa điểm">Nội dung chi tiết: </label>
                     <textarea style="height: 500px" id="content" ></textarea>
-                    <input type="hidden" name="content" id="content2">
+                    <input type="hidden" value="{{ old('content') }}" name="content" id="content2">
                     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
                     <script>
                         var editor = CKEDITOR.replace( 'content' );
@@ -210,7 +210,6 @@ function Load_toado() {
 
             });
             
-
         } 
         google.maps.event.addDomListener(window, 'load', init_map);
     }

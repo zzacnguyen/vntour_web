@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CheckTaskRequest;
 use App\Http\Requests\CheckAddTouristPlacesRequest;
+use App\Http\Requests\CheckAddServicesRequest;
 use App\taskModel;
 use DB;
 use App\touristPlacesModel;
+use App\servicesModel;
 class CMS_AddDataController extends Controller
 {
     public function _POST_TASK(CheckTaskRequest $request)
@@ -31,7 +33,26 @@ class CMS_AddDataController extends Controller
         }
     }
 
+    public function _POST_SERVICES_PLACES(CheckAddServicesRequest $request)
+    {
+        // $services = new servicesModel();
+        // $services->services_name
+        // $services->sv_open
+        // $services->sv_close
+        // $services->sv_lowest_price
+        // $services->sv_highest_price
+        // $services->sv_phone_number
+        // $services->website
+        // $services->description
+        // $services->content
 
+
+        
+        // banner
+        // details1
+        // details2
+
+    }
 
     public function _POST_TOURIST_PLACES(CheckAddTouristPlacesRequest $request)
     {

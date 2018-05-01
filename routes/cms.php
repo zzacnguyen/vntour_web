@@ -1,5 +1,5 @@
 <?php
-	Route::get('qt-test', 'CMS_ModuleController@_DISPLAY_PERCENT_PLACES');
+	Route::get('qt-test/{id}', 'CMS_ComponentController@_GET_VIEW_PLACES_DETAILS');
 	Route::get('lvtn-dashboard', 'CMS_ModuleController@getDashboard')->name('ADMIN_DASHBOARD');
 	Route::post('lvtn-dashboard', 'CMS_AddDataController@_POST_TASK');
 	
@@ -20,4 +20,6 @@
 
 	Route::get('lvtn-add-tourist-places', 'CMS_ModuleController@_GETVIEW_ADD_TOURIST_PLACES')->name('ADD_TOURIST_PLACES');
 	Route::post('lvtn-add-tourist-places', 'CMS_AddDataController@_POST_TOURIST_PLACES');
-	Route::get('lvtn-add-services', 'CMS_ModuleController@_GETVIEW_ADD_SERVICES')->name('_GETVIEW_ADD_SERVICES');
+	Route::get('lvtn-add-services/{id}', 'CMS_ModuleController@_GETVIEW_ADD_SERVICES')->name('_GETVIEW_ADD_SERVICES');
+	Route::post('lvtn-add-services/{id}', 'CMS_AddDataController@_GETVIEW_ADD_SERVICES');
+
