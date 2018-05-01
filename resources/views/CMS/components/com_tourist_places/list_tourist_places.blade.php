@@ -89,8 +89,8 @@
                         <td><a href="">{{ $item->pl_name }}</a></td>
                         <td>{{ $item->pl_address }}</td>
                         <td>{{ $item->pl_phone_number }}</td>
+                        <td>{{ $item->pl_longitude  }}</td>
                         <td>{{ $item->pl_latitude }}</td>
-                        <td>{{ $item->pl_longitude }}</td>
                         <td>{{ $item->updated_at }}</td>
                         <td><?php if($item->pl_status==0)
                             echo "Không hiển thị";

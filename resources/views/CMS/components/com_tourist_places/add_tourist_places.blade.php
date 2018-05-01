@@ -203,8 +203,8 @@ function Load_toado() {
             
             google.maps.event.addListener(map, 'click', function (e) {
                 // alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
-                document.getElementById("kinhdo").value = e.latLng.lat() ;
-                document.getElementById("vido").value = e.latLng.lng() ;
+                document.getElementById("kinhdo").value = e.latLng.lng() ;
+                document.getElementById("vido").value = e.latLng.lat() ;
                 var sum = 'Vĩ độ: ' + e.latLng.lat() + ', Kinh độ: '+  e.latLng.lng() ;
                 document.getElementById("lat_and_long").value = sum;
 

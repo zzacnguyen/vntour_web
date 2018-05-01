@@ -44,7 +44,7 @@ class CMS_AddDataController extends Controller
         $place->pl_latitude=$request->input('vido');
         $place->pl_longitude=$request->input('kinhdo');
         $place->id_ward=$request->input('ward');
-        $place->pl_status=0;
+        $place->pl_status=0; 
         $place->user_partner_id =1;
         if ($request->get('action') == 'save_close') {
             $place->save();

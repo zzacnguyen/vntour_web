@@ -31,7 +31,6 @@
                 <span></span>
                 </div>    
             </div>
-            
             <div class="content-box  post-box   ">
             <form id="frm_add_task" class="bg-success" name="frm_add_task" action="" method="post"  enctype="multipart/form-data">
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
@@ -59,13 +58,13 @@
                             <label for="sv_open">Từ (AM): </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" min="0" max="11" id="task_end_date" required class="form-control" name="sv_open">    
+                            <input type="number" min="0" max="11" id="sv_open" required class="form-control" name="sv_open">    
                         </div>
                         <div class="col-md-2">
                             <label for="sv_close" >Đến (PM): </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" min="1" max="12" id="task_end_date" required class="form-control" name="task_end_date">    
+                            <input type="number" min="1" max="12" id="sv_close" required class="form-control" name="task_end_date">    
                         </div>
               
                 </div>
