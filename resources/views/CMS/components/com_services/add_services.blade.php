@@ -17,7 +17,7 @@
 </script>
 <div id="page-title">
     <h2>Thêm dịch vụ</h2>
-    
+    <small>Địa điểm: {{ $data_place->id }}, {{ $data_place->pl_name }}</small>
     <div id="theme-options" class="admin-options">
     <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
         <i class="glyph-icon icon-linecons-cog icon-spin"></i>
@@ -33,6 +33,8 @@
             </div>
             <div class="content-box  post-box   ">
             <form id="frm_add_task" class="bg-success" name="frm_add_task" action="" method="post"  enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="id_diadiem" value="{{ $data_place->id }}">
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-4">
                         <label for="type_services" >Chọn loại hình: </label>
@@ -46,27 +48,26 @@
                     </div>
                     <div class="col-md-8">
                         <label for="services_name" >Tên dịch vụ: </label>
-                        <input type="text" id="services_name" required  class="form-control" name="services_name" >
+                        <input type="text" value="{{ old('services_name') }}"  id="services_name" required  class="form-control" name="services_name" >
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
-                        <div class="col-md-2">
-                            <label for="giomocua">Giờ mở cửa</label>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="sv_open">Từ (AM): </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" min="0" max="11" id="sv_open" required class="form-control" name="sv_open">    
-                        </div>
-                        <div class="col-md-2">
-                            <label for="sv_close" >Đến (PM): </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" min="1" max="12" id="sv_close" required class="form-control" name="task_end_date">    
-                        </div>
-              
+                    <div class="col-md-2">
+                        <label for="giomocua">Giờ mở cửa</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="sv_open">Từ (AM): </label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="time" style="text-align: center;" value="{{ old('sv_open') }}"  id="sv_open" required class="form-control" name="sv_open">    
+                    </div>
+                    <div class="col-md-2">
+                        <label for="sv_close" >Đến (PM): </label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="time" style="text-align: center;" value="{{ old('sv_close') }}"  min="1" max="12" id="sv_close" required class="form-control" name="sv_close">    
+                    </div>
                 </div>
 
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
@@ -78,13 +79,13 @@
                             <label for="sv_lowest_price">Từ: </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" min="0" max="10000000000" id="sv_lowest_price" required class="form-control" name="sv_lowest_price">    
+                            <input type="number" style="text-align: center;" value="{{ old('sv_lowest_price') }}"  min="0" max="10000000000" id="sv_lowest_price" required class="form-control" name="sv_lowest_price">    
                         </div>
                         <div class="col-md-2">
                             <label for="sv_highest_price" >Đến: </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" min="0" max="10000000000" id="sv_highest_price" required class="form-control" name="sv_highest_price">    
+                            <input type="number" style="text-align: center;" value="{{ old('sv_highest_price') }}"  min="0" max="10000000000" id="sv_highest_price" required class="form-control" name="sv_highest_price">    
                         </div>
                     </div>
                 </div>
@@ -93,11 +94,15 @@
                     <div class="d-inline" id="giomocua" >
                         <div class="col-md-4">
                             <label for="sv_phone_number" >Số điện thoại: </label>
-                            <input type='tel' id="sv_phone_number" required class="form-control" name="sv_phone_number" data-inputmask="'mask':'(999) 999-9999'" title='Số điện thoại (Định dạng: (999) 999-9999'>
+                            <input type='tel' value="{{ old('sv_phone_number') }}"  id="sv_phone_number" required class="form-control" name="sv_phone_number" data-inputmask="'mask':'(999) 999-9999'" title='Số điện thoại (Định dạng: (999) 999-9999'>
                         </div>
-                        <div class="col-md-8">
-                            <label for="task_name">Website: </label>
-                            <input type="text" id="task_name" required  class="form-control" name="task_name" >
+                        <div class="col-md-6">
+                            <label for="website">Website: </label>
+                            <input type="text" value="{{ old('website') }}" id="website" required  class="form-control" name="website" >
+                        </div>
+                        <div class="col-md-7">
+                            <label for="star">Số sao: </label>
+                            <input type="text" value="{{ old('website') }}" id="star" required  class="form-control" name="star" >
                         </div>
                     </div>
                 </div>
@@ -105,31 +110,31 @@
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="d-inline" id="giomocua" >
                         <div class="col-md-12">
-                            <label for="task_description" >Mô tả: </label>
-                            <input type="text" class="form-control" id="task_name" required  class="form-control" name="task_name" >
+                            <label for="description" >Mô tả: </label>
+                            <input type="text" value="{{ old('description') }}"  class="form-control" id="description" required  class="form-control" name="description" >
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 form-group">
                     <div class="col-md-4">
                         <label>Hình ảnh 1</label>
-                        <input type="file" class="form-control" accept="image/*" name="banner" value="">
+                        <input type="file" value="{{ old('banner') }}"  class="form-control" accept="image/*" name="banner" >
                     </div>        
                     <div class="col-md-4">
                         <label>Hình ảnh 2</label>
-                        <input type="file" class="form-control" accept="image/*" name="details1" value="">
+                        <input type="file" value="{{ old('details1') }}"  class="form-control" accept="image/*" name="details1" >
                     </div>        
                     <div class="col-md-4">
                         <label>Hình ảnh 3</label>
-                        <input type="file" class="form-control" accept="image/*" name="details2" value="">
+                        <input type="file" value="{{ old('details2') }}"  class="form-control" accept="image/*" name="details2" >
                     </div>        
                 </div>
 
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-12">
                          <label for="content"  title="Nội dung giới thiệu địa điểm">Nội dung chi tiết: </label>
-                        <textarea style="height: 500px" id="content" ></textarea>
-                        <input type="hidden" name="content" id="content2">
+                        <textarea style="height: 500px" id="content" >{{ old('content') }}" </textarea>
+                        <input type="hidden" value="{{ old('content') }}"  name="content" id="content2">
                         <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
                         <script>
                             var editor = CKEDITOR.replace( 'content' );
