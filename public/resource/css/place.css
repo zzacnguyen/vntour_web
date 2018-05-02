@@ -118,7 +118,7 @@ body{
 }
 
 .place-inner .left-box .box-body{
-	
+
 }
 
 .place-inner .left-box .box-body ul{
@@ -145,6 +145,7 @@ body{
 .place-inner .left-box .box-body ul li a{
 	color: #797986;
     text-decoration: none;
+	display: block;
 }
 
 .place-inner .left-box .box-body ul li a span{

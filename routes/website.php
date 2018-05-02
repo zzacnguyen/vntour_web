@@ -77,7 +77,7 @@ Route::get('likelam/{idser}','publicDetail@count_service_all_and_type');
 
 Route::get('count_service_all_and_type/{id}','publicCityController@count_service_all_and_type');//test add view service
 Route::get('phantrang/{id}','publicCityController@checkPaginate');
-
+Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}','publicCityController@get_service_city_new');
 //================================ NEW ========================================
 
 //get num service of city all
@@ -115,7 +115,7 @@ Route::get('checkLike/userid={d}&svid={s}','publicDetail@checkLike');
 
 
 // ================ serviece city ==============
-Route::get('city/{id}&page={p}&limit={l}','publicCityController@getCity');
+Route::get('city/{id}&page={p}','publicCityController@getCity');
 
 
 

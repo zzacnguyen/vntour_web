@@ -6,6 +6,11 @@
 <link rel="stylesheet" href="public/resource/css/lightbox.min.css">
 <link rel="stylesheet" href="public/resource/css/place.css">
 
+<style media="screen">
+	.active-type{
+		color: #fec107 !important;
+	}
+</style>
 <section class="place-inner" style="margin-top:120px;">
 	<div class="container">
 		<div class="row">
@@ -66,7 +71,7 @@
 					</div>
 					<div class="box-body">
 						<ul>
-							<li><a href="">Tất cả<span>{{$count_sv['num_all']}}</span></a></li>
+							<li><a href="" class="active-type">Tất cả<span class="active-type">{{$count_sv['num_all']}}</span></a></li>
 							<li><a href="">Tham quan<span>{{$count_sv['num_see']}}</span></a></li>
 							<li><a href="">Ăn uống<span>{{$count_sv['num_eat']}}</span></a></li>
 							<li><a href="">Khách sạn<span>{{$count_sv['num_hotel']}}</span></a></li>
@@ -120,7 +125,7 @@
 											</li>
 										@else
 										<li class="page-item">
-											<a class="page-link" href="city/{{$idcity}}&page={{$service_city['current_page'] - 1 }}&limit={{$service_city['limit']}}" disabled="disabled" style="">
+											<a class="page-link" href="city/{{$idcity}}&page={{$service_city['current_page'] - 1 }}" disabled="disabled" style="">
 												<i class="fas fa-arrow-left"></i>
 											</a>
 										</li>
@@ -128,9 +133,9 @@
 
 										@for($i = 1; $i <= $service_city['total_page']; $i++)
 											@if($service_city['current_page'] == $i)
-												<li class="page-item activee"><a class="page-link" href="city/{{$idcity}}&page={{$i}}&limit={{$service_city['limit']}}">{{$i}}</a></li>
+												<li class="page-item activee"><a class="page-link" href="city/{{$idcity}}&page={{$i}}">{{$i}}</a></li>
 											@else
-												<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$i}}&limit={{$service_city['limit']}}">{{$i}}</a></li>
+												<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$i}}">{{$i}}</a></li>
 											@endif
 										@endfor
 
@@ -142,7 +147,7 @@
 											</li>
 										@else
 										<li class="page-item">
-											<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$service_city['current_page'] + 1}}&limit={{$service_city['limit']}}"><i class="fas fa-arrow-right"></i></a></li>
+											<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$service_city['current_page'] + 1}}"><i class="fas fa-arrow-right"></i></a></li>
 										</li>
 										@endif
 
