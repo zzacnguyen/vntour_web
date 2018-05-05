@@ -13,7 +13,7 @@
 				    			<div class="ribbon">
 				    				<span>{{$value['num_service']}}</span>
 				    			</div>
-					    		<a href="city/{{$value['id_city']}}">
+					    		<a href="city/{{$value['id_city']}}&type=all&page=1">
 					    			<img src="public/thumbnails/{{$value['image']}}" alt="" style="height: 214px;"></a>
 					    	</div>
 					    	<div class="grid-content">
