@@ -223,7 +223,7 @@
 										</div>
 
 										<div class="item-search">
-											<div class="title-search">
+											{{-- <div class="title-search">
 												<h5>Lịch sử tìm kiếm</h5>
 											</div>
 											<div class="content-search">
@@ -258,7 +258,7 @@
 														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
-											</div>
+											</div> --}}
 										</div>
 									</div>
 								</li>
@@ -274,7 +274,7 @@
 											</a>
 											<div class="user-form">
 												<ul>
-													<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
+													<li><a href="{{route('info')}}"><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
 													<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
 													<li><a href="{{route('logoutW')}}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
 												</ul>
@@ -286,7 +286,7 @@
 											<a href="{{route('loginW')}}" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
 										</li>
 										<li class="nav-item">
-											<a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a>
+											<a href="{{route('registerW')}}" class="nav-link btn-login" id="btn-dangky">Đăng ký</a>
 										</li>
 									@endif
 								</ul>
@@ -300,9 +300,9 @@
 									<ul class="float-left ul-right-menu-lam">
 										<li class=""><a href="" style="color: #00a680 !important;"><i class="fas fa-home"></i></a></li>
 										<li class="hover-menu hidden-xs"><a href="">Địa điểm</a></li>
-										<li class="hover-menu hidden-xs"><a href="">Bài viết</a></li>
+										{{-- <li class="hover-menu hidden-xs"><a href="">Bài viết</a></li> --}}
 										<li class="hover-menu hidden-xs"><a href="">Liên hệ</a></li>
-										<li class="hover-menu">
+										{{-- <li class="hover-menu">
 											<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14px !important;">
 											  </a>
 											  <div class="dropdown-menu">
@@ -312,7 +312,7 @@
 											    <div class="dropdown-divider"></div>
 											    <a class="dropdown-item" href="#">Separated link</a>
 											  </div>
-										</li>
+										</li> --}}
 									</ul>
 										
 								</div>

@@ -7,10 +7,10 @@ use DB;
 use Illuminate\Support\Str;
 class publicCityController extends Controller
 {
-    public function getCity($idcity,$current_page)
+    public function getCity($idcity,$type,$current_page)
     {
-        $service_city = $this::paginate($this::get_service_city_new($idcity,0,0,1), $current_page,9);
-        // dd($service_city);
+        $service_city = $this::paginate($this::get_service_city_new($idcity,0,$type,1), $current_page,9);
+        
         $count_sv     = $this::count_service_all_and_type($idcity);
         $district      = $this::get_district_city($idcity);
         if ($service_city == null) {
@@ -19,6 +19,21 @@ class publicCityController extends Controller
         else{
             return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district'));
         }
+    }
+
+
+    public function get_service_city_fillter($idcity, $id_district, $type, $boloc,$current_page,$limit)
+    {
+        $service_city = $this::paginate($this::get_service_city_new($idcity,$id_district,$type,$boloc), $current_page,$limit);
+        return $service_city;
+        // $count_sv     = $this::count_service_all_and_type($idcity);
+        // $district      = $this::get_district_city($idcity);
+        // if ($service_city == null) {
+        //     return view('VietNamTour.404');
+        // }
+        // else{
+        //     return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district'));
+        // }
     }
 
     public function get_service_city($idcity)
@@ -56,6 +71,18 @@ class publicCityController extends Controller
     public function get_service_city_new($idcity, $id_district, $type, $boloc)
     {
         // city-all/id=6&district=1&type=1&fil=1
+        
+        $type2 = 0;
+        $id_district2 = 0;
+
+        if ((int)$id_district > 0) {
+            $id_district2 = (int)$id_district;
+        }
+        
+        if ((int)$type > 0) {
+            $type2 = (int)$type;
+        }
+        
         // phan trang bat dau - start; limit-ket thuc
         $type_boloc = ""; // 1-theo view; 2-theo point
         //
@@ -65,17 +92,17 @@ class publicCityController extends Controller
         // neu $type       = 0 -> load het dich vu
 
         // query district = 0 & type = 0
-        if ($id_district == 0 && $type == 0) {
-            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' ORDER BY '$type_boloc' DESC";
+        if ($id_district2 == 0 && $type2 == 0) {
+            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' ORDER BY ". $type_boloc ." DESC";
         }
-        elseif ($id_district != 0 && $type == 0) { // query district <> 0 & type <> 0
-            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND c.id_district = '$id_district' AND c.sv_types = '$type' ORDER BY '$type_boloc' DESC";
+        elseif ($id_district2 != 0 && $type2 == 0) { // query district <> 0 & type <> 0
+            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND c.id_district = '$id_district2' ORDER BY ". $type_boloc ." DESC";
         }
-        else if($id_district == 0 && $type != 0){ // query district = 0 & type <> 0
-            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND c.sv_types = '$type' ORDER BY '$type_boloc' DESC";
+        else if($id_district2 == 0 && $type2 != 0){ // query district = 0 & type <> 0
+            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND c.sv_types = '$type2' ORDER BY ". $type_boloc. " DESC";
         }
         else { // query_all
-            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND c.id_district = 916 AND c.sv_types = '$type' ORDER BY '$type_boloc' DESC";
+            $query = "SELECT * FROM c_city_district_ward_place_service AS c WHERE c.id_city = '$idcity' AND c.id_district = '$id_district2' AND c.sv_types = '$type2' ORDER BY ". $type_boloc. " DESC";
         }
         // dd($query);
         $result = DB::select($query);
@@ -175,21 +202,32 @@ class publicCityController extends Controller
         // page trang hien tai
         // limit hien thi so ket qua moi trang
         // bat dau tu phan tu nao
-        $current_page  = $page;
-        $total_records = count($data); // tong so item;
 
-        $total_page    = ceil($total_records/$limit);
+        // dd($data);
+        if ($data == null) {
+            $result_paginate['data'] = null;
+            $result_paginate['total_page'] = 0;
+            $result_paginate['current_page'] = 0;
+            $result_paginate['limit'] = $limit;
+        }
+        else{
+            $current_page  = $page;
+            $total_records = count($data); // tong so item;
 
-        if ($current_page > $total_page) { $current_page = $total_page; }
-        else if ($current_page < 1) { $current_page = 1; }
+            $total_page    = ceil($total_records/$limit);
 
-        $start = ($current_page - 1) * $limit;
-        $data == null ? $result = null : $result = $result = array_slice($data,$start,$limit);// lay danh sach say khi phan trang
+            if ($current_page > $total_page) { $current_page = $total_page; }
+            else if ($current_page < 1) { $current_page = 1; }
 
-        $result_paginate['data'] = $result;
-        $result_paginate['total_page'] = $total_page;
-        $result_paginate['current_page'] = $current_page;
-        $result_paginate['limit'] = $limit;
+            $start = ($current_page - 1) * $limit;
+            $data == null ? $result = null : $result = $result = array_slice($data,$start,$limit);// lay danh sach say khi phan trang
+
+            $result_paginate['data'] = $result;
+            $result_paginate['total_page'] = $total_page;
+            $result_paginate['current_page'] = $current_page;
+            $result_paginate['limit'] = $limit;
+        }
+            
         return $result_paginate;
 
     }
