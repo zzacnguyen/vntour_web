@@ -11,6 +11,7 @@ class accountController extends Controller
     public function get_info_account()
     {
     	$info = $this::get_info_user();
+        // dd($info);
     	if (!$this::check_login()) {
     		return view('VietNamTour.login');
     	}
