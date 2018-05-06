@@ -122,7 +122,8 @@ Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}&page={page}&li
 
 
 
-
+// =============== user info ===========
+Route::get('info','accountController@get_info_account')->name('info');
 
 
 

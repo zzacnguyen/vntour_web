@@ -105,7 +105,7 @@
 
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
-							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$eat['id_service']}}&type={{$eat['sv_type']}}" class="click_view">
+							<a href="detail/id={{$eat['id_service']}}&type={{$eat['sv_type']}}" class="click_view">
 								<img src="public/thumbnails/{{$eat['image']}}" alt="">
 							</a>
 							<div class="destination-name">
@@ -177,7 +177,7 @@
 								</div>
 								<div class="btn">
 									{{-- <a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$hotel['id_service']}}" class="btn btn-warning">Details</a> --}}
-									<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$hotel['id_service']}}&type={{$hotel['sv_type']}}" class="btn btn-warning click_view">
+									<a href="detail/id={{$hotel['id_service']}}&type={{$hotel['sv_type']}}" class="btn btn-warning click_view">
 										Chi tiết
 									</a>
 								</div>
@@ -196,7 +196,7 @@
 	<!-- ================== END HOTEL ============= -->
 
 	<!-- ================== ENTERTAIMENT ============= -->
-	<section class="destination post" style="background-image: url('../VietNamTour/images/background/2.jpg');">
+	<section class="destination post" style="background-image: url('public/resource/images/background/2.jpg');">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
@@ -213,7 +213,7 @@
 				@foreach($services_enter as $enter)
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
-							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$hotel['id_service']}}&type={{$hotel['sv_type']}}}" class="click_view">
+							<a href="public/detail/id={{$hotel['id_service']}}&type={{$hotel['sv_type']}}}" class="click_view">
 								<img src="public/thumbnails/{{$enter['image']}}" alt="">
 							</a>
 							<div class="destination-name">
@@ -256,7 +256,7 @@
 				@foreach($services_tran as $stran)
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
-							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$stran['id_service']}}&type={{$stran['sv_type']}}" class="click_view">
+							<a href="detail/id={{$stran['id_service']}}&type={{$stran['sv_type']}}" class="click_view">
 								<img src="public/thumbnails/{{$stran['image']}}" alt="">
 							</a>
 							<div class="destination-name">

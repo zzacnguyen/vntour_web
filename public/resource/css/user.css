@@ -3,7 +3,7 @@ body{
 }
 
 .layer-top{
-	background-color: #242121 !important;
+	
 }
 .header{
 	width: auto;
@@ -29,13 +29,10 @@ body{
 }
 
 .content .left-user .avatar img{
-	text-align: center;
-    margin-left: 25%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    height: 120px;
-    width: 120px;
+	margin-bottom: 12px;
+	height: 182px;
+	width: 243px;
+	padding: 5px;
 }
 
 .content .left-user .options{

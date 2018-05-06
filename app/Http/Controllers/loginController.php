@@ -75,17 +75,22 @@ class loginController extends Controller
             $userRegister                      = new usersModel();
             $userRegister->username            = $user;
             $userRegister->password            = bcrypt($pass);
-            $userRegister->user_groups_id      = 1;
-            // $userRegister->user_language       = $language;
-            // $userRegister->user_country        = $country;
             $userRegister->save();
+
+            $lam = usersModel::where('username',$username)->first();
+
+            $id_user = $lam->user_id;
+            $contact = new contact_infoModel();
+            $contact->user_id = $id_user;
+            $contact->save();
+
             return redirect('registersuccess');
         }
     }
 
     function check_username_existW($user){
-        $result = DB::table('vnt_users')
-                        ->select('username','user_language','user_country')
+        $result = DB::table('vnt_user')
+                        ->select('username')
                         ->where('username',$user)
                         ->get();
         foreach ($result as $value) {
