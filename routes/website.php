@@ -78,6 +78,8 @@ Route::get('likelam/{idser}','publicDetail@count_service_all_and_type');
 Route::get('count_service_all_and_type/{id}','publicCityController@count_service_all_and_type');//test add view service
 Route::get('phantrang/{id}','publicCityController@checkPaginate');
 
+Route::get('getServicesTake/type={t}&id={i}','pageController@getServicesTake');
+
 //================================ NEW ========================================
 
 //get num service of city all

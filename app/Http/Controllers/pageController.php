@@ -29,6 +29,7 @@ class pageController extends Controller
         $services_eat     = $this::getServicesTake(1,8);
         $services_hotel   = $this::getServicesTake(2,6);
         $services_tran    = $this::getServicesTake(3,8);
+        // dd($services_tran);
         $services_see     = $this::getServicesTake(4,8);
         $services_enter   = $this::getServicesTake(5,8);
 
@@ -185,7 +186,7 @@ class pageController extends Controller
                 $name = 'sv_name';
                 break;  
             case 3:
-                $result = DB::select('CALL top8stranport');
+                $result = DB::select("CALL top8stranport");
                                     $name = 'transport_name';
                 break;
             case 4:
@@ -199,7 +200,6 @@ class pageController extends Controller
         }
 
         if (isset($result)) {
-
             foreach ($result as $value) {
                 $city = $this::FindServiceToCity($value->sv_id); // lay name city chua service
                 if ($city == null) { $name_city = null;}
