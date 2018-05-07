@@ -76,7 +76,12 @@ class pageController extends Controller
 
     public function getaddplace()
     {
-        return view('VietNamTour.addplace');
+        return view('VietNamTour.content.place');
+    }
+
+    public function loadPalce()
+    {
+        return view('VietNamTour.content.place');
     }
 
     public function getaddservice()
@@ -90,11 +95,6 @@ class pageController extends Controller
 
 
     //=============================== NEW ===========================================
-        // public function count_city_service_all()
-        // {
-        //     $result = DB::select("CALL c_count_service_city_all()");
-        //     return ($result);
-        // }
 
 
 

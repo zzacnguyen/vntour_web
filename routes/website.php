@@ -29,6 +29,10 @@ Route::get('detail/s','pageController@getServiceTypeVicinity');
 
 // load addplace
 Route::get('addplace','pageController@getaddplace')->name('addplace');
+Route::get('loadPalce','pageController@loadPalce')->name('addplace');
+
+
+
 Route::post('addplace', 'pageController@postPlace');
 //  load addservice
 Route::get('addservice','pageController@getaddservice');
@@ -130,6 +134,13 @@ Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}&page={page}&li
 // =============== user info ===========
 Route::get('info','accountController@get_info_account')->name('info');
 
+
+
+
+//test
+
+Route::get('getRating/{id}','publicDetail@getRating');
+Route::get('checkUserRating/{idservice}&user_id={id}','publicDetail@checkUserRating');
 
 
 

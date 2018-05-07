@@ -8,6 +8,7 @@ use App\touristPlacesModel;
 use App\likesModel;
 use App\servicesModel;
 use GuzzleHttp\Client;
+use Session;
 class publicDetail extends Controller
 {
     public function get_detail($id,$type)
@@ -16,12 +17,24 @@ class publicDetail extends Controller
     	$sv = $this::get_service_id($id,$type);
 
         $sv_lancan = $this::dichvu_lancan($sv->city_id,$id,20);
-        // dd($sv_lancan);
+        $rating = $this::getRating($id);
+        // dd($rating);
+        $checklogin = $this::check_Login();
+        if ($checklogin != null) {
+            $checkUserRating = $this::checkUserRating($id,$checklogin);
+            if (count($checkUserRating) == 0) {
+                $checkUserRating = null;
+            }
+        }
+        else{
+            $checkUserRating = null;
+        }
+        // return $checkUserRating;
     	if ($sv == null) {
     		return view('VietNamTour.404');
     	}
     	else{
-    		return view('VietNamTour.content.detail', compact('sv','sv_lancan'));
+    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating'));
     	}
     }
 
@@ -272,4 +285,47 @@ class publicDetail extends Controller
 
         return json_decode($response->getBody()->getContents());
     }
+
+    public function getRating($idservice)
+    {
+        // $result = DB::select("SELECT vr_title, vr_ratings_details,vr_rating,user_id,service_id,created_at,username FROM `vnt_visitor_ratings` AS r INNER JOIN vnt_user AS i ON r.user_id = i.user_id WHERE r.service_id = '$idservice'");
+
+        $result = DB::table('vnt_visitor_ratings')
+                    ->join('vnt_user','vnt_visitor_ratings.user_id','=','vnt_user.user_id')
+                    ->leftjoin('vnt_contact_info','vnt_visitor_ratings.user_id','=','vnt_contact_info.user_id')
+                    ->select('vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
+                    ->where('service_id',$idservice)->get();
+        return $result;
+    }
+
+    public function check_Login()
+    {
+        if (Session::has('login') && Session::get('login')) 
+        {
+            // $result = Session::get('user_info');
+            $result = Session::get('user_info')->id;
+        }
+        else{ $result = null ; }
+        return json_encode($result);
+    }
+
+    public function checkUserRating($idservice,$iduser)
+    {
+        $result = DB::table('vnt_visitor_ratings')
+                    ->join('vnt_user','vnt_visitor_ratings.user_id','=','vnt_user.user_id')
+                    ->leftjoin('vnt_contact_info','vnt_visitor_ratings.user_id','=','vnt_contact_info.user_id')
+                    ->select('vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
+                    ->where('service_id',$idservice)
+                    ->where('vnt_visitor_ratings.user_id',$iduser)
+                    ->orderBy('vnt_visitor_ratings.created_at','desc')
+                    ->limit(10)
+                    ->get();
+        return $result;
+    }
+
+    public function save_rating($id_service, $rating, $detail)
+    {
+        
+    }
+
 }

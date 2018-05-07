@@ -25,7 +25,7 @@
 							    @endif
 
 								<input id="txtuser" type="text" placeholder="Username" name="username" required="required" 
-									value="">
+									value="@if(Session::has('userold')){{Session::get('userold')}}@endif">
 								<input id="txtpass" type="password" placeholder="Password" name="password" required="required">
 								<small id="thongbao" style="color: red; display: none;">Tên tài khoản hoặc mật khẩu không đúng</small>
 

@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	checkLogin();
+	check_rating();
 })
 
 
@@ -85,26 +86,33 @@ function checkLogin() {
 		})
 }
 
-// function checkLike(user_id,service_id) {
-// 	// kiem tra xem nguoi dung co like dich vu hay chua
-// 	var pathCheckLike = 'checkLike/userid=' + user_id + '&svid=' + service_id;
-// 	console.log(path);
-// 	$.ajax({
-// 			url: pathCheckLike,
-// 			type: 'GET',
-// 			dataType: 'json'
-// 		})
-// 		.done(function (response) {
-// 			console.log(response);
-// 			var l = parseInt(response);
-// 			if (l == 1) 
-// 			{
-// 				return 1;
-// 			}
-// 			else{
-// 				return -1;
-// 			}
-// 		}).fail(function (response) {
-// 				return -1;
-// 		})
-// }
+function kiemtradangnhap() {
+	// body...
+}
+
+function check_rating() {
+
+	$('#btnsave').click(function () {
+		console.log("hello");
+		var rating = $('#txtrating').val();
+        var detail = $('#txtdetail').val();
+        if (rating == null || rating == 0) {
+            $('#errorating').css('display','block');
+        }
+        else if(detail == ""){
+        	$('#errorating').css('display','none');
+            $('#errordetail').css('display','block');
+        }
+        else if(rating > 5){
+        	$('#errorating').css('display','none');
+            $('#errordetail').css('display','none');
+            $('#erroratingPoint').css('display','block');
+        }
+        else{
+
+        	console.log("ok");
+        }
+	})
+
+	
+}
