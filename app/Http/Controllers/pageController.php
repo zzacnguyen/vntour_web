@@ -198,4 +198,10 @@ class pageController extends Controller
         return json_decode($response->getBody()->getContents());
     }
     
+
+    // page Search
+    public function getpageSearch($keyword)
+    {
+        return view('VietNamtour.content.pageSearch');
+    }
 }

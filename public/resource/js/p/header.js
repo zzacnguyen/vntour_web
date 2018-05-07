@@ -1,6 +1,8 @@
 var id_tinh = null;
 
 $(document).ready(function () {
+	clickSearch();
+
 	// load select city
 		$.ajax({
 			url: 'http://chinhlytailieu/vntour_api/count_city_service_all',
@@ -297,5 +299,16 @@ function search_type(url, image,name,description) { //
 	eat +=	'</div>';
 	return eat;
 }
+
+//========
+function clickSearch() {
+	$('#btnsearchNhe').click(function () {
+		var keyword = $('#btnsearchNhe').val();
+		var keyword_handle = keyword.replace(" ","+");
+		console.log("hellose");
+		// window.location.href = "http://chinhlytailieu/vntour_web/getpageSearch/keyword=%7Bkey%7D";
+	})
+}
+
 
 //=============== LUU search neu co login

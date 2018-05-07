@@ -7,8 +7,10 @@ use DB;
 use App\touristPlacesModel;
 use App\likesModel;
 use App\servicesModel;
+use App\ratingsModel;
 use GuzzleHttp\Client;
 use Session;
+use Carbon;
 class publicDetail extends Controller
 {
     public function get_detail($id,$type)
@@ -325,7 +327,45 @@ class publicDetail extends Controller
 
     public function save_rating($id_service, $rating, $detail)
     {
-        
+        $ra = (int)$rating;
+        $user_id = $this::check_Login();
+        $rating = new ratingsModel();
+        $rating->vr_title = "d";
+        $rating->vr_ratings_details = $detail;
+        $rating->vr_rating = $ra;
+        $rating->user_id = $user_id;
+        $rating->service_id = $id_service;
+
+        $mytime = Carbon\Carbon::now();
+        $rating->created_at = $mytime->toDateTimeString();
+
+        $rating->save();
+
+        return 1;
     }
 
+    public function save_update_rating($id_service, $rating, $detail)
+    {
+        $user_id = $this::check_Login();
+        $mytime = Carbon\Carbon::now();
+        DB::table('vnt_visitor_ratings')
+            ->where('user_id', $user_id)
+            ->where('service_id', $id_service)
+            ->update(['vr_rating' => $rating, 'vr_ratings_details' => $detail,'created_at' => $mytime->toDateTimeString()]);
+        return 1;
+    }
+
+    public function ThemVaCapNhatLike($idservice)
+    {
+        $user_id = $this::check_Login();
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 5.0,
+        ]);
+        $response = $client->request('GET',"ThemVaCapNhatLike/{$idservice}&user={$user_id}");
+
+        return json_decode($response->getBody()->getContents());
+    }
 }

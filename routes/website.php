@@ -26,6 +26,10 @@ Route::get('user','pageController@getuser');
 // load detail
 Route::get('detail/id={id}&type={type}','pageController@getdetail')->name("detail");
 Route::get('detail/s','pageController@getServiceTypeVicinity');
+Route::get('save_rating/id={id}&rating={r}&detail={t}','publicDetail@save_rating');
+Route::get('save_update_rating/id={id}&rating={r}&detail={t}','publicDetail@save_update_rating');
+
+
 
 // load addplace
 Route::get('addplace','pageController@getaddplace')->name('addplace');
@@ -113,11 +117,14 @@ Route::get('searchService_City_Type/idcity={id}&type={t}&keyword={k}','pageContr
 
 Route::get('searchServices_AllCity_idType/type={t}&keyword={k}','pageController@searchServices_AllCity_idType');
 
+Route::get('getpageSearch/keyword={key}','pageController@getpageSearch');
+
 
 
 
 //================= detail ==================
-Route::get('checkLogin','pageController@checkLogin');
+Route::get('checkLogin','publicDetail@checkLogin');
+Route::get('ThemVaCapNhatLike/{id}','publicDetail@ThemVaCapNhatLike');
 
 //============ check like
 Route::get('checkLike/userid={d}&svid={s}','publicDetail@checkLike');
@@ -141,6 +148,8 @@ Route::get('info','accountController@get_info_account')->name('info');
 
 Route::get('getRating/{id}','publicDetail@getRating');
 Route::get('checkUserRating/{idservice}&user_id={id}','publicDetail@checkUserRating');
+
+Route::get('check-login','publicDetail@check_Login');
 
 
 

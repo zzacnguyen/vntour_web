@@ -171,7 +171,7 @@
 									<form class="form-inline form-search">
 										<label class="boloc"><i class="fas fa-search"></i></label>
 										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Search" aria-label="Search" onekeyup="search()">
-										<button class="btn btn-outline-success btn-search" type="submit" style="background-color: #00a680;">Tìm kiếm</button>
+										<button class="btn btn-outline-success btn-search" id="btnsearchNhe" style="background-color: #00a680;">Tìm kiếm</button>
 									</form>
 									<div class="body-search" id="thanSearch">
 										<div class="item-search" id="IDitem-search">
