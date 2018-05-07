@@ -132,9 +132,11 @@ class pageController extends Controller
             'timeout'  => 20.0,
         ]);
         $response = $client->request('GET',"loginpost/user={$username}&pass={$password}");
-        $lam = $response->getBody()->getContents();
-        return $lam;
+        $lam = json_decode($response->getBody()->getContents());
+        
         if ($lam != null) {
+            Session()->put('login',true);  
+            Session()->put('user_info',$lam);
             return redirect('/');
         }
         else{
@@ -145,6 +147,13 @@ class pageController extends Controller
 
     public function LogoutSession()
     {
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"logoutW");
         Session()->flush();
         return redirect()->back();
     }
