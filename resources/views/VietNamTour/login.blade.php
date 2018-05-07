@@ -16,7 +16,7 @@
 						<h3 class="text-center">Login</h3>
 					</div>
 					<div class="body">
-						<form action="{{route('loginpost')}}" method="post">
+						<form action="loginpost" method="post">
 							<div class="login">
 								<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 							</div>

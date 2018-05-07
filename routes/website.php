@@ -80,6 +80,9 @@ Route::get('phantrang/{id}','publicCityController@checkPaginate');
 
 Route::get('getServicesTake/type={t}&id={i}','pageController@getServicesTake');
 
+//tetx
+Route::get('lamtr/{type}&lim={l}','pageController@gettypeService');
+
 //================================ NEW ========================================
 
 //get num service of city all

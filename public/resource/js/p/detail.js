@@ -16,7 +16,7 @@ function checkLogin() {
 		.done(function (response) {
 			if (response.length > 0) 
 			{
-				var pathCheckLike = 'checkLike/userid=' + response[0].user_id + '&svid=' + service_id;
+				var pathCheckLike = '/http://chinhlytailieu/vntour_api/checkLike/userid=' + response[0].user_id + '&svid=' + service_id;
 				
 				$.ajax({
 						url: pathCheckLike,

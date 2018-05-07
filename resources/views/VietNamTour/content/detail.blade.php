@@ -22,17 +22,17 @@
 							<ul>
 								<li>
 									<a>
-										<img src="public/thumbnails/{{$sv['image_details_1']}}"/>
+										<img src="public/thumbnails/{{$sv->image_details_1}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="public/thumbnails/{{$sv['image_details_2']}}"/>
+										<img src="public/thumbnails/{{$sv->image_details_2}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="public/thumbnails/{{$sv['image_banner']}}"/>
+										<img src="public/thumbnails/{{$sv->image_banner}}"/>
 									</a>
 								</li>
 								
@@ -43,25 +43,25 @@
 				<div class="col-md-5" style="padding-left: 0;">
 					<div class="hotel-detail-right">
 						<div class="title" style="text-align: left; margin-bottom: 5px;">
-							<div id="latitude" data-lati="{{$sv['pl_latitude']}}" data-lon="{{$sv['pl_longitude']}}"></div>
+							<div id="latitude" data-lati="{{$sv->pl_latitude}}" data-lon="{{$sv->pl_longitude}}"></div>
 							<p>
-								<a>{{$sv['city_name']}} <i class="fas fa-angle-double-right"></i></a> 
-								<a>{{$sv['district_name']}} <i class="fas fa-angle-double-right"></i></a> 
-								<a>{{$sv['ward_name']}}</a>
+								<a>{{$sv->city_name}} <i class="fas fa-angle-double-right"></i></a> 
+								<a>{{$sv->district_name}} <i class="fas fa-angle-double-right"></i></a> 
+								<a>{{$sv->ward_name}}</a>
 							</p>
-							<h4 style="font-size: 20px;" id="sv_name">{{$sv['sv_name']}}</h4> {{-- ten dich vu --}}
+							<h4 style="font-size: 20px;" id="sv_name">{{$sv->sv_name}}</h4> {{-- ten dich vu --}}
 							<div class="star">
-								@for($i = 0;$i < $sv['sv_rating']; $i++)
+								@for($i = 0;$i < $sv->sv_rating; $i++)
 									<i class="fas fa-star"></i>
 								@endfor
 								<span style="color: black" id="loaihinhdichvu">
-									@if($sv['sv_types'] == "1")
+									@if($sv->sv_types == "1")
 										- Ăn uống
-									@elseif($sv['sv_types'] == "2")
+									@elseif($sv->sv_types == "2")
 										- Khách sạn
-									@elseif($sv['sv_types'] == "3")
+									@elseif($sv->sv_types == "3")
 										- Phương tiện
-									@elseif($sv['sv_types'] == "4")
+									@elseif($sv->sv_types == "4")
 										- Tham quan
 									@else
 										- Vui chơi
@@ -70,24 +70,24 @@
 							</div>
 						</div>
 						<div class="hotel-body">
-							<p style="margin: 0;" id="mota-dichvu">{{$sv['sv_description']}}</p>
+							<p style="margin: 0;" id="mota-dichvu">{{$sv->sv_description}}</p>
 							<div class="row">
 								<div class="col-md-3">
 									<a id="">
 										<i class="far fa-bookmark"></i>
-										{{$sv['sv_point']}}
+										{{$sv->sv_point}}
 									</a>
 								</div>
 								<div class="col-md-3 text-center">
 									<a title="Lượt xem">
 										<i class="fas fa-eye"></i>
-										{{$sv['sv_view']}}
+										{{$sv->sv_view}}
 									</a>
 								</div>
 								<div class="col-md-3 text-center">
 									<a id="like01">
 										<i id="color-like" class="fas fa-heart"></i>
-										<span id="num_like">{{$sv['sv_like']}}</span>
+										<span id="num_like">{{$sv->sv_like}}</span>
 									</a>
 								</div>
 								<div class="col-md-3 text-center">
@@ -106,25 +106,25 @@
 										<div class="icon-f">
 											<i class="fas fa-phone"></i>
 										</div>
-										<span id="phonenumber">{{$sv['sv_phone_number']}}</span> {{-- sodienthoai --}}
+										<span id="phonenumber">{{$sv->sv_phone_number}}</span> {{-- sodienthoai --}}
 									</li>
 
 									<li>
 										<div class="icon-f">
 											<i class="far fa-clock"></i>
 										</div>
-										<span id="giomocua">{{$sv['sv_close']}}</span> {{-- gio mo cua --}}
+										<span id="giomocua">{{$sv->sv_close}}</span> {{-- gio mo cua --}}
 										<i class="fas fa-arrow-right"></i> 
-										<span id="giodongcua">{{$sv['sv_open']}}</span> {{-- gio mo cua --}}
+										<span id="giodongcua">{{$sv->sv_open}}</span> {{-- gio mo cua --}}
 									</li>
 
 									<li>
 										<div class="icon-f">
 											<i class="fas fa-tag"></i>
 										</div>
-										<span id="giathapnhat">{{$sv['sv_lowest_price']}}</span> {{-- gia thap nhat --}}
+										<span id="giathapnhat">{{$sv->sv_lowest_price}}</span> {{-- gia thap nhat --}}
 										<i class="fas fa-arrow-right"></i> 
-										<span id="giacaonhat">{{$sv['sv_highest_price']}}</span>  {{-- gia cao nhat --}}
+										<span id="giacaonhat">{{$sv->sv_highest_price}}</span>  {{-- gia cao nhat --}}
 									</li>
 								</ul>
 							</div>
@@ -160,7 +160,7 @@
 									<div class="tab-pane" id="tab_default_1">
 										<h5 style="font-weight: 700;padding-left: 17px;">GIỚI THIỆU</h5>
 										<p style="text-align: justify; padding: 10px;" >
-											{{$sv['sv_description']}}
+											{{$sv->sv_description}}
 										</p>
 									</div>
 
@@ -252,21 +252,21 @@
 								<div class="item-cafe">
 									<ul>
 										<li>
-											<a href="detail/id={{$s['sv_id']}}&type={{$s['sv_type']}}">
-												<img src="public/thumbnails/{{$s['image_banner']}}" alt="loi" style="height: 100%;width: 110px;">
+											<a href="detail/id={{$s->sv_id}}&type={{$s->sv_type}}">
+												<img src="public/thumbnails/{{$s->image_banner}}" alt="loi" style="height: 100%;width: 110px;">
 												<div class="text-item-cafe text-left">
-													<h6 style="margin-bottom: 0;display: inline-block;text-overflow: ellipsis;">	<b style="font-weight: 600;">{{$s['sv_name']}}</b>
+													<h6 style="margin-bottom: 0;display: inline-block;text-overflow: ellipsis;">	<b style="font-weight: 600;">{{$s->sv_name}}</b>
 													</h6>
 													<p class="text-left" style="font-size: 13px;">
-														@if($s['sv_type'] == 1)
+														@if($s->sv_type == 1)
 															Ăn uống
-														@elseif($s['sv_type'] == 2)
+														@elseif($s->sv_type == 2)
 															Khách sạn
-														@elseif($s['sv_type'] == 3)
+														@elseif($s->sv_type == 3)
 															Phương tiện
-														@elseif($s['sv_type'] == 4)
+														@elseif($s->sv_type == 4)
 															Tham quan
-														@elseif($s['sv_type'] == 5)
+														@elseif($s->sv_type == 5)
 															Vui chơi
 														@endif
 													</p>
