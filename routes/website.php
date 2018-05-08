@@ -140,7 +140,7 @@ Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}&page={page}&li
 
 // =============== user info ===========
 Route::get('info','accountController@get_info_account')->name('info');
-
+Route::post('info',['as'=>'postinfo','uses'=>'accountController@post_edit_info_account']);
 
 
 
@@ -158,8 +158,16 @@ Route::get('check-login','publicDetail@check_Login');
 Route::get('place-user','accountController@getPlace_user');
 Route::get('place-user/add/{id}','accountController@addplace');
 
+//====== place user
+
+Route::get('service-user','accountController@getservice_user');
+Route::get('service-user/add/{id}','accountController@addservice_user');
+
+//get con search
+Route::get('conSearch/{idcity}&type={type}&keyword={key}&select={select}','pageController@conSearch');
 
 
+//=========
 
 
 

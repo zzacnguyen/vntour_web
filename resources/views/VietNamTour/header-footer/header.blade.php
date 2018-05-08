@@ -284,7 +284,7 @@
 													<li><a href="{{route('logoutW')}}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
 												</ul>
 											</div> <!-- end hien thi khi dang nhap thanh cong -->
-											<a href="{{route('loginW')}}" class="nav-link btn-login hidden" id="btn-dangnhap">Đăng nhập</a>
+											
 									</li>
 									@else
 										<li class="nav-item">
@@ -410,10 +410,10 @@
 															</a>
 														</li>
 														<li style="height: 27px;">
-															<a href="" class="a-content-nofi">
+															<a href="service-user" class="a-content-nofi">
 																<p class="text-nofi" style="height: auto;width: auto;">
 																	<i class="fas fa-archive"></i> 
-																	Thêm Dịch vụ
+																	Dịch vụ
 																</p>	
 															</a>
 														</li>

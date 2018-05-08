@@ -51,9 +51,30 @@
 					</div><!-- end tools-ber -->
 				</div>
 				<!-- left -->
-				<div class="col-md-3 .col-sm-4">
-					@if($flag == 1 || $flag = 4)
-						@if($flag_con = 0)
+				<div class="col-md-3 col-sm-4">
+					@if($flag == 1)
+						@if($flag_con == 0)
+							<div class="left-box">
+								<div class="box-title">
+									Kết quả tìm kiếm
+									{{-- <span>210</span> --}}
+								</div>
+								<div class="box-body">
+									<ul>
+										<li><a href="" class="active-type">Tất cả<span></span></a>
+										</li>
+										<li><a href="" id="see">Tham quan<span>{{$count_type['see']}}</span></a>
+										</li>
+										<li>
+											<a href="" id="eat">Ăn uống <span>{{$count_type['eat']}}</span></a>
+										</li>
+										<li><a href="" id="hotel"> Khách sạn<span>{{$count_type['hotel']}}</span></a></li>
+										<li><a href="" id="enter"> Vui chơi<span>{{$count_type['enter']}}</span></a></li>
+										<li><a href="" id="tran"> Phương tiện<span>{{$count_type['tran']}}</span></a></li>
+									</ul>
+								</div>
+							</div>
+						@else
 							<div class="left-box">
 								<div class="box-title">
 									Kết quả tìm kiếm
@@ -71,46 +92,6 @@
 										<li><a href=""> Khách sạn<span>{{$count_type['hotel']}}</span></a></li>
 										<li><a href=""> Vui chơi<span>{{$count_type['enter']}}</span></a></li>
 										<li><a href=""> Phương tiện<span>{{$count_type['tran']}}</span></a></li>
-									</ul>
-								</div>
-							</div>
-						@else
-							<div class="left-box">
-								<div class="box-title">
-									Kết quả tìm kiếm
-									{{-- <span>210</span> --}}
-								</div>
-								<div class="box-body">
-									<ul>
-										<li><a href="" class="">Tất cả<span></span></a>
-										</li>
-										<li><a href="" class="@if($flag_con==1)
-												active-type
-											@endif">
-											Tham quan<span>{{$count_type['see']}}</span></a>
-										</li>
-										<li>
-											<a href="" class="@if($flag_con ==2)
-												active-type
-											@endif">
-												Ăn uống <span>{{$count_type['eat']}}</span></a>
-										</li>
-										<li><a href="" class="@if($flag_con == 3)
-												active-type
-											@endif"> 
-											Khách sạn<span>{{$count_type['hotel']}}</span></a>
-										</li>
-										<li><a href="" class="@if($flag_con == 4)
-												active-type
-
-											@endif"> 
-											Vui chơi<span>{{$count_type['enter']}}</span></a>
-										</li>
-										<li><a href="" class="@if($flag_con ==5)
-												active-type
-											@endif"> 
-											Phương tiện<span>{{$count_type['tran']}}</span></a>
-										</li>
 									</ul>
 								</div>
 							</div>
@@ -173,46 +154,29 @@
 									</div>	
 								@endforeach
 							@endif
-						@elseif($flag == 4)
-							@if($result_all_type == null)
+						
+						@elseif($flag == 3)
+							@if($mangghe == null)
 								<h4>Không tìm thấy</h4>
 							@else
-								@foreach($result_all_type as $raa)
+								@foreach($mangghe as $rr)
 									<div class="col-md-4 col-sm-6 col-12 thumbnail-padding">
 										<div class="destination-grid">
-											<a href="detail/id={{$raa->id_service}}&type={{$raa->sv_type}}"><img style="height: 265px;" src="public/thumbnails/{{$raa->image}}" alt=""></a>
+											<a href=""><img style="height: 265px;" src="public/thumbnails/{{$rr['image']}}" alt=""></a>
 											<div class="destination-name">
-												<h4>{{$raa->name}}</h4>
-												<h5>{{$raa->name_city}}</h5>
+												<h4>{{$rr['name']}}</h4>
+												<h5>{{$rr['name']}}</h5>
 											</div>
 											<div class="destination-icon">	
-												<a>{{$raa->rating}} <i class="far fa-star"></i></a>	
-												<a>{{$raa->view}} <i class="fas fa-eye"></i></a>
-												<a>{{$raa->like}} <i class="far fa-heart"></i></a>
-												<a>{{$raa->point}} <i class="far fa-bookmark"></i></a>
+												<a>{{$rr['rating']}} <i class="far fa-star"></i></a>	
+												<a>{{$rr['view']}} <i class="fas fa-eye"></i></a>
+												<a>{{$rr['like']}} <i class="far fa-heart"></i></a>
+												<a>{{$rr['point']}} <i class="far fa-bookmark"></i></a>
 											</div>
 										</div>
 									</div>	
 								@endforeach
 							@endif
-						@elseif($flag == 3)
-							@foreach($mangghe as $rr)
-								<div class="col-md-4 col-sm-6 col-12 thumbnail-padding">
-									<div class="destination-grid">
-										<a href=""><img style="height: 265px;" src="public/thumbnails/{{$rr['image']}}" alt=""></a>
-										<div class="destination-name">
-											<h4>{{$rr['name']}}</h4>
-											<h5>{{$rr['name']}}</h5>
-										</div>
-										<div class="destination-icon">	
-											<a>{{$rr['rating']}} <i class="far fa-star"></i></a>	
-											<a>{{$rr['view']}} <i class="fas fa-eye"></i></a>
-											<a>{{$rr['like']}} <i class="far fa-heart"></i></a>
-											<a>{{$rr['point']}} <i class="far fa-bookmark"></i></a>
-										</div>
-									</div>
-								</div>	
-							@endforeach
 						@endif
 						
 							
@@ -227,5 +191,6 @@
 	<!-- <script src="resource/js/lightbox.min.js"></script> -->
 	<!-- <script src="resource/js/menu-style.js"></script> -->
 	<script src="public/resource/js/p/place_city.js"></script>
+	<script src="public/resource/js/p/pageSearch.js"></script>
 
 @include('VietNamTour.header-footer.footer')

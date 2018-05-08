@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\edituser;
 use Session;
 use DB;
 use App\contact_infoModel;
@@ -56,7 +57,85 @@ class accountController extends Controller
     }
 
 
-    public function getPlace_user($iduser)
+
+    //===============
+    public function post_edit_info_account(edituser $request)
+     {    
+        if(!is_dir('public/resource/images/avatar')){
+            mkdir('public/resource/images/avatar',0777, true);
+        }
+        else
+        {
+            if($request->image && $request->image != '')
+            {
+             
+                $file = $request->file('image');
+                $name = $file->getClientOriginalName();
+                $destinationPath = public_path('resource/images/avatar');
+                $file->move($destinationPath,$name);
+                $user_id = Session::get('user_info')->id;
+                $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+                $response = $client->request('POST', 'edituser/'.$user_id.'', [
+        
+                    
+                    'form_params' => [
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'phone'=>$request->phone,
+                        'website'=>$request->website,
+                        'address'=>$request->address,
+                        'lang'=>$request->lang,
+                        'avatar'=>$name,
+                    
+                    ]
+                ])->getBody();
+                
+                if($response=="ok")
+                {
+                    return redirect()->back();
+                }
+                
+            }
+            else
+            {
+                $user_id = Session::get('user_info')->id;
+                $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+                $response = $client->request('POST', 'edituser/'.$user_id.'', [
+        
+                    
+                    'form_params' => [
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'phone'=>$request->phone,
+                        'website'=>$request->website,
+                        'address'=>$request->address,
+                        'lang'=>$request->lang
+                    
+                    ]
+                ])->getBody();
+                if($response=="ok")
+                {
+                    return redirect()->back();
+                }
+               
+            }
+
+        }
+        
+    }
+
+
+    public function getPlace_user()
     {
         return view('VietNamTour.content.user.place.place_user');
     }
@@ -64,5 +143,15 @@ class accountController extends Controller
     public function addplace()
     {
         return view('VietNamTour.content.user.place.addplace');
+    }
+
+    public function getservice_user()
+    {
+        return view('VietNamTour.content.user.service.service_user');
+    }
+
+    public function addservice_user()
+    {
+        return view('VietNamTour.content.user.service.addservice');
     }
 }

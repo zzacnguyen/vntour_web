@@ -234,6 +234,7 @@ class pageController extends Controller
                     $count_type['hotel'] = count($result->hotel);
                 }
                 else{$count_type['hotel'] = 0;}
+
                 if ($result->tran != null) {
                     $result_all = array_merge($result_all,$result->tran);
                     $count_type['tran'] = count($result->tran);
@@ -252,66 +253,99 @@ class pageController extends Controller
                     $count_type['enter'] = count($result->enter);
                 }
                 else{ $count_type['enter'] = 0; }
-                $flag = 1;
+
+                // luu gi tri theo loai
+                if ($id_type == 1) {
+                    $result_all_type = $result->eat;
+                }
+                if ($id_type == 2) {
+                    $result_all_type = $result->hotel;
+                }
+                if ($id_type == 3) {
+                    $result_all_type = $result->tran;
+                }
+                if ($id_type == 4) {
+                    $result_all_type = $result->see;
+                }
+                if ($id_type == 5) {
+                    $result_all_type = $result->enter;
+                }
+                
+                $flag_con = 0;
+                if (!isset($result_all_type)) {
+                    $result_all_type = null;
+                }
             }
             // return $result_all;
         }
         else if($id_city != "all" && $id_type == "all"){
+            //search-city-alltype/{idcity}&keyword={key}
             $response = $client->request('GET',"search-city-alltype/{$id_city}&keyword={$keyword}");
             $result = json_decode($response->getBody()->getContents());
-            // return $result->eat;
-            $count_type = array();
-            $count_type['eat'] = count($result->eat);
-            $count_type['hotel'] = count($result->hotel);
-            $count_type['tran'] = count($result->tran);
-            $count_type['see'] = count($result->see);
-            $count_type['enter'] = count($result->enter);
             if (isset($result) && $result != null) {
             
                 if ($result->eat != null) {
                     $result_all = array_merge($result_all,$result->eat);
+                    $count_type['eat'] = count($result->eat);
                 }
+                else{$count_type['eat'] = 0;}
+
                 if ($result->hotel != null) {
                     $result_all = array_merge($result_all,$result->hotel);
+                    $count_type['hotel'] = count($result->hotel);
                 }
+                else{$count_type['hotel'] = 0;}
+
                 if ($result->tran != null) {
                     $result_all = array_merge($result_all,$result->tran);
+                    $count_type['tran'] = count($result->tran);
                 }
+                else{$count_type['tran'] = 0;}
+
                 if ($result->see != null) {
                     $result_all = array_merge($result_all,$result->see);
+                    $count_type['see'] = count($result->see);
                 }
+                else{$count_type['see'] = 0;}
+
+
                 if ($result->enter != null) {
                     $result_all = array_merge($result_all,$result->enter);
+                    $count_type['enter'] = count($result->enter);
                 }
-                $flag = 2;
+                else{ $count_type['enter'] = 0; }
+
+                // luu gi tri theo loai
+                if ($id_type == 1) {
+                    $result_all_type = $result->eat;
+                }
+                if ($id_type == 2) {
+                    $result_all_type = $result->hotel;
+                }
+                if ($id_type == 3) {
+                    $result_all_type = $result->tran;
+                }
+                if ($id_type == 4) {
+                    $result_all_type = $result->see;
+                }
+                if ($id_type == 5) {
+                    $result_all_type = $result->enter;
+                }
+                
+                $flag_con = (int)$id_type;
+                if (!isset($result_all_type)) {
+                    $result_all_type = null;
+                }
             }
-            $lamlam =  $result_all[0]->id_service;
-            // return $lamlam;
-            $i = 0;
-            foreach ($result_all as $key => $value) {
-                $mang['id_service'] = $result_all[$i]->id_service;
-                $i++;
-                // $mang[] = array(
-                //         'id_service'        => $value[$key]->id_service,
-                //         'name'              => $value->name,
-                //         'image'             => $value->image,
-                //         'name_city'         => $value->name_city,
-                //         'like'              => $value->like,
-                //         'view'              => $value->view,
-                //         'point'             => $value->point,
-                //         'rating'            => $value->rating,
-                //         'sv_type'           => $value->sv_type
-                //     );
-                $manglon[] = $mang;
-            }
-            // return $manglon;
-            // $lam = $result_all;
+            $flag = 1;
+            // return $result_all;
+            
         }
         else if ($id_city == "all" && $id_type != "all") {
             $response = $client->request('GET',"search-all/keyword={$keyword}");
             $result = json_decode($response->getBody()->getContents());
             $count_type = array();
-            $flag = 4;
+            $flag = 1;
             if (isset($result) && $result != null) {
 
                 if ($result->eat != null) {
@@ -373,19 +407,24 @@ class pageController extends Controller
             $response = $client->request('GET',"search-city-type/{$id_city}&type={$id_type}&keyword={$keyword}");
             $result_all = json_decode($response->getBody()->getContents());
             // return $result_all;
-            foreach ($result_all as $value) {
-                $mangghe[] = array(
-                    'name' => $value->name,
-                    'image'             => $value->image,
-                    'name_city'         => $value->name_city,
-                    'like'              => $value->like,
-                    'view'              => $value->view,
-                    'point'             => $value->point,
-                    'rating'            => $value->rating,
-                    'sv_type'           => $value->sv_type    
-                );
+            if ($result_all != null) {
+                foreach ($result_all as $value) {
+                    $mangghe[] = array(
+                        'name' => $value->name,
+                        'image'             => $value->image,
+                        'name_city'         => $value->name_city,
+                        'like'              => $value->like,
+                        'view'              => $value->view,
+                        'point'             => $value->point,
+                        'rating'            => $value->rating,
+                        'sv_type'           => $value->sv_type    
+                    );
+                }
             }
+            else{ $mangghe = null; }    
+                
             $flag = 3;
+            // return $mangghe;
         }
 
         // return $result_all;
@@ -396,11 +435,93 @@ class pageController extends Controller
             $count = count($result_all);
         }
             
-        
+        // return $flag;
         // var_dump($flag_con);
         // return $flag_con;
         return view('VietNamtour.content.pageSearch',compact('result_all','keyword','count','count_type','flag','flag_con','mangghe','result_all_type'));
     }
 
+    public function conSearch($id_city,$id_type,$keyword,$select_type)
+    {
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+
+
+        if ($id_city == "all" && $id_type == "all") 
+        {
+            $response = $client->request('GET',"search-all/keyword={$keyword}");
+            $result = json_decode($response->getBody()->getContents());
+            if ($select_type == 1) {
+                $result_all_type = $result->eat;
+            }
+            if ($select_type == 2) {
+                $result_all_type = $result->hotel;
+            }
+            if ($select_type == 3) {
+                $result_all_type = $result->tran;
+            }
+            if ($select_type == 4) {
+                $result_all_type = $result->see;
+            }
+            if ($select_type == 5) {
+                $result_all_type = $result->enter;
+            }
+            
+            return $result_all_type;
+        }
+        else if ($id_city != "all" && $id_type == "all") 
+        {
+            $response = $client->request('GET',"search-city-alltype/{$id_city}&keyword={$keyword}");
+            $result = json_decode($response->getBody()->getContents());
+            if ($select_type == 1) {
+                $result_all_type = $result->eat;
+            }
+            if ($select_type == 2) {
+                $result_all_type = $result->hotel;
+            }
+            if ($select_type == 3) {
+                $result_all_type = $result->tran;
+            }
+            if ($select_type == 4) {
+                $result_all_type = $result->see;
+            }
+            if ($select_type == 5) {
+                $result_all_type = $result->enter;
+            }
+            
+            return $result_all_type;
+        }
+        else if ($id_city == "all" && $id_type != "all")
+        {
+            $response = $client->request('GET',"search-allcity-type/type={$id_type}&keyword={$keyword}");
+            $result = json_decode($response->getBody()->getContents());
+            return $result;
+            if ($select_type == 1) {
+                $result_all_type = $result->eat;
+            }
+            if ($select_type == 2) {
+                $result_all_type = $result->hotel;
+            }
+            if ($select_type == 3) {
+                $result_all_type = $result->tran;
+            }
+            if ($select_type == 4) {
+                $result_all_type = $result->see;
+            }
+            if ($select_type == 5) {
+                $result_all_type = $result->enter;
+            }
+            
+            return $result_all_type;
+        }
+        else
+        {
+            return null;
+        }
+    }
 
 }
