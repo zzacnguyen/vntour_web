@@ -54,4 +54,15 @@ class accountController extends Controller
             return json_decode($response->getBody()->getContents());
         }
     }
+
+
+    public function getPlace_user($iduser)
+    {
+        return view('VietNamTour.content.user.place.place_user');
+    }
+
+    public function addplace()
+    {
+        return view('VietNamTour.content.user.place.addplace');
+    }
 }

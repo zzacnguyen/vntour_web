@@ -117,7 +117,7 @@ Route::get('searchService_City_Type/idcity={id}&type={t}&keyword={k}','pageContr
 
 Route::get('searchServices_AllCity_idType/type={t}&keyword={k}','pageController@searchServices_AllCity_idType');
 
-Route::get('getpageSearch/keyword={key}','pageController@getpageSearch');
+Route::get('search','pageController@getpageSearch')->name('search');
 
 
 
@@ -154,12 +154,9 @@ Route::get('check-login','publicDetail@check_Login');
 
 
 
-
-
-
-
-
-
+//====== place user
+Route::get('place-user','accountController@getPlace_user');
+Route::get('place-user/add/{id}','accountController@addplace');
 
 
 

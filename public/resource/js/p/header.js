@@ -34,6 +34,9 @@ function gantentinh() {
 			document.getElementById('a-tinhTP').setAttribute("data-id",id);
 			document.getElementById('a-tinhTP').setAttribute("data-name",this.getAttribute('data-name'));
 			id_tinh = $('#a-tinhTp').attr('data-idtinh');
+			
+			
+
 		}
 	}
 }
@@ -302,11 +305,26 @@ function search_type(url, image,name,description) { //
 
 //========
 function clickSearch() {
+
 	$('#btnsearchNhe').click(function () {
-		var keyword = $('#btnsearchNhe').val();
-		var keyword_handle = keyword.replace(" ","+");
-		console.log("hellose");
-		// window.location.href = "http://chinhlytailieu/vntour_web/getpageSearch/keyword=%7Bkey%7D";
+
+		var keyword = $('#text-search-top').val();
+		console.log(keyword.length);
+		if (keyword.length > 0) 
+		{
+			var keyword_handle = keyword.replace(" ","+");
+
+			$('input[name=city]').val($('#a-tinhTP').attr('data-id'));
+			$('input[name=type]').val($('#a-danhmuc').attr('data-type'));
+			console.log("hellose");
+
+			$('form').submit(function () {
+				
+			})
+		}
+		else{
+			alert('Bạn cần nhập nội dung để tìm kiếm!!!');
+		}
 	})
 }
 

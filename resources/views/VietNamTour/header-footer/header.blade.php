@@ -168,10 +168,12 @@
 								</li><!-- end btn-select -->
 
 								<li class="nav-item" style="position: relative;">
-									<form class="form-inline form-search">
+									<form class="form-inline form-search" action="{{route('search')}}">
 										<label class="boloc"><i class="fas fa-search"></i></label>
-										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Search" aria-label="Search" onekeyup="search()">
+										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Search" aria-label="Search" onekeyup="search()" name="keyword" required>
 										<button class="btn btn-outline-success btn-search" id="btnsearchNhe" style="background-color: #00a680;">Tìm kiếm</button>
+										<input type="text" hidden="hidden" value="all" name="city">
+										<input type="text" hidden="hidden" value="all" name="type">
 									</form>
 									<div class="body-search" id="thanSearch">
 										<div class="item-search" id="IDitem-search">
@@ -400,10 +402,10 @@
 													@if(Session::has('login') && Session::get('login') == true)
 														@if(Session::get('user_info')->level == 1)
 														<li style="height: 27px;">
-															<a href="{{route('addplace')}}" class="a-content-nofi">
+															<a href="place-user" class="a-content-nofi">
 																<p class="text-nofi" style="height: auto;width: auto;">
 																	<i class="fas fa-map-marker"></i> 
-																	Thêm địa điểm
+																	Địa điểm
 																</p>	
 															</a>
 														</li>
