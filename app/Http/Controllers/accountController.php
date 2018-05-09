@@ -19,7 +19,11 @@ class accountController extends Controller
     		return view('VietNamTour.login');
     	}
     	else{
-    		return view('VietNamTour.content.user.info', compact('info'));
+            $quyen = $this::get_quyen_dangky();
+            $quyen_hientai = $this::get_quyen_user();
+            // return $quyen_hientai;
+
+    		return view('VietNamTour.content.user.info', compact('info','quyen','quyen_hientai'));
     	}
     	
     }
@@ -133,6 +137,75 @@ class accountController extends Controller
         }
         
     }
+
+
+    public function register_uplevel_user(Request $request)
+    {
+        $user_id = Session::get('user_info')->id;
+        $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+
+        $response = $client->request('POST', 'savequyendangky/'.$user_id.'', [
+                    'form_params' => [
+                        'quyen' => $request->selectnangcap
+                    ]
+                ])->getBody();
+        return $response;
+        if ($response == "ok") {
+            return json_decode($response);
+            return redirect()->back();
+        }
+        else
+        {
+            return "loi";
+        }
+    }
+
+
+    public function get_quyen_dangky() // lay ra nhung quyen nguoi dung co the dang ky
+    {
+        if (!Session::has('user_info')) {
+            return view('VietNamTour.login');
+        }
+        else
+        {
+            $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"get_quyen_dangky/{$user_id}");
+            
+            return json_decode($response->getBody()->getContents());
+        }
+    }
+
+    public function get_quyen_user() // lay ra nhung quyen nguoi dung dang co
+    {
+        if (!Session::has('user_info')) {
+            return view('VietNamTour.login');
+        }
+        else
+        {
+            $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"get_quyen_user/{$user_id}");
+            
+            return json_decode($response->getBody()->getContents());
+        }
+    }
+
 
 
     public function getPlace_user()

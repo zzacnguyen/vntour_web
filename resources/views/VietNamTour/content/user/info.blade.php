@@ -8,6 +8,21 @@
 <link rel="stylesheet" href="public/resource/css/detail-tab.css">
 <link rel="stylesheet" href="public/resource/css/user.css">
 
+
+
+<style type="text/css">
+	button[type="button"] {
+	    background-color: none;
+	    border: none;
+	    border-radius: 0;
+	    color: white;
+	    cursor: pointer;
+	    line-height: 1rem;
+	    padding: .75rem 2rem;
+		margin-bottom: 0px;
+	}
+</style>
+
 <script>
 	       $(document).ready( function() {
     	$(document).on('change', '.btn-file :file', function() {
@@ -53,12 +68,22 @@
 					<div class="col-md-3 ">
 						<div class="left-user">
 							<div class="avatar">
-								<img id='img-upload' src="{{asset('public/resource/images/avatar/'.$info->contact_avatar)}}" alt="">
+								@if($info->contact_avatar == null)
+									<img id='img-upload' src="{{asset('public/resource/images/avatar/avatar2.jpg')}}" alt="">
+								@else
+									<img id='img-upload' src="{{asset('public/resource/images/avatar/'.$info->contact_avatar)}}" alt="">
+								@endif
+								
 								{{-- <h5 class="text-center">Lam The Men</h5> --}}
 							</div>
 							<div class="options">
 								<ul>
-									<li class="active"><a href=""><i class="far fa-edit"></i> Thông tin tài khoản</a></li>
+									<li class="active">
+										<a href=""><i class="far fa-edit"></i> Thông tin tài khoản</a>
+									</li>
+									<li class="">
+										<a id="btnnangcap" data-toggle="modal" data-target="#myModal"><i class="fas fa-user-secret"></i> Nâng cấp tài khoản</a>
+									</li>
 									<li>
 										<a href=""><i class="fas fa-lock"></i> Đổi mật khẩu</a>
 									</li>
@@ -72,6 +97,8 @@
 							</div>
 						</div>	
 					</div>
+
+
 					<div class="col-md-9">
 						<div class="right-user">
 							<div class="info-account">
@@ -134,6 +161,106 @@
 							</div>
 						</div>
 					</div>
+
+					<div id="myModal" class="modal fade" role="dialog" style="margin-top: 110px;">
+					  <div class="modal-dialog">
+
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title">Nâng cấp tài khoản</h5>
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					      </div>
+					      <div class="modal-body">
+					      	<form action="{{route('register_uplevel_user')}}" method="post">
+					        <div class="form-group col-md-12 row">
+							    <label class="col-md-4" for="exampleInputEmail1">Quyền hiện tại</label>
+							    <label style="color: red;" class="col-md-8" for="">
+							    	@if($quyen_hientai != null)
+										@for($i = 0; $i < count($quyen_hientai); $i++)
+											@if($quyen_hientai[$i] == 1)
+												Admin
+											@endif
+											@if($quyen_hientai[$i] == 2)
+												- Moderator
+											@endif
+											@if($quyen_hientai[$i] == 3)
+												- Cộng tác viên
+											@endif
+											@if($quyen_hientai[$i] == 4)
+												- Doanh nghiệp
+											@endif
+											@if($quyen_hientai[$i] == 5)
+												- Hướng dẫn viên du lịch
+											@endif
+											@if($quyen_hientai[$i] == 0)
+												Người dùng thường
+											@endif
+						    			@endfor
+						    		
+							    	@endif
+							    </label>
+							</div>
+							<div class="form-group col-md-12 row" style="float: left;">
+							    <label class="col-md-4" for="">Nâng cấp</label>
+							    <div class="col-md-8">
+							    	<select class="form-control col-md-12" id="" name="selectnangcap">
+							    	@for($i = 0; $i < count($quyen_hientai); $i++)
+						    			@if($quyen_hientai[$i] == 1 || $quyen_hientai[$i] == 2)
+											<option selected="selected">Bạn không thể đăng ký thêm quyền</option>
+										@else
+											@if($quyen != null)
+								    			@for($i = 0; $i < count($quyen); $i++)
+													@if($quyen[$i] == 1)
+														<option value="1">Moderator</option>
+													@endif
+													@if($quyen[$i] == 2)
+														<option value="2">Partner</option>
+													@endif
+													@if($quyen[$i] == 3)
+														<option value="3">Doanh nghiệp</option>
+													@endif
+													@if($quyen[$i] == 4)
+														<option value="4">Hướng dẫn viên du lịch</option>
+													@endif
+								    			@endfor
+								    		@endif
+										@endif
+						    		@endfor
+							    	</select>
+							    </div>
+							</div>
+							<div class="form-group col-md-12 row" style="float: left;">
+							    <label class="col-md-4" for="">Lưu ý</label>
+							    <div class="col-md-8">
+							    	<small id="emailHelp" class="form-text text-muted">Tài khoản muốn nâng cấp cần sự xét duyệt của admin</small>
+							    </div>
+							</div>
+							
+					      </div>
+
+					      <div class="modal-footer">
+					        <button style="background-color: #dd4b39 !important" type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
+					        @if($quyen_hientai == [])
+					        	@for($i = 0; $i < count($quyen_hientai); $i++)
+					    			@if($quyen_hientai[$i] == 1 || $quyen_hientai[$i] == 2)
+										<button style="background-color: #444fce !important" type="submit" class="btn btn-primary" data-dismiss="modal" disabled="disabled">Nâng cấp</button>
+									@else
+										<button style="background-color: #444fce !important" type="submit" class="btn btn-primary" >Nâng cấp</button>
+									@endif
+					    		@endfor
+					    	@else
+					    		<button type="submit" style="background-color: #444fce !important" class="btn btn-primary" id="savenangcap">Nâng cấp</button>
+					        @endif
+						   
+					        
+					      </div>
+					     </form>
+					    </div>
+
+					  </div>
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -147,6 +274,7 @@
 	<script src="public/resource/js/lightbox.min.js"></script>
 	<script src="public/resource/js/detail-hotel.js"></script>
 	<script src="public/resource/js/menu-style.js"></script>
+	<script src="public/resource/js/p/account.js"></script>
 
 
 @include('VietNamTour.header-footer.footer')

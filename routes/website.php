@@ -141,8 +141,9 @@ Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}&page={page}&li
 // =============== user info ===========
 Route::get('info','accountController@get_info_account')->name('info');
 Route::post('info',['as'=>'postinfo','uses'=>'accountController@post_edit_info_account']);
+Route::get('get_quyen_dangky','accountController@get_quyen_dangky');
 
-
+Route::post('register_uplevel_user','accountController@register_uplevel_user')->name('register_uplevel_user');
 
 //test
 

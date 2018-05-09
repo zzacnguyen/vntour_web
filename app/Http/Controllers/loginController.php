@@ -56,7 +56,7 @@ class loginController extends Controller
             'password.min'    => 'Tài khoản có độ dài từ 4-20 ký tự',
         ];
         $validator = Validator::make($request->all(), [
-            'username' => 'email|min:4',
+            'username' => 'min:4',
             'password' => 'required:min:4'
         ],$messages);
         if ($validator->fails()) {
