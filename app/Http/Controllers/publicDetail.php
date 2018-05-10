@@ -22,7 +22,8 @@ class publicDetail extends Controller
         $rating = $this::getRating($id);
         // dd($rating);
         $checklogin = $this::check_Login();
-        if ($checklogin != null) {
+        // return $checklogin;
+        if ($checklogin != "null") {
             $checkUserRating = $this::checkUserRating($id,$checklogin);
             if (count($checkUserRating) == 0) {
                 $checkUserRating = null;

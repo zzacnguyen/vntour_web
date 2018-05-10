@@ -6,6 +6,10 @@
 Route::get('/','pageController@getindex')->name('/');
 
 
+
+//========  GIOI THIEU ============
+Route::get('gioi-thieu','pageController@getgioithieu')->name('gioi-thieu');
+
 // ====== LOGIN ======
 
 
@@ -116,6 +120,10 @@ Route::get('searchService_City_AllType/idcity={id}&keyword={k}','pageController@
 Route::get('searchService_City_Type/idcity={id}&type={t}&keyword={k}','pageController@searchService_City_Type');
 
 Route::get('searchServices_AllCity_idType/type={t}&keyword={k}','pageController@searchServices_AllCity_idType');
+
+Route::get('conSearch/{idcity}&type={type}&keyword={key}&selecttype={ty}','pageController@conSearch');
+
+
 
 Route::get('search','pageController@getpageSearch')->name('search');
 

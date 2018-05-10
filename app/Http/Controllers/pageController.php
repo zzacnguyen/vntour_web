@@ -36,9 +36,13 @@ class pageController extends Controller
         $services_enter   = $this::gettypeService(5,8);
 
         $checkLogin = $this::check_Login();
-
-        // dd($services_hotel);
+        
     	return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','checkLogin'));
+    }
+
+    public function getgioithieu()
+    {
+        return view('VietNamTour.content.gioithieu');
     }
 
     public function getlogin()
@@ -133,10 +137,11 @@ class pageController extends Controller
         ]);
         $response = $client->request('GET',"loginpost/user={$username}&pass={$password}");
         $lam = json_decode($response->getBody()->getContents());
-        
+        // dd($lam);
         if ($lam != null) {
             Session()->put('login',true);  
             Session()->put('user_info',$lam);
+
             return redirect('/');
         }
         else{
@@ -270,7 +275,7 @@ class pageController extends Controller
                 if ($id_type == 5) {
                     $result_all_type = $result->enter;
                 }
-                
+                $flag = 1;
                 $flag_con = 0;
                 if (!isset($result_all_type)) {
                     $result_all_type = null;
@@ -438,7 +443,7 @@ class pageController extends Controller
         // return $flag;
         // var_dump($flag_con);
         // return $flag_con;
-        return view('VietNamtour.content.pageSearch',compact('result_all','keyword','count','count_type','flag','flag_con','mangghe','result_all_type'));
+        return view('VietNamtour.content.pageSearch',compact('result_all','keyword','id_city','id_type','count','count_type','flag','flag_con','mangghe','result_all_type'));
     }
 
     public function conSearch($id_city,$id_type,$keyword,$select_type)

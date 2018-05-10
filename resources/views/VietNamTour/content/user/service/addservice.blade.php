@@ -109,8 +109,12 @@
 							<label style="padding: 0;" class="col-md-2">Mô tả dịch vụ</label>
 							<textarea name="ten" id="ten" class="col-md-9" style="margin-left: 27px;"></textarea>
       						{{-- <script>CKEDITOR.replace('ten');</script> --}}
-      						<textarea name="description" id="editor1" rows="10" cols="80">This is my textarea to be replaced with CKEditor.</textarea>
-      						<script>    CKEDITOR.replace( 'editor1' );</script>
+      						{{-- <textarea name="description" id="editor1" rows="10" cols="80">This is my textarea to be replaced with CKEditor.</textarea>
+      						<script>    CKEDITOR.replace( 'editor1' );</script> --}}
+						</div>
+						<div class="input-text" class="col-md-12" style="padding: 0">
+							<label style="padding: 0;" class="col-md-2">Ảnh mô tả</label>
+							<input type="file" style="border:none; margin-left: 27px;" class="col-md-9">
 						</div>
 
 						<button class="btn btn-success col-md-12" id="btnaddplace">Thêm địa điểm mới</button>

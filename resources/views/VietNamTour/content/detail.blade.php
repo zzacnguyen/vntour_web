@@ -186,9 +186,10 @@
 										                <div class="ibox-content">
 										                    <h5 style="font-weight: 700;">ĐÁNH GIÁ DỊCH VỤ</h5>
 										                </div>
-										                @if($checklogin == null)
+										                @if($checklogin == "null")
 										                	<div class="ibox-content">
-										                		Bạn cần đăng nhập để đánh giá dịch vụ này
+										                		Bạn cần đăng nhập để đánh giá dịch vụ này - 
+										                		<a class="btn  btn-sm btn-outline-primary" href="{{route('loginW')}}">Đăng nhập ngay</a>
 										                	</div>
 										                @else
 										                	@if($checkUserRating == null)

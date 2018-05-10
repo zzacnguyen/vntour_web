@@ -30,7 +30,7 @@
 <body>
 	
 	<!-- ========== icon =========== -->
-	<div class="icon-bar">
+	{{-- <div class="icon-bar">
 		<ul>
 			<li class="search">
 				<a href="###">
@@ -57,7 +57,7 @@
 				</a>
 			</li>
 		</ul>
-	</div>
+	</div> --}}
 	<div class="icon-scroll-top" id="id-icon-scroll-top"><a><i class="fas fa-arrow-up"></i></a></div>
 	<!-- ========== end icon =========== -->
 
@@ -306,9 +306,9 @@
 								<div class="right-menu-lam">
 									<ul class="float-left ul-right-menu-lam">
 										<li class=""><a href="" style="color: #00a680 !important;"><i class="fas fa-home"></i></a></li>
-										<li class="hover-menu hidden-xs"><a href="">Địa điểm</a></li>
+										<li class="hover-menu hidden-xs"><a href="{{route('gioi-thieu')}}">Giới thiệu</a></li>
 										{{-- <li class="hover-menu hidden-xs"><a href="">Bài viết</a></li> --}}
-										<li class="hover-menu hidden-xs"><a href="">Liên hệ</a></li>
+										{{-- <li class="hover-menu hidden-xs"><a href="">Liên hệ</a></li> --}}
 										{{-- <li class="hover-menu">
 											<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14px !important;">
 											  </a>
@@ -498,13 +498,15 @@
 																	</p>	
 																</a>
 															</li>
-														@elseif(Session::get('user_info')->level == 5)	
-															<a href="{{route('addplace')}}" class="a-content-nofi">
-																<p class="text-nofi" style="height: auto;width: auto;">
-																	<i class="fas fa-map-marker"></i> 
-																	Lịch trình
-																</p>	
-															</a>
+														@elseif(Session::get('user_info')->level == 5)
+															<li style="height: 27px;">	
+																<a href="{{route('addplace')}}" class="a-content-nofi">
+																	<p class="text-nofi" style="height: auto;width: auto;">
+																		<i class="fas fa-map-marker"></i> 
+																		Lịch trình
+																	</p>	
+																</a>
+															</li>
 														@endif
 													@endif
 

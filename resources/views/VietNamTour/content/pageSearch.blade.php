@@ -10,6 +10,9 @@
 	.active-type{
 		color: #fec107 !important;
 	}
+	.conlam{
+		cursor: pointer;
+	}
 </style>
 
 <section class="place-inner">
@@ -28,25 +31,43 @@
 									</span>
 								</div>	
 							</div> --}}
-							<div class="col-md-6 col-sm-3">
+							<div class="col-md-8 col-sm-3">
 								<div class="input-group custom-search">
 									{{-- <input type="text" class="form-control" placeholder="" value="Từ khóa tìm kiếm {{$keyword}}" readonly="readonly"> --}}
-									<label style="margin-top: 5px;">Từ khóa tìm kiếm <span style="color: red;">{{$keyword}}</span></label>
-									<label style="margin-top: 5px; margin-left: 10px;">Tổng số kết quả: <span style="color: red;">{{$count}}</span></label>
+									<label style="margin-top: 5px;">Từ khóa tìm kiếm 
+										<span style="color: red;">{{$keyword}}</span>
+									</label>
+									<label style="margin-top: 5px; margin-left: 10px;">Tổng số kết quả: 
+										<span style="color: red;">{{$count}}</span>
+									</label>
+									<label style="margin-top: 5px; margin-left: 10px;">Mã Tỉnh thành phố:
+										@if($id_city == "all") 
+											<span style="color: red;">Tất cả</span>
+										@else
+											<span style="color: red;">{{$id_city}}</span>
+										@endif
+									</label>
+									<label style="margin-top: 5px; margin-left: 10px;">Loại hình:
+										@if($id_type == 1) 
+											<span style="color: red;">Ăn uống</span>
+										@elseif($id_type == 2)
+											<span style="color: red;">Khách sạn</span>
+										@elseif($id_type == 3)
+											<span style="color: red;">Phương tiện</span>
+										@elseif($id_type == 4)
+											<span style="color: red;">Tham quan</span>
+										@elseif($id_type == 5)
+											<span style="color: red;">Tham quan</span>
+										@else
+											<span style="color: red;">Tất cả</span>
+										@endif
+									</label>
 								</div>	
 							</div>
 							
-							<div class="col-md-3"></div>
-							<div class="col-md-1 text-right-filter"><span>Hiển thị</span></div>
-							<div class="col-md-1 float-right">
-								<div class="select-filter" style="width: 55px;">
-									<select name="" id="">
-										<option value="">9</option>
-										<option selected>18</option>
-										<option>27</option>
-									</select>
-								</div>
-							</div>
+							<div class="col-md-1"></div>
+							
+							
 						</div>
 					</div><!-- end tools-ber -->
 				</div>
@@ -58,19 +79,22 @@
 								<div class="box-title">
 									Kết quả tìm kiếm
 									{{-- <span>210</span> --}}
+									<input type="hidden" value="{{$id_type}}" id="idtype">
+									<input type="hidden" value="{{$id_city}}" id="idcity">
+									<input type="hidden" value="{{$keyword}}" id="keywordd">
 								</div>
 								<div class="box-body">
 									<ul>
-										<li><a href="" class="active-type">Tất cả<span></span></a>
+										<li><a class="active-type selectcon conlam" id="allser">Tất cả<span></span></a>
 										</li>
-										<li><a href="" id="see">Tham quan<span>{{$count_type['see']}}</span></a>
+										<li><a id="see" class="selectcon conlam">Tham quan<span>{{$count_type['see']}}</span></a>
 										</li>
 										<li>
-											<a href="" id="eat">Ăn uống <span>{{$count_type['eat']}}</span></a>
+											<a id="eat" class="selectcon conlam">Ăn uống <span>{{$count_type['eat']}}</span></a>
 										</li>
-										<li><a href="" id="hotel"> Khách sạn<span>{{$count_type['hotel']}}</span></a></li>
-										<li><a href="" id="enter"> Vui chơi<span>{{$count_type['enter']}}</span></a></li>
-										<li><a href="" id="tran"> Phương tiện<span>{{$count_type['tran']}}</span></a></li>
+										<li><a id="hotel" class="selectcon conlam"> Khách sạn<span>{{$count_type['hotel']}}</span></a></li>
+										<li><a id="enter" class="selectcon conlam"> Vui chơi<span>{{$count_type['enter']}}</span></a></li>
+										<li><a id="tran" class="selectcon conlam"> Phương tiện<span>{{$count_type['tran']}}</span></a></li>
 									</ul>
 								</div>
 							</div>
@@ -131,7 +155,7 @@
 				<!-- right -->
 				<div class="col-md-9 .col-sm-8">
 					<div class="place-list-content">
-						<div class="row">
+						<div class="row" id="content_place">
 						@if($flag == 1)
 							@if($result_all == null)
 								<h4>Không tìm thấy</h4>
@@ -160,7 +184,7 @@
 								<h4>Không tìm thấy</h4>
 							@else
 								@foreach($mangghe as $rr)
-									<div class="col-md-4 col-sm-6 col-12 thumbnail-padding">
+									<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" >
 										<div class="destination-grid">
 											<a href=""><img style="height: 265px;" src="public/thumbnails/{{$rr['image']}}" alt=""></a>
 											<div class="destination-name">

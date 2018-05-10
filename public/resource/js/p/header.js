@@ -252,7 +252,7 @@ function search() {
 				
 			})
 		}
-		else
+		else if(id_tinh == "all" && type != "all" && keyword.length > 0)
 		{
 			path = 'http://chinhlytailieu/vntour_api/searchServices_AllCity_idType/type='+ type +'&keyword=' + keyword_handle;
 			var title = 'Bộ lọc: ' + ten_tinh + ' + ' + ten_type;
