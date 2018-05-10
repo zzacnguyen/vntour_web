@@ -180,18 +180,23 @@
 										@for($i = 0; $i < count($quyen_hientai); $i++)
 											@if($quyen_hientai[$i] == 1)
 												Admin
+												<input class="quyen" type="text" hidden="hidden" value="1">
 											@endif
 											@if($quyen_hientai[$i] == 2)
 												- Moderator
+												<input class="quyen" type="text" hidden="hidden" value="2">
 											@endif
 											@if($quyen_hientai[$i] == 3)
 												- Cộng tác viên
+												<input class="quyen" type="text" hidden="hidden" value="3">
 											@endif
 											@if($quyen_hientai[$i] == 4)
 												- Doanh nghiệp
+												<input class="quyen" type="text" hidden="hidden" value="4">
 											@endif
 											@if($quyen_hientai[$i] == 5)
 												- Hướng dẫn viên du lịch
+												<input class="quyen" type="text" hidden="hidden" value="5">
 											@endif
 											@if($quyen_hientai[$i] == 0)
 												Người dùng thường
@@ -201,6 +206,31 @@
 							    	@endif
 							    </label>
 							</div>
+
+
+							<div class="form-group col-md-12 row">
+							    <label class="col-md-4" for="exampleInputEmail1">Quyền đang xét</label>
+							    <label style="color: red;" class="col-md-8" for="">
+							    	@if($quyen_dangxet != null)
+										@for($i = 0; $i < count($quyen_dangxet); $i++)
+											@if($quyen_dangxet[$i] == 2)
+												- Moderator
+											@endif
+											@if($quyen_dangxet[$i] == 3)
+												- Cộng tác viên
+											@endif
+											@if($quyen_dangxet[$i] == 4)
+												- Doanh nghiệp
+											@endif
+											@if($quyen_dangxet[$i] == 5)
+												- Hướng dẫn viên du lịch
+											@endif
+						    			@endfor
+						    		
+							    	@endif
+							    </label>
+							</div>
+
 							<div class="form-group col-md-12 row" style="float: left;">
 							    <label class="col-md-4" for="">Nâng cấp</label>
 							    <div class="col-md-8">
@@ -244,13 +274,13 @@
 					        @if($quyen_hientai == [])
 					        	@for($i = 0; $i < count($quyen_hientai); $i++)
 					    			@if($quyen_hientai[$i] == 1 || $quyen_hientai[$i] == 2)
-										<button style="background-color: #444fce !important" type="submit" class="btn btn-primary" data-dismiss="modal" disabled="disabled">Nâng cấp</button>
+										<button style="background-color: #444fce !important; border-radius: 0px;padding: 7px 30px;" type="submit" class="btn btn-primary" data-dismiss="modal" disabled="disabled">Nâng cấp</button>
 									@else
-										<button style="background-color: #444fce !important" type="submit" class="btn btn-primary" >Nâng cấp</button>
+										<button style="background-color: #444fce !important; border-radius: 0px;padding: 7px 30px;" type="submit" class="btn btn-primary" >Nâng cấp</button>
 									@endif
 					    		@endfor
 					    	@else
-					    		<button type="submit" style="background-color: #444fce !important" class="btn btn-primary" id="savenangcap">Nâng cấp</button>
+					    		<button type="submit" style="background-color: #444fce !important; border-radius: 0px;padding: 7px 30px;" class="btn btn-primary" id="savenangcap">Nâng cấp</button>
 					        @endif
 						   
 					        

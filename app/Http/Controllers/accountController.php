@@ -21,9 +21,10 @@ class accountController extends Controller
     	else{
             $quyen = $this::get_quyen_dangky();
             $quyen_hientai = $this::get_quyen_user();
-            // return $quyen_hientai;
+            $quyen_dangxet = $this::get_quyen_dangxet_user();
+            // return $quyen_dangxet;
 
-    		return view('VietNamTour.content.user.info', compact('info','quyen','quyen_hientai'));
+    		return view('VietNamTour.content.user.info', compact('info','quyen','quyen_hientai','quyen_dangxet'));
     	}
     	
     }
@@ -154,14 +155,17 @@ class accountController extends Controller
                         'quyen' => $request->selectnangcap
                     ]
                 ])->getBody();
-        return $response;
-        if ($response == "ok") {
+        $result = json_decode($response->getContents());
+        if ($result == 1) {
             return json_decode($response);
             return redirect()->back();
         }
-        else
+        else if($result == 0)
         {
-            return "loi";
+            return "Hiện tại bạn không thể đăng ký thêm quyền";
+        }
+        else{
+            return "Lỗi không thêm được";
         }
     }
 
@@ -181,6 +185,26 @@ class accountController extends Controller
                 'timeout'  => 20.0,
             ]);
             $response = $client->request('GET',"get_quyen_dangky/{$user_id}");
+            
+            return json_decode($response->getBody()->getContents());
+        }
+    }
+
+    public function get_quyen_dangxet_user() // lay ra nhung quyen nguoi dung co the dang ky
+    {
+        if (!Session::has('user_info')) {
+            return view('VietNamTour.login');
+        }
+        else
+        {
+            $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"get_quyen_dangxet_user/{$user_id}");
             
             return json_decode($response->getBody()->getContents());
         }

@@ -3,76 +3,125 @@
 <link rel="stylesheet" href="public/resource/css/select2.min.css">
 <link rel="stylesheet" href="public/resource/css/addplace.css">
 
+<script src="public/resource/js/ckeditor.js"></script>
 
 
 <section class="addplace">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8 content" style="margin-top: 80px;">
-				<h4 style="font-size: 25px; font-weight: bold;" class="text-center">Thêm địa điểm mới</h4>
-				<h5 style="color: red;">Thông tin cơ bản</h5>
-				<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
-				<form action="">
-					<div class="input-text col-md-12">
-						<label class="col-md-2">Tên địa điểm</label>
-						<input type="text">
-					</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8 content">
+					<h4>Thêm dịch vụ mới</h4>
+					<h6 style="color: #bd1717;">Thông tin cơ bản</h6>
+					<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
+					<form action="">
+						<div class="input-text">
+							<label>Tên dịch vụ</label>
+							<input type="text">
+						</div>
+						<div class="input-text col-md-12" style="padding: 0;margin-bottom: 5px;">
+							<label class="col-md-2" style="padding: 0;">Loại hình</label>
+							<select name="" id="" class="Tinh col-md-9" style="margin-left: 27px;width: 100%;">
+								<option>Tham quan</option>
+								<option>Ăn uống</option>
+								<option>Khách sạn</option>
+								<option>Phương tiện</option>
+								<option>Vui chơi</option>
+							</select>
+						</div>
+						<div class="input-text col-md-12" style="margin-bottom: 10px; padding: 0">
+							<label class="col-md-2" style="padding: 0;">Tỉnh thành</label>
+							<select class="js-example-basic-single col-md-4" name="city" style="margin-left: 27px;">
+	          					<option value="0">Chọn tỉnh thành phố</option>
+								{{-- @foreach($city as $c)
+								  <option value="{{$c->id}}">{{$c->province_city_name}}</option>
+								@endforeach --}}
+							</select>
+							<label class="col-md-2" style="margin-right: -10px;display: inline-block;">Quận huyện</label>
+							<select class="js-example-basic-single col-md-3" name="city" style="">
+	          					<option value="0">Chọn tỉnh thành phố</option>
+								{{-- @foreach($city as $c)
+								  <option value="{{$c->id}}">{{$c->province_city_name}}</option>
+								@endforeach --}}
+							</select>
+						</div>
 
-					<div class="input-text col-md-12">
-						<label class="col-md-2">Điện thoại</label>
-						<input type="text">
-					</div>
+						<div class="col-md-12" style="margin-bottom: 10px;padding: 0;">
+							<label class="col-md-2" style="width: 150px;font-size: 14px;font-weight: bold;padding: 0;">Khu vực</label>
+							<select class="js-example-basic-single col-md-4" name="" id="ward" style="padding: 0; margin-left: 27px;">
+							</select>
 
-					<div class="input-text col-md-12" style="margin-bottom: 10px;">
-						<label class="col-md-2">Tỉnh thành</label>
-						<select class="js-example-basic-single col-md-4" name="city">
-              <option value="0">Chọn tỉnh thành phố</option>
-							{{-- @foreach($city as $c)
-							  <option value="{{$c->id}}">{{$c->province_city_name}}</option>
-							@endforeach --}}
-						</select>
-						<label class="col-md-2" style="margin-right: -10px;display: inline-block;">Quận huyện</label>
-						<select class="js-example-basic-single col-md-3" name="districtt" id="district">
-              <option value="0">Chọn quận huyện</option>
-						</select>
-					</div>
+							<label class="col-md-2" style="margin-right: -10px;display: inline-block;font-weight: bold;font-size: 14px">Địa điểm</label>
+							<select class="js-example-basic-single col-md-3" name="districtt" id="district">
+	              				<option value="0">Chọn quận huyện</option>
+							</select>
+						</div>
 
-					<div class="col-md-12" style="margin-bottom: 10px;">
-						<label class="col-md-2" style="width: 150px;font-size: 14px;font-weight: bold;">Khu vực</label>
-						<select class="js-example-basic-single col-md-9" name="" id="ward" style="padding: 0">
-						</select>
-					</div>
+						<div class="input-text">
+							<label>Số điện thoại</label>
+							<input type="text" class="">
+							<label>Website</label>
+							<input type="text" class="">
+						</div>
+						
+						<br>
+						{{-- //========================= THOI GIAN ======================= --}}
+						<h6 style="color: #bd1717;">Thời gian hoạt động</h6>
+						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
+						<div class="input-text">
+							<label>Giờ đóng cửa</label>
+							<select name="" id="" class="Tinh">
+								<option>00</option>
+								<option></option>
+							</select>
+							<select name="" id="" class="Tinh">
+								<option>00</option>
+								<option>Hà Nội</option>
+							</select>
+						</div>
+						<div class="input-text">
+							<label>Giờ mở cửa</label>
+							<select name="" id="" class="Tinh">
+								<option>00</option>
+								<option>Hà Nội</option>
+							</select>
+							<select name="" id="" class="Tinh">
+								<option>00</option>
+								<option>Hà Nội</option>
+							</select>
+						</div>
+						<br>
+						{{-- //========================= GIA ======================= --}}
+						<h6 style="color: #bd1717;">Giá dịch vụ</h6>
+						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
+						<div class="input-text">
+							<label>Giá thấp nhất</label>
+							<input type="text">
+						</div>
+						<div class="input-text">
+							<label>Giá cao nhất</label>
+							<input type="text">
+						</div>
+						<br>
+						{{-- //========================= CHI TIET =================== --}}
+						<h6 style="color: #bd1717;">Mô tả chi tiết</h6>
+						<div class="input-text" class="col-md-12" style="padding: 0">
+							<label style="padding: 0;" class="col-md-2">Mô tả dịch vụ</label>
+							<textarea name="ten" id="ten" class="col-md-9" style="margin-left: 27px;"></textarea>
+      						{{-- <script>CKEDITOR.replace('ten');</script> --}}
+      						<textarea name="description" id="editor1" rows="10" cols="80">This is my textarea to be replaced with CKEditor.</textarea>
+      						<script>    CKEDITOR.replace( 'editor1' );</script>
+						</div>
 
-					<div class="input-text col-md-12">
-						<label class="col-md-2">Địa chỉ</label>
-						<input type="text">
-					</div>
-
-					<div class="input-text col-md-12">
-						<label class="col-md-2" style="">Mô tả</label>
-						<textarea style="height: 105px;"></textarea>
-					</div>
-
-					
-
-					<div class="input-text col-md-12">
-						<label class="col-md-2" style="padding: 0;">Nhập trực tiếp</label>
-						<input type="text" placeholder="Vĩ độ" class="col-md-4">
-						<input type="text" placeholder="Kinh độ" class="col-md-4">
-					</div>
-
-					<button class="btn btn-success col-md-12" id="btnaddplace" style="margin-top: 20px;">
-						Thêm địa điểm mới
-					</button>
-				</form>
+						<button class="btn btn-success col-md-12" id="btnaddplace">Thêm địa điểm mới</button>
+					</form>
+				</div>
+				<div class="col-md-2"></div>
 			</div>
-			<div class="col-md-2"></div>
 		</div>
-	</div>
-</section>
+	</section>
 
-
+{{-- <script src="public/resource/js/ckeditor.js"></script> --}}
 <script src="public/resource/js/select2.full.js"></script>
 
 <script type="text/javascript">

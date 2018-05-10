@@ -159,10 +159,10 @@ Route::get('check-login','publicDetail@check_Login');
 Route::get('place-user','accountController@getPlace_user');
 Route::get('place-user/add/{id}','accountController@addplace');
 
-//====== place user
-
+//====== service user
 Route::get('service-user','accountController@getservice_user');
 Route::get('service-user/add/{id}','accountController@addservice_user');
+
 
 //get con search
 Route::get('conSearch/{idcity}&type={type}&keyword={key}&select={select}','pageController@conSearch');

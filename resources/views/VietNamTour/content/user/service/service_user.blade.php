@@ -48,9 +48,9 @@
 							      <th scope="col">Ngày tạo</th>
 							      <th scope="col">Trạng thái</th>
 							      <th scope="col" class="text-center" style="width: 166px;">
-							      	<button class="btn btn-sm btn-primary" id="myBtn">
+							      	<a href="service-user/add/3" class="btn btn-sm btn-primary" id="myBtn">
 							      		<i class="fas fa-plus"></i> Thêm mới
-							      	</button>
+							      	</a>
 							      </th>
 							    </tr>
 							  </thead>
