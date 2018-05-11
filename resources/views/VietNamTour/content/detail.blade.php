@@ -71,37 +71,38 @@
 						</div>
 						<div class="hotel-body">
 							<p style="margin: 0;" id="mota-dichvu">{{$sv->sv_description}}</p>
-							<div class="row">
-								<div class="col-md-3">
+							<div class="row" style="margin-top: 5px;">
+								{{-- <div class="col-md-3">
 									<a id="">
 										<i class="far fa-bookmark"></i>
 										{{$sv->sv_point}}
 									</a>
-								</div>
-								<div class="col-md-3 text-center">
+								</div> --}}
+								<div class="col-md-6 text-center">
 									<a title="Lượt xem">
 										<i class="fas fa-eye"></i>
 										{{$sv->sv_view}}
 									</a>
 								</div>
-								<div class="col-md-3 text-center">
+								<div class="col-md-6 text-center">
 									<a id="like01">
 										<i id="color-like" class="fas fa-heart"></i>
 										<span id="num_like">{{$sv->sv_like}}</span>
 									</a>
 								</div>
-								<div class="col-md-3 text-center">
+								{{-- <div class="col-md-3 text-center">
 									<a id="">
 										<i class="fas fa-share"></i>
 									</a>
-								</div>
+								</div> --}}
 							</div>
+							<br>	
 							<div class="service">
 								<ul>
-									<li>
+									{{-- <li>
 										<div class="icon-f"><i class="fas fa-paper-plane"></i></div>
 										   Lê Lợi, Lô E1, Cồn Cái Khế, P. Cái Khế, Q.Ninh Kiều, Quận Ninh Kiều
-									</li>
+									</li> --}}
 									<li>
 										<div class="icon-f">
 											<i class="fas fa-phone"></i>
@@ -122,9 +123,14 @@
 										<div class="icon-f">
 											<i class="fas fa-tag"></i>
 										</div>
-										<span id="giathapnhat">{{$sv->sv_lowest_price}}</span> {{-- gia thap nhat --}}
-										<i class="fas fa-arrow-right"></i> 
-										<span id="giacaonhat">{{$sv->sv_highest_price}}</span>  {{-- gia cao nhat --}}
+										@if($sv->sv_lowest_price == 0 || $sv->sv_highest_price == 0)
+											<span id="giathapnhat">Đang cập nhật</span>
+										@else
+											<span id="giathapnhat">{{$sv->sv_lowest_price}}</span> {{-- gia thap nhat --}}
+											<i class="fas fa-arrow-right"></i> 
+											<span id="giacaonhat">{{$sv->sv_highest_price}}</span>  {{-- gia cao nhat --}}
+										@endif
+											
 									</li>
 								</ul>
 							</div>
@@ -168,12 +174,24 @@
 										<h5 style="font-weight: 700;padding-left: 17px;">Album ảnh</h5>
 										<section class="demo" style="background-color: transparent;">
 											<div class="gallery">
-												<a style="background-color: transparent;" href="http://i.imgur.com/80WaVuY.jpg" title="" data-fluidbox class="col-12"><img src="http://i.imgur.com/80WaVuY.jpg" alt="" title="" /></a>
-												<a href="http://i.imgur.com/9OQWB.jpg" title="" data-fluidbox class="col-6"><img src="http://i.imgur.com/9OQWB.jpg" alt="" title="" /></a>
-												<a href="http://i.imgur.com/UvGHJjo.jpg" title="" data-fluidbox class="col-6"><img src="http://i.imgur.com/UvGHJjo.jpg" alt="" title="" /></a>
-												<a href="http://i.imgur.com/esWWGbF.jpg" title="" data-fluidbox class="col-4"><img src="http://i.imgur.com/esWWGbF.jpg" alt="" title="" /></a>
-												<a href="http://i.imgur.com/ZCogT10.jpg" title="" data-fluidbox class="col-4"><img src="http://i.imgur.com/ZCogT10.jpg" alt="" title="" /></a>
-												<a href="http://i.imgur.com/24hrPQn.jpg" title="" data-fluidbox class="col-4"><img src="http://i.imgur.com/24hrPQn.jpg" alt="" title="" /></a>
+												<a style="background-color: transparent;" href="public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-12"><img src="public/thumbnails/{{$sv->image_banner}}" alt="" title="" /></a>
+
+												<a href="public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-6">
+													<img src="public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
+												</a>
+
+												<a href="public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-6">
+													<img src="public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
+												</a>
+
+												<a href="public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-4"><img src="public/thumbnails/{{$sv->image_banner}}" alt="" title="" />
+												</a>
+
+												<a href="public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-4"><img src="public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
+												</a>
+
+												<a href="public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-4"><img src="public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
+												</a>
 											</div>
 										</section>
 									</div>
@@ -250,7 +268,7 @@
 									                                    	<img class="message-avatar" src="public/resource/images/avatar2.jpg" alt="">
 									                                    @else
 									                                    	{{-- <img class="message-avatar" src="public/resource/images/{{$r->contact_avatar}}" alt="lam"> --}}
-									                                    	<img class="message-avatar" src="public/resource/images/{{$ra->contact_avatar}}" alt="">
+									                                    	<img class="message-avatar" src="public/resource/images/avatar/{{$ra->contact_avatar}}" alt="">
 									                                    @endif
 									                                    <div class="message">
 									                                        <a class="message-author" style="color: #007bff"> {{$ra->username}} - 
@@ -335,7 +353,7 @@
 										                                    	<img class="message-avatar" src="public/resource/images/avatar2.jpg" alt="">
 										                                    @else
 										                                    	{{-- <img class="message-avatar" src="public/resource/images/{{$r->contact_avatar}}" alt="lam"> --}}
-										                                    	<img class="message-avatar" src="public/resource/images/{{$r->contact_avatar}}" alt="">
+										                                    	<img class="message-avatar" src="public/resource/images/avatar/{{$r->contact_avatar}}" alt="">
 										                                    @endif
 										                                    <div class="message">
 										                                        <a class="message-author" style="color: #007bff"> {{$r->username}} - 
@@ -380,7 +398,7 @@
 				<div class="col-md-4" style="padding-left: 0;">
 					<div class="right-content">
 						<div class="title-right-content">
-							<h5 class="text-center">Địa điểm lân cận</h5>
+							<h5 class="text-center">Địa điểm cùng khu vực</h5>
 						</div>
 						<div class="body-right-content" style="height: 600px;overflow-y: scroll;">
 							@foreach($sv_lancan as $s)

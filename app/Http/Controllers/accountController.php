@@ -13,18 +13,19 @@ class accountController extends Controller
     public function get_info_account()
     {
     	$info = $this::get_info_user();
+        // return $info;
         // dd($info);
     	if (!$this::check_login()) {
             Session()->flush();
     		return view('VietNamTour.login');
     	}
     	else{
-            $quyen = $this::get_quyen_dangky();
+            $quyen2 = $this::get_quyen_dangky();
             $quyen_hientai = $this::get_quyen_user();
             $quyen_dangxet = $this::get_quyen_dangxet_user();
-            // return $quyen_dangxet;
+            // return $quyen_hientai;
 
-    		return view('VietNamTour.content.user.info', compact('info','quyen','quyen_hientai','quyen_dangxet'));
+    		return view('VietNamTour.content.user.info', compact('info','quyen2','quyen_hientai','quyen_dangxet'));
     	}
     	
     }
@@ -59,6 +60,83 @@ class accountController extends Controller
             
             return json_decode($response->getBody()->getContents());
         }
+    }
+
+
+    //=============== moblide ==============
+    public function post_edit_info_account_mobile(edituser $request)
+     {    
+        if(!is_dir('public/resource/images/avatar')){
+            mkdir('public/resource/images/avatar',0777, true);
+        }
+        else
+        {
+            if($request->image && $request->image != '')
+            {
+             
+                $file = $request->file('image');
+                $name = $file->getClientOriginalName();
+                $destinationPath = public_path('resource/images/avatar');
+                $file->move($destinationPath,$name);
+                $user_id = Session::get('user_info')->id;
+                $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+                $response = $client->request('POST', 'edituser/'.$user_id.'', [
+        
+                    
+                    'form_params' => [
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'phone'=>$request->phone,
+                        'website'=>$request->website,
+                        'address'=>$request->address,
+                        'lang'=>$request->lang,
+                        'avatar'=>$name,
+                    
+                    ]
+                ])->getBody();
+                
+                if($response=="ok")
+                {
+                    return redirect()->back();
+                }
+                
+            }
+            else
+            {
+                $user_id = Session::get('user_info')->id;
+                $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+                $response = $client->request('POST', 'edituser/'.$user_id.'', [
+        
+                    
+                    'form_params' => [
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'phone'=>$request->phone,
+                        'website'=>$request->website,
+                        'address'=>$request->address,
+                        'lang'=>$request->lang
+                    
+                    ]
+                ])->getBody();
+                if($response=="ok")
+                {
+                    return redirect()->back();
+                }
+               
+            }
+
+        }
+        
     }
 
 
@@ -184,7 +262,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"get_quyen_dangky/{$user_id}");
+            $response = $client->request('GET',"get_quyen_dangky_moi/{$user_id}");
             
             return json_decode($response->getBody()->getContents());
         }
@@ -204,7 +282,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"get_quyen_dangxet_user/{$user_id}");
+            $response = $client->request('GET',"get_quyen_dangxet_userList/{$user_id}");
             
             return json_decode($response->getBody()->getContents());
         }
@@ -224,7 +302,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"get_quyen_user/{$user_id}");
+            $response = $client->request('GET',"get_quyen_userList/{$user_id}");
             
             return json_decode($response->getBody()->getContents());
         }
@@ -250,5 +328,86 @@ class accountController extends Controller
     public function addservice_user()
     {
         return view('VietNamTour.content.user.service.addservice');
+    }
+
+    public function get_tripchudule()
+    {
+        $danhsach = $this::getListTripSchedule();
+        // dd($danhsach);
+        return view('VietNamTour.content.user.tripschedule',compact('danhsach'));
+    }
+
+    public function get_tripchudule_detail($idTripSchedule)
+    {
+        $danhsach = $this::getListTripSchedule();
+        $chitiet = $this::getListDetaiTripSchedule($idTripSchedule);
+        $lichtrinh = $this::getListOneTripSchedule($idTripSchedule);
+        // dd($chitiet);
+        return view('VietNamTour.content.user.tripschedule',compact('danhsach','chitiet','lichtrinh'));
+    }
+
+
+
+
+    //list-schedule/{id}
+    public function getListTripSchedule()
+    {
+        if (!Session::has('user_info')) {
+            return view('VietNamTour.login');
+        }
+        else
+        {
+            $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"list-schedule/{$user_id}");
+            
+            return json_decode($response->getBody()->getContents());
+        }
+    }
+
+    public function getListDetaiTripSchedule($idTripSchedule)
+    {
+        if (!Session::has('user_info')) {
+            return view('VietNamTour.login');
+        }
+        else
+        {
+            $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"list-schedule-details/{$idTripSchedule}");
+            
+            return json_decode($response->getBody()->getContents());
+        }
+    }
+
+    //schedule-one/{id}
+    public function getListOneTripSchedule($idTripSchedule)
+    {
+        if (!Session::has('user_info')) {
+            return view('VietNamTour.login');
+        }
+        else
+        {
+            $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"schedule-one/{$idTripSchedule}");
+            
+            return json_decode($response->getBody()->getContents());
+        }
     }
 }

@@ -164,12 +164,17 @@ Route::get('check-login','publicDetail@check_Login');
 
 
 //====== place user
-Route::get('place-user','accountController@getPlace_user');
+Route::get('place-user','accountController@getPlace_user')->name('place-user');
 Route::get('place-user/add/{id}','accountController@addplace');
 
 //====== service user
-Route::get('service-user','accountController@getservice_user');
+Route::get('service-user','accountController@getservice_user')->name('service-user');
 Route::get('service-user/add/{id}','accountController@addservice_user');
+
+//====== tripschudule
+Route::get('get_tripchudule','accountController@get_tripchudule')->name('get_tripchudule');
+
+Route::get('get_tripchudule_detail/{id}','accountController@get_tripchudule_detail');
 
 
 //get con search

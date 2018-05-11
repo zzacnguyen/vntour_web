@@ -78,9 +78,9 @@
 
 				@endforeach
 				
-				<div class="col-md-12">
+				{{-- <div class="col-md-12">
 					<div class="float-right"><a href="#" class="" style="color: black !important; font-weight: 500;">Xem tất cả <i class="fas fa-angle-double-right"></i></a></div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</section>
@@ -124,9 +124,9 @@
 				@endforeach
 					
 
-				<div class="col-md-12">
+				{{-- <div class="col-md-12">
 					<div class="float-right"><a href="#" class="" style="color: black !important; font-weight: 500;">Xem tất cả <i class="fas fa-angle-double-right"></i></a></div>
-				</div>
+				</div> --}}
 			</div>
 
 		</div>
@@ -187,9 +187,9 @@
 
 				@endforeach
 		
-				<div class="col-md-12">
+				{{-- <div class="col-md-12">
 					<div class="float-right"><a href="#" class="" style="color: black !important; font-weight: 500;">Xem tất cả <i class="fas fa-angle-double-right"></i></a></div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</section>
@@ -230,9 +230,9 @@
 					</div>
 				@endforeach
 					
-				<div class="col-md-12">
+				{{-- <div class="col-md-12">
 					<div class="float-right"><a href="#" class="" style="color: black !important; font-weight: 500;">Xem tất cả <i class="fas fa-angle-double-right"></i></a></div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</section>
@@ -273,9 +273,9 @@
 					</div>
 				@endforeach
 
-				<div class="col-md-12">
+				{{-- <div class="col-md-12">
 					<div class="float-right"><a href="#" class="" style="color: black !important; font-weight: 500;">Xem tất cả <i class="fas fa-angle-double-right"></i></a></div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</section>

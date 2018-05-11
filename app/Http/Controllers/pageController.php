@@ -141,7 +141,7 @@ class pageController extends Controller
         if ($lam != null) {
             Session()->put('login',true);  
             Session()->put('user_info',$lam);
-
+            // dd(Session::get('user_info')) ;
             return redirect('/');
         }
         else{

@@ -17,7 +17,7 @@ class publicDetail extends Controller
     {
         $this::addview($id);
     	$sv = $this::get_service_id($id,$type);
-
+        // dd($sv);
         $sv_lancan = $this::dichvu_lancan($sv->city_id,$id,20);
         $rating = $this::getRating($id);
         // dd($rating);
