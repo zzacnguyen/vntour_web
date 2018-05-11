@@ -8,6 +8,7 @@ use Session;
 use DB;
 use App\contact_infoModel;
 use GuzzleHttp\Client;
+// use App\tripScheduleModel;
 class accountController extends Controller
 {
     public function get_info_account()
@@ -333,8 +334,12 @@ class accountController extends Controller
     public function get_tripchudule()
     {
         $danhsach = $this::getListTripSchedule();
+        $chitiet = null;
+        $lichtrinh = null;
+        $id_lichtrinh = null;
+        $dv = $this::get_service_lichtrinh();
         // dd($danhsach);
-        return view('VietNamTour.content.user.tripschedule',compact('danhsach'));
+        return view('VietNamTour.content.user.tripschedule',compact('danhsach','chitiet','lichtrinh','dv','id_lichtrinh'));
     }
 
     public function get_tripchudule_detail($idTripSchedule)
@@ -342,8 +347,18 @@ class accountController extends Controller
         $danhsach = $this::getListTripSchedule();
         $chitiet = $this::getListDetaiTripSchedule($idTripSchedule);
         $lichtrinh = $this::getListOneTripSchedule($idTripSchedule);
+        if ($lichtrinh != null) {
+            foreach ($lichtrinh as $value) {
+                $id_lichtrinh = $value->id;
+            }
+        }
+        else
+        {
+            return view('VietNamTour.login');
+        }
+        $dv = $this::get_service_lichtrinh();
         // dd($chitiet);
-        return view('VietNamTour.content.user.tripschedule',compact('danhsach','chitiet','lichtrinh'));
+        return view('VietNamTour.content.user.tripschedule',compact('danhsach','chitiet','lichtrinh','dv','id_lichtrinh'));
     }
 
 
@@ -384,7 +399,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"list-schedule-details/{$idTripSchedule}");
+            $response = $client->request('GET',"list-schedule-details_web/{$idTripSchedule}");
             
             return json_decode($response->getBody()->getContents());
         }
@@ -408,6 +423,106 @@ class accountController extends Controller
             $response = $client->request('GET',"schedule-one/{$idTripSchedule}");
             
             return json_decode($response->getBody()->getContents());
+        }
+    }
+
+
+    public function saveTripSchedule(Request $request)
+    {
+        $user_id = Session::get('user_info')->id;
+        //
+
+        // return $request->name;
+
+        $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+        $response = $client->request('POST', 'post-schedule/user='.$user_id.'', [
+
+                    'form_params' => [
+                        'trip_name' => $request->trip_name,
+                        'trip_startdate' => $request->trip_startdate,
+                        'trip_enddate'=>$request->trip_enddate,
+                    ]
+                ])->getBody();
+
+        $result = json_decode($response->getContents());
+        if ($result == "status:200") {
+            return redirect()->back();
+        }
+        else
+        {
+            return "Lỗi không thêm được!";
+        }
+    }
+
+    public function saveDetailTripSchedule(Request $request,$idlichtrinh)
+    {
+        $user_id = Session::get('user_info')->id;
+        //
+
+        // return $request->name;
+
+        $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+        $response = $client->request('POST', 'post-schedule-details/schedule='.$idlichtrinh.'', [
+
+                    'form_params' => [
+                        'service_id' => $request->service_id
+                    ]
+                ])->getBody();
+
+        $result = json_decode($response->getContents());
+        if ($result == "status:200") {
+            return redirect()->back();
+        }
+        else
+        {
+            return "Lỗi không thêm được!";
+        }
+    }
+
+
+
+    public function get_service_lichtrinh(){
+        $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"get_service_lichtrinh");
+            
+            return json_decode($response->getBody()->getContents());
+    }
+
+    //schedule-delete/{id}
+    public function DeleteDetailTripSchedule($idlichtrinh)
+    {
+
+        $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+        $response = $client->request('GET',"schedule-delete/{$idlichtrinh}");
+
+        $result = json_decode($response->getBody()->getContents());
+        if ($result == "status:200") {
+            return redirect()->back();
+        }
+        else
+        {
+            return "Lỗi không thêm được!";
         }
     }
 }

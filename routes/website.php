@@ -176,6 +176,12 @@ Route::get('get_tripchudule','accountController@get_tripchudule')->name('get_tri
 
 Route::get('get_tripchudule_detail/{id}','accountController@get_tripchudule_detail');
 
+Route::post('add_tripchudule','accountController@saveTripSchedule');
+
+Route::post('add_detailtripchudule/{id}','accountController@saveDetailTripSchedule');
+
+Route::get('schedule-delete/{id}','accountController@DeleteDetailTripSchedule');
+
 
 //get con search
 Route::get('conSearch/{idcity}&type={type}&keyword={key}&select={select}','pageController@conSearch');
