@@ -1,7 +1,7 @@
 @include('VietNamTour.header-footer.header')
 
 
-
+<script src="public/resource/js/toastr.min.js"></script>
 <link rel="stylesheet" href="public/resource/css/hotel.css">
 <link rel="stylesheet" href="public/resource/css/hotel-detail.css">
 <link rel="stylesheet" href="public/resource/css/lightbox.min.css">
@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="public/resource/css/user.css">
 <link rel="stylesheet" href="public/resource/css/bootstrap.css">
 <link rel="stylesheet" href="public/resource/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="public/resource/css/toastr.min.css">
 	
 	<style type="text/css">
 		.table tbody tr:nth-child(2n+1) {
@@ -48,54 +49,37 @@
 							      <th scope="col">Ngày tạo</th>
 							      <th scope="col">Trạng thái</th>
 							      <th scope="col" class="text-center" style="width: 166px;">
-							      	<a href="service-user/add/3" class="btn btn-sm btn-primary" id="myBtn">
+							      	<a class="btn btn-sm btn-primary" id="myBtn" href="{{route('serviceuser')}}">
 							      		<i class="fas fa-plus"></i> Thêm mới
-							      	</a>
+											</a>
 							      </th>
 							    </tr>
 							  </thead>
 							  <tbody>
+									@foreach($data as $val)
 							    <tr>
-							      <th >1</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
+							      <td>{{$val->sv_description}}</td>
+							      <td>
+												@if($val->sv_types==1)
+													Ăn uống
+												@elseif($val->sv_types==2)
+													Khách sạn
+												@elseif($val->sv_types==3)
+													Phương tiện
+												@elseif($val->sv_types==4)
+													Tham quan
+												@else
+													Vui chơi
+												@endif
+										</td>
+							      <td>{{substr($val->created_at,0,strpos($val->created_at,' '))}}</td>
+							      <td>{{$val->sv_status==1? "Hiện":"Ẩn"}}</td>
 							      <td class="text-center">
-							      	<button class="btn btn-sm btn-info"><i class="far fa-edit"></i> Chi tiết</button>
+											<a href="{{route('edit_service_user',$val->id)}}" class="btn btn-sm btn-info"><i class="far fa-edit"></i> Chi tiết</a>
 							      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
 							      </td>
-							    </tr>
-							    <tr>
-							      <th >1</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td class="text-center">
-							      	<button class="btn btn-sm btn-info"><i class="far fa-edit"></i> Chi tiết</button>
-							      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
-							      </td>
-							    </tr>
-								<tr>
-							      <th >1</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td class="text-center">
-							      	<button class="btn btn-sm btn-info"><i class="far fa-edit"></i> Chi tiết</button>
-							      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
-							      </td>
-							    </tr>
-							    <tr>
-							      <th >1</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td class="text-center">
-							      	<button class="btn btn-sm btn-info"><i class="far fa-edit"></i> Chi tiết</button>
-							      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
-							      </td>
-							    </tr>
-
+									</tr>
+									@endforeach
 							  </tbody>
 							</table>
 
@@ -144,6 +128,28 @@ $(document).ready(function(){
 	<script type="text/javascript" src="public/resource/js/popper.js"></script>
 	<script type="text/javascript" src="public/resource/js/bootstrap.js"></script>
 	{{-- <script type="text/javascript" src="public/resource/js/dataTables.bootstrap.min.js"></script> --}}
+@if(Session::has('message'))
+<script>
+Command: toastr["success"]("{{Session::get('message')}}")
 
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+</script>
+@endif
 	
 @include('VietNamTour.header-footer.footer')

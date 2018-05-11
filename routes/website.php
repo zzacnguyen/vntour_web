@@ -164,8 +164,7 @@ Route::get('check-login','publicDetail@check_Login');
 
 
 //====== place user
-Route::get('place-user','accountController@getPlace_user')->name('place-user');
-Route::get('place-user/add/{id}','accountController@addplace');
+
 
 //====== service user
 Route::get('service-user','accountController@getservice_user')->name('service-user');
@@ -185,8 +184,20 @@ Route::get('schedule-delete/{id}','accountController@DeleteDetailTripSchedule');
 
 //get con search
 Route::get('conSearch/{idcity}&type={type}&keyword={key}&select={select}','pageController@conSearch');
+//service user
+Route::get('add-service-user',['as'=>'serviceuser','uses'=>'accountController@get_add_service_user']);
+Route::post('add-service-user',['as'=>'postserviceuser','uses'=>'accountController@post_add_service_user']);
+Route::get('service-user',['as'=>'service_user','uses'=>'accountController@get_service_user']);
+Route::get('service-user/add/{id}','accountController@addservice_user');
+Route::get('server-user-edit/{id}',['as'=>'edit_service_user','uses'=>'accountController@edit_service_user']);
+Route::post('server-user-edit/{id}',['as'=>'post_edit_service_user','uses'=>'accountController@post_edit_service_user']);
 
-
+//place user
+Route::get('place-user',['as'=>'placeuser','uses'=>'accountController@getPlace_user']);
+Route::get('place-user/add',['as'=>'addplaceuser','uses'=>'accountController@addplace']);
+Route::post('place-user/add',['as'=>'postaddplaceuser','uses'=>'accountController@post_addplace']);
+Route::get('edit-place-user/{id}',['as'=>'edit_placeuser','uses'=>'accountController@edit_place_user']);
+Route::post('edit-place-user/{id}',['as'=>'postedit_placeuser','uses'=>'accountController@post_edit_place_user']);
 //=========
 
 
