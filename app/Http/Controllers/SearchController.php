@@ -196,6 +196,7 @@ class SearchController extends Controller
 
     public function searchServicesKeyword($keyword)
     {
+        
         $keyword_handing = str_replace("+", " ", $keyword);
         // $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
         //                         ->select('')->take(30)->paginate(5);

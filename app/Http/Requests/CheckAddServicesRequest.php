@@ -36,7 +36,7 @@ class CheckAddServicesRequest extends FormRequest
             'details1' => 'required',
             'details2' => 'required',
             'content' => 'required',
-            'star' => 'max:5|min:1'
+            // 'star' => 'max:5|min:1'
         ];
     }
     public function messages()
@@ -54,8 +54,8 @@ class CheckAddServicesRequest extends FormRequest
             'banner.required'  => "Vui lòng chọn ảnh",
             'details1.required'  =>  "Vui lòng chọn ảnh",
             'details2.required'  =>  "Vui lòng chọn ảnh",
-            'star.min'=>"Số sao phải từ 1 - 5",
-            'star.max'=>"Số sao phải từ 1 - 5",
+            // 'star.min'=>"Số sao phải từ 1 - 5",
+            // 'star.max'=>"Số sao phải từ 1 - 5",
 
         ];
     }
