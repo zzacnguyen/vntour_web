@@ -96,7 +96,7 @@
             </a>
         </li>
         <li>
-            <a href="#" title="Pages">
+            <a href="{{ route('_GET_VIEW_SERVICES_BY_ENTERTAIMENTS') }}" title="Danh sách dịch vụ vui chơi giải trí">
                 <i class="glyph-icon icon-soccer-ball-o"></i>
                 <span>Vui chơi giải trí</span>
             </a>
@@ -111,27 +111,41 @@
 
         <li>
             <a href="#" title="Pages">
-                <i class="glyph-icon icon-"></i>
+                <i class="glyph-icon icon-powerpoint-o"></i>
                 <span>Danh mục điểm</span>
             </a>
         </li>
         <li>
             <a href="#" title="Pages">
-                <i class="glyph-icon icon-"></i>
+                <i class="glyph-icon icon-pied-piper"></i>
                 <span>Danh mục loại hình sự kiện</span>
             </a>
         </li>
         <li>
             <a href="#" title="Pages">
-                <i class="glyph-icon icon-"></i>
+                <i class="glyph-icon icon-icon-xing-square"></i>
                 <span>Danh mục sự kiện</span>
             </a>
         </li>
         <li>
             <a href="#" title="Pages">
-                <i class="glyph-icon icon"></i>
+                <i class="glyph-icon icon-google-plus-square"></i>
                 <span>Danh mục mạng xã hội</span>
             </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" title="Danh mục người dùng">
+                <i class="glyph-icon icon-location-arrow"></i>
+                <span>Danh mục địa chỉ</span>
+            </a>
+            <div class="sidebar-submenu">
+                <ul>
+                    <li><a href="{{ route('ALL_LIST_ADMIN') }}" title="Danh sách Tỉnh thành phố"><span>Tỉnh thành</span></a></li>
+                    <li><a href="{{ route('ALL_LIST_MOD') }}" title="Danh sách quận huyện"><span>Quận/huyện</span></a></li>
+                    <li><a href="{{ route('ALL_LIST_PARTNER') }}" title="Danh sách phường xã"><span>Phường/xã</span></a></li>
+                </ul>
+
+            </div><!-- .sidebar-submenu -->
         </li>
         
         

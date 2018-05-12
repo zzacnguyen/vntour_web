@@ -1,5 +1,27 @@
 <?php
 
+/* Các function hiện có
+    1.  _DISPLAY_LIST_ALL_USER : Hiển thị danh sách tất cả người dùng : 
+    2.  -_DISPLAY_LIST_ADMIN_USER : Hiển thị danh sách người dùng admin : 
+    3. _DISPLAY_LIST_MODERATOR_USER : Hiển thị danh sách người dùng vai trò moderator
+    4. _DISPLAY_LIST_PARTNER : Hiển thị danh sách người dùng cộng tác viên 
+    5. _DISPLAY_LIST_ENTERPRISE: Hiển thị người dùng doanh nghiệp
+    6. _DISPLAY_LIST_PERSIONAL: Hiển thị người dùng cá nhân
+    7. _DISPLAY_TOURIST_PLACES: Hiển thị danh sách địa điểm
+    8. _DISPLAY_LIST_SERVICES: Hiển thị danh sách dịch vụ
+    9. _DISPLAY_LIST_SERVICES_BY_PLACESID: hiển thị danh sách các dịch vụ thuộc 1 địa điểm
+    10. _DISPLAY_LIST_SERVICES_BY_ENTERTAIMENTS: Hiển thị các dịch vụ thuộc loại hình vui   
+            chơi giải trí
+    11. _GET_VIEW_SERVICES_BY_ENTERTAIMENTS: Hiển thị gioa diện xem danh sách dịch vụ loại hình vui chơi giải trí
+    12. _DISPLAY_TOURIST_PLACES_DETAILS: Hiển thị địa điểm chi tiết
+    13. _DISPLAY_LIST_TOURGUIDE: Hiển thị danh sách người dùng hướng dẫn viên du lịch
+
+
+
+
+
+
+*/
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -65,7 +87,6 @@ class CMS_ComponentController extends Controller
     }
 
 
-
     public function _DISPLAY_LIST_PARTNER()
     {
         $data = DB::table('vnt_user') 
@@ -84,27 +105,6 @@ class CMS_ComponentController extends Controller
             return view('CMS.components.error');
         }
     }
-
-
-    //     public function _DISPLAY_LIST_PARTNER()
-    // {
-    //     $data = DB::table('vnt_user') 
-    //     ->select( DB::raw('DATE_FORMAT(vnt_user.created_at, "%d-%m-%Y") as created_at'),
-    //         'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
-    //     )
-    //     ->join('vnt_partner_user', 'vnt_partner_user.user_id', '=', 'vnt_user.user_id')
-    //     ->leftJoin('vnt_contact_info', 'vnt_contact_info.user_id', '=', 'vnt_user.user_id')
-    //     ->join('vnt_active_accounts', 'vnt_active_accounts.user_moderator_id')
-    //     ->orderBy('vnt_user.user_id', 'desc')
-    //     ->paginate(4);
-    //     // return $data;
-    //     if (view()->exists('CMS.components.com_user.partner.list')){
-    //         return view('CMS.components.com_user.partner.list', ['data'=>$data]);
-    //     }
-    //     else {
-    //         return view('CMS.components.error');
-    //     }
-    // }
 
     
     public function _DISPLAY_LIST_ENTERPRISE()
@@ -127,6 +127,7 @@ class CMS_ComponentController extends Controller
     }
 
 
+    //TÊN FUNCTION SAI CHÍNH TẢ 
     public function _DISPLAY_LIST_PERSIONAL()
     {
         $data = DB::table('vnt_user') 
@@ -165,8 +166,6 @@ class CMS_ComponentController extends Controller
 		}
 		
     }
-
-
 
 
     public function _DISPLAY_LIST_SERVICES()
@@ -219,6 +218,31 @@ class CMS_ComponentController extends Controller
         ->paginate(15);
         return $data;
         
+    }
+
+
+     public function _DISPLAY_LIST_SERVICES_BY_ENTERTAIMENTS()
+    {
+        $data = DB::table('vnt_services') 
+        ->select( DB::raw('DATE_FORMAT(vnt_services.updated_at, "%d-%m-%Y") as updated_at'),
+            'sv_description', 'sv_open','sv_close', 'sv_highest_price', 'sv_lowest_price',
+             'sv_phone_number','sv_types', 'sv_website','entertainments_name','sv_status', 'image_banner','vnt_services.id' 
+        )
+        ->join('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')     
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->join('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_services.id')
+        ->orderBy('vnt_services.id', 'desc')
+        ->orderBy('vnt_services.updated_at', 'desc')
+        ->paginate(15);
+        return $data;
+    }
+
+    public function _GET_VIEW_LIST_SERVICES_BY_ENTERTAIMENTS()
+    {
+        $data  = $this::_DISPLAY_LIST_SERVICES_BY_ENTERTAIMENTS();
+        return view('CMS.components.com_services.list_servicesEntertainments',
+        ['data'=>$data]);
     }
 
     public function _DISPLAY_TOURIST_PLACES_DETAILS($id)

@@ -1,5 +1,13 @@
 <?php
+/*
+    Các function đang được sử dụng
+    1. _POST_TASK: Thêm nhiệm vụ
+    2. _POST_TOURIST_PLACES: Thêm địa điểm
+    3. _POST_ADD_SERVICES: thêm dịch vụ
 
+    
+
+*/
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -41,26 +49,6 @@ class CMS_AddDataController extends Controller
         }
     }
 
-    public function _POST_SERVICES_PLACES(CheckAddServicesRequest $request)
-    {
-        // $services = new servicesModel();
-        // $services->services_name
-        // $services->sv_open
-        // $services->sv_close
-        // $services->sv_lowest_price
-        // $services->sv_highest_price
-        // $services->sv_phone_number
-        // $services->website
-        // $services->description
-        // $services->content
-
-
-        
-        // banner
-        // details1
-        // details2
-
-    }
 
     public function _POST_TOURIST_PLACES(CheckAddTouristPlacesRequest $request)
     {
@@ -94,41 +82,9 @@ class CMS_AddDataController extends Controller
             return view('CMS.components.error');
         }
     }
-    // public function _POST_ADD_SERVICES(CheckAddServicesRequest $request)
-    // {
-    //     $services = new servicesModel();
-    //     $place->sv_description=$request->input('description');
-    //     $place->sv_content=$request->input('content');
-    //     $place->sv_open=$request->input('description');
-    //     $place->sv_close=$request->input('address');
-    //     $place->pl_phone_number=$request->input('phonenumber');
-    //     $place->pl_latitude=$request->input('vido');
-    //     $place->pl_longitude=$request->input('kinhdo');
-    //     $place->id_ward=$request->input('ward');
-    //     $place->pl_status=0; 
-    //     $place->user_partner_id =1;
-    //     if ($request->get('action') == 'save_close') {
-    //         $place->save();
-    //         return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một địa điểm!");
-    //     } 
-    //     else if ($request->get('action') == 'save_and_add_service') {
-    //         $place->save();
-    //         if (view()->exists('view.CMS.components.com_services.add_services'))
-    //         {
-    //             return view('CMS.components.error');
-    //         }
-    //         else    {                
-    //             return redirect()->route('_GETVIEW_ADD_SERVICES');
-    //         }
-    //     }
-    //     else
-    //     {
-    //         return view('CMS.components.error');
-    //     }
-    // }
+    
     public function _POST_ADD_SERVICES(CheckAddServicesRequest $request)
     {
-
         $user_id  = 1;
         $services_name = $request->input('services_name');
         $eat_name = $services_name;
@@ -158,114 +114,118 @@ class CMS_AddDataController extends Controller
         $convert = (array)$lastServices;
         $id_service =  $convert['id'];
         $id_type =  $convert['sv_types'];
-            if($id_type == 1)
-            {
-                $vnt_eating = new eatingModel;
-                $vnt_eating->eat_name =  $eat_name;
-                $vnt_eating->eat_status =  1;
-                $vnt_eating->service_id =  $id_service;
-                if ($request->get('action') == 'save_close') {
-                    $vnt_eating->save();
-                    return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
-                } 
-                else if($request->get('action') == 'save_and_add_service')
-                {
-                    $vnt_eating->save();
-                    $message = 'Hoàn tất, Dịch vụ ăn uống ' .$eat_name.' tại '. $name_places  . '  đã được thêm!';
-                    return redirect('/lvtn-list-address')->with('message', $message);
-                }
-                else
-                {
-                    return json_encode("status:500");
-                }
 
-            }
-            else if($id_type == 2)
+
+        //THIẾU UPLOAD IMAGES
+
+
+
+        if($id_type == 1)
+        {
+            $vnt_eating = new eatingModel;
+            $vnt_eating->eat_name =  $eat_name;
+            $vnt_eating->eat_status =  1;
+            $vnt_eating->service_id =  $id_service;
+            if ($request->get('action') == 'save_close') {
+                $vnt_eating->save();
+                return redirect()->route('_GET_VIEW_SERVICES_BY_ENTERTAIMENTS')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
+            } 
+            else if($request->get('action') == 'save_and_add_service')
             {
-                $vnt_hotels = new hotelsModel;
-                $vnt_hotels->hotel_name =  $hotel_name;
-                $vnt_hotels->hotel_website =  $request->input('hotel_website');
-                $vnt_hotels->hotel_number_star =  $request->input('hotel_number_star');
-                $vnt_hotels->hotel_status =  1;
-                $vnt_hotels->service_id =  $id_service;
-                if ($request->get('action') == 'save_close') {
-                    $vnt_hotels->save();
-                    return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
-                } 
-                else if($request->get('action') == 'save_and_add_service')
-                {
-                    $vnt_hotels->save();
-                    $message = 'Hoàn tất, Dịch vụ khách sạn - nơi ở ' .$hotel_name.' tại '. $name_places  . '  đã được thêm!';
-                    return redirect('/lvtn-list-address')->with('message', $message);
-                }
-                else
-                {
-                    return json_encode("status:500");
-                }
+                $vnt_eating->save();
+                $message = 'Hoàn tất, Dịch vụ ăn uống ' .$eat_name.' tại '. $name_places  . '  đã được thêm!';
+                return redirect('/lvtn-list-address')->with('message', $message);
             }
-            else if($id_type == 3)
+            else
             {
-                $vnt_transport = new transportModel;
-                $vnt_transport->transport_name =  $transport_name;
-                $vnt_transport->transport_status =  1;
-                $vnt_transport->service_id =  $id_service;
-                if ($request->get('action') == 'save_close') {
-                    $vnt_transport->save();
-                    return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
-                } 
-                else if($request->get('action') == 'save_and_add_service')
-                {
-                    $vnt_transport->save();
-                    $message = 'Hoàn tất, Dịch vụ ' .$transport_name.' tại di chuyển - vận chuyển '. $name_places  . '  đã được thêm!';
-                    return redirect('/lvtn-list-address')->with('message', $message);
-                }
-                else
-                {
-                    return json_encode("status:500");
-                }
+                return json_encode("status:500");
             }
-            else if($id_type == 4)
+        }
+        else if($id_type == 2)
+        {
+            $vnt_hotels = new hotelsModel;
+            $vnt_hotels->hotel_name =  $hotel_name;
+            $vnt_hotels->hotel_website =  $request->input('hotel_website');
+            $vnt_hotels->hotel_number_star =  $request->input('hotel_number_star');
+            $vnt_hotels->hotel_status =  1;
+            $vnt_hotels->service_id =  $id_service;
+            if ($request->get('action') == 'save_close') {
+                $vnt_hotels->save();
+                return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
+            } 
+            else if($request->get('action') == 'save_and_add_service')
             {
-                $vnt_sightseeing = new sightseeingModel;
-                $vnt_sightseeing->sightseeing_name =  $sightseeing_name;
-                $vnt_sightseeing->sightseeing_status     =  1;
-                $vnt_sightseeing->service_id =  $id_service;
-                if ($request->get('action') == 'save_close') {
-                    $vnt_sightseeing->save();
-                    return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
-                } 
-                else if($request->get('action') == 'save_and_add_service')
-                {
-                    $vnt_sightseeing->save();
-                    $message = 'Hoàn tất, Dịch vụ tham quan - mua sắm ' .$sightseeing_name.' tại '. $name_places  . '  đã được thêm!';
-                    return redirect('/lvtn-list-address')->with('message', $message);
-                }
-                else
-                {
-                    return json_encode("status:500");
-                }
+                $vnt_hotels->save();
+                $message = 'Hoàn tất, Dịch vụ khách sạn - nơi ở ' .$hotel_name.' tại '. $name_places  . '  đã được thêm!';
+                return redirect('/lvtn-list-address')->with('message', $message);
             }
-            else if($id_type == 5)
+            else
             {
-                $vnt_entertainments = new entertainmentsModel;
-                $vnt_entertainments->entertainments_name = $entertainments_name;
-                $vnt_entertainments->entertainments_status=1;
-                $vnt_entertainments->service_id =  $id_service;
-                if ($request->get('action') == 'save_close') {
-                    $vnt_entertainments->save();
-                    return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
-                } 
-                else if($request->get('action') == 'save_and_add_service')
-                {
-                    $vnt_entertainments->save();
-                    $message = 'Hoàn tất, Dịch vụ vui chơi - giải trí ' .$entertainments_name.' tại '. $name_places  . '  đã được thêm!';
-                    return redirect('/lvtn-list-address')->with('message', $message);
-                }
-                else
-                {
-                    return json_encode("status:500");
-                }
+                return json_encode("status:500");
             }
-  
+        }
+        else if($id_type == 3)
+        {
+            $vnt_transport = new transportModel;
+            $vnt_transport->transport_name =  $transport_name;
+            $vnt_transport->transport_status =  1;
+            $vnt_transport->service_id =  $id_service;
+            if ($request->get('action') == 'save_close') {
+                $vnt_transport->save();
+                return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
+            } 
+            else if($request->get('action') == 'save_and_add_service')
+            {
+                $vnt_transport->save();
+                $message = 'Hoàn tất, Dịch vụ ' .$transport_name.' tại di chuyển - vận chuyển '. $name_places  . '  đã được thêm!';
+                return redirect('/lvtn-list-address')->with('message', $message);
+            }
+            else
+            {
+                return json_encode("status:500");
+            }
+        }
+        else if($id_type == 4)
+        {
+            $vnt_sightseeing = new sightseeingModel;
+            $vnt_sightseeing->sightseeing_name =  $sightseeing_name;
+            $vnt_sightseeing->sightseeing_status     =  1;
+            $vnt_sightseeing->service_id =  $id_service;
+            if ($request->get('action') == 'save_close') {
+                $vnt_sightseeing->save();
+                return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
+            } 
+            else if($request->get('action') == 'save_and_add_service')
+            {
+                $vnt_sightseeing->save();
+                $message = 'Hoàn tất, Dịch vụ tham quan - mua sắm ' .$sightseeing_name.' tại '. $name_places  . '  đã được thêm!';
+                return redirect('/lvtn-list-address')->with('message', $message);
+            }
+            else
+            {
+                return json_encode("status:500");
+            }
+        }
+        else if($id_type == 5)
+        {
+            $vnt_entertainments = new entertainmentsModel;
+            $vnt_entertainments->entertainments_name = $entertainments_name;
+            $vnt_entertainments->entertainments_status=1;
+            $vnt_entertainments->service_id =  $id_service;
+            if ($request->get('action') == 'save_close') {
+                $vnt_entertainments->save();
+                return redirect()->route('_GET_VIEW_SERVICES_BY_ENTERTAIMENTS')->with('message', "Hoàn tất, Đã thêm một dịch vụ!");
+            } 
+            else if($request->get('action') == 'save_and_add_service')
+            {
+                $vnt_entertainments->save();
+                $message = 'Hoàn tất, Dịch vụ vui chơi - giải trí ' .$entertainments_name.' tại '. $name_places  . '  đã được thêm!';
+                return redirect('/lvtn-list-address')->with('message', $message);
+            }
+            else
+            {
+                return json_encode("status:500");
+            }
+        }
     }
 }

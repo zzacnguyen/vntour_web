@@ -119,22 +119,21 @@ class ImagesController extends Controller
         $timedate = date("h_i_s");
         $time = '_'.$date.'_'.$timedate;
         
-        // $path_banner = public_path().'/banners/';
-        // $path_details1 = public_path().'/details1/';
-        // $path_details2 = public_path().'/details2/';
-        // $path_icon = public_path().'/icons/';
-        // $path_thumb = public_path().'/thumbnails/';
+        $path_banner = public_path().'/banners/';
+        $path_details1 = public_path().'/details1/';
+        $path_details2 = public_path().'/details2/';
+        $path_icon = public_path().'/icons/';
+        $path_thumb = public_path().'/thumbnails/';
 
-        $path_banner = '../../upload/img/banners/';
-        $path_details1 = '../../upload/img/details1/';
-        $path_details2 ='../../upload/img/details2/';
-        $path_icon = '../../upload/img/icons/';
-        $path_thumb = '../../upload/img/thumbnails/';
+        // $path_banner = '../../upload/img/banners/';
+        // $path_details1 = '../../upload/img/details1/';
+        // $path_details2 ='../../upload/img/details2/';
+        // $path_icon = '../../upload/img/icons/';
+        // $path_thumb = '../../upload/img/thumbnails/';
 
         //upload banner
         $file_banner = $request->file('banner');
         $image_banner = \Image::make($file_banner);
-     
         $image_banner->resize(768,720);
         $image_banner->save($path_banner.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
         $image_banner->resize(600,400);
