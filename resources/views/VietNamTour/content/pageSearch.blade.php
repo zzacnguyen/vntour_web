@@ -13,6 +13,17 @@
 	.conlam{
 		cursor: pointer;
 	}
+
+	.lime-clam{
+	    width: 100%;
+	    height: 20px;
+	    overflow: hidden;
+	    display: block;
+	    display: -webkit-box;
+	    -webkit-line-clamp: 1;
+	    -webkit-box-orient: vertical;
+	    text-overflow: ellipsis;
+	}
 </style>
 
 <section class="place-inner">
@@ -31,7 +42,7 @@
 									</span>
 								</div>	
 							</div> --}}
-							<div class="col-md-8 col-sm-3">
+							<div class="col-md-12 col-sm-3">
 								<div class="input-group custom-search">
 									{{-- <input type="text" class="form-control" placeholder="" value="Từ khóa tìm kiếm {{$keyword}}" readonly="readonly"> --}}
 									<label style="margin-top: 5px;">Từ khóa tìm kiếm 
@@ -62,6 +73,49 @@
 											<span style="color: red;">Tất cả</span>
 										@endif
 									</label>
+									<button class="btn btn-primary float-right" style="margin-left: 20px;" id="btntimquanhday" data-toggle="modal" data-target="#myModal">Tìm quanh đây</button>
+
+									<div id="myModal" class="modal fade" role="dialog" style="margin-top: 100px;">
+									  <div class="modal-dialog">
+
+									    <!-- Modal content-->
+									    <div class="modal-content">
+								    	<form action="{{route('search-vicinity')}}" method="post">
+									      <div class="modal-header">
+									      	<h4 class="modal-title">Tọa độ của bạn</h4>
+									        <button type="button" class="close" data-dismiss="modal">&times;</button>
+									      </div>
+
+									      <div class="modal-body">
+										  	<div class="form-group col-md-12 row">
+											    <label class="col-md-3" for="exampleInputEmail1">Vĩ độ</label>
+											    <div class="col-md-9">
+											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtlat" value="10.044718399999999">
+											    </div>
+										  	</div>
+										  	<div class="form-group col-md-12 row">
+											    <label class="col-md-3" for="exampleInputEmail1">Kinh độ</label>
+											    <div class="col-md-9">
+											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtlon" value="105.7632514">
+											    </div>
+										  	</div>
+										  	<div class="form-group col-md-12 row">
+											    <label class="col-md-3" for="exampleInputEmail1">Khoảng cách</label>
+											    <div class="col-md-9">
+											    	<input type="number" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtradius" value="1000">
+											    </div>
+										  	</div>
+									      </div>
+
+									      <div class="modal-footer">
+									        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+							        		<button type="submit" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;">Tìm kiếm</button>
+									      </div>
+										</form>
+									    </div>
+
+									  </div>
+									</div>
 								</div>	
 							</div>
 							
@@ -128,28 +182,24 @@
 							Những dịch vụ được tìm kiếm nhiều nhất
 							{{-- <span></span> --}}
 						</div>
-						<div class="box-body">
-							<ul style="padding: 14px 15px 10px 15px;">
-								<li>
-									<a href="">
-										<img style="height: 50px;" src="public/resource/images/img-BaiViet/9.jpg" alt="">
-										<span class="">
-											<h6>lamtranduc</h6>
-											<p style="color: #ddd;">đasadaddadadasdsd</p>
-										</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-										<img style="height: 50px;" src="public/resource/images/img-BaiViet/9.jpg" alt="">
-										<span class="">
-											<h6>lamtranduc</h6>
-											<p style="color: #ddd;">đasadaddadadasdsd</p>
-										</span>
-									</a>
-								</li>
-							</ul>
-						</div>
+						@if($top_search != null)
+							
+							<div class="box-body">
+								<ul style="padding: 14px 15px 10px 15px;">
+									@foreach($top_search as $top)
+									<li>
+										<a href="detail/id={{$top->sv_id}}&type={{$top->sv_type}}">
+											<img style="height: 50px;" src="public/thumbnails/{{$top->sv_image}}" alt="null">
+											<span class="" style="width: 137px;">
+												<h6 class="lime-clam">{{$top->sv_name}}</h6>
+												<p style="color: #ddd; height: 15px;overflow: hidden;">{{$top->sv_description}}</p>
+											</span>
+										</a>
+									</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
 					</div>
 				</div><!-- end left -->
 				<!-- right -->
@@ -163,7 +213,7 @@
 								@foreach($result_all as $r)
 									<div class="col-md-4 col-sm-6 col-12 thumbnail-padding">
 										<div class="destination-grid">
-											<a href="detail/id={{$r->id_service}}&type={{$r->sv_type}}"><img style="height: 265px;" src="public/thumbnails/{{$r->image}}" alt=""></a>
+											<a class="searchdichvu" {{-- href="detail/id={{$r->id_service}}&type={{$r->sv_type}}" --}} data-id="{{$r->id_service}}" data-type="{{$r->sv_type}}"><img style="height: 265px; cursor: pointer;" src="public/thumbnails/{{$r->image}}" alt="" ></a>
 											<div class="destination-name">
 												<h4>{{$r->name}}</h4>
 												<h5>{{$r->name_city}}</h5>
@@ -174,6 +224,7 @@
 												<a>{{$r->like}} <i class="far fa-heart"></i></a>
 												<a>{{$r->point}} <i class="far fa-bookmark"></i></a>
 											</div>
+											{{-- <input type="hidden" value="{{$r->id_service}}" id="id_service"> --}}
 										</div>
 									</div>	
 								@endforeach
@@ -210,7 +261,44 @@
 				</div><!-- end right -->
 			</div> <!-- end row -->
 		</div>
-	</section>
+</section>
+
+<div class="container">
+	<script>
+	var x = document.getElementById("demo");
+	 
+	function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition, showError);
+		} 
+		else {
+			x.innerHTML = "Trình duyệt của bạn không hỗ trợ Geolocation.";
+		}
+	}
+	 
+	function showPosition(position) {
+		x.innerHTML = "Vĩ độ: " + position.coords.latitude +
+		"<br>Kinh độ: " + position.coords.longitude;
+	}
+	 
+	function showError(error) {
+		switch(error.code) {
+		case error.PERMISSION_DENIED:
+		x.innerHTML = "Người dùng từ chối cấp quyền định vị."
+		break;
+		case error.POSITION_UNAVAILABLE:
+		x.innerHTML = "Không có thông tin vị trí."
+		break;
+		case error.TIMEOUT:
+		x.innerHTML = "Hết thời gian gửi yêu cầu định vị."
+		break;
+		case error.UNKNOWN_ERROR:
+		x.innerHTML = "Lỗi chưa xác định."
+		break;
+		}
+	}
+	</script>
+</div>
 
 	<!-- <script src="resource/js/lightbox.min.js"></script> -->
 	<!-- <script src="resource/js/menu-style.js"></script> -->

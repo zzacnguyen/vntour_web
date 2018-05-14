@@ -8,6 +8,105 @@
 <link rel="stylesheet" href="public/resource/css/detail-tab.css">
 <link rel="stylesheet" href="public/resource/css/chat.css">
 
+
+
+<style type="text/css">
+	.left-box {
+	    background-color: #fff;
+	    position: relative;
+	    margin-bottom: 20px;
+	    height: 500px;
+    	overflow-y: auto;
+    	overflow-x: hidden;
+	}
+
+	.left-box .box-title {
+	    padding: 5px 30px;
+	    position: relative;
+	    font-weight: 700;
+	    font-size: 16px;
+	    overflow: hidden;
+	    border-bottom: 1px solid #ddd;
+	}
+
+	.left-box .box-body ul {
+	    padding: 0px;
+	    list-style-type: none;
+	    line-height: 18px;
+	    font-size: 15px;
+	    font-weight: 500;
+	    padding: 14px 30px 10px 30px;
+	}
+
+	.left-box .box-body ul li {
+	    margin-bottom: 10px;
+	    padding-bottom: 10px;
+	    border-bottom: 1px solid #eee;
+	}
+
+	.left-box .box-body ul li a {
+	    color: #797986;
+	    text-decoration: none;
+	    display: block;
+	}
+
+	.left-box .box-body ul li a span {
+	    float: right;
+	    font-size: 14px;
+	    color: black;
+	}
+
+	.lime-clam {
+	    width: 100%;
+	    height: 20px;
+	    overflow: hidden;
+	    display: block;
+	    display: -webkit-box;
+	    -webkit-line-clamp: 1;
+	    -webkit-box-orient: vertical;
+	    text-overflow: ellipsis;
+	}
+
+	#text-cham{
+		overflow: hidden;
+	    line-height: 23px;
+	    height: 20px;
+	    display: block;
+	    display: -webkit-box;
+	    -webkit-line-clamp: 1;
+	    -webkit-box-orient: vertical;
+	    text-overflow: ellipsis;
+	}
+
+	.grid-item .ribbon span {
+	    font-size: 10px;
+	    font-weight: 700;
+	    color: #FFF;
+	    text-transform: uppercase;
+	    line-height: 20px;
+	    transform: rotate(-45deg);
+	    -webkit-transform: rotate(-45deg);
+	    width: 100px;
+	    display: block;
+	    /* background: #f94141; */
+	    background: linear-gradient(#f941416b 0,#f94141 100%);
+	    text-shadow: 1px 1px 2px rgba(0,0,0,.25);
+	    position: absolute;
+	    top: 19px;
+	    left: -21px;
+	}
+
+	.grid-item .grid-text .place-name {
+	    display: inline-block;
+	    padding: 0px 7px;
+	    font-size: 14px;
+	    font-weight: 500;
+	    line-height: 10px;
+	    background-color: #352f2f82;
+	}
+</style>
+
+
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD4NgGvVNbWb_bMXOdeHLMWVhHm_HITw34&sensor=false"></script>
 
 	{{-- <div id="latitude">{{$sv['pl_latitude']}}</div> --}}
@@ -162,10 +261,10 @@
 										Bản đồ </a>
 									</li>
 								</ul>
-								<div class="tab-content">
+								<div class="tab-content" style="min-height: 1000px;">
 									<div class="tab-pane" id="tab_default_1">
 										<h5 style="font-weight: 700;padding-left: 17px;">GIỚI THIỆU</h5>
-										<p style="text-align: justify; padding: 10px;" >
+										<p style="text-align: justify; padding: 10px 30px;" >
 											{{$sv->sv_description}}
 										</p>
 									</div>
@@ -396,6 +495,29 @@
 					</div>
 				</div>
 				<div class="col-md-4" style="padding-left: 0;">
+					<div class="left-box" style="margin-top: 16px;">
+						<div class="box-title text-center">
+							<h4><b style="font-size: 20px;">Một số dịch vụ lân cận</b></h4>
+						</div>
+						@if($sv_lancan_hon != null)
+							<div class="box-body">
+								<ul style="padding: 14px 15px 10px 15px;">
+									@foreach($sv_lancan_hon as $top)
+									<li>
+										<a href="detail/id={{$top->id_service}}&type={{$top->sv_type}}">
+											<img style="height: 50px;" src="public/thumbnails/{{$top->image}}" alt="null">
+											<span class="" style="width: 247px;">
+												<h6 class="lime-clam">{{$top->name}}</h6>
+
+												<p style="color: #ddd; height: 15px;overflow: hidden;">{{number_format(round($top->distance/1000,2),2,',','.')}} Km</p>
+											</span>
+										</a>
+									</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
+					</div>
 					<div class="right-content">
 						<div class="title-right-content">
 							<h5 class="text-center">Địa điểm cùng khu vực</h5>
@@ -435,7 +557,53 @@
 				</div>
 			</div>
 		</div>
-
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h5>Top dịch vụ có lượt xem nhiều nhất</h5>
+				</div>
+				
+			</div>
+			<div class="owl-carousel owl-theme">
+				@if($sv_top_view != null)
+					@foreach($sv_top_view as $s)
+						<div class="item">
+					    	<div class="grid-item">
+					    		<div class="grid-img-thumb">
+					    			<div class="ribbon">
+					    				<span>{{$s->name_city}}</span>
+					    			</div>
+						    		<a href="detail/id={{$s->id_service}}&type={{$s->sv_type}}" title="{{$s->name}}">
+						    			<img style="min-height: 214px" src="public/thumbnails/{{$s->image}}" alt="">
+						    		</a>
+						    	</div>
+						    	<div class="grid-content">
+						    		<div class="grid-price">
+						    			{{-- <span>{{$s->rating}}</span> --}}
+						    			<span class="pull-right">
+						    				@if($s->rating == 0)
+								    			@for($i=0; $i< 3; $i++)
+								    				<i class="fas fa-star"></i>
+								    			@endfor
+								    		@else
+								    			@for($i=0; $i < $s->rating; $i++)
+								    				<i class="fas fa-star"></i>
+								    			@endfor
+								    		@endif
+					    				</span>
+						    		</div>
+						    		<div class="grid-text">
+						    			<div class="place-name" id="text-cham">{{$s->name}}</div>
+						    			
+						    		</div>
+						    	</div>
+					    	</div>    	
+					    </div>
+					@endforeach
+				@endif
+			</div>
+		</div>
 	</section>
 	
 
@@ -546,5 +714,45 @@
 	</script>
 	
 	<script src="public/resource/js/p/detail.js"></script>
+	
+	<script type="text/javascript" src="public/resource/js/owl.carousel.js"></script>
+	<script type="text/javascript">
+		$('.owl-carousel').owlCarousel({
+		    loop:true,
+		    margin:10,
+		    nav:false,
+		    dots:false,
+		    autoplay:true,
+    		autoplayTimeout:2000,
+    		autoplayHoverPause:true,
+		    responsive:{
+		        0:{
+		            items:3
+		        },
+		        600:{
+		            items:3
+		        },
+		        1000:{
+		            items:5
+		        }
+		    }
+		});
+		$('.owl-carousel').on('mousewheel', '.owl-stage', function (e) {
+		    if (e.deltaY>0) {
+		        $('.owl-carousel').trigger('next.owl');
+		    } else {
+		        $('.owl-carousel').trigger('prev.owl');
+		    }
+		    e.preventDefault();
+		});
+
+		$(".next-owl").on('click',function(){        
+		   $('.owl-carousel').trigger('next.owl');
+		})      
+		$(".prev-owl").on('click',function(){        
+		   $('.owl-carousel').trigger('prev.owl');
+		})
+	</script>
+
 
 @include('VietNamTour.header-footer.footer')

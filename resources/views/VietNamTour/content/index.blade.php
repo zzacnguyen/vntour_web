@@ -1,9 +1,39 @@
 
 @include('VietNamTour.header-footer.header')
-	
+	<link rel="stylesheet" href="public/resource/css/font-awesome.css">
+
+
+	<style type="text/css">
+		#btnprev{
+			position: absolute;
+			top: 42%;
+			z-index: 1000;
+			background-color: #ffffff80;
+			height: 40px;
+			width: 40px;
+			cursor: pointer;
+			padding: 5px;
+			padding-left: 13px;
+			padding-top: 8px;
+		}
+		#btnnext{
+			position: absolute;
+			top: 42%;
+			right: 15px;
+			z-index: 1000;
+			background-color: #ffffff80;
+			height: 40px;
+			width: 40px;
+			cursor: pointer;
+			padding: 5px;
+			padding-top: 8px;
+			padding-left: 16px;
+		}
+	</style>
+
 	<!-- ==================TINH TP============= -->
 	<section class="tinhthanhpho">
-		<div class="container">
+		<div class="container" style="position: relative;">
 			<div class="owl-carousel owl-theme" id="display-city">
 				
 				@foreach($placecount as $value)
@@ -35,8 +65,10 @@
 				    	</div>    	
 				    </div>
 				@endforeach
-
+			
 			</div>
+		<a class="prev-owl" id="btnprev"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+		<a class="next-owl" id="btnnext"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 		</div>
 	</section>
 	<!-- ==================END TINH TP============= -->
@@ -287,7 +319,11 @@
 		$('.owl-carousel').owlCarousel({
 		    loop:true,
 		    margin:10,
-		    nav:true,
+		    nav:false,
+		    dots:false,
+		    autoplay:true,
+    		autoplayTimeout:2000,
+    		autoplayHoverPause:true,
 		    responsive:{
 		        0:{
 		            items:3
@@ -299,6 +335,21 @@
 		            items:5
 		        }
 		    }
+		});
+		$('.owl-carousel').on('mousewheel', '.owl-stage', function (e) {
+		    if (e.deltaY>0) {
+		        $('.owl-carousel').trigger('next.owl');
+		    } else {
+		        $('.owl-carousel').trigger('prev.owl');
+		    }
+		    e.preventDefault();
+		});
+
+		$(".next-owl").on('click',function(){        
+		   $('.owl-carousel').trigger('next.owl');
+		})      
+		$(".prev-owl").on('click',function(){        
+		   $('.owl-carousel').trigger('prev.owl');
 		})
 	</script>
 	<script>

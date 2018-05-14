@@ -19,6 +19,11 @@ class publicDetail extends Controller
     	$sv = $this::get_service_id($id,$type);
         // dd($sv);
         $sv_lancan = $this::dichvu_lancan($sv->city_id,$id,20);
+
+        $sv_lancan_hon = $this::get_service_lancan($sv->pl_latitude,$sv->pl_longitude,10000);
+
+        $sv_top_view = $this::get_top_view_service(15);
+
         $rating = $this::getRating($id);
         // dd($rating);
         $checklogin = $this::check_Login();
@@ -37,8 +42,48 @@ class publicDetail extends Controller
     		return view('VietNamTour.404');
     	}
     	else{
-    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating'));
+    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view'));
     	}
+    }
+
+
+    public function get_detail_search($id,$type)
+    {
+        // var_dump($id);
+        $this::addview($id);
+        // return 1;
+        $sv = $this::get_service_id($id,$type);
+        // dd($sv);
+        // return $sv->city_id;
+        $sv_lancan = $this::dichvu_lancan($sv->city_id,$id,20);
+        $rating = $this::getRating($id);
+        // dd($rating);
+        $checklogin = $this::check_Login();
+
+        $sv_lancan_hon = $this::get_service_lancan($sv->pl_latitude,$sv->pl_longitude,10000);
+
+        $sv_top_view = $this::get_top_view_service(15);
+
+        //save search
+        $save_search = $this::save_user_search($id);
+        // return $save_search;
+        // return $checklogin;
+        if ($checklogin != "null") {
+            $checkUserRating = $this::checkUserRating($id,$checklogin);
+            if (count($checkUserRating) == 0) {
+                $checkUserRating = null;
+            }
+        }
+        else{
+            $checkUserRating = null;
+        }
+        // return $checkUserRating;
+        if ($sv == null) {
+            return view('VietNamTour.404');
+        }
+        else{
+            return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view'));
+        }
     }
 
     // public function get_service_id($id,$type)
@@ -368,5 +413,55 @@ class publicDetail extends Controller
         $response = $client->request('GET',"ThemVaCapNhatLike/{$idservice}&user={$user_id}");
 
         return json_decode($response->getBody()->getContents());
+    }
+
+    //user search
+    public function save_user_search($id_service){
+        // save-user-search/{idserivce}&{iduser}
+        
+        if (Session::has('login') && Session::get('login')){
+            $user_id = Session::get('user_info')->id;
+            // return $id_service.'-'.$user_id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"save-user-search/{$id_service}&{$user_id}")->getBody();
+            if($response->getContents() == "status:200")
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        else{
+            return 1;
+        }
+    }
+
+    public function get_service_lancan($lat,$lon,$radius){
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"timquanhday/lat={$lat}&lon={$lon}&radius={$radius}")->getBody();
+        return json_decode($response->getContents());
+    }
+
+    public function get_top_view_service($limit){
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"get_service_top_view/{$limit}")->getBody();
+        return json_decode($response->getContents());
     }
 }

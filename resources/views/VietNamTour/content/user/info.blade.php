@@ -1,6 +1,8 @@
 @include('VietNamTour.header-footer.header')
 
 
+<script src="public/resource/js/toastr.min.js"></script>
+<link rel="stylesheet" href="public/resource/css/toastr.min.css">
 
 <link rel="stylesheet" href="public/resource/css/hotel.css">
 <link rel="stylesheet" href="public/resource/css/hotel-detail.css">
@@ -24,41 +26,41 @@
 </style>
 
 <script>
-	       $(document).ready( function() {
-    	$(document).on('change', '.btn-file :file', function() {
-		var input = $(this),
-			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		input.trigger('fileselect', [label]);
-		});
+	//        $(document).ready( function() {
+ //    	$(document).on('change', '.btn-file :file', function() {
+	// 	var input = $(this),
+	// 		label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+	// 	input.trigger('fileselect', [label]);
+	// 	});
 
-		$('.btn-file :file').on('fileselect', function(event, label) {
+	// 	$('.btn-file :file').on('fileselect', function(event, label) {
 		    
-		    var input = $(this).parents('.input-group').find(':text'),
-		        log = label;
+	// 	    var input = $(this).parents('.input-group').find(':text'),
+	// 	        log = label;
 		    
-		    if( input.length ) {
-		        input.val(log);
-		    } else {
-		        if( log ) alert(log);
-		    }
+	// 	    if( input.length ) {
+	// 	        input.val(log);
+	// 	    } else {
+	// 	        if( log ) alert(log);
+	// 	    }
 	    
-		});
-		function readURL(input) {
-		    if (input.files && input.files[0]) {
-		        var reader = new FileReader();
+	// 	});
+	// 	function readURL(input) {
+	// 	    if (input.files && input.files[0]) {
+	// 	        var reader = new FileReader();
 		        
-		        reader.onload = function (e) {
-		            $('#img-upload').attr('src', e.target.result);
-		        }
+	// 	        reader.onload = function (e) {
+	// 	            $('#img-upload').attr('src', e.target.result);
+	// 	        }
 		        
-		        reader.readAsDataURL(input.files[0]);
-		    }
-		}
+	// 	        reader.readAsDataURL(input.files[0]);
+	// 	    }
+	// 	}
 
-		$("#imgInp").change(function(){
-		    readURL(this);
-		}); 	
-	});
+	// 	$("#imgInp").change(function(){
+	// 	    readURL(this);
+	// 	}); 	
+	// });
 </script>
 	<section class="content-info">
 		<div class="container">
@@ -85,13 +87,15 @@
 										<a id="btnnangcap" data-toggle="modal" data-target="#myModal"><i class="fas fa-user-secret"></i> Nâng cấp tài khoản</a>
 									</li>
 									<li>
-										<a href=""><i class="fas fa-lock"></i> Đổi mật khẩu</a>
+										<a href="" data-toggle="modal" data-target="#exampleModal">
+											<i class="fas fa-lock"></i> Đổi mật khẩu
+										</a>
 									</li>
 									<li>
 										<a href=""><i class="fas fa-lock"></i> Điểm thưởng</a>
 									</li>
 									<li style="border-bottom: 1px solid #ddd;">
-										<a href=""><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+										<a href="{{route('logoutW')}}"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
 									</li>
 								</ul>
 							</div>
@@ -161,7 +165,8 @@
 							</div>
 						</div>
 					</div>
-
+					
+					{{-- // modal nang cap tai khoan --}}
 					<div id="myModal" class="modal fade" role="dialog" style="margin-top: 110px;">
 					  <div class="modal-dialog">
 
@@ -276,20 +281,92 @@
 					  </div>
 					</div>
 
+
+					{{-- // modal doi mat khau --}}
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 100px;">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+				    	<form action="change-pass" method="post" id="changepass">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        
+						 	<div class="form-group">
+					        	<label for="">Mật khẩu cũ</label>
+							    <input type="password" class="form-control"  aria-describedby="emailHelp" placeholder="" name="password_old" value="" id="pass_old" required="required">
+						  	</div>
+						  	<div class="form-group">
+					        	<label for="">Mật khẩu mới</label>
+							    <input type="password" class="form-control"  aria-describedby="emailHelp" placeholder="" name="password_new" id="pass_new" required="required">
+						  	</div>
+						  	<div class="form-group">
+					        	<label for="">Xác nhận mật khẩu</label>
+							    <input type="password" class="form-control" aria-describedby="emailHelp" placeholder="" name="password_new2" id="pass_new2" required="required">
+						  	</div>
+					      </div>
+					      <div class="modal-footer" style="height: 55px;">
+					        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+					        {{-- <inpu class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;" id="btncapnhat">Cập nhật mật khẩu</a> --}}
+					        	<input type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;" id="btncapnhat" value="Cập nhật mật khẩu">
+					      </div>
+				      	</form>
+					    </div>
+					  </div>
+					</div>
+
 				</div>
 			</div>
 		</div>
 	</section>
 
 
+	<script>
+		$(document).ready(function(){
+		    $("#myBtn").click(function(){
+		        $("#myModal").modal();
+		    });
 
-
-
+		    
+	</script>
 
 	<script src="public/resource/js/lightbox.min.js"></script>
-	<script src="public/resource/js/detail-hotel.js"></script>
+	{{-- <script src="public/resource/js/detail-hotel.js"></script> --}}
 	<script src="public/resource/js/menu-style.js"></script>
 	<script src="public/resource/js/p/account.js"></script>
+	
+	@if(Session::has('message'))
+		
+		<script>
+			@if(Session::get('message') == "Cập nhật mật khẩu thành công!")
+				Command: toastr["success"]("{{Session::get('message')}}")
+			@elseif(Session::get('message') == "Mật khẩu cũ không trùng khớp!")
+				Command: toastr["warning"]("{{Session::get('message')}}")
+			@else
+				Command: toastr["error"]("{{Session::get('message')}}")
+			@endif
+			toastr.options = {
+			  "closeButton": false,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-right",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "5000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+			}
+		</script>
+	@endif
 
 
 @include('VietNamTour.header-footer.footer')

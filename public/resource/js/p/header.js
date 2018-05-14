@@ -22,6 +22,9 @@ $(document).ready(function () {
 			gantentinh();
 		})
 		search();
+		$('#text-search-top').click(function () {
+			list_tim_kiem();
+		})
 })
 
 function gantentinh() {
@@ -73,7 +76,9 @@ function search() {
 					$('#tieudeSearchEat').html('Ăn uống');
 					var eat = new String(); // khoi tao bien luu phan hien thi len view
 					response.eat.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 1;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 1;
+
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 1;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_eat').html(eat);
@@ -87,7 +92,8 @@ function search() {
 					$('#tieudeSearchHotel').html('Khách sạn');
 					var eat = new String();
 					response.hotel.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 2;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 2;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 2;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_hotel').html(eat);
@@ -101,7 +107,8 @@ function search() {
 					$('#tieudeSearchTran').html('Phương tiện');
 					var eat = new String();
 					response.tran.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 3;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 3;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 3;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_tran').html(eat);
@@ -115,7 +122,8 @@ function search() {
 					$('#tieudeSearchSee').html('Tham quan');
 					var eat = new String();
 					response.see.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 4;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 4;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 4;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_see').html(eat);
@@ -129,7 +137,8 @@ function search() {
 					$('#tieudeSearchEnter').html('Vui chơi');
 					var eat = new String();
 					response.enter.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 5;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 5;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 5;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_enter').html(eat);
@@ -138,6 +147,7 @@ function search() {
 			}).fail(function (response) {
 				// $('#thanSearch').html('');
 			})
+			
 		}
 		else if(id_tinh != "all" && type == "all" && keyword.length > 0)
 		{
@@ -157,7 +167,8 @@ function search() {
 					$('#tieudeSearchEat').html('Ăn uống');
 					var eat = new String(); // khoi tao bien luu phan hien thi len view
 					response.eat.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 1;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 1;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 1;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_eat').html(eat);
@@ -171,7 +182,8 @@ function search() {
 					$('#tieudeSearchHotel').html('Khách sạn');
 					var eat = new String();
 					response.hotel.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 2;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 2;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 2;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_hotel').html(eat);
@@ -185,7 +197,8 @@ function search() {
 					$('#tieudeSearchTran').html('Phương tiện');
 					var eat = new String();
 					response.tran.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 3;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 3;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 3;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_tran').html(eat);
@@ -199,7 +212,8 @@ function search() {
 					$('#tieudeSearchSee').html('Tham quan');
 					var eat = new String();
 					response.see.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 4;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 4;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 4;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_see').html(eat);
@@ -213,7 +227,8 @@ function search() {
 					$('#tieudeSearchEnter').html('Vui chơi');
 					var eat = new String();
 					response.enter.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 5;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 5;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 5;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_enter').html(eat);
@@ -222,6 +237,7 @@ function search() {
 			}).fail(function (response) {
 				
 			})
+			
 		}
 		else if(id_tinh != "all" && type != "all" && keyword.length > 0)
 		{
@@ -242,7 +258,8 @@ function search() {
 					$('#tieudeSearchEat').html(title);
 					var eat = new String(); // khoi tao bien luu phan hien thi len view
 					response.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 1;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 1;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 1;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_eat').html(eat);
@@ -251,6 +268,7 @@ function search() {
 			}).fail(function (response) {
 				
 			})
+			
 		}
 		else if(id_tinh == "all" && type != "all" && keyword.length > 0)
 		{
@@ -271,7 +289,8 @@ function search() {
 					$('#tieudeSearchEat').html(title);
 					var eat = new String(); // khoi tao bien luu phan hien thi len view
 					response.forEach(function (data) {
-						var url_detail = 'detail/id='+ data.sv_id +'&type=' + 1;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 1;
+						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 1;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_eat').html(eat);
@@ -280,9 +299,17 @@ function search() {
 			}).fail(function (response) {
 				
 			})
+			
+		}
+		else{
+			$('#search_eat').html("");
+			$('#search_hotel').html("");
+			$('#search_tran').html("");
+			$('#search_see').html("");
+			$('#search_enter').html("");
 		}
 		
-			
+		// save_dichvu_searchCon();
 	})
 		
 }
@@ -290,7 +317,7 @@ function search() {
 function search_type(url, image,name,description) { //
 	var eat = new String();
 	eat += 	'<div class="content-search">';
-	eat +=	'<a href="' + url + '" class="clickSearch">';
+	eat +=	'<a href="' + url + '" class="searchdichvuCon" >';
 	eat +=	'<div class="left-content-search">';
 	eat +=	'<img src="public/thumbnails/'+ image +'" alt="">';
 	eat +=	'</div>';
@@ -328,5 +355,55 @@ function clickSearch() {
 	})
 }
 
+function save_dichvu_searchCon() {
+	var lam = document.getElementsByClassName('searchdichvuCon');
+	console.log(lam);
+	for (var i = 0; i < lam.length; i++) {
+		lam[i].onclick = function () {
+			this.onclick = function () {
+				var id = this.getAttribute('data-id');
+				var type = this.getAttribute('data-type');
+				alert('1');
+				// $.ajax({
+				// 	url: 'save_user_search/' + id,
+				// 	type: 'GET'
+				// })
+				// .done(function (response) {
+				// 	window.location.href = 'detail/id='+ id +'&type=' + type;
+				// })
+			}
+		}
+	}
+}
+
+function list_tim_kiem() {
+	
+	$.ajax({
+			url: 'list_user_search',
+			type: 'GET'
+		})
+		.done(function (response) {
+			// console.log(response);
+			// detail-search/200&type=1
+			var eat = new String();
+			eat +=  '<div class="title-search">';
+			eat +=	'<h5>Lịch sử tìm kiếm</h5>';
+			eat +=	'</div>';
+			response.forEach(function (data) {
+				eat += 	'<div class="content-search">';
+				eat +=	'<a href="detail-search/id='+ data.sv_id +'&type=' + data.sv_type + '" class="" >';
+				eat +=	'<div class="left-content-search">';
+				eat +=	'<img src="public/thumbnails/'+ data.sv_image +'" alt="">';
+				eat +=	'</div>';
+				eat +=	'<div class="right-content-search">';
+				eat +=	'<p>'+ data.sv_name +'</p>';
+				eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 20px;max-width:321px;text-overflow: ellipsis;">'+ data.sv_description +'</p>';
+				eat +=	'</div>';
+				eat +=	'</a>';		
+				eat +=	'</div>';
+			})
+			$('#lichsusearch').html(eat);		
+		})
+}
 
 //=============== LUU search neu co login

@@ -67,6 +67,10 @@ Route::get('detail/id={id}&type={type}','publicDetail@get_detail');
 
 Route::get('diadiem2/id={id}','publicDetail@dichvu_lancan');
 
+Route::get('detail/get_top_view_service/{limit}','publicDetail@get_top_view_service'); //top view
+
+Route::get('login_Detail/{id}&{type}','pageController@getlogin_Detail'); //login detail
+
 
 
 //search public
@@ -79,6 +83,8 @@ Route::get('count_ser/{id}','publicSearchController@count_servies_type');
 Route::get('get_all_place_city_type/{id}&type={t}','publicSearchController@get_all_place_city_type');
 
 Route::get('image_city/{id}','pageController@image_city');
+
+
 
 
 //================================= TEST ======================================
@@ -122,6 +128,11 @@ Route::get('searchService_City_Type/idcity={id}&type={t}&keyword={k}','pageContr
 Route::get('searchServices_AllCity_idType/type={t}&keyword={k}','pageController@searchServices_AllCity_idType');
 
 Route::get('conSearch/{idcity}&type={type}&keyword={key}&selecttype={ty}','pageController@conSearch');
+
+Route::post('search-vicinity','pageController@get_search_vicinity')->name('search-vicinity');
+
+Route::get('search-vicinity-type/{lat}&{lon}&{radius}&{type}','pageController@get_vicinity_select_type');
+
 
 
 
@@ -200,7 +211,16 @@ Route::get('edit-place-user/{id}',['as'=>'edit_placeuser','uses'=>'accountContro
 Route::post('edit-place-user/{id}',['as'=>'postedit_placeuser','uses'=>'accountController@post_edit_place_user']);
 //=========
 
+// change pass
+Route::post('change-pass','accountController@changePassword');
 
+
+// save user search
+	//save-user-search/{idserivce}&{iduser}
+Route::get('save_user_search/{idservice}','accountController@save_user_search');
+Route::get('list_user_search','pageController@get_user_search');
+
+Route::get('detail-search/id={id}&type={type}','publicDetail@get_detail_search');
 
 
 

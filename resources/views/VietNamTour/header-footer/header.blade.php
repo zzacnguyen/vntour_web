@@ -67,17 +67,17 @@
 			<ul>
 				<li class="active-img">
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('public/resource/images/slide-carousel/slide1.jpg');"></div>
+						<div class="img-content" style="background-image: url('public/resource/images/slide-carousel/viet-nam-travel.jpg');"></div>
 					</div>
 				</li>
 				<li>
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('public/resource/images/slide-carousel/slide2.jpg');"></div>
+						<div class="img-content" style="background-image: url('public/resource/images/slide-carousel/vietnam-travel-tips.jpg');"></div>
 					</div>
 				</li>
 				<li >
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('public/resource/images/slide-carousel/slide3.jpg');"></div>
+						<div class="img-content" style="background-image: url('public/resource/images/slide-carousel/Hoa-Lu.jpg');"></div>
 					</div>
 				</li>
 			</ul>
@@ -223,45 +223,32 @@
 											</div>
 											
 										</div>
-
-										<div class="item-search">
-											{{-- <div class="title-search">
-												<h5>Lịch sử tìm kiếm</h5>
-											</div>
-											<div class="content-search">
-												<a href="#">
-													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+										
+										
+										<div id="lichsusearch">
+											
+											{{-- <div class="item-search">
+												<div class="title-search">
+													<h5>Lịch sử tìm kiếm</h5>
+												</div>
+												@foreach($litSearch as $lis)
+													<div class="content-search">
+														<a href="detail/id={{$lis->sv_id}}&type={{$lis->sv_type}}">
+															<div class="left-content-search">
+																<img src="public/thumbnails/{{$lis->sv_image}}" alt="">
+															</div>
+															<div class="right-content-search">
+																<p>{{$lis->sv_name}}</p>
+																<p style="font-size: 13px; color: #d2cece; font-weight: 400;height: 24px;overflow: hidden;">{{$lis->sv_description}} </p>
+															</div>
+														</a>		
 													</div>
-													<div class="right-content-search">
-														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-													</div>
-												</a>		
-											</div>
-											<div class="content-search">
-												<a href="#">
-													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
-													</div>
-													<div class="right-content-search">
-														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-													</div>
-												</a>		
-											</div>
-											<div class="content-search">
-												<a href="#">
-													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
-													</div>
-													<div class="right-content-search">
-														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-													</div>
-												</a>		
+												@endforeach
 											</div> --}}
 										</div>
+											
+										
+											
 									</div>
 								</li>
 							</ul>

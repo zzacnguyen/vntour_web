@@ -37,6 +37,8 @@ class pageController extends Controller
 
         $checkLogin = $this::check_Login();
         
+        // $litSearch = $this::get_user_search();
+        // return $litSearch;
     	return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','checkLogin'));
     }
 
@@ -47,7 +49,14 @@ class pageController extends Controller
 
     public function getlogin()
     {
-    	return view('VietNamTour.login');
+        $id = null;
+        $type = null;
+    	return view('VietNamTour.login',compact('$id','type'));
+    }
+
+    public function getlogin_Detail($id, $type)
+    {
+        return view('VietNamTour.login',compact('id','type'));
     }
 
     public function getregister()
@@ -150,6 +159,32 @@ class pageController extends Controller
             
     }
 
+    public function LoginSession_Detail(Request $request,$id,$type)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"loginpost/user={$username}&pass={$password}");
+        $lam = json_decode($response->getBody()->getContents());
+        // dd($lam);
+        if ($lam != null) {
+            Session()->put('login',true);  
+            Session()->put('user_info',$lam);
+            // dd(Session::get('user_info')) ;
+            return redirect("detail/id=$id&type=$type");
+        }
+        else{
+            return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
+        }
+            
+    }
+
     public function LogoutSession()
     {
         $client = new Client([
@@ -187,6 +222,12 @@ class pageController extends Controller
         ]);
         $response = $client->request('GET',"checklogin");
 
+        if (Session::has('login') && Session::get('login') == true) {
+            
+        }
+        else{
+            return null;
+        }
         return json_decode($response->getBody()->getContents());
     }
 
@@ -203,7 +244,7 @@ class pageController extends Controller
         return json_decode($response->getBody()->getContents());
     }
     
-
+//================================= SEARCH =============================
     // page Search
     public function getpageSearch(Request $request)
     {
@@ -443,7 +484,11 @@ class pageController extends Controller
         // return $flag;
         // var_dump($flag_con);
         // return $flag_con;
-        return view('VietNamtour.content.pageSearch',compact('result_all','keyword','id_city','id_type','count','count_type','flag','flag_con','mangghe','result_all_type'));
+
+        // load danh sach dich vu duoc tim kiem nhieu nhat
+        $top_search = $this::get_service_max_search();
+        // return $top_search;
+        return view('VietNamtour.content.pageSearch',compact('result_all','keyword','id_city','id_type','count','count_type','flag','flag_con','mangghe','result_all_type','top_search'));
     }
 
     public function conSearch($id_city,$id_type,$keyword,$select_type)
@@ -529,4 +574,141 @@ class pageController extends Controller
         }
     }
 
+
+
+
+    // load user_search
+    public function get_user_search()
+    {
+        
+        if (!Session::has('user_info')) {
+            return null;
+        }
+        else
+        {
+            $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"get-list-user-search/{$user_id}");
+            
+            return json_decode($response->getBody()->getContents());
+        }
+    }
+
+    // load danh sach dich vu duoc tim kiem nhieu nhat
+    public function get_service_max_search(){
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"get-top-search");
+            
+        return json_decode($response->getBody()->getContents());
+    }
+
+    //search page vicinity
+    public function get_search_vicinity(Request $request){
+        $lat = $request->txtlat;
+        $lon = $request->txtlon;
+        $radius = $request->txtradius;
+
+        $top_search = $this::get_service_max_search();
+        $result = $this::search_vicinity($lat,$lon,$radius);
+
+        //thong ke ket qua
+        $thongke = $this::search_vicinity_type($lat,$lon,$radius);
+        $result_all = array();
+        if ($thongke->eat != null) {
+            $result_all = array_merge($result_all,$thongke->eat);
+            $count_type['eat'] = count($thongke->eat);
+        }
+        else{$count_type['eat'] = 0;}
+
+        if ($thongke->hotel != null) {
+            $result_all = array_merge($result_all,$thongke->hotel);
+            $count_type['hotel'] = count($thongke->hotel);
+        }
+        else{$count_type['hotel'] = 0;}
+
+        if ($thongke->tran != null) {
+            $result_all = array_merge($result_all,$thongke->tran);
+            $count_type['tran'] = count($thongke->tran);
+        }
+        else{$count_type['tran'] = 0;}
+
+        if ($thongke->see != null) {
+            $result_all = array_merge($result_all,$thongke->see);
+            $count_type['see'] = count($thongke->see);
+        }
+        else{$count_type['see'] = 0;}
+
+
+        if ($thongke->enter != null) {
+            $result_all = array_merge($result_all,$thongke->enter);
+            $count_type['enter'] = count($thongke->enter);
+        }
+        else{ $count_type['enter'] = 0; }
+
+        // dd($result_all);
+        if ($result_all != null) {
+            $count_result = count($result_all);
+        }else{$count_result = 0;}
+        // return $result;
+        return view('VietNamTour.content.pageSearchVicinity',compact('top_search','result','radius','lat','lon','result_all','count_result','count_type'));
+    }
+
+    // search vicinity
+    public function search_vicinity($lat,$lon,$radius)
+    {
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"timquanhday/lat={$lat}&lon={$lon}&radius={$radius}")->getBody();
+        return json_decode($response->getContents());
+    }
+
+    public function search_vicinity_type($lat,$lon,$radius){
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"timquanhday-type/lat={$lat}&lon={$lon}&radius={$radius}")->getBody();
+        return json_decode($response->getContents());
+    }
+
+    public function get_vicinity_select_type($lat,$lon,$radius,$type){
+        $thongke = $this::search_vicinity_type($lat,$lon,$radius);
+        // dd($thongke);
+        $result = array();
+        switch ($type) {
+            case 1:
+                return $thongke->eat;
+                break;
+            case 2:
+                return $thongke->hotel;
+                break;
+            case 3:
+                return $thongke->tran;
+                break;
+            case 4:
+                return $thongke->see;
+                break;
+            case 5:
+                return $thongke->enter;
+                break;
+
+            // return $result;
+        }
+    }
 }

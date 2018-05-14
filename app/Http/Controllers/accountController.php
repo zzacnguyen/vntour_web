@@ -776,4 +776,54 @@ class accountController extends Controller
         // echo "<pre>";
         // print_r(json_decode($response));
     }
+
+    public function changePassword(Request $request){
+        $user_id = Session::get('user_info')->id;
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('POST',"change-pass/{$user_id}",[
+            'form_params' => [
+                'password_old' => $request->password_old,
+                'password_new'=>$request->password_new
+            ]
+        ])->getBody();
+        // return $response->getContents();
+        if($response->getContents() == 1)
+        {
+            return redirect()->back()->with(['message'=>'Cập nhật mật khẩu thành công!']);
+        }
+        elseif($response->getContents() == 0)
+        {
+            return redirect()->back()->with(['message'=>'Mật khẩu cũ không trùng khớp!']);
+        }
+        else{
+            return redirect()->back()->with(['message'=>'Lỗi không cập nhật được mật khẩu!']);
+        }
+    }
+
+
+    public function save_user_search($id_service){
+        // save-user-search/{idserivce}&{iduser}
+        $user_id = Session::get('user_info')->id;
+        // return $id_service.'-'.$user_id;
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"save-user-search/{$id_service}&{$user_id}")->getBody();
+        if($response->getContents() == "status:200")
+        {
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
+    }
 }
