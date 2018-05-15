@@ -131,7 +131,7 @@ Route::get('conSearch/{idcity}&type={type}&keyword={key}&selecttype={ty}','pageC
 
 Route::post('search-vicinity','pageController@get_search_vicinity')->name('search-vicinity');
 
-Route::get('search-vicinity-type/{lat}&{lon}&{radius}&{type}','pageController@get_vicinity_select_type');
+Route::get('search-vicinity-type/{lat}&{lon}&{radius}&{type}&{page}&{limit}','pageController@get_vicinity_select_type');
 
 
 

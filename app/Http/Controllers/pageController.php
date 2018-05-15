@@ -687,28 +687,65 @@ class pageController extends Controller
         return json_decode($response->getContents());
     }
 
-    public function get_vicinity_select_type($lat,$lon,$radius,$type){
+    public function get_vicinity_select_type($lat,$lon,$radius,$type,$page){
         $thongke = $this::search_vicinity_type($lat,$lon,$radius);
         // dd($thongke);
         $result = array();
         switch ($type) {
             case 1:
-                return $thongke->eat;
+                return $this::paginate($thongke->eat,$page,9);
                 break;
             case 2:
-                return $thongke->hotel;
+                return $this::paginate($thongke->hotel,$page,9);
                 break;
             case 3:
-                return $thongke->tran;
+                return $this::paginate($thongke->tran,$page,9);
                 break;
             case 4:
-                return $thongke->see;
+                return $this::paginate($thongke->see,$page,9);
                 break;
             case 5:
-                return $thongke->enter;
+                return $this::paginate($thongke->enter,$page,9);
                 break;
 
             // return $result;
         }
+    }
+
+
+    public function paginate($data, $page,$limit)
+    {
+        // data du lieu de phan trang
+        // page trang hien tai
+        // limit hien thi so ket qua moi trang
+        // bat dau tu phan tu nao
+
+        // dd($data);
+        if ($data == null) {
+            $result_paginate['data'] = null;
+            $result_paginate['total_page'] = 0;
+            $result_paginate['current_page'] = 0;
+            $result_paginate['limit'] = $limit;
+        }
+        else{
+            $current_page  = $page;
+            $total_records = count($data); // tong so item;
+
+            $total_page    = ceil($total_records/$limit);
+
+            if ($current_page > $total_page) { $current_page = $total_page; }
+            else if ($current_page < 1) { $current_page = 1; }
+
+            $start = ($current_page - 1) * $limit;
+            $data == null ? $result = null : $result = $result = array_slice($data,$start,$limit);// lay danh sach say khi phan trang
+
+            $result_paginate['data'] = $result;
+            $result_paginate['total_page'] = $total_page;
+            $result_paginate['current_page'] = $current_page;
+            $result_paginate['limit'] = $limit;
+        }
+            
+        return $result_paginate;
+
     }
 }

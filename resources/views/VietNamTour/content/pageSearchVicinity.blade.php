@@ -49,7 +49,7 @@
 											<input type="hidden" value="{{$lon}}" name="txtlon">
 											<div class="input-group custom-search">
 												<label style="margin-top: 6px;margin-right: 10px;">Khoảng cách </label>
-												<input type="number" class="form-control" placeholder="Khoảng cách" min="1000" max="10000" value="{{$radius}}" name="txtradius">
+												<input type="number" class="form-control" placeholder="Khoảng cách" min="1000" max="20000" value="{{$radius}}" name="txtradius">
 											</div>
 									</div>
 									<div class="col-md-1 col-sm-3 col-6" style="padding-left: 0;">
@@ -123,7 +123,7 @@
 				<!-- right -->
 				<div class="col-md-9 .col-sm-8">
 					<div class="place-list-content">
-						<div class="row" id="content_place">
+						<div class="row" id="content_place" style="">
 							@if($result == null)
 								<h4>Rất tiếc hiện tại không có dịch vụ nào gần bạn</h4>
 							@else
@@ -150,33 +150,8 @@
 							@endif
 						</div>
 					</div><!-- end place-list-content -->
-					<div class="pagination-inner">
-						<div class="row">
-							<div class="col-md-2 col-sm-2">
-								<div class="prev">
-									<a href=""><i class="fas fa-arrow-left"></i></a>
-								</div>
-							</div>
-							<div class="col-md-8 col-sm-8 col-12">
-								<div class="float-center">
-									<ul class="pagination">
-										<li class="page-item activee"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#">4</a></li>
-										<li class="page-item"><a class="page-link" href="#">...</a></li>
-										<li class="page-item"><a class="page-link" href="#">20</a></li>
-									</ul>
-								</div>
-								
-							</div>
-							<div class="col-md-2 col-sm-2">
-								<div class="prev text-right float-right">
-									<a href=""><i class="fas fa-arrow-right"></i></a>
-								</div>
-							</div>
-						</div>
-						
+					<div class="demo-pagination">
+						<ul id="pagination-demo" class="pagination-sm"></ul>
 					</div>
 				</div><!-- end right -->
 			</div> <!-- end row -->
@@ -186,6 +161,10 @@
 	{{-- <script src="resource/js/lightbox.min.js"></script> --}}
 	<script src="public/resource/js/menu-style.js"></script>
 	<script src="public/resource/js/p/pageSearchVicinity.js"></script>
-
+	<script src="public/resource/js/jquery.twbsPagination.js"></script>
+	{{-- <script src="public/resource/js/pagination.min.js"></script> --}}
+	<script type="text/javascript">
+		
+	</script>
 
 @include('VietNamTour.header-footer.footer')

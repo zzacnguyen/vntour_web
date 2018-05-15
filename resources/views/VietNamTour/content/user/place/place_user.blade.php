@@ -15,6 +15,9 @@
 		.table tbody tr:nth-child(2n+1) {
 		    background-color: white;
 		}
+		body{
+			background-color: #eee;
+		}
 	</style>
 
 	<section class="content-info">
@@ -56,20 +59,18 @@
 							    </tr>
 							  </thead>
 							  <tbody>
-									@foreach($data as $val)
-							    <tr>
-							      <td >{{$val->pl_name}}</td>
-							      <td>{{$val->pl_address}}</td>
-							      <td>{{substr($val->created_at,0,strpos($val->created_at,' '))}}</td>
-							      <td>{{$val->pl_status==1 ? "Kích hoạt":"Chưa kích hoạt"}}</td>
-							      <td class="text-center">
-											<a class="btn btn-sm btn-info" href="{{route('edit_placeuser',$val->id)}}"><i class="far fa-edit"></i> Chi tiết</a>
-							      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
-							      </td>
+								@foreach($data as $val)
+								    <tr>
+								      <td >{{$val->pl_name}}</td>
+								      <td>{{$val->pl_address}}</td>
+								      <td>{{substr($val->created_at,0,strpos($val->created_at,' '))}}</td>
+								      <td>{{$val->pl_status==1 ? "Kích hoạt":"Chưa kích hoạt"}}</td>
+								      <td class="text-center">
+												<a class="btn btn-sm btn-info" href="{{route('edit_placeuser',$val->id)}}"><i class="far fa-edit"></i> Chi tiết</a>
+								      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
+								      </td>
 									</tr>
-									@endforeach
-							    
-
+								@endforeach
 							  </tbody>
 							</table>
 
