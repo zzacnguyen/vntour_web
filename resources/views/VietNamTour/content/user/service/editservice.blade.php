@@ -106,7 +106,7 @@
 						<h6 style="color: #bd1717;">Mô tả chi tiết</h6>
 						<div class="input-text" class="col-md-12" style="padding: 0">
 							<label style="padding: 0;" class="col-md-2">Mô tả dịch vụ</label>
-							<textarea name="mota" id="ten" class="col-md-9" style="margin-left: 27px;">{{$data->info->sv_content}}</textarea>
+							<textarea name="mota" id="ten" class="col-md-9" style="margin-left: 27px;">{{$data->info->sv_description}}</textarea>
       						<script>CKEDITOR.replace('ten');</script>
       						
 						</div>

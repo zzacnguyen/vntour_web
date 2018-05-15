@@ -203,6 +203,8 @@ Route::get('service-user/add/{id}','accountController@addservice_user');
 Route::get('server-user-edit/{id}',['as'=>'edit_service_user','uses'=>'accountController@edit_service_user']);
 Route::post('server-user-edit/{id}',['as'=>'post_edit_service_user','uses'=>'accountController@post_edit_service_user']);
 
+Route::get('load_place_ward/{id}','accountController@load_place_ward');
+
 //place user
 Route::get('place-user',['as'=>'placeuser','uses'=>'accountController@getPlace_user']);
 Route::get('place-user/add',['as'=>'addplaceuser','uses'=>'accountController@addplace']);
@@ -224,8 +226,9 @@ Route::get('detail-search/id={id}&type={type}','publicDetail@get_detail_search')
 
 
 
+//dfdsfdsf
 
-
+Route::get('list_place','accountController@list_place');
 
 
 

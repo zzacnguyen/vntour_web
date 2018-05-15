@@ -73,7 +73,7 @@
 												@endif
 										</td>
 							      <td>{{substr($val->created_at,0,strpos($val->created_at,' '))}}</td>
-							      <td>{{$val->sv_status==1? "Hiện":"Ẩn"}}</td>
+							      <td>{{$val->sv_status==1? "Đã kích hoạt":"Chưa kích hoạt"}}</td>
 							      <td class="text-center">
 											<a href="{{route('edit_service_user',$val->id)}}" class="btn btn-sm btn-info"><i class="far fa-edit"></i> Chi tiết</a>
 							      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>

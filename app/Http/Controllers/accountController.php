@@ -555,6 +555,12 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
+
+        $phone = $request->sv_phone_number;
+        if ($phone == null) { $phone = "Đang cập nhật";}
+        $website = $request->sv_website;
+        if ($website == null) { $website = "Đang cập nhật";}
+
         $response = $client->request('POST',"post_add_service_user/{$user_id}",[
             'form_params' => [
                 'sv_description' => $request->sv_description,
@@ -563,8 +569,8 @@ class accountController extends Controller
                 'district'=>$request->districtt,
                 'ward'=>$request->ward,
                 'diadiem'=>$request->diadiem,
-                'sv_phone_number'=>$request->sv_phone_number,
-                'sv_website'=>$request->sv_website,
+                'sv_phone_number'=>$phone,
+                'sv_website'=>$website,
                 'time_begin'=>$request->time_begin,
                 'time_end'=>$request->time_end,
                 'sv_lowest_price'=>$request->sv_lowest_price,
@@ -595,7 +601,7 @@ class accountController extends Controller
         ]);
         $user_id = Session::get('user_info')->id;
         $response = $client->request('GET',"get_service_user/{$user_id}")->getBody();
-         $data=json_decode($response);
+        $data=json_decode($response);
         return view('VietNamTour.content.user.service.service_user',compact('data'));
     }
     public function edit_service_user($id)
@@ -825,5 +831,23 @@ class accountController extends Controller
         {
             return -1;
         }
+    }
+
+
+    public function list_place(){
+        return view('VietNamTour.content.user.place.list_place');
+    }
+
+
+    public function load_place_ward($idward){
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+        $response = $client->request('GET',"load_place_ward/{$idward}");
+            
+        return json_decode($response->getBody()->getContents());
     }
 }

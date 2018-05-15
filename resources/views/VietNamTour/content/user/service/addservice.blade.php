@@ -14,16 +14,16 @@
 					<h4>Thêm dịch vụ mới</h4>
 					<h6 style="color: #bd1717;">Thông tin cơ bản</h6>
 					<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
-					<form action="" method="post" enctype='multipart/form-data'>
+					<form action="" method="post" enctype='multipart/form-data' id="formAdd">
 						<input type="hidden" name="_token" value="{{csrf_token()}}">
 						<div class="input-text">
 							<label>Tên dịch vụ</label>
-							<input name="sv_description" type="text">
+							<input name="sv_description" type="text" value="{{old('sv_description')}}">
 							<p class="text-danger">{{$errors->first('sv_description')}}</p>
 						</div>
 						<div class="input-text col-md-12" style="padding: 0;margin-bottom: 5px;">
 							<label class="col-md-2" style="padding: 0;">Loại hình</label>
-							<select name="sv_types" id="" class="Tinh col-md-9" style="margin-left: 27px;width: 100%;">
+							<select name="sv_types" id="" value="{{old('sv_types')}}" class="Tinh col-md-9" style="margin-left: 27px;width: 100%;">
 								<option value="4">Tham quan</option>
 								<option value="1">Ăn uống</option>
 								<option value="2">Khách sạn</option>
@@ -52,17 +52,16 @@
 
 							
 							<label class="col-md-2" style="margin-right: -10px;display: inline-block;">Địa điểm</label>
-							<select class="js-example-basic-single col-md-3" name="diadiem" style="">
+							<select class="js-example-basic-single col-md-3" name="diadiem" id="place" style="">
 	          					<option value="1">Chọn tỉnh thành phố</option>
-						
 							</select>
 						</div>
 
 						<div class="input-text">
 							<label>Số điện thoại</label>
-							<input type="text" name="sv_phone_number" class="">
+							<input type="text" name="sv_phone_number" class="" value="{{old('sv_phone_number')}}">
 							<label>Website</label>
-							<input type="text" name="sv_website" class="">
+							<input type="text" name="sv_website" class="" value="{{old('sv_website')}}">
 						</div>
 						
 						<br>
@@ -71,13 +70,21 @@
 						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 						<div class="input-text">
 							<label>Giờ đóng cửa</label>
-							<input type="number" name="time_begin">
+							{{-- <input type="number" name="time_begin" min="0" max="24"> --}}
+							<select name="time_begin" id="" class="js-example-basic-single col-md-8" style="">
+								@for($i=0;$i<24;$i++)
+									<option value="{{$i}}">{{$i}}</option>
+								@endfor
+							</select>
 							
 						</div>
 						<div class="input-text">
 							<label>Giờ mở cửa</label>
-							
-							<input name="time_end" type="number">
+							<select name="time_end" id="" class="js-example-basic-single col-md-8" style="">
+								@for($i=0;$i<24;$i++)
+									<option value="{{$i}}">{{$i}}</option>
+								@endfor
+							</select>
 						</div>
 						<br>
 						{{-- //========================= GIA ======================= --}}
@@ -85,11 +92,11 @@
 						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 						<div class="input-text">
 							<label>Giá thấp nhất</label>
-							<input name="sv_lowest_price" type="text">
+							<input name="sv_lowest_price" type="text" min="0" value="0">
 						</div>
 						<div class="input-text">
 							<label>Giá cao nhất</label>
-							<input name="sv_highest_price" type="text">
+							<input name="sv_highest_price" type="text" min="0" value="0">
 						</div>
 						<br>
 						{{-- //========================= CHI TIET =================== --}}
@@ -112,7 +119,7 @@
 							<p class="text-danger">{{$errors->first('img3')}}</p>
 						</div>
 
-						<button type="submit" class="btn btn-success col-md-12" id="btnaddplace">Thêm địa điểm mới</button>
+						<button type="button" class="btn btn-success col-md-12" id="btnaddplace">Thêm dịch vụ</button>
 					</form>
 				</div>
 				<div class="col-md-2"></div>
@@ -130,7 +137,8 @@
 	});
 </script>
 
-<script src="public/resource/js/p/addplace.js"></script>
+{{-- <script src="public/resource/js/p/addplace.js"></script> --}}
+<script src="public/resource/js/p/addservice.js"></script>
 
 
 
