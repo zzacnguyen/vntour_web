@@ -110,20 +110,20 @@
         <li class="header"><span>Danh mục khác</span></li>
 
         <li>
-            <a href="#" title="Pages">
-                <i class="glyph-icon icon-powerpoint-o"></i>
+            <a href="{{ route('_GET_LIST_ALL_POINT') }}" title="Danh sách điểm dành cho dịch vụ">
+                <i class="glyph-icon icon-file-powerpoint-o"></i>
                 <span>Danh mục điểm</span>
             </a>
         </li>
         <li>
-            <a href="#" title="Pages">
+            <a href="{{ route('_GET_EVENT_TYPES') }}" title="Danh sách các loại hình sự kiện">
                 <i class="glyph-icon icon-pied-piper"></i>
                 <span>Danh mục loại hình sự kiện</span>
             </a>
         </li>
         <li>
             <a href="#" title="Pages">
-                <i class="glyph-icon icon-icon-xing-square"></i>
+                <i class="glyph-icon icon-xing-square"></i>
                 <span>Danh mục sự kiện</span>
             </a>
         </li>

@@ -15,6 +15,7 @@
     11. _GET_VIEW_SERVICES_BY_ENTERTAIMENTS: Hiển thị gioa diện xem danh sách dịch vụ loại hình vui chơi giải trí
     12. _DISPLAY_TOURIST_PLACES_DETAILS: Hiển thị địa điểm chi tiết
     13. _DISPLAY_LIST_TOURGUIDE: Hiển thị danh sách người dùng hướng dẫn viên du lịch
+    14. _DISPLAY_LIST_POINT : Hiển thị danh sách điểm
 
 
 
@@ -26,6 +27,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\pointModel;
 use Illuminate\Database\Eloquent\Colection;
 class CMS_ComponentController extends Controller
 {
@@ -290,4 +292,19 @@ class CMS_ComponentController extends Controller
         }
     }
 
+
+    public function _DISPLAY_LIST_POINT()
+    {
+        $data =  DB::table('vnt_point')
+        ->select('vnt_point.id', 'vnt_point.point_title', 'point_description', 
+            'point_rate', 'point_date')
+        ->orderBy('vnt_point.point_title', 'DESC' )
+        ->paginate('10');
+        if(view()->exists('CMS.components.com_point.list_point')){
+            return view('CMS.components.com_point.list_point', ['data'=>$data]);
+        }
+        else {
+            return view('CMS.components.error');
+        }
+    }
 }

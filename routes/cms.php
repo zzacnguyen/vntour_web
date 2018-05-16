@@ -18,7 +18,12 @@
 14. THÊM DỊCH VỤ - POST
 15. DỊCH VỤ - DANH SÁCH
 16. VUI CHƠI GIẢI TRÍ - GET
-17. 
+17. THÊM ĐIỂM CHO DỊCH VỤ - GET
+18. THÊM ĐIỂM CHO DỊCH VỤ  - POST
+19. SỬA ĐIỂM CHO DỊCH VỤ - GET
+20. SỬA ĐIỂM CHO DỊCH VỤ  - POST
+21. LẤY DANH SÁCH ĐIỂM - DỊCH  VỤ - GET
+22. 
 
 4. 
 
@@ -117,9 +122,26 @@
 		// VUI CHƠI GIẢI TRÍ
 
 
+	//DANH MỤC ĐIỂM
+
+//
+	Route::get('lvtn-list-point', 'CMS_ComponentController@_DISPLAY_LIST_POINT')->name('_GET_LIST_ALL_POINT');
+	Route::get('lvtn-add-point', 'CMS_ModuleController@_GET_ADD_POINT')->name('_GET_ADD_POINT');
+	Route::post('lvtn-add-point', 'CMS_AddDataController@_POST_ADD_POINT');
+	Route::get('edit-point/{id}', 'CMS_ModuleController@_GET_EDIT_POINT' )->name('_GET_EDIT_POINT');
+	Route::post('edit-point/{id}', 'CMS_EditDataController@_POST_EDIT_POINT');
+
+
+	//DANH MỤC LOẠI HÌNH SỰ KIỆN
+	Route::get('list-type-events', 'CMS_ModuleController@_GETVIEW_LIST_TYPE_EVENT' )->name('_GET_EVENT_TYPES');
+	Route::get('add-type-events', 'CMS_ModuleController@_GETVIEW_ADD_TYPES_EVENT' )->name('_GETVIEW_ADD_TYPES_EVENT');
+	Route::post('add-type-events', 'CMS_AddDataController@ADD_TYPES_EVENT' );
+	Route::get('edit-type-events/{id}', 'CMS_ModuleController@_GETVIEW_EDIT_EVENT_TYPES' )->name('_GETVIEW_EDIT_EVENT_TYPES');
+	Route::post('edit-type-events/{id}', 'CMS_EditDataController@EDIT_TYPES_EVENT' );
+
+
+
 	
-
-
 
 
 

@@ -4,7 +4,7 @@
     1. _POST_TASK: Thêm nhiệm vụ
     2. _POST_TOURIST_PLACES: Thêm địa điểm
     3. _POST_ADD_SERVICES: thêm dịch vụ
-
+    4. _POST_ADD_POINT : Thêm than điểm mới
     
 
 */
@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CheckTaskRequest;
 use App\Http\Requests\CheckAddTouristPlacesRequest;
 use App\Http\Requests\CheckAddServicesRequest;
+use App\Http\Requests\AddPointRequest;
+use App\Http\Requests\AddTypeEventRequest;
+
 use App\taskModel;
 use DB;
 use App\touristPlacesModel;
@@ -26,6 +29,9 @@ use App\transportModel;
 use App\hotelsModel;
 use Carbon\Carbon;
 use App\entertainmentsModel;
+use App\pointModel;
+use App\typesModel;
+
 class CMS_AddDataController extends Controller
 {
     public function _POST_TASK(CheckTaskRequest $request)
@@ -61,7 +67,7 @@ class CMS_AddDataController extends Controller
         $place->pl_latitude=$request->input('vido');
         $place->pl_longitude=$request->input('kinhdo');
         $place->id_ward=$request->input('ward');
-        $place->pl_status=0; 
+        $place->pl_status=0;  
         $place->user_partner_id =1;
         if ($request->get('action') == 'save_close') {
             $place->save();
@@ -226,6 +232,54 @@ class CMS_AddDataController extends Controller
             {
                 return json_encode("status:500");
             }
+        }
+    }
+
+
+
+    public function _POST_ADD_POINT(AddPointRequest $request)
+    {
+        $point = new pointModel();
+        $point->point_title =  $request->input('point_title');
+        $point->point_description =  $request->input('point_description');
+        $point->point_rate =  $request->input('point_rate');
+        $point->point_date =  $request->input('point_date');
+        $title = $point->point_title;
+        if ($request->get('action') == 'save_close') {
+            $point->save();
+            return redirect()->route('_GET_LIST_ALL_POINT')->with('message', "Hoàn tất, Đã thêm một điểm ".$title  ."!");
+        } 
+        else if($request->get('action') == 'save_and_add_point')
+        {
+            $point->save();
+            $message = 'Hoàn tất, Điểm ' .$title.'  đã được thêm!';
+            return redirect('/lvtn-list-point')->with('message', $message);
+        }
+        else
+        {
+            return json_encode("status:500");
+        }
+    }
+
+    public function ADD_TYPES_EVENT(AddTypeEventRequest $request)
+    {
+        $type =  new typesModel;
+        $type->type_name = $request->input('name');
+        $type->type_status = 1;
+        $type_name  = $request->input('name');
+        if ($request->get('action') == 'save_close') {
+            $type->save();
+            return redirect()->route('_GET_EVENT_TYPES')->with('message', "Hoàn tất, Đã chỉnh sửa loại hình ".$type_name  ."!");
+        } 
+        else if($request->get('action') == 'save_and_add_type_event')
+        {
+            $type->save();
+            $message = 'Hoàn tất, Đã thêm loại hình ' .$type_name.'!';
+            return redirect('/add-type-events')->with('message', $message);
+        }
+        else
+        {
+            return json_encode("status:500");
         }
     }
 }

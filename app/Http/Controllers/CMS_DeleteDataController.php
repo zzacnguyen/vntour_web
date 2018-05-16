@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\taskModel;
 use Illuminate\Http\Request;
-
+use App\pointModel;
 class CMS_DeleteDataController extends Controller
 {
   

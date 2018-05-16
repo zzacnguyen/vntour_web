@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Colection;
 use App\usersModel;
+use App\pointModel;
 class CMS_ModuleController extends Controller
 {
 	public function _GET_MONTH()
@@ -491,14 +492,19 @@ class CMS_ModuleController extends Controller
 
 	public function _GETVIEW_ADD_TOURIST_PLACES()
 	{
-		if (view()->exists('view.CMS.components.com_tourist_places.add_tourist_places')){return view('CMS.components.error');}
-    	else	{
-			return view('CMS.components.com_tourist_places.add_tourist_places',[
+		if (view()->exists('CMS.components.com_tourist_places.add_tourist_places')){
+
+			return view('CMS.components.com_tourist_places.add_tourist_places',
+				[
 				'data1'=>$this::_DISPLAY_PROVINCE_CITY(),
 				'data2'=>$this::_DISPLAY_DISTRICT(),
 				'data3'=>$this::_DISPLAY_WARD(),
 
-			]);
+				]);
+		}
+    	else	{
+			
+			return view('CMS.components.error');
 		}
 	}
 	public function _GETVIEW_ADD_SERVICES()
@@ -506,16 +512,99 @@ class CMS_ModuleController extends Controller
 	 	$get_last_place  = DB::table('vnt_tourist_places')
         ->select('id', 'pl_name')
         ->orderBy('created_at', 'desc')->first();
-		if (view()->exists('view.CMS.components.com_services.add_services'))
+		if (view()->exists('CMS.components.com_services.add_services'))
 		{
-			return view('CMS.components.error');
+			return view('CMS.components.com_services.add_services', ['data_place'=>$get_last_place]);
 		}
     	else	{
-			
-			return view('CMS.components.com_services.add_services', ['data_place'=>$get_last_place]);
+			return view('CMS.components.error');
+		}
+	}
+	public function _GET_ADD_POINT()
+	{
+		if(view()->exists('CMS.components.com_point.add_point'))
+		{
+			return view('CMS.components.com_point.add_point');	
+		}
+		else{
+
+			return view('CMS.components.error');
 		}
 	}
 
+	public function _DISPLAY_POINT_EDIT($id) 
+	{
+		$data  = DB::table('vnt_point')
+		->select('vnt_point.id', 'vnt_point.point_title', 'point_description', 'point_rate', 'point_date')
+		->where('vnt_point.id', '=' ,$id)
+		->get();
+		return $data;
+	}
 
+
+	public function _GET_EDIT_POINT($id)
+	{
+		$data = $this::_DISPLAY_POINT_EDIT($id);
+		if(view()->exists('CMS.components.com_point.edit_point'))
+		{
+			return view('CMS.components.com_point.edit_point', ['data'=>$data]);	
+		}
+		else{
+			return view('CMS.components.error');
+		}
+	}
+	public function _DISPLAY_LIST_EVENT_TYPES()
+	{
+		$data  = DB::table('vnt_types')
+		->select('id', 'type_name', 'type_status')
+		->orderBy('id', 'DESC')
+		->paginate(10);
+		return $data;
+	}
+
+	public function _DISPLAY_LIST_EVENT_TYPES_EDIT($id)
+	{
+		$data  = DB::table('vnt_types')
+		->select('id', 'type_name', 'type_status')
+		->where('id', '=', $id)
+		->get();
+		return $data;
+	}
+	public function _GETVIEW_LIST_TYPE_EVENT()
+	{
+		$data = $this::_DISPLAY_LIST_EVENT_TYPES();
+
+		if(view()->exists('CMS.components.com_event.event_types_list'))
+		{
+			return view('CMS.components.com_event.event_types_list', ['data'=>$data]);	
+		}
+		else{
+			return view('CMS.components.error');
+		}
+	}
+
+	public function _GETVIEW_ADD_TYPES_EVENT()
+	{
+		if(view()->exists('CMS.components.com_event.event_types_add'))
+		{
+			return view('CMS.components.com_event.event_types_add');	
+		}
+		else{
+			return view('CMS.components.error');
+		}
+	}
+
+	public function _GETVIEW_EDIT_EVENT_TYPES($id)
+	{
+		$data =  $this::_DISPLAY_LIST_EVENT_TYPES_EDIT($id);
+		if(view()->exists('CMS.components.com_event.event_types_edit'))
+		{
+			return view('CMS.components.com_event.event_types_edit', ['data'=>$data]);	
+		}
+		else{
+			return view('CMS.components.error');
+		}
+		// return $data;
+	}
 }
  

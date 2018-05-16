@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-4">
-        <div class="dashboard-box dashboard-box-chart bg-white content-box">
-            <div class="content-wrapper">
+        <div class=" dashboard-box dashboard-box-chart bg-white content-box" style="background-color: #F0F0F0">
+            <div class="content-wrapper" >
                 <div class="header">
                     {{ $data2  }}
                     <span>Người dùng đăng ký mới</b></span>
@@ -17,7 +17,7 @@
                     <div class="col-md-2" id="thang-hien-tai"></div>
                 </div>
             </div>
-            <div class="button-pane">
+            <div class="button-pane bg-gradient-9">
                 <div class="size-md float-left">
                     <a href="{{ route('ALL_LIST_USER') }}" title="Danh sách người dùng">
                         Xem danh sách người dùng
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="dashboard-box dashboard-box-chart bg-white content-box">
+        <div style="background-color: #F0F0F0" class="dashboard-box dashboard-box-chart bg-white content-box">
             <div class="content-wrapper">
                 <div class="header">
                 {{ $data3  }}
@@ -47,7 +47,7 @@
                     <div class="col-md-2"  id="thang-hien-taind"></div>
                 </div>
             </div>
-            <div class="button-pane">
+            <div class="button-pane bg-gradient-9">
                 <div class="size-md float-left">
                     <a href="{{ route('ALL_LIST_PLACE') }}" title="">
                         Xem danh sách địa điểm
@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="dashboard-box dashboard-box-chart bg-white content-box">
+        <div style="background-color: #F0F0F0"  class="dashboard-box dashboard-box-chart bg-white content-box">
             <div class="content-wrapper">
                 <div class="header">
                 {{ $data5  }} 
@@ -77,13 +77,13 @@
                     <div class="col-md-2" id="thang-hien-taind1">></div>
                 </div>
             </div>
-            <div class="button-pane">
+            <div class="button-pane bg-gradient-9" >
                 <div class="size-md float-left">
                     <a href="{{ route('ALL_LIST_SERVICES') }}" title="">
                         Xem danh sách dịch vụ
                     </a>
                 </div>
-                <a href="{{ route('ALL_LIST_SERVICES') }}" class="btn btn-primary float-right tooltip-button" data-placement="top" title="View details">
+                <a href="{{ route('ALL_LIST_SERVICES') }}" class="btn btn-primary float-right tooltip-button" data-placement="top" title="Xem thêm">
                     <i class="glyph-icon icon-caret-right"></i>
                 </a>
             </div>
