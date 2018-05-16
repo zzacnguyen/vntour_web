@@ -11,7 +11,7 @@
 			<div class="row">
 				<div class="col-md-2"></div>
 				<div class="col-md-8 content">
-					<h4>Thêm dịch vụ mới</h4>
+					<h4>Cập nhật dịch vụ</h4>
 					<h6 style="color: #bd1717;">Thông tin cơ bản</h6>
 					<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 					<form action="" method="post" enctype='multipart/form-data'>
@@ -105,7 +105,7 @@
 						{{-- //========================= CHI TIET =================== --}}
 						<h6 style="color: #bd1717;">Mô tả chi tiết</h6>
 						<div class="input-text" class="col-md-12" style="padding: 0">
-							<label style="padding: 0;" class="col-md-2">Mô tả dịch vụ</label>
+							{{-- <label style="padding: 0;" class="col-md-2">Mô tả dịch vụ</label> --}}
 							<textarea name="mota" id="ten" class="col-md-9" style="margin-left: 27px;">{{$data->info->sv_description}}</textarea>
       						<script>CKEDITOR.replace('ten');</script>
       						
@@ -122,7 +122,7 @@
 							<p class="text-danger">{{$errors->first('img3')}}</p>
 						</div>
 
-						<button type="submit" class="btn btn-success col-md-12" id="btnaddplace">Thêm địa điểm mới</button>
+						<button type="submit" class="btn btn-success col-md-12" id="btnaddplace">Cập nhật dịch vụ</button>
 					</form>
 				</div>
 				<div class="col-md-2"></div>

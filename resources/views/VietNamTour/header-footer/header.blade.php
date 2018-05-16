@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="public/resource/css/style.index.css">
 	<link rel="stylesheet" href="public/resource/css/menu-style2.css">
 	<link rel="stylesheet" href="public/resource/css/select2.min.css">
+	<link rel="stylesheet" href="public/resource/css/font-awesome.css">
 	<style>
 		h4{
 			border-bottom: none !important;

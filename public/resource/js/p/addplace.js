@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	load_district();
-	load_ward();
-	// autoloadWar();
+	// load_ward();
+	submit_form();
 })
 
 
@@ -70,4 +70,17 @@ function autoloadWar() {
 		})
 		$('#ward').html(lam);
 	});
+}
+
+
+function submit_form() {
+	$('#btnaddplace').click(function () {
+		if ($('select[name=city]').val() == 0) 
+		{
+			alert('Bạn cần chọn Tỉnh thành của địa điểm');
+		}
+		else{
+			$('#formAddPlace').submit();
+		}
+	})
 }

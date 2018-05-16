@@ -95,7 +95,7 @@
 				<h4 style="font-size: 25px; font-weight: bold;" class="text-center">Thêm địa điểm mới</h4>
 				<h5 style="color: red;">Thông tin cơ bản</h5>
 				<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
-				<form action="" method="post">
+				<form action="" method="post" id="formAddPlace">
           <input type="hidden" name="_token" value="{{csrf_token()}}">
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Tên địa điểm</label>
@@ -125,7 +125,7 @@
 
 					<div class="col-md-12" style="margin-bottom: 10px;">
 						<label class="col-md-2" style="width: 150px;font-size: 14px;font-weight: bold;">Khu vực</label>
-						<select class="js-example-basic-single col-md-9" name="ward" id="ward" style="padding: 0">
+						<select class=" col-md-9" name="ward" id="ward" style="padding: 0">
 						</select>
 					</div>
 

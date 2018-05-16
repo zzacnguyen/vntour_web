@@ -41,13 +41,13 @@
 							<div class="col-md-12">
 								<h4 style="padding:10px;" class="text-center"><b>Danh sách dịch vụ bạn đã thêm</b></h4>
 							</div>
-							<table class="table table-bordered" style="font-size: 12px;">
+							<table class="table table-bordered table-hover" style="font-size: 12px;">
 							  <thead>
 							    <tr>
 							      <th scope="col">Tên dịch vụ</th>
-							      <th scope="col">Loại hình</th>
-							      <th scope="col">Ngày tạo</th>
-							      <th scope="col">Trạng thái</th>
+							      <th scope="col" class="text-center">Loại hình</th>
+							      <th scope="col" class="text-center">Ngày tạo</th>
+							      <th scope="col" class="text-center">Trạng thái</th>
 							      <th scope="col" class="text-center" style="width: 166px;">
 							      	<a class="btn btn-sm btn-primary" id="myBtn" href="{{route('serviceuser')}}">
 							      		<i class="fas fa-plus"></i> Thêm mới
@@ -58,27 +58,37 @@
 							  <tbody>
 									@foreach($data as $val)
 							    <tr>
-							      <td>{{$val->sv_description}}</td>
-							      <td>
-												@if($val->sv_types==1)
+							      <td>{{$val->sv_name}}</td>
+							      <td class="text-center">
+												@if($val->sv_type == 1)
 													Ăn uống
-												@elseif($val->sv_types==2)
+												@elseif($val->sv_type == 2)
 													Khách sạn
-												@elseif($val->sv_types==3)
+												@elseif($val->sv_type == 3)
 													Phương tiện
-												@elseif($val->sv_types==4)
+												@elseif($val->sv_type == 4)
 													Tham quan
 												@else
 													Vui chơi
 												@endif
 										</td>
-							      <td>{{substr($val->created_at,0,strpos($val->created_at,' '))}}</td>
-							      <td>{{$val->sv_status==1? "Đã kích hoạt":"Chưa kích hoạt"}}</td>
+							      {{-- <td>{{substr($val->created_at,0,strpos($val->created_at,' '))}}</td> --}}
+							      <td class="text-center">{{date('d-m-Y',strtotime($val->sv_created_at->date))}}</td>
+							      {{-- <td>{{$val->sv_status==1? "Đã kích hoạt":"Chưa kích hoạt"}}</td> --}}
 							      <td class="text-center">
-											<a href="{{route('edit_service_user',$val->id)}}" class="btn btn-sm btn-info"><i class="far fa-edit"></i> Chi tiết</a>
+							      		@if($val->sv_status != 1)
+							      			<i class="fas fa-times"></i>
+							      		@else
+							      			<i class="fa fa-check"></i>
+							      		@endif
+							      </td>
+							      <td class="text-center">
+										<a href="{{route('edit_service_user',$val->sv_id)}}" class="btn btn-sm btn-info">
+											<i class="far fa-edit"></i> Chi tiết
+										</a>
 							      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
 							      </td>
-									</tr>
+								</tr>
 									@endforeach
 							  </tbody>
 							</table>

@@ -44,13 +44,13 @@
 							<div class="col-md-12">
 								<h4 style="padding:10px;" class="text-center"><b>Danh sách địa điểm bạn đã thêm</b></h4>
 							</div>
-							<table class="table table-bordered" style="font-size: 12px;">
+							<table class="table table-bordered table-hover" style="font-size: 12px;">
 							  <thead>
 							    <tr>
-							      <th scope="col">Tên địa điểm</th>
-							      <th scope="col">Địa chỉ</th>
-							      <th scope="col">Ngày tạo</th>
-							      <th scope="col">Trạng thái</th>
+							      <th scope="col" class="text-center">Tên địa điểm</th>
+							      <th scope="col" class="text-center">Địa chỉ</th>
+							      <th scope="col" class="text-center">Ngày tạo</th>
+							      <th scope="col" class="text-center" style="width: 50px;">Trạng thái</th>
 							      <th scope="col" class="text-center" style="width: 166px;">
 							      	<a href="{{route('addplaceuser')}}" class="btn btn-sm btn-primary" id="myBtn">
 							      		<i class="fas fa-plus"></i> Thêm mới
@@ -58,13 +58,19 @@
 							      </th>
 							    </tr>
 							  </thead>
-							  <tbody>
+							  <tbody id="list-place">
 								@foreach($data as $val)
 								    <tr>
 								      <td >{{$val->pl_name}}</td>
 								      <td>{{$val->pl_address}}</td>
-								      <td>{{substr($val->created_at,0,strpos($val->created_at,' '))}}</td>
-								      <td>{{$val->pl_status==1 ? "Kích hoạt":"Chưa kích hoạt"}}</td>
+								      <td class="text-center">{{date('d-m-Y',strtotime($val->created_at))}}</td>
+								      <td class="text-center">
+								      		@if($val->pl_status != 1)
+								      			<i class="fas fa-times"></i>
+								      		@else
+								      			<i class="fa fa-check"></i>
+								      		@endif
+								      </td>
 								      <td class="text-center">
 												<a class="btn btn-sm btn-info" href="{{route('edit_placeuser',$val->id)}}"><i class="far fa-edit"></i> Chi tiết</a>
 								      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
@@ -75,25 +81,15 @@
 							</table>
 
 
-							<nav aria-label="Page navigation example">
+							{{-- <nav aria-label="Page navigation example">
 							  <ul class="pagination">
-							    <li class="page-item">
-							      <a class="page-link" href="#" aria-label="Previous">
-							        <span aria-hidden="true">&laquo;</span>
-							        <span class="sr-only">Previous</span>
-							      </a>
-							    </li>
-							    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+							    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+							    <li class="page-item"><a class="page-link" href="#">1</a></li>
 							    <li class="page-item"><a class="page-link" href="#">2</a></li>
 							    <li class="page-item"><a class="page-link" href="#">3</a></li>
-							    <li class="page-item">
-							      <a class="page-link" href="#" aria-label="Next">
-							        <span aria-hidden="true">&raquo;</span>
-							        <span class="sr-only">Next</span>
-							      </a>
-							    </li>
+							    <li class="page-item"><a class="page-link" href="#">Next</a></li>
 							  </ul>
-							</nav>
+							</nav> --}}
 						</div>
 
 					</div>
@@ -112,13 +108,13 @@ $(document).ready(function(){
 });
 </script>
 
-<script src="public/resource/js/p/addplace.js"></script>
+{{-- <script src="public/resource/js/p/addplace.js"></script> --}}
 
-	{{-- <script src="public/resource/js/menu-style.js"></script> --}}
-	{{-- <script type="text/javascript" src="public/resource/js/jquery-3.3.1.min.js"></script> --}}
+	
 	<script type="text/javascript" src="public/resource/js/popper.js"></script>
 	<script type="text/javascript" src="public/resource/js/bootstrap.js"></script>
-	{{-- <script type="text/javascript" src="public/resource/js/dataTables.bootstrap.min.js"></script> --}}
+	<script src="public/resource/js/jquery.twbsPagination.js"></script>
+	{{-- <script src="public/resource/js/p/place_user.js"></script> --}}
 
 	@if(Session::has('message'))
 		<script>

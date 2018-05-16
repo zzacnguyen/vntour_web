@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-
+use GuzzleHttp\Client;
 
 
 
@@ -20,21 +20,39 @@ class publicaddplaceController extends Controller
     //load tinh
     public function loadTinh()
     {
-    	$result = DB::select('SELECT * FROM vnt_province_city');
-    	return $result;
+    	$client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"loadCity")->getBody();
+        return json_decode($response);
     }
 
     //load district theo id tinh thanh pho
     public function loadDistrict($idCity)
     {
-    	$result = DB::select("SELECT * FROM vnt_district WHERE province_city_id = '$idCity'");
-    	return $result;
+    	$client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"loadDistrict/{$idCity}")->getBody();
+        return json_decode($response);
     }
 
     //load ward
     public function loadWard($idDistrict)
     {
-    	$result = DB::select("SELECT * FROM vnt_ward WHERE district_id = '$idDistrict' AND enable=1");
-    	return $result;
+    	$client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"loadWard/{$idDistrict}")->getBody();
+        return json_decode($response);
     }
 }

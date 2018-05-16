@@ -691,10 +691,25 @@ class accountController extends Controller
             'timeout'  => 20.0,
         ]);
         $response = $client->request('GET',"get_place_user/{$user_id}")->getBody();
-        $data=json_decode($response);
-
+        $data= json_decode($response);
+        // return $data;
         return view('VietNamTour.content.user.place.place_user',compact('data'));
     }
+
+    public function getPlace_user_paginate($current_page,$limit)
+    {
+        $user_id = Session::get('user_info')->id;
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+        $response = $client->request('GET',"get_place_user/{$user_id}")->getBody();
+        $data= $this::paginate(json_decode($response),$current_page,$limit);
+        return $data;
+    }
+
     public function edit_place_user($id)
     {
         $user_id = Session::get('user_info')->id;
@@ -708,6 +723,7 @@ class accountController extends Controller
          $data=json_decode($response);
          return view('VietNamTour.content.user.place.editplace',compact('data'));
     }
+
     public function post_edit_place_user(edituserplace $request,$id)
     {
        
@@ -849,5 +865,45 @@ class accountController extends Controller
         $response = $client->request('GET',"load_place_ward/{$idward}");
             
         return json_decode($response->getBody()->getContents());
+    }
+
+
+
+
+    //paginate
+    public function paginate($data, $page,$limit)
+    {
+        // data du lieu de phan trang
+        // page trang hien tai
+        // limit hien thi so ket qua moi trang
+        // bat dau tu phan tu nao
+
+        // dd($data);
+        if ($data == null) {
+            $result_paginate['data'] = null;
+            $result_paginate['total_page'] = 0;
+            $result_paginate['current_page'] = 0;
+            $result_paginate['limit'] = $limit;
+        }
+        else{
+            $current_page  = $page;
+            $total_records = count($data); // tong so item;
+
+            $total_page    = ceil($total_records/$limit);
+
+            if ($current_page > $total_page) { $current_page = $total_page; }
+            else if ($current_page < 1) { $current_page = 1; }
+
+            $start = ($current_page - 1) * $limit;
+            $data == null ? $result = null : $result = $result = array_slice($data,$start,$limit);// lay danh sach say khi phan trang
+
+            $result_paginate['data'] = $result;
+            $result_paginate['total_page'] = $total_page;
+            $result_paginate['current_page'] = $current_page;
+            $result_paginate['limit'] = $limit;
+        }
+            
+        return $result_paginate;
+
     }
 }

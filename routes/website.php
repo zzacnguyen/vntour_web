@@ -211,6 +211,8 @@ Route::get('place-user/add',['as'=>'addplaceuser','uses'=>'accountController@add
 Route::post('place-user/add',['as'=>'postaddplaceuser','uses'=>'accountController@post_addplace']);
 Route::get('edit-place-user/{id}',['as'=>'edit_placeuser','uses'=>'accountController@edit_place_user']);
 Route::post('edit-place-user/{id}',['as'=>'postedit_placeuser','uses'=>'accountController@post_edit_place_user']);
+
+Route::get('place-user-list/{cur}&{limit}','accountController@getPlace_user_paginate');
 //=========
 
 // change pass

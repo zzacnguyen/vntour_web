@@ -129,7 +129,6 @@ $(document).ready(function (argument) {
 	        onPageClick: function (event, page) {
 	            currentpage = page;
 	            var path = path_cha;
-
 	            searchCon(path_cha,3);
 	            // console.log(path_pa);
 	        }
