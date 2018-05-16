@@ -180,6 +180,8 @@ Route::get('check-login','publicDetail@check_Login');
 //====== service user
 Route::get('service-user','accountController@getservice_user')->name('service-user');
 Route::get('service-user/add/{id}','accountController@addservice_user');
+Route::get('service-user/{type}','accountController@get_service_user_active');
+
 
 //====== tripschudule
 Route::get('get_tripchudule','accountController@get_tripchudule')->name('get_tripchudule');

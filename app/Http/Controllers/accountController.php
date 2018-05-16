@@ -602,7 +602,8 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $response = $client->request('GET',"get_service_user/{$user_id}")->getBody();
         $data=json_decode($response);
-        return view('VietNamTour.content.user.service.service_user',compact('data'));
+        $flag = 1;
+        return view('VietNamTour.content.user.service.service_user',compact('data','flag'));
     }
     public function edit_service_user($id)
     {
@@ -904,6 +905,21 @@ class accountController extends Controller
         }
             
         return $result_paginate;
+    }
 
+    public function get_service_user_active($type){
+        $user_id = Session::get('user_info')->id;
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+        if ($type == "active") { $flag = 2; }else{ $flag = 3; }
+
+        $response = $client->request('GET',"get_service_user_active/{$user_id}&{$type}");
+        $data=json_decode($response->getBody()->getContents());
+        // dd($data);
+        return view('VietNamTour.content.user.service.service_user',compact('data','flag'));
     }
 }

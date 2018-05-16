@@ -10,10 +10,43 @@
 <link rel="stylesheet" href="public/resource/css/bootstrap.css">
 <link rel="stylesheet" href="public/resource/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="public/resource/css/toastr.min.css">
-	
+<link rel="stylesheet" href="public/resource/css/place.css">
 	<style type="text/css">
 		.table tbody tr:nth-child(2n+1) {
 		    background-color: white;
+		}
+
+		.active-boloc{
+			color: #fec107 !important;
+		}
+
+		body{
+			background-color: #eee;
+		}
+		.box-title{
+			padding: 15px 30px;
+		    position: relative;
+		    font-weight: 700;
+		    font-size: 16px;
+		    overflow: hidden;
+		    border-bottom: 1px solid #ddd;
+		}
+		.left-box .box-body ul {
+			list-style-type: none;
+		    line-height: 18px;
+		    font-size: 15px;
+		    font-weight: 500;
+		    padding: 14px 30px 10px 30px;
+		}
+		.left-box .box-body ul li{
+		    margin-bottom: 10px;
+    		padding-bottom: 10px;
+    		border-bottom: 1px solid #eee;
+		}
+
+		.left-box .box-body ul li a{
+		    color: #797986;
+    		text-decoration: none;
 		}
 	</style>
 
@@ -21,21 +54,48 @@
 		<div class="container">
 			<div class="content">
 				<div class="row">
-					<div class="col-md-3 ">
-						<div class="left-user">
-							<div class="avatar">
-								<img src="public/resource/images/avatar1.jpg" alt="">
-								<h5 class="text-center">Lam The Men</h5>
+					<div class="menu-lam col-md-3">
+						<div class="left-box" style="background-color: white;">
+							<div class="box-title">
+								Bộ lọc
+								<span></span>
 							</div>
-							<div class="options">
+							<div class="box-body">
 								<ul>
-									<li class="active"><a href=""><i class="far fa-edit"></i> Thông tin tài khoản</a></li>
-									<li><a href=""><i class="fas fa-lock"></i> Đổi mật khẩu</a></li>
-									<li style="border-bottom: 1px solid #ddd;"><a href=""><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+									@if($flag == 1)
+										<li><a href="service-user" class="active-boloc">Tất cả</a></li>
+										<li><a href="service-user/active">Đã kích hoạt</a></li>
+										<li><a href="service-user/not-active">Chưa kích hoạt</a></li>
+									@elseif($flag == 2)
+										<li><a href="service-user">Tất cả</a></li>
+										<li><a href="service-user/active" class="active-boloc">Đã kích hoạt</a></li>
+										<li><a href="service-user/not-active">Chưa kích hoạt</a></li>
+									@else
+										<li><a href="service-user">Tất cả</a></li>
+										<li><a href="service-user/active">Đã kích hoạt</a></li>
+										<li><a href="service-user/not-active" class="active-boloc">Chưa kích hoạt</a></li>
+									@endif
+									
+									
 								</ul>
 							</div>
-						</div>	
-					</div>
+						</div>
+
+						<div class="left-box" style="background-color: white;">
+							<div class="box-title">
+								Thống kê
+								<span></span>
+							</div>
+							<div class="box-body">
+								<ul>
+									<li><a href="">Top lượt xem</a></li>
+									<li><a href="">Top like</a></li>
+									<li><a href="">Top Rating</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>	
+
 					<div class="col-md-9">
 						<div class="right-user" style="padding: 5px 15px;">
 							<div class="col-md-12">
