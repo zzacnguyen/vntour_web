@@ -948,4 +948,30 @@ class accountController extends Controller
         return json_decode($response->getBody()->getContents());
     }
 
+    public function get_service_user_max_view(){
+        $user_id = Session::get('user_info')->id;
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+
+        $response = $client->request('GET',"get-service-user-max-view/{$user_id}");
+        return json_decode($response->getBody()->getContents());
+    }
+
+    public function get_service_user_max_rating_like($type){
+        $user_id = Session::get('user_info')->id;
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+
+        $response = $client->request('GET',"get-service-user-max-ating-like/{$type}&{$user_id}");
+        return json_decode($response->getBody()->getContents());
+    }
+
 }

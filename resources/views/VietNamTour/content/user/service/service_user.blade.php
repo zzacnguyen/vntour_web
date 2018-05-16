@@ -113,7 +113,7 @@
 									<li>
 										<a href="" id="id_like" data-toggle="modal" data-target="#myModal">Top like</a>
 									</li>
-									
+
 									<li>
 										<a href="" id="id_rating" data-toggle="modal" data-target="#myModal">Top Rating</a>
 									</li>
@@ -154,7 +154,7 @@
 									</ul>
 							      </div>
 
-							      <div class="modal-footer">
+							      <div class="modal-footer" id="service_user">
 							        <a href="" style="text-decoration:none;color:black;display:inline-flex;width:100%;">
 										<img src="public/resource/images/img-BaiViet/8.jpg" alt="" style="width:50px;height:50px;">
 										<div style="height: 50px;padding-left: 10px;overflow: hidden;width: 250px">
