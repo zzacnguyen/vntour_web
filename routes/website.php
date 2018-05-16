@@ -182,6 +182,8 @@ Route::get('service-user','accountController@getservice_user')->name('service-us
 Route::get('service-user/add/{id}','accountController@addservice_user');
 Route::get('service-user/{type}','accountController@get_service_user_active');
 
+Route::get('top-service-view','accountController@Top_service_view');
+Route::get('top-service-rating-like/{type}','accountController@Top_service_rating_like');
 
 //====== tripschudule
 Route::get('get_tripchudule','accountController@get_tripchudule')->name('get_tripchudule');

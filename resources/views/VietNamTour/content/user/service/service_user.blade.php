@@ -12,8 +12,8 @@
 <link rel="stylesheet" href="public/resource/css/toastr.min.css">
 <link rel="stylesheet" href="public/resource/css/place.css">
 	<style type="text/css">
-		.table tbody tr:nth-child(2n+1) {
-		    background-color: white;
+		table tbody tr:nth-child(odd) {
+		     background-color: white; 
 		}
 
 		.active-boloc{
@@ -47,6 +47,24 @@
 		.left-box .box-body ul li a{
 		    color: #797986;
     		text-decoration: none;
+		}
+		.left-box .box-body ul li a:hover{
+		    color: #fec107 !important;
+		}
+		.row_service:hover{
+			background-color: #ddd;
+		}
+		.table th, .table td {
+		    padding: 0.75rem;
+		    vertical-align: middle;
+		    border-top: 1px solid #dee2e6;
+		}
+		.table thead th {
+		    vertical-align: middle;
+		    border-bottom: 2px solid #dee2e6;
+		}
+		#top_service ul li:hover{
+			background-color: #ddd;
 		}
 	</style>
 
@@ -88,11 +106,76 @@
 							</div>
 							<div class="box-body">
 								<ul>
-									<li><a href="">Top lượt xem</a></li>
-									<li><a href="">Top like</a></li>
-									<li><a href="">Top Rating</a></li>
+									<li>
+										<a href="" id="id_view" data-toggle="modal" data-target="#myModal">Top lượt xem</a>
+									</li>
+
+									<li>
+										<a href="" id="id_like" data-toggle="modal" data-target="#myModal">Top like</a>
+									</li>
+									
+									<li>
+										<a href="" id="id_rating" data-toggle="modal" data-target="#myModal">Top Rating</a>
+									</li>
 								</ul>
 							</div>
+
+							<!-- Modal -->
+							<div id="myModal" class="modal fade" role="dialog" style="margin-top:70px;">
+							  <div class="modal-dialog">
+
+							    <!-- Modal content-->
+							    <div class="modal-content" style="border-radius: 0;">
+							      <div class="modal-header">
+							      	<h4 class="modal-title">Thống kê</h4>
+							        <button type="button" class="close" data-dismiss="modal">&times;</button>
+							      </div>
+
+							      <div class="modal-body" id="top_service" style="height:400px;overflow-y:auto;padding-top:8px">
+									<ul style="list-style: none;padding-left: 0" id="list_thongke">
+
+										<li style="margin-bottom: 5px; border-bottom: 1px solid #ddd">
+											<a href="" style="text-decoration: none; color: black; display: inline-flex;width: 100%;">
+												<img src="public/resource/images/img-BaiViet/8.jpg" alt="" style="width: 50px; height: 50px;">
+												<div style="height: 50px;padding-left: 10px;overflow: hidden;width: 250px">
+													<h5 style="margin-bottom: 0;">Cafe Chat</h5>
+													<span style="color: #ddd;font-size: 12px;">fsfdsfsdfsdfsdf </span>
+												</div>
+												<div style="margin-right: 5px;">
+													<span style="font-size:10px;"><i class="far fa-thumbs-up"></i> 100</i></span>
+					      							<span style="font-size:10px;"><i class="fas fa-eye"></i> 123</span>
+						      						<span style="font-size:10px;"><i class="fas fa-star"></i> 123</span>
+												</div>
+												<div>
+													<span class="badge badge-warning">Top 1</span>
+												</div>	
+											</a>
+										</li>
+									</ul>
+							      </div>
+
+							      <div class="modal-footer">
+							        <a href="" style="text-decoration:none;color:black;display:inline-flex;width:100%;">
+										<img src="public/resource/images/img-BaiViet/8.jpg" alt="" style="width:50px;height:50px;">
+										<div style="height: 50px;padding-left: 10px;overflow: hidden;width: 250px">
+											<h5 style="margin-bottom: 0;">Cafe Chat</h5>
+											<span style="color: #ddd;font-size: 12px;">fsfdsfsdfsdfsdf </span>
+										</div>
+										<div style="margin-right: 5px;">
+											<span style="font-size:10px;"><i class="far fa-thumbs-up"></i> 100</i></span>
+			      							<span style="font-size:10px;"><i class="fas fa-eye"></i> 123</span>
+				      						<span style="font-size:10px;"><i class="fas fa-star"></i> 123</span>
+										</div>
+										<div>
+											<span class="badge badge-warning">Top 1</span>
+										</div>	
+									</a>
+							      </div>
+							    </div>
+
+							  </div>
+							</div>
+
 						</div>
 					</div>	
 
@@ -101,25 +184,26 @@
 							<div class="col-md-12">
 								<h4 style="padding:10px;" class="text-center"><b>Danh sách dịch vụ bạn đã thêm</b></h4>
 							</div>
-							<table class="table table-bordered table-hover" style="font-size: 12px;">
+							<table class="table table-bordered" style="font-size: 12px;">
 							  <thead>
 							    <tr>
 							      <th scope="col">Tên dịch vụ</th>
 							      <th scope="col" class="text-center">Loại hình</th>
 							      <th scope="col" class="text-center">Ngày tạo</th>
-							      <th scope="col" class="text-center">Trạng thái</th>
+							      <th scope="col" class="text-center" style="width: 60px;">Thông tin</th>
+							      <th scope="col" class="text-center" style="width: 50px;">Trạng thái</th>
 							      <th scope="col" class="text-center" style="width: 166px;">
 							      	<a class="btn btn-sm btn-primary" id="myBtn" href="{{route('serviceuser')}}">
 							      		<i class="fas fa-plus"></i> Thêm mới
-											</a>
+									</a>
 							      </th>
 							    </tr>
 							  </thead>
 							  <tbody>
-									@foreach($data as $val)
-							    <tr>
-							      <td>{{$val->sv_name}}</td>
-							      <td class="text-center">
+								@foreach($data as $val)
+						    	<tr class="row_service">
+							      	<td>{{$val->sv_name}}</td>
+							      	<td class="text-center">
 												@if($val->sv_type == 1)
 													Ăn uống
 												@elseif($val->sv_type == 2)
@@ -131,25 +215,29 @@
 												@else
 													Vui chơi
 												@endif
-										</td>
-							      {{-- <td>{{substr($val->created_at,0,strpos($val->created_at,' '))}}</td> --}}
-							      <td class="text-center">{{date('d-m-Y',strtotime($val->sv_created_at->date))}}</td>
-							      {{-- <td>{{$val->sv_status==1? "Đã kích hoạt":"Chưa kích hoạt"}}</td> --}}
-							      <td class="text-center">
+									</td>
+							      
+							      	<td class="text-center">{{date('d-m-Y',strtotime($val->sv_created_at->date))}}</td>
+							      	<td >
+							      		<span><i class="far fa-thumbs-up"></i> {{$val->like}}</i></span><br>
+							      		<span><i class="fas fa-eye"></i> {{$val->view}}</span><br>
+							      		<span><i class="fas fa-star"></i> {{$val->rating}}</span>
+							      	</td>
+							      	<td class="text-center">
 							      		@if($val->sv_status != 1)
 							      			<i class="fas fa-times"></i>
 							      		@else
 							      			<i class="fa fa-check"></i>
 							      		@endif
-							      </td>
-							      <td class="text-center">
+							      	</td>
+							      	<td class="text-center">
 										<a href="{{route('edit_service_user',$val->sv_id)}}" class="btn btn-sm btn-info">
 											<i class="far fa-edit"></i> Chi tiết
 										</a>
 							      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
 							      </td>
 								</tr>
-									@endforeach
+								@endforeach
 							  </tbody>
 							</table>
 
@@ -197,7 +285,9 @@ $(document).ready(function(){
 	{{-- <script type="text/javascript" src="public/resource/js/jquery-3.3.1.min.js"></script> --}}
 	<script type="text/javascript" src="public/resource/js/popper.js"></script>
 	<script type="text/javascript" src="public/resource/js/bootstrap.js"></script>
+	<script type="text/javascript" src="public/resource/js/p/service_user.js"></script>
 	{{-- <script type="text/javascript" src="public/resource/js/dataTables.bootstrap.min.js"></script> --}}
+
 @if(Session::has('message'))
 <script>
 Command: toastr["success"]("{{Session::get('message')}}")

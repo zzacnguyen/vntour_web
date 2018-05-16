@@ -602,6 +602,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $response = $client->request('GET',"get_service_user/{$user_id}")->getBody();
         $data=json_decode($response);
+        // dd($data);
         $flag = 1;
         return view('VietNamTour.content.user.service.service_user',compact('data','flag'));
     }
@@ -922,4 +923,29 @@ class accountController extends Controller
         // dd($data);
         return view('VietNamTour.content.user.service.service_user',compact('data','flag'));
     }
+
+    public function Top_service_view(){
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+
+        $response = $client->request('GET',"top-service-view");
+        return json_decode($response->getBody()->getContents());
+    }
+
+    public function Top_service_rating_like($type){
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+
+        $response = $client->request('GET',"top-service-rating-like/{$type}");
+        return json_decode($response->getBody()->getContents());
+    }
+
 }
