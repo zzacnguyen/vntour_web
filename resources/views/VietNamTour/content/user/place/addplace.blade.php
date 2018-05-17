@@ -99,13 +99,13 @@
           <input type="hidden" name="_token" value="{{csrf_token()}}">
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Tên địa điểm</label>
-            <input name="place_name" type="text">
+            <input name="place_name" type="text" value="{{old('place_name')}}">
             <p class="text-danger">{{$errors->first('place_name')}}</p>
 					</div>
 
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Điện thoại</label>
-            <input name="place_phone" type="text">
+            <input name="place_phone" type="text" value="{{old('place_phone')}}">
             <p class="text-danger">{{$errors->first('place_phone')}}</p>
 					</div>
 
@@ -131,7 +131,7 @@
 
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Địa chỉ</label>
-            <input name="place_address" type="text">
+            <input name="place_address" type="text" value="{{old('place_phone')}}">
             <p class="text-danger">{{$errors->first('place_address')}}</p>
 					</div>
 

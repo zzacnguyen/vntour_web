@@ -25,7 +25,6 @@ class edituserplace extends FormRequest
     {
         return [
             "place_name"=>"required",
-            "place_phone"=>"required|between:10,11",
             "place_address"=>"required",
         ];
     }

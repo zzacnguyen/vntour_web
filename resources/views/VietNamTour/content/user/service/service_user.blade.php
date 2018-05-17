@@ -200,49 +200,52 @@
 							    </tr>
 							  </thead>
 							  <tbody>
-								@foreach($data as $val)
-						    	<tr class="row_service">
-							      	<td>{{$val->sv_name}}</td>
-							      	<td class="text-center">
-												@if($val->sv_type == 1)
-													Ăn uống
-												@elseif($val->sv_type == 2)
-													Khách sạn
-												@elseif($val->sv_type == 3)
-													Phương tiện
-												@elseif($val->sv_type == 4)
-													Tham quan
-												@else
-													Vui chơi
-												@endif
-									</td>
-							      
-							      	<td class="text-center">{{date('d-m-Y',strtotime($val->sv_created_at->date))}}</td>
-							      	<td >
-							      		<span><i class="far fa-thumbs-up"></i> {{$val->like}}</i></span><br>
-							      		<span><i class="fas fa-eye"></i> {{$val->view}}</span><br>
-							      		<span><i class="fas fa-star"></i> {{$val->rating}}</span>
-							      	</td>
-							      	<td class="text-center">
-							      		@if($val->sv_status != 1)
-							      			<i class="fas fa-times"></i>
-							      		@else
-							      			<i class="fa fa-check"></i>
-							      		@endif
-							      	</td>
-							      	<td class="text-center">
-										<a href="{{route('edit_service_user',$val->sv_id)}}" class="btn btn-sm btn-info">
-											<i class="far fa-edit"></i> Chi tiết
-										</a>
-							      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
-							      </td>
-								</tr>
-								@endforeach
+							  	@if($data != null)
+							  		@foreach($data as $val)
+							    	<tr class="row_service">
+								      	<td>{{$val->sv_name}}</td>
+								      	<td class="text-center">
+													@if($val->sv_type == 1)
+														Ăn uống
+													@elseif($val->sv_type == 2)
+														Khách sạn
+													@elseif($val->sv_type == 3)
+														Phương tiện
+													@elseif($val->sv_type == 4)
+														Tham quan
+													@else
+														Vui chơi
+													@endif
+										</td>
+								      
+								      	<td class="text-center">{{date('d-m-Y',strtotime($val->sv_created_at->date))}}</td>
+								      	<td >
+								      		<span><i class="far fa-thumbs-up"></i> {{$val->like}}</i></span><br>
+								      		<span><i class="fas fa-eye"></i> {{$val->view}}</span><br>
+								      		<span><i class="fas fa-star"></i> {{$val->rating}}</span>
+								      	</td>
+								      	<td class="text-center">
+								      		@if($val->sv_status != 1)
+								      			<i class="fas fa-times"></i>
+								      		@else
+								      			<i class="fa fa-check"></i>
+								      		@endif
+								      	</td>
+								      	<td class="text-center">
+											<a href="{{route('edit_service_user',$val->sv_id)}}" class="btn btn-sm btn-info">
+												<i class="far fa-edit"></i> Chi tiết
+											</a>
+								      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
+								      </td>
+									</tr>
+									@endforeach
+							  	@endif
+									
 							  </tbody>
 							</table>
 
 
-							<nav aria-label="Page navigation example">
+							{{-- <nav aria-label="Page navigation example">
 							  <ul class="pagination">
 							    <li class="page-item">
 							      <a class="page-link" href="#" aria-label="Previous">
@@ -260,7 +263,7 @@
 							      </a>
 							    </li>
 							  </ul>
-							</nav>
+							</nav> --}}
 						</div>
 
 					</div>

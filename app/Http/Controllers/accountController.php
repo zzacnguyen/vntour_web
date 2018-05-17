@@ -617,8 +617,20 @@ class accountController extends Controller
         ]);
         $response = $client->request('GET',"get_edit_service_user/{$id}/{$user_id}")->getBody();
          $data=json_decode($response);
-      
-        return view('VietNamTour.content.user.service.editservice',compact('data'));
+        if($data == null){
+            return view('VietNamTour.404');
+        }
+        else{
+            foreach ($data as $value) {
+                $data = $value;
+            }
+            $city = DB::select("SELECT * FROM c_city_district_ward_place_service WHERE id_service = '$id'");
+            foreach ($city as $value) {
+                $city = $value;
+            }
+            return view('VietNamTour.content.user.service.editservice',compact('data','city'));
+        }
+            
     }
     public function post_edit_service_user(editservice $request,$id)
     {
@@ -672,7 +684,8 @@ class accountController extends Controller
                 'mota'=>$request->mota,
                 'img1'=>$name,
                 'img2'=>$name1,
-                'img3'=>$name2
+                'img3'=>$name2,
+                'status' =>$request->status
             ]
         ])->getBody();
         if($response=='ok')

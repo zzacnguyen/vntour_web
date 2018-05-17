@@ -264,9 +264,9 @@
 								<div class="tab-content" style="min-height: 1000px;">
 									<div class="tab-pane" id="tab_default_1">
 										<h5 style="font-weight: 700;padding-left: 17px;">GIỚI THIỆU</h5>
-										<p style="text-align: justify; padding: 10px 30px;" >
-											{{$sv->sv_description}}
-										</p>
+										<div style="text-align: justify; padding: 10px 30px;" >
+											{!! $sv->sv_description !!}
+										</div>
 									</div>
 
 									<div class="tab-pane active" id="tab_default_2">
@@ -516,6 +516,8 @@
 									@endforeach
 								</ul>
 							</div>
+						@else
+							<p style="padding: 10px;">Hiện chưa có địa điểm lân cận với địa điểm này</p>
 						@endif
 					</div>
 					<div class="right-content">
@@ -523,34 +525,38 @@
 							<h5 class="text-center">Địa điểm cùng khu vực</h5>
 						</div>
 						<div class="body-right-content" style="height: 600px;overflow-y: scroll;">
-							@foreach($sv_lancan as $s)
-								<div class="item-cafe">
-									<ul>
-										<li>
-											<a href="detail/id={{$s->sv_id}}&type={{$s->sv_type}}">
-												<img src="public/thumbnails/{{$s->image_banner}}" alt="loi" style="height: 100%;width: 110px;">
-												<div class="text-item-cafe text-left">
-													<h6 style="margin-bottom: 0;display: inline-block;text-overflow: ellipsis;">	<b style="font-weight: 600;">{{$s->sv_name}}</b>
-													</h6>
-													<p class="text-left" style="font-size: 13px;">
-														@if($s->sv_type == 1)
-															Ăn uống
-														@elseif($s->sv_type == 2)
-															Khách sạn
-														@elseif($s->sv_type == 3)
-															Phương tiện
-														@elseif($s->sv_type == 4)
-															Tham quan
-														@elseif($s->sv_type == 5)
-															Vui chơi
-														@endif
-													</p>
-												</div>
-											</a>
-										</li>
-									</ul>
-								</div>
-							@endforeach	
+							@if($sv_lancan != null)
+								@foreach($sv_lancan as $s)
+									<div class="item-cafe">
+										<ul>
+											<li>
+												<a href="detail/id={{$s->sv_id}}&type={{$s->sv_type}}">
+													<img src="public/thumbnails/{{$s->image_banner}}" alt="loi" style="height: 100%;width: 110px;">
+													<div class="text-item-cafe text-left">
+														<h6 style="margin-bottom: 0;display: inline-block;text-overflow: ellipsis;">	<b style="font-weight: 600;">{{$s->sv_name}}</b>
+														</h6>
+														<p class="text-left" style="font-size: 13px;">
+															@if($s->sv_type == 1)
+																Ăn uống
+															@elseif($s->sv_type == 2)
+																Khách sạn
+															@elseif($s->sv_type == 3)
+																Phương tiện
+															@elseif($s->sv_type == 4)
+																Tham quan
+															@elseif($s->sv_type == 5)
+																Vui chơi
+															@endif
+														</p>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								@endforeach
+							@else
+								<p style="padding: 10px;">Hiện chưa có địa điểm cùng khu vực với địa điểm này</p>
+							@endif
 						</div>
 					</div>	
 					
@@ -575,7 +581,7 @@
 					    				<span>{{$s->name_city}}</span>
 					    			</div>
 						    		<a href="detail/id={{$s->id_service}}&type={{$s->sv_type}}" title="{{$s->name}}">
-						    			<img style="min-height: 214px" src="public/thumbnails/{{$s->image}}" alt="">
+						    			<img style="height: 214px" src="public/thumbnails/{{$s->image}}" alt="">
 						    		</a>
 						    	</div>
 						    	<div class="grid-content">

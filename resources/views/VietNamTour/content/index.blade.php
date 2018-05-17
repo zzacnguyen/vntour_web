@@ -245,7 +245,7 @@
 				@foreach($services_enter as $enter)
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
-							<a href="public/detail/id={{$hotel->id_service}}&type={{$hotel->sv_type}}}" class="click_view">
+							<a href="detail/id={{$hotel->id_service}}&type={{$hotel->sv_type}}" class="click_view">
 								<img src="public/thumbnails/{{$enter->image}}" alt="">
 							</a>
 							<div class="destination-name">

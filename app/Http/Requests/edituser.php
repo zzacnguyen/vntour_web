@@ -26,7 +26,6 @@ class edituser extends FormRequest
         return [
             "name"=>"required",
             "email"=>"required|email",
-            "phone"=>"required|between:10,11",
             "website"=>"required",
       
             "image"=>"image|mimes:jpeg,png,jpg,gif,svg|max:2048",

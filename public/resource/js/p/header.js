@@ -323,7 +323,7 @@ function search_type(url, image,name,description) { //
 	eat +=	'</div>';
 	eat +=	'<div class="right-content-search">';
 	eat +=	'<p>'+ name +'</p>';
-	eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 20px;max-width:321px;text-overflow: ellipsis;">'+ description +'</p>';
+	eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 20px;max-width:321px;text-overflow: ellipsis;">Mô tả </p>';
 	eat +=	'</div>';
 	eat +=	'</a>';		
 	eat +=	'</div>';
@@ -397,7 +397,7 @@ function list_tim_kiem() {
 				eat +=	'</div>';
 				eat +=	'<div class="right-content-search">';
 				eat +=	'<p>'+ data.sv_name +'</p>';
-				eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 20px;max-width:321px;text-overflow: ellipsis;">'+ data.sv_description +'</p>';
+				eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 20px;max-width:321px;text-overflow: ellipsis;">Mô tả</p>';
 				eat +=	'</div>';
 				eat +=	'</a>';		
 				eat +=	'</div>';

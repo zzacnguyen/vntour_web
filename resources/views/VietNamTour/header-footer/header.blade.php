@@ -418,7 +418,7 @@
 														
 														@elseif(Session::get('user_info')->level == 2)
 															<li style="height: 27px;">
-																<a href="{{route('place-user')}}" class="a-content-nofi">
+																<a href="{{route('placeuser')}}" class="a-content-nofi">
 																	<p class="text-nofi" style="height: auto;width: auto;">
 																		<i class="fas fa-map-marker"></i> 
 																		Danh sách địa điểm
@@ -444,7 +444,7 @@
 
 														@elseif(Session::get('user_info')->level == 3)
 															<li style="height: 27px;">
-																<a href="{{route('place-user')}}" class="a-content-nofi">
+																<a href="{{route('placeuser')}}" class="a-content-nofi">
 																	<p class="text-nofi" style="height: auto;width: auto;">
 																		<i class="fas fa-map-marker"></i> 
 																		Danh sách địa điểm
@@ -463,7 +463,7 @@
 
 														@elseif(Session::get('user_info')->level == 4)
 															<li style="height: 27px;">
-																<a href="{{route('place-user')}}" class="a-content-nofi">
+																<a href="{{route('placeuser')}}" class="a-content-nofi">
 																	<p class="text-nofi" style="height: auto;width: auto;">
 																		<i class="fas fa-map-marker"></i> 
 																		Địa điểm
