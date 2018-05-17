@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 	$('#see').click(function () {
 		var city_id = path.slice(path.lastIndexOf("/") + 1,path.length);
-		var path_city = "http://chinhlytailieu/doan3_canthotour/public/get_all_place_city_type/" + city_id + "&type=4";
+		var path_city = "http://vntourweb/vntour_api/public/get_all_place_city_type/" + city_id + "&type=4";
 		$.ajax({
 					url: path_city,
 					type: 'GET'

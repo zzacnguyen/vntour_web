@@ -17,7 +17,7 @@ function checkLogin() {
 		.done(function (response) {
 			if (response > 0) 
 			{
-				var pathCheckLike = 'http://chinhlytailieu/vntour_api/checkLike/userid=' + response + '&svid=' + service_id;
+				var pathCheckLike = 'http://vntourweb/vntour_api/checkLike/userid=' + response + '&svid=' + service_id;
 				
 				$.ajax({
 						url: pathCheckLike,

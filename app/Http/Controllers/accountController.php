@@ -56,7 +56,7 @@ class accountController extends Controller
             $user_id = Session::get('user_info')->id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -85,7 +85,7 @@ class accountController extends Controller
                 $user_id = Session::get('user_info')->id;
                 $client = new Client([
                     // Base URI is used with relative requests
-                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    'base_uri' => 'http://vntourweb/vntour_api/',
                     // You can set any number of default request options.
                     'timeout'  => 20.0,
                 ]);
@@ -115,7 +115,7 @@ class accountController extends Controller
                 $user_id = Session::get('user_info')->id;
                 $client = new Client([
                     // Base URI is used with relative requests
-                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    'base_uri' => 'http://vntourweb/vntour_api/',
                     // You can set any number of default request options.
                     'timeout'  => 20.0,
                 ]);
@@ -163,7 +163,7 @@ class accountController extends Controller
                 $user_id = Session::get('user_info')->id;
                 $client = new Client([
                     // Base URI is used with relative requests
-                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    'base_uri' => 'http://vntourweb/vntour_api/',
                     // You can set any number of default request options.
                     'timeout'  => 20.0,
                 ]);
@@ -193,7 +193,7 @@ class accountController extends Controller
                 $user_id = Session::get('user_info')->id;
                 $client = new Client([
                     // Base URI is used with relative requests
-                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    'base_uri' => 'http://vntourweb/vntour_api/',
                     // You can set any number of default request options.
                     'timeout'  => 20.0,
                 ]);
@@ -227,7 +227,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
                     // Base URI is used with relative requests
-                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    'base_uri' => 'http://vntourweb/vntour_api/',
                     // You can set any number of default request options.
                     'timeout'  => 20.0,
                 ]);
@@ -262,7 +262,7 @@ class accountController extends Controller
             $user_id = Session::get('user_info')->id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -282,7 +282,7 @@ class accountController extends Controller
             $user_id = Session::get('user_info')->id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -302,7 +302,7 @@ class accountController extends Controller
             $user_id = Session::get('user_info')->id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -371,7 +371,7 @@ class accountController extends Controller
             $user_id = Session::get('user_info')->id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -391,7 +391,7 @@ class accountController extends Controller
             $user_id = Session::get('user_info')->id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -412,7 +412,7 @@ class accountController extends Controller
             $user_id = Session::get('user_info')->id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -432,7 +432,7 @@ class accountController extends Controller
 
         $client = new Client([
                     // Base URI is used with relative requests
-                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    'base_uri' => 'http://vntourweb/vntour_api/',
                     // You can set any number of default request options.
                     'timeout'  => 20.0,
                 ]);
@@ -464,7 +464,7 @@ class accountController extends Controller
 
         $client = new Client([
                     // Base URI is used with relative requests
-                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    'base_uri' => 'http://vntourweb/vntour_api/',
                     // You can set any number of default request options.
                     'timeout'  => 20.0,
                 ]);
@@ -491,7 +491,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -506,7 +506,7 @@ class accountController extends Controller
 
         $client = new Client([
                     // Base URI is used with relative requests
-                    'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                    'base_uri' => 'http://vntourweb/vntour_api/',
                     // You can set any number of default request options.
                     'timeout'  => 20.0,
                 ]);
@@ -526,7 +526,7 @@ class accountController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -551,7 +551,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -595,7 +595,7 @@ class accountController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -611,7 +611,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -663,7 +663,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -701,7 +701,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -716,7 +716,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -730,7 +730,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -745,7 +745,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -774,7 +774,7 @@ class accountController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -788,7 +788,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -818,7 +818,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -849,7 +849,7 @@ class accountController extends Controller
         // return $id_service.'-'.$user_id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            'base_uri' => 'http://vntourweb/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -873,7 +873,7 @@ class accountController extends Controller
     public function load_place_ward($idward){
         $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -925,7 +925,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -940,7 +940,7 @@ class accountController extends Controller
     public function Top_service_view(){
         $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -952,7 +952,7 @@ class accountController extends Controller
     public function Top_service_rating_like($type){
         $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -965,7 +965,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -978,7 +978,7 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://chinhlytailieu/vntour_api/',
+                'base_uri' => 'http://vntourweb/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
