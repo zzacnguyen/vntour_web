@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => '174049813400388',
         'client_secret' => 'b16ec8a19e36b1f7719331d7eb4d246d',
-        'redirect' => 'http://localhost:8080/doan3_canthotour/public/login/facebook/callback',
+        'redirect' => 'http://chinhlytailieu/vntour_web/login/facebook/callback',
     ],
 
 ];

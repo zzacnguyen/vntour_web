@@ -27,6 +27,8 @@ class publicDetail extends Controller
         $rating = $this::getRating($id);
         // dd($rating);
         $checklogin = $this::check_Login();
+
+        $count_rating = $this::count_rating_service($id);
         // return $checklogin;
         if ($checklogin != "null") {
             $checkUserRating = $this::checkUserRating($id,$checklogin);
@@ -42,7 +44,7 @@ class publicDetail extends Controller
     		return view('VietNamTour.404');
     	}
     	else{
-    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view'));
+    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','count_rating'));
     	}
     }
 
@@ -463,5 +465,17 @@ class publicDetail extends Controller
         ]);
         $response = $client->request('GET',"get_service_top_view/{$limit}")->getBody();
         return json_decode($response->getContents());
+    }
+
+    public function count_rating_service($idservice){
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://chinhlytailieu/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 5.0,
+        ]);
+        $response = $client->request('GET',"count-rating-service/{$idservice}");
+
+        return json_decode($response->getBody()->getContents());
     }
 }

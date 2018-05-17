@@ -33,6 +33,8 @@ Route::get('detail/s','pageController@getServiceTypeVicinity');
 Route::get('save_rating/id={id}&rating={r}&detail={t}','publicDetail@save_rating');
 Route::get('save_update_rating/id={id}&rating={r}&detail={t}','publicDetail@save_update_rating');
 
+// Route::get('count_rating_service/{idservice}','publicDetail@count_rating_service');
+
 
 
 // load addplace

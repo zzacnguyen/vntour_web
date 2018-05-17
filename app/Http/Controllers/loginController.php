@@ -110,7 +110,7 @@ class loginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('facebook')->user();
-        // dd($user);
+        dd($user);
         $social = usersModel::where('user_facebook_id',$user->id)->orWhere('username',$user->email)->first();
         if ($social) {
             Auth::login($social);
