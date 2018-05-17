@@ -66,9 +66,10 @@ class CMS_AddDataController extends Controller
         $place->pl_phone_number=$request->input('phonenumber');
         $place->pl_latitude=$request->input('vido');
         $place->pl_longitude=$request->input('kinhdo');
-        $place->id_ward=$request->input('ward');
+        // $place->id_ward=$request->input('ward');
+        $place->id_ward=1;
         $place->pl_status=0;  
-        $place->user_partner_id =1;
+        $place->user_id =1;
         if ($request->get('action') == 'save_close') {
             $place->save();
             return redirect('/lvtn-list-address')->with('message', "Hoàn tất, Đã thêm một địa điểm!");
@@ -112,7 +113,7 @@ class CMS_AddDataController extends Controller
         $vnt_services->tourist_places_id   = $id_place;
         $vnt_services->sv_counter_view=0;
         $vnt_services->sv_counter_point=0;
-        $vnt_services->user_tour_guide_id=$user_id;
+        $vnt_services->user_id=$user_id;
         $vnt_services->sv_website=$request->input('website');
         $vnt_services->sv_content=$request->input('content');
         $vnt_services->save();

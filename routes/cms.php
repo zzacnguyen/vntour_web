@@ -139,8 +139,7 @@
 	Route::get('edit-type-events/{id}', 'CMS_ModuleController@_GETVIEW_EDIT_EVENT_TYPES' )->name('_GETVIEW_EDIT_EVENT_TYPES');
 	Route::post('edit-type-events/{id}', 'CMS_EditDataController@EDIT_TYPES_EVENT' );
 
-
-
+	
 	
 
 

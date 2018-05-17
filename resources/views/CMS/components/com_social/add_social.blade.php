@@ -17,7 +17,7 @@
 </script>
 
 <div id="page-title">
-    <h2>Chỉnh sửa loại điểm</h2>
+    <h2>Thêm loại điểm</h2>
 
     <div id="theme-options" class="admin-options">
     <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
@@ -28,7 +28,7 @@
         <div class="col-md-7 col-md-offset-2">
             <div class="book-tour-container bg-success">
                 <div class="frm-heading">
-                CHỈNH SỬA ĐIỂM DỊCH VỤ
+                THÊM MẠNG XÃ HỘI MỚI
                 <span></span>
                 </div>
             </div>
@@ -38,27 +38,22 @@
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-12">
                         <label for="point_title" >Tiêu đề: </label>
-                        <input type="text" value="{{ $data[0]->point_title }}"  id="point_title" required  class="form-control" name="point_title" >
+                        <input type="text" value="{{ old('point_title') }}"  id="point_title" required  class="form-control" name="point_title" >
                     </div>
                     <div class="col-md-12">
                         <label for="point_description" >Mô tả: </label>
-                        <input type="text" value=" {{ $data[0]->point_description }}"  id="point_description" required  class="form-control" name="point_description" >
+                        <input type="text" value="{{ old('point_description') }}"  id="point_description" required  class="form-control" name="point_description" >
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-6">
                         <label for="point_rate" >Số điểm: </label>
-                        <input type="number" value="{{ $data[0]->point_rate }}"  id="point_rate" required  class="form-control" name="point_rate" >
+                        <input type="number" value="{{ old('point_rate') }}"  id="point_rate" required  class="form-control" name="point_rate" >
                     </div>
                     <div class="col-md-6">
                         <label for="point_date" >Ngày áp dụng: </label>
-                        <input type="text" class="form-control" name="point_date" placeholder="DD/MM/YYYY" required value="{{ $data[0]->point_date }}"  pattern="
-                        (?:30))|(?:(?:0[13578]|1[02])-31))/
-                        (?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])/
-                        (?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])
-                        " title="Enter a date in this format DD/MM/YYYY"/>
-                        
+                        <input type="date" value="{{ old('point_date') }}"  id="point_date" required  class="form-control" name="point_date" >
                     </div>
                 </div>
 
@@ -67,7 +62,11 @@
                     <div class="btn-group" role="group">
                         <button class="btn btn-info "  type="submit" name="action" value="save_close"><span class="glyph-icon icon-elusive-ok">Lưu và thoát</span></button>
                     </div>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-success " style="float: right; margin-bottom: 25px; " type="submit" name="action" value="save_and_add_point">Lưu và tiếp tục</button>    
+                    </div>
                 </div>
+                
             </form>
         </div>
         </div>

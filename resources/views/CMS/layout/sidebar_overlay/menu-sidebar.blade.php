@@ -24,7 +24,7 @@
             <div class="sidebar-submenu">
                 <ul>
                     <li><a href="{{ route('ALL_LIST_ADMIN') }}" title="Danh sách quản trị viên"><span>Quản trị viên</span></a></li>
-                    <li><a href="{{ route('ALL_LIST_MOD') }}" title="Moderater"><span>Moderater</span></a></li>
+                    <li><a href="{{ route('ALL_LIST_MOD') }}" title="Moderater"><span>Kiểm duyệt viên</span></a></li>
                     <li><a href="{{ route('ALL_LIST_PARTNER') }}" title="Danh sách cộng tác viên"><span>Cộng tác viên</span></a></li>
                     <li><a href="#" title="Checklist"><span>Doanh nghiệp</span></a></li>
                     <li><a href="{{ route('ALL_LIST_TOURGUIDE') }}" title="Checklist"><span>Hướng dẫn viên du lịch</span>
@@ -119,12 +119,6 @@
             <a href="{{ route('_GET_EVENT_TYPES') }}" title="Danh sách các loại hình sự kiện">
                 <i class="glyph-icon icon-pied-piper"></i>
                 <span>Danh mục loại hình sự kiện</span>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Pages">
-                <i class="glyph-icon icon-xing-square"></i>
-                <span>Danh mục sự kiện</span>
             </a>
         </li>
         <li>
