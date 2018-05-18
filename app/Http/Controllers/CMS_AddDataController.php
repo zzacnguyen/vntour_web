@@ -17,6 +17,7 @@ use App\Http\Requests\CheckAddTouristPlacesRequest;
 use App\Http\Requests\CheckAddServicesRequest;
 use App\Http\Requests\AddPointRequest;
 use App\Http\Requests\AddTypeEventRequest;
+use App\Http\Requests\AddSocialRequest;
 
 use App\taskModel;
 use DB;
@@ -31,6 +32,7 @@ use Carbon\Carbon;
 use App\entertainmentsModel;
 use App\pointModel;
 use App\typesModel;
+use App\SocialModel;
 
 class CMS_AddDataController extends Controller
 {
@@ -276,7 +278,31 @@ class CMS_AddDataController extends Controller
         {
             $type->save();
             $message = 'Hoàn tất, Đã thêm loại hình ' .$type_name.'!';
-            return redirect('/add-type-events')->with('message', $message);
+            return redirect('/lvtn-add-type-events')->with('message', $message);
+        }
+        else
+        {
+            return json_encode("status:500");
+        }
+    }
+
+    public function ADD_SOCIAL(AddSocialRequest $request)
+    {
+
+        $social = new SocialModel();
+        $social->social_name = $request->input('social_title');
+        $social->description = $request->input('social_description');
+        $social->enabled = 1;
+        $social_name  = $request->input('social_title');
+        if ($request->get('action') == 'save_close') {
+            $social->save();
+            return redirect()->route('_GETVIEW_LIST_SOCIAL')->with('message', "Hoàn tất, Đã thêm mạng xã hội ".$social_name  ."!");
+        } 
+        else if($request->get('action') == 'save_and_add')
+        {
+            $social->save();
+            $message = 'Hoàn tất, Đã thêm mạng xã hội ' .$social_name.'!';
+            return redirect('/lvtn-add-social')->with('message', $message);
         }
         else
         {

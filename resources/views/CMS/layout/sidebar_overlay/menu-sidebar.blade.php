@@ -122,7 +122,7 @@
             </a>
         </li>
         <li>
-            <a href="#" title="Pages">
+            <a href="{{ route('_GETVIEW_LIST_SOCIAL') }}" title="Danh sách các mạng xã hội">
                 <i class="glyph-icon icon-google-plus-square"></i>
                 <span>Danh mục mạng xã hội</span>
             </a>

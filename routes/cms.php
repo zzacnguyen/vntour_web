@@ -141,8 +141,9 @@
 	Route::post('lvtn-edit-type-events/{id}', 'CMS_EditDataController@EDIT_TYPES_EVENT' );
 
 	//DANH MỤC MẠNG XÃ HỘI
-	Route::get('lvtn-list-social', 'CMS_ModuleController@');
-	
+	Route::get('lvtn-list-social', 'CMS_ModuleController@_GETVIEW_LIST_SOCIAL')->name('_GETVIEW_LIST_SOCIAL');
+	Route::get('lvtn-add-social', 'CMS_ModuleController@_GETVIEW_ADD_SOCIAL')->name('_GETVIEW_ADD_SOCIAL');
+	Route::post('lvtn-add-social', 'CMS_AddDataController@ADD_SOCIAL');
 
 
 

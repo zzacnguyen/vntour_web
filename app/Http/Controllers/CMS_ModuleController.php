@@ -617,10 +617,28 @@ class CMS_ModuleController extends Controller
 
     public function _GETVIEW_LIST_SOCIAL ()
     {
-        $data = $this::_DISPLAY_LIST_SOCIAL();
-//        if(view()->exists('CMS.components.com_social'))
+       	$data = $this::_DISPLAY_LIST_SOCIAL();
+       	if(view()->exists('CMS.components.com_social.list_social'))
+       	{
+       		return view('CMS.components.com_social.list_social', ['data'=>$data]);	
+       	}
+       	else
+       	{
+       		return view('CMS.components.error');
+       	}
     }
 
+    public function _GETVIEW_ADD_SOCIAL()
+    {
+    	if(view()->exists('CMS.components.com_social.add_social'))
+       	{
+       		return view('CMS.components.com_social.add_social');	
+       	}
+       	else
+       	{
+       		return view('CMS.components.error');
+       	}
+    }
 
 
 }

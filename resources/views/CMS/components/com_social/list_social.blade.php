@@ -38,7 +38,7 @@
 
     <div id="page-title">
         <h2>Danh sách mạng xã hội <div style="float: right;">
-                <a href="{{ route('_GET_ADD_POINT') }}" class="btn btn-primary">Thêm mới</a>
+                <a href="{{ route('_GETVIEW_ADD_SOCIAL') }}" class="btn btn-primary">Thêm mới</a>
             </div></h2>
         {{-- <p>Dưới đây là dữ liệu tất cả địa điểm hiện có.</p> --}}
 
@@ -54,34 +54,34 @@
                 <table id="datatable-reorder" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-
                         <th>ID</th>
-                        <th>Tên điểm</th>
+                        <th>Tên mạng xã hội</th>
                         <th>Mô tả</th>
-                        <th>Số điểm</th>
-                        <th>Ngày áp dụng</th>
+                        <th>Trạng thái</th>
                     </tr>
                     </thead>
 
                     <tfoot>
                     <tr>
                         <th>ID</th>
-                        <th>Tiêu đề</th>
+                        <th>Tên mạng xã hội</th>
                         <th>Mô tả</th>
-                        <th>Số điểm</th>
-                        <th>Ngày áp dụng</th>
+                        <th>Trạng thái</th>
                     </tr>
                     </tfoot>
                     <tbody>
-
-
                     @foreach($data as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td><a href="{{ route('_GET_EDIT_POINT', $item->id ) }}">{{ $item->point_title }}</a></td>
-                            <td>{{ $item->point_description }}</td>
-                            <td>{{ $item->point_rate }}</td>
-                            <td>{{ $item->point_date  }}</td>
+                            <td><a href="{{ route('_GET_EDIT_POINT', $item->id ) }}">{{ $item->social_name }}</a></td>
+                            <td>{{ $item->description }}</td>
+                            <td><?php if($item->enabled==0)
+                                echo "Không hiển thị";
+                                else{
+                                    echo "Hiển thị";
+                                }
+                            ?>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

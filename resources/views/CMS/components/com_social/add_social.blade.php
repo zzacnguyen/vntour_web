@@ -37,33 +37,21 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <div class="col-md-12">
-                        <label for="point_title" >Tiêu đề: </label>
-                        <input type="text" value="{{ old('point_title') }}"  id="point_title" required  class="form-control" name="point_title" >
+                        <label for="social_title" >Tiêu đề: </label>
+                        <input type="text" value="{{ old('point_title') }}"  id="social_title" required  class="form-control" name="social_title" >
                     </div>
                     <div class="col-md-12">
-                        <label for="point_description" >Mô tả: </label>
-                        <input type="text" value="{{ old('point_description') }}"  id="point_description" required  class="form-control" name="point_description" >
+                        <label for="social_description" >Mô tả: </label>
+                        <textarea  required name="social_description">{{ old('social_description') }}</textarea>
                     </div>
                 </div>
-                <div class="clearfix"></div>
-                <div class="col-md-12 form-group" style="padding-top: 20px" >
-                    <div class="col-md-6">
-                        <label for="point_rate" >Số điểm: </label>
-                        <input type="number" value="{{ old('point_rate') }}"  id="point_rate" required  class="form-control" name="point_rate" >
-                    </div>
-                    <div class="col-md-6">
-                        <label for="point_date" >Ngày áp dụng: </label>
-                        <input type="date" value="{{ old('point_date') }}"  id="point_date" required  class="form-control" name="point_date" >
-                    </div>
-                </div>
-
                 <div class="clearfix"></div>
                 <div class="btn-toolbar" role="toolbar"   style="text-align: center;" >
                     <div class="btn-group" role="group">
                         <button class="btn btn-info "  type="submit" name="action" value="save_close"><span class="glyph-icon icon-elusive-ok">Lưu và thoát</span></button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button class="btn btn-success " style="float: right; margin-bottom: 25px; " type="submit" name="action" value="save_and_add_point">Lưu và tiếp tục</button>    
+                        <button class="btn btn-success " style="float: right; margin-bottom: 25px; " type="submit" name="action" value="save_and_add">Lưu và tiếp tục</button>    
                     </div>
                 </div>
                 
