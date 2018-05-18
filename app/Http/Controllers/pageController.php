@@ -31,7 +31,7 @@ class pageController extends Controller
         $services_eat     = $this::gettypeService(1,8);
         $services_hotel   = $this::gettypeService(2,6);
         $services_tran    = $this::gettypeService(3,8);
-        // dd($services_tran);
+        // dd($services_seees_tran);
         $services_see     = $this::gettypeService(4,8);
         $services_enter   = $this::gettypeService(5,8);
 
