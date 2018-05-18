@@ -24,7 +24,7 @@
 		<div class="container">
 			<div class="content">
 				<div class="row">
-					<div class="col-md-3 ">
+					{{-- <div class="col-md-3 ">
 						<div class="left-user">
 							<div class="avatar">
 								<img src="public/resource/images/avatar1.jpg" alt="">
@@ -38,8 +38,8 @@
 								</ul>
 							</div>
 						</div>	
-					</div>
-					<div class="col-md-9">
+					</div> --}}
+					<div class="col-md-12">
 						<div class="right-user" style="padding: 5px 15px;">
 							<div class="col-md-12">
 								<h4 style="padding:10px;" class="text-center"><b>Danh sách địa điểm bạn đã thêm</b></h4>
@@ -72,8 +72,10 @@
 								      		@endif
 								      </td>
 								      <td class="text-center">
-												<a class="btn btn-sm btn-info" href="{{route('edit_placeuser',$val->id)}}"><i class="far fa-edit"></i> Chi tiết</a>
-								      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
+											<a class="btn btn-sm btn-info" href="{{route('edit_placeuser',$val->id)}}">
+												<i class="far fa-edit"></i> Chi tiết
+											</a>
+								      		<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
 								      </td>
 									</tr>
 								@endforeach

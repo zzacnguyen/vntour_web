@@ -30,9 +30,14 @@ class publicDetail extends Controller
         $checklogin = $this::check_Login();
 
         $count_rating = $this::count_rating_service($id);
-        foreach ($count_rating as $r) {
-            $countRating = $r->num_rating;
+        // dd($count_rating);
+        if ($count_rating != null) {
+            foreach ($count_rating as $r) {
+                $countRating = $r->num_rating;
+            }
         }
+        else{$countRating = 0;}
+            
         // return $count_rating;
         // return $checklogin;
         if ($checklogin != "null") {
@@ -63,7 +68,9 @@ class publicDetail extends Controller
         // dd($sv);
         // return $sv->city_id;
         $sv_lancan = $this::dichvu_lancan($sv->city_id,$id,20);
-        $rating = $this::getRating($id);
+        
+        $rating_data = $this::getRating($id);
+        $rating = $this::paginate($rating_data,1,10);
         // dd($rating);
         $checklogin = $this::check_Login();
 
@@ -75,6 +82,15 @@ class publicDetail extends Controller
         $save_search = $this::save_user_search($id);
         // return $save_search;
         // return $checklogin;
+        $count_rating = $this::count_rating_service($id);
+        // dd($count_rating);
+        if ($count_rating != null) {
+            foreach ($count_rating as $r) {
+                $countRating = $r->num_rating;
+            }
+        }
+        else{$countRating = 0;}
+
         if ($checklogin != "null") {
             $checkUserRating = $this::checkUserRating($id,$checklogin);
             if (count($checkUserRating) == 0) {
@@ -89,7 +105,7 @@ class publicDetail extends Controller
             return view('VietNamTour.404');
         }
         else{
-            return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view'));
+            return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating'));
         }
     }
 
@@ -481,6 +497,7 @@ class publicDetail extends Controller
         ]);
         $response = $client->request('GET',"count-rating-service/{$idservice}");
 
+        // dd(json_decode($response->getBody()->getContents()));
         return json_decode($response->getBody()->getContents());
     }
 
@@ -533,5 +550,9 @@ class publicDetail extends Controller
             
         return $result_paginate;
 
+    }
+
+    public function login_detail($id,$type){
+        return view('VietNamTour.content.login_detail');
     }
 }

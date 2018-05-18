@@ -104,6 +104,12 @@
 	    line-height: 10px;
 	    background-color: #352f2f82;
 	}
+
+	.btn-modal{
+		padding: 10px 20px;
+    	border-radius: 0;
+    	background-color: #7482b3;
+	}
 </style>
 
 
@@ -151,7 +157,10 @@
 							</p>
 							<h4 style="font-size: 20px;" id="sv_name">{{$sv->sv_name}}</h4> {{-- ten dich vu --}}
 							<div class="star">
-								<span>{{$sv->sv_rating}}</span> <i class="fas fa-star"></i>
+								@if($sv->sv_rating > 0)
+									<span>{{$sv->sv_rating}}</span> <i class="fas fa-star"></i>
+								@endif
+									
 								
 								<span style="color: black" id="loaihinhdichvu">
 									@if($sv->sv_types == "1")
@@ -159,7 +168,7 @@
 									@elseif($sv->sv_types == "2")
 										- Khách sạn
 									@elseif($sv->sv_types == "3")
-										- Phương tiện
+										 Phương tiện
 									@elseif($sv->sv_types == "4")
 										- Tham quan
 									@else
@@ -306,7 +315,7 @@
 										                @if($checklogin == "null")
 										                	<div class="ibox-content">
 										                		Bạn cần đăng nhập để đánh giá dịch vụ này - 
-										                		<a class="btn  btn-sm btn-outline-primary" href="{{route('loginW')}}">Đăng nhập ngay</a>
+										                		<a class="btn  btn-sm btn-outline-primary" href="login_detail/{{$sv->sv_id}}&{{$sv->sv_types}}">Đăng nhập ngay</a>
 										                	</div>
 										                @else
 										                	@if($checkUserRating == null)
@@ -316,7 +325,7 @@
 																<!-- Modal -->
 																<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 																  <div class="modal-dialog modal-dialog-centered" role="document">
-																    <div class="modal-content">
+																    <div class="modal-content" style="border-radius: 0;">
 																      <div class="modal-header">
 																        <h5 class="modal-title" id="exampleModalLongTitle">Đánh giá</h5>
 																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -351,10 +360,10 @@
 																		    
 																		  </div>
 																      </div>
-																      <div class="modal-footer">
-																        <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Thoát</button>
+																      <div class="modal-footer" style="height: 50px;">
+																        {{-- <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Thoát</button> --}}
 
-																        <button id="btnsave" type="button" class="btn btn-primary btn-sm">Đánh giá</button>
+																        <button id="btnsave" type="button" class="btn btn-primary btn-sm" style="padding: 10px 20px;border-radius: 0;background-color: #00a680; margin-bottom: 0;">Đánh giá</button>
 																      </div>
 																    </div>
 																  </div>
@@ -384,9 +393,9 @@
 									                                </div>
 									                            </div>
 
-									                            <div class="modal fade" id="suadanhgia" tabindex="-1" role="dialog" aria-labelledby="suadanhgia" aria-hidden="true">
+									                            <div class="modal fade" id="suadanhgia" tabindex="-1" role="dialog" aria-labelledby="suadanhgia" aria-hidden="true" style="border-radius: 0;">
 																  <div class="modal-dialog modal-dialog-centered" role="document">
-																    <div class="modal-content">
+																    <div class="modal-content" style="border-radius: 0;">
 																      <div class="modal-header">
 																        <h5 class="modal-title" id="exampleModalLongTitle">Đánh giá</h5>
 																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -421,10 +430,11 @@
 																		    
 																		  </div>
 																      </div>
-																      <div class="modal-footer">
-																        <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Thoát</button>
+																      <div class="modal-footer" style="height:50px;">
+																        {{-- <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Thoát</button> --}}
 
-																        <button id="btnsave2" type="button" class="btn btn-primary btn-sm">Đánh giá</button>
+																        <button id="btnsave2" type="button" class="btn btn-primary btn-sm" style="padding: 10px 20px;border-radius: 0;background-color: #00a680; margin-bottom: 0;">Đánh giá
+																        </button>
 																      </div>
 																    </div>
 																  </div>
@@ -468,8 +478,7 @@
 										                                    </div>
 										                                </div>
 										                                @endforeach
-										                            @else
-										                            	<h5>Chưa có đánh giá về dịch vụ này</h5>
+										                            
 										                            @endif
 										                            </div>
 										                        </div>

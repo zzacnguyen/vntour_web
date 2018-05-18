@@ -232,10 +232,13 @@
 								      		@endif
 								      	</td>
 								      	<td class="text-center">
-											<a href="{{route('edit_service_user',$val->sv_id)}}" class="btn btn-sm btn-info">
+											<a href="{{route('edit_service_user',$val->sv_id)}}" class="btn btn-sm btn-info" title="Chi tiết dịch vụ">
 												<i class="far fa-edit"></i> Chi tiết
 											</a>
-								      	<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
+											<a href="detail/id={{$val->sv_id}}&type={{$val->sv_type}}" class="btn btn-success btn-sm" title="Trang chi tiết">
+												<i class="fas fa-file-alt"></i>
+											</a>
+								      		{{-- <button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button> --}}
 								      </td>
 									</tr>
 									@endforeach
