@@ -606,5 +606,22 @@ class CMS_ModuleController extends Controller
 		}
 		// return $data;
 	}
+
+	public  function _DISPLAY_LIST_SOCIAL()
+    {
+        $data = DB::table('vnt_social')
+            ->select('id', 'social_name', 'description', 'enabled')
+            ->paginate(10);
+        return $data;
+    }
+
+    public function _GETVIEW_LIST_SOCIAL ()
+    {
+        $data = $this::_DISPLAY_LIST_SOCIAL();
+//        if(view()->exists('CMS.components.com_social'))
+    }
+
+
+
 }
  
