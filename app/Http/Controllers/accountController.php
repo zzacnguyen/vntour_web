@@ -329,18 +329,36 @@ class accountController extends Controller
 
     public function get_tripchudule()
     {
-        $danhsach = $this::getListTripSchedule();
+        if (Session::has('user_info')) {
+            $user_id = Session::get('user_info')->id;
+        }
+        else{
+            return "Bạn cần đăng nhập";
+        }
+
+        $danhsach_CKT = $this::get_lichtrinh_type($user_id,1);
+        $danhsach_KT = $this::get_lichtrinh_type($user_id,2);
+        // dd($danhsach_KT);
         $chitiet = null;
         $lichtrinh = null;
         $id_lichtrinh = null;
         $dv = $this::get_service_lichtrinh();
         // dd($danhsach);
-        return view('VietNamTour.content.user.tripschedule',compact('danhsach','chitiet','lichtrinh','dv','id_lichtrinh'));
+        return view('VietNamTour.content.user.tripschedule',compact('danhsach_CKT','danhsach_KT','chitiet','lichtrinh','dv','id_lichtrinh'));
     }
 
     public function get_tripchudule_detail($idTripSchedule)
     {
-        $danhsach = $this::getListTripSchedule();
+        if (Session::has('user_info')) {
+            $user_id = Session::get('user_info')->id;
+        }
+        else{
+            return "Bạn cần đăng nhập";
+        }
+
+        $danhsach_CKT = $this::get_lichtrinh_type($user_id,1);
+        $danhsach_KT = $this::get_lichtrinh_type($user_id,2);
+
         $chitiet = $this::getListDetaiTripSchedule($idTripSchedule);
         $lichtrinh = $this::getListOneTripSchedule($idTripSchedule);
         if ($lichtrinh != null) {
@@ -354,7 +372,7 @@ class accountController extends Controller
         }
         $dv = $this::get_service_lichtrinh();
         // dd($chitiet);
-        return view('VietNamTour.content.user.tripschedule',compact('danhsach','chitiet','lichtrinh','dv','id_lichtrinh'));
+        return view('VietNamTour.content.user.tripschedule',compact('danhsach_CKT','danhsach_KT','chitiet','lichtrinh','dv','id_lichtrinh'));
     }
 
 
@@ -458,9 +476,6 @@ class accountController extends Controller
     public function saveDetailTripSchedule(Request $request,$idlichtrinh)
     {
         $user_id = Session::get('user_info')->id;
-        //
-
-        // return $request->name;
 
         $client = new Client([
                     // Base URI is used with relative requests
@@ -468,12 +483,10 @@ class accountController extends Controller
                     // You can set any number of default request options.
                     'timeout'  => 20.0,
                 ]);
-        $response = $client->request('POST', 'post-schedule-details/schedule='.$idlichtrinh.'', [
-
-                    'form_params' => [
-                        'service_id' => $request->service_id
-                    ]
-                ])->getBody();
+        $response = $client->request('POST', 'post-schedule-details/schedule='.$idlichtrinh.'', 
+            [
+                'form_params' => ['service_id' => $request->service_id]
+            ])->getBody();
 
         $result = json_decode($response->getContents());
         if ($result == "status:200") {
@@ -483,6 +496,45 @@ class accountController extends Controller
         {
             return "Lỗi không thêm được!";
         }
+    }
+
+    public function saveTripSchedule_array(Request $request)
+    {
+        $user_id = Session::get('user_info')->id;
+        $lichtrinh = $request->list;
+        $detail_lichtrinh = $request->listDeail;
+        $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://vntourweb/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+        // them lich trinh
+        $responseList = $client->request('POST', 'post-schedule/user='.$user_id.'', 
+            [
+                'form_params' => [
+                    'trip_name' => $lichtrinh['trip_name'],
+                    'trip_startdate' => $lichtrinh['trip_startdate'],
+                    'trip_enddate'=>$lichtrinh['trip_enddate'],
+                ]
+            ])->getBody();
+
+        $result_List = json_decode($responseList->getContents());
+        if($result_List == "status:200"){
+            if ($detail_lichtrinh != null) {
+                $lamlist = $client->request('GET',"get_idtripschedule_web");
+
+                $id_lichtrinh = json_decode($lamlist->getBody()->getContents());
+                for ($i=0; $i < count($detail_lichtrinh) ; $i++) { 
+                    $response = $client->request('POST', 'post-schedule-details/schedule='.$id_lichtrinh.'', 
+                        [
+                            'form_params' => ['service_id' => $detail_lichtrinh[$i]]
+                        ])->getBody();
+                }
+            }
+        }
+
+        return 1;
     }
 
 
@@ -984,6 +1036,33 @@ class accountController extends Controller
             ]);
 
         $response = $client->request('GET',"get-service-user-max-ating-like/{$type}&{$user_id}");
+        return json_decode($response->getBody()->getContents());
+    }
+
+
+    public function get_lichtrinh_type($user_id,$type){
+        //getListTripSchedule_web_type/{userid}&type={type}
+        // $user_id = Session::get('user_info')->id;
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://vntourweb/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+
+        $response = $client->request('GET',"getListTripSchedule_web_type/{$user_id}&type={$type}");
+        return json_decode($response->getBody()->getContents());
+    }
+
+    public function searchServices_All_lichtrinh($keyword){
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://vntourweb/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+
+        $response = $client->request('GET',"searchServices_All_lichtrinh/{$keyword}");
         return json_decode($response->getBody()->getContents());
     }
 

@@ -10,29 +10,118 @@
 <link rel="stylesheet" href="public/resource/css/bootstrap.css">
 <link rel="stylesheet" href="public/resource/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="public/resource/css/select2.min.css">
-	
+<link rel="stylesheet" href="public/resource/css/tripSchedule.css">
+
 	<style type="text/css">
 		.table tbody tr:nth-child(2n+1) {
 		    background-color: white;
 		}
-	</style>
 
+		ul.tabs {
+			margin: 0;
+			padding: 0;
+			float: left;
+			list-style: none;
+			height: 32px;
+			border-bottom: 1px solid #333;
+			width: 100%;
+		}
+
+		ul.tabs li {
+			float: left;
+			margin: 0;
+			cursor: pointer;
+			padding: 0px 21px;
+			height: 31px;
+			line-height: 31px;
+			border-top: 1px solid #333;
+			border-left: 1px solid #333;
+			border-bottom: 1px solid #333;
+			background-color: #666;
+			color: #ccc;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.tab_last { border-right: 1px solid #333; }
+
+		ul.tabs li:hover {
+			background-color: #ccc;
+			color: #333;
+		}
+
+		ul.tabs li.active {
+			background-color: #fff;
+			color: #333;
+			border-bottom: 1px solid #fff;
+			display: block;
+		}
+
+		.tab_container {
+			/*border: 1px solid #ddd;*/
+			border-top: none;
+			clear: both;
+			float: left;
+			width: 100%;
+			background: #fff;
+			overflow: auto;
+		}
+
+		.tab_content {
+			display: none;
+		}
+
+		.tab_drawer_heading { display: none; }
+
+		@media screen and (max-width: 480px) {
+			.tabs {
+				display: none;
+			}
+			.tab_drawer_heading {
+				background-color: #ccc;
+				color: #fff;
+				border-top: 1px solid #333;
+				margin: 0;
+				padding: 5px 20px;
+				display: block;
+				cursor: pointer;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			.d_active {
+				background-color: #666;
+				color: #fff;
+			}
+		}
+
+		#list-detail{
+			display: none;
+		    min-height: 80px;
+		    background-color: white;
+		    border: 1px solid #ddd;
+		    position: absolute;
+		    top: 45px;
+		    width: 92%;
+		    z-index: 4;
+		}
+	</style>
+<body>
 	<section class="content-info">
 		<div class="container">
 			<div class="content">
 				<div class="row">
 					<div class="col-md-3 ">
-						<div class="left-user">
+						{{-- <div class="left-user">
 							<div class="avatar">
 								<h5 class="text-center">Danh sách lịch trình</h5>
 							</div>
 							<div class="options">
 								<ul>
 									@if($danhsach->data == null)
-										{{-- <li class="active">
-											<label>Chưa có lịch trình</label> - 
-											<a href="" style="color: red !important;width: auto;">Tạo ngay</a>
-										</li> --}}
 										<li class="">
 											<a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> Thêm mới lịch trình</a>
 										</li>
@@ -55,34 +144,158 @@
 									@endif
 								</ul>
 							</div>
-						</div>	
+						</div>
+						<br> --}}
+						<div class="left-user" style="height: 500px;">
+							<ul class="tabs">
+								  <li class="active text-center" rel="tab1">KT</li>
+								  <li class="text-center" rel="tab2" style="border-right: 1px solid black;">CKT</li>
+								  <li class="text-center"  style="background-color: white;border:none;">
+								  		<a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> <i class="fas fa-plus"></i></a>
+								  </li>
+							</ul>
+							<div class="tab_container">
+							  	<h3 class="d_active tab_drawer_heading" rel="tab1">Tab 1</h3>
+							  	<div id="tab1" class="tab_content">
+								  	{{-- <h2>Tab 1 content</h2> --}}
+								    <div class="options">
+										<ul>
+											@if($danhsach_CKT == null)
+												{{-- <li class="">
+													<a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> Thêm mới lịch trình</a>
+												</li> --}}
+											@else
+												{{-- <li class="">
+													<a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> Thêm mới lịch trình</a>
+												</li> --}}
+												@foreach($danhsach_CKT as $d)
+													@if($d->id == $id_lichtrinh)
+														<li class="active">
+															<a  href="get_tripchudule_detail/{{$d->id}}"> {{$d->trip_name}}</a>
+															<span class="lam-lich badge badge-success">Còn 3 ngày</span>
+														</li>
+													@else
+														<li class="">
+															<a href="get_tripchudule_detail/{{$d->id}}"> {{$d->trip_name}}</a>
+														</li>
+													@endif
+
+												@endforeach
+											@endif
+										</ul>
+									</div>
+							  	</div>
+								  <!-- #tab1 -->
+
+							  	<h3 class="tab_drawer_heading" rel="tab2">Tab 2</h3>
+							  	<div id="tab2" class="tab_content">
+								  {{-- <h2>Tab 2 content</h2> --}}
+								    <div class="options">
+										<ul>
+											@if($danhsach_KT == null)
+												{{-- <li class="">
+													<a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> Thêm mới lịch trình</a>
+												</li> --}}
+											@else
+												{{-- <li class="">
+													<a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> Thêm mới lịch trình</a>
+												</li> --}}
+												@foreach($danhsach_KT as $d)
+													@if($d->id == $id_lichtrinh)
+														<li class="active">
+															<a  href="get_tripchudule_detail/{{$d->id}}"> {{$d->trip_name}}</a>
+														</li>
+													@else
+														<li class="">
+															<a href="get_tripchudule_detail/{{$d->id}}"> {{$d->trip_name}}</a>
+														</li>
+													@endif
+
+												@endforeach
+											@endif
+										</ul>
+									</div>
+								  </div>
+								  <!-- #tab2 -->
+							</div>
+								<!-- .tab_container -->
+						</div>
+					</div>			
 
 						<div id="myModal" class="modal fade" role="dialog" style="margin-top: 100px;">
-						  <div class="modal-dialog">
+						  <div class="modal-dialog modal-lg">
 						    <!-- Modal content-->
-						    <div class="modal-content">
+						    <div class="modal-content" style="border-radius: 0;">
 					    	<form action="add_tripchudule" method="post">
 						      <div class="modal-header">
+						      	<h4 class="modal-title">Thêm mới lịch trình</h4>
 						        <button type="button" class="close" data-dismiss="modal">&times;</button>
-						        <h4 class="modal-title">Thêm mới lịch trình</h4>
 						      </div>
 						      <div class="modal-body">
-									  <div class="form-group">
-									    <label for="exampleInputEmail1">Tên lịch trình</label>
-									    <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Tên lịch trình" required="required" name="trip_name">
-									  </div>
-									  <div class="form-group">
-									    <label for="exampleInputPassword1">Ngày bắt đầu</label>
-									    <input type="date" class="form-control" id="" placeholder="Ngày bắt đầu" required="required" name="trip_startdate">
-									  </div>
-									  <div class="form-group">
-									    <label for="exampleInputPassword1">Ngày kết thúc</label>
-									    <input type="date" class="form-control" id="" placeholder="Ngày kết thúc" required="required" name="trip_enddate">
-									  </div>
+
+							      	<div class="row">
+							      		<div class="col-md-6" style="border-right: 1px solid #ddd;">
+							      			<div class="form-group">
+											    <label class="">Tên lịch trình</label>
+											    <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Tên lịch trình" required="required" name="trip_name">
+										    	
+										  	</div>
+											  <div class="form-group">
+											    <label >Ngày bắt đầu</label>
+											    <input type="date" class="form-control" id="" placeholder="Ngày bắt đầu" required="required" name="trip_startdate">
+											  </div>
+											  <div class="form-group">
+											    <label >Ngày kết thúc</label>
+											    <input type="date" class="form-control datepicker" id="" placeholder="Ngày kết thúc" required="required" name="trip_enddate">
+
+											  </div>
+							      		</div>
+							      		<div class="col-md-6">
+							      			<div class="form-group">
+											    <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Nhập tên để chọn dịch vụ" required="required" id="search-schedule" style="position: relative;">
+										    	
+										  	</div>
+										  	<div id="list-detail">
+										  		<ul id="list-serach-sv">
+										  			<li style="position: relative;" data-id="1" class="chon-sv">
+										  				<img src="public/resource/images/avatar1.jpg" alt="" style="height: 50px;width: 50px;">
+										  				<div class="text-lam">
+										  					<span><b>Cafe Chat</b></span><br>
+										  					<span class="text-con">Can Thơ</span>
+										  				</div>
+										  				<span class="type-sv badge badge-success">Ăn uống</span>
+										  			</li>
+										  			<li style="position: relative;" data-id="1" class="chon-sv">
+										  				<img src="public/resource/images/avatar1.jpg" alt="" style="height: 50px;width: 50px;">
+										  				<div class="text-lam">
+										  					<span><b>Cafe Chat</b></span><br>
+										  					<span class="text-con">Can Thơ</span>
+										  				</div>
+										  				<span class="type-sv badge badge-success">Ăn uống</span>
+										  			</li>
+										  		</ul>
+										  	</div>
+
+										  	<div id="danh-sach">
+										  		<ul id="myUL">
+											  		{{-- <li style="position: relative; display: inline-flex;" data-id="1" class="">
+										  				<img src="public/resource/images/avatar1.jpg" alt="" style="height: 50px;width: 50px;">
+										  				<div class="text-lam">
+										  					<span><b>Cafe Chat</b></span><br>
+										  					<span class="text-con">Can Thơ</span>
+										  				</div>
+										  				<span style="position: absolute;" class="type-sv badge badge-success">Ăn uống</span>
+										  				<span class="xoaxoa"><i class="fas fa-times"></i></span>
+									  				</li> --}}
+												</ul>
+										  	</div>
+							      		</div>
+							      	</div>
+									  
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        <button type="submit" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;">Thêm</button>
+							        <button type="button" id="addLichtrinh" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;">Thêm</button>
 						      </div>
 					      	</form>
 						    </div>
@@ -90,8 +303,6 @@
 						  </div>
 						</div>
 
-
-					</div>
 					<div class="col-md-9">
 						<div class="right-user" style="padding: 5px 15px;">
 							<div class="col-md-12">
@@ -206,7 +417,7 @@
 	</section>
 
 
-
+</body>
 <script>
 $(document).ready(function(){
     $("#myBtn").click(function(){
@@ -230,7 +441,58 @@ $(document).ready(function(){
 	{{-- <script type="text/javascript" src="public/resource/js/jquery-3.3.1.min.js"></script> --}}
 	<script type="text/javascript" src="public/resource/js/popper.js"></script>
 	<script type="text/javascript" src="public/resource/js/bootstrap.js"></script>
+	<script type="text/javascript" src="public/resource/js/p/tripSchule.js"></script>
 	{{-- <script type="text/javascript" src="public/resource/js/dataTables.bootstrap.min.js"></script> --}}
+	
+	<script type="text/javascript">
+		 $(".tab_content").hide();
+	    $(".tab_content:first").show();
 
+	  /* if in tab mode */
+	    $("ul.tabs li").click(function() {
+			
+	      $(".tab_content").hide();
+	      var activeTab = $(this).attr("rel"); 
+	      $("#"+activeTab).fadeIn();		
+			
+	      $("ul.tabs li").removeClass("active");
+	      $(this).addClass("active");
+
+		  $(".tab_drawer_heading").removeClass("d_active");
+		  $(".tab_drawer_heading[rel^='"+activeTab+"']").addClass("d_active");
+		  
+	    });
+		/* if in drawer mode */
+		$(".tab_drawer_heading").click(function() {
+	      
+	      $(".tab_content").hide();
+	      var d_activeTab = $(this).attr("rel"); 
+	      $("#"+d_activeTab).fadeIn();
+		  
+		  $(".tab_drawer_heading").removeClass("d_active");
+	      $(this).addClass("d_active");
+		  
+		  $("ul.tabs li").removeClass("active");
+		  $("ul.tabs li[rel^='"+d_activeTab+"']").addClass("active");
+	    });
+		
+		
+		/* Extra class "tab_last" 
+		   to add border to right side
+		   of last tab */
+		$('ul.tabs li').last().addClass("tab_last");
+	
+	</script>
+	<script type="text/javascript">
+		// document.addEventListener("DOMContentLoaded",function () 
+		// {
+		// 	var clickUser = document.getElementById('list-detail');
+		// 	window.onclick = function(event) 
+		// 	{
+		// 		if (event.target != clickUser) { $('#list-detail').css('display','none');}
+		// 	}
+		// })
+			
+	</script>
 	
 @include('VietNamTour.header-footer.footer')

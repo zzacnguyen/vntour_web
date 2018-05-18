@@ -204,6 +204,9 @@ Route::post('add_tripchudule','accountController@saveTripSchedule');
 Route::post('add_detailtripchudule/{id}','accountController@saveDetailTripSchedule');
 
 Route::get('schedule-delete/{id}','accountController@DeleteDetailTripSchedule');
+Route::get('schedule-search-ervices/{key}','accountController@searchServices_All_lichtrinh');
+Route::get('save-trip-schedule-array','accountController@saveTripSchedule_array');
+
 
 
 //get con search

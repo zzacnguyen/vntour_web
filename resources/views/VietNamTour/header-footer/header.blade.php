@@ -408,7 +408,7 @@
 															</a>
 														</li>
 														<li style="height: 27px;">
-															<a href="" class="a-content-nofi">
+															<a href="{{route('get_tripchudule')}}" class="a-content-nofi">
 																<p class="text-nofi" style="height: auto;width: auto;">
 																	<i class="fas fa-archive"></i> 
 																	Lịch trình
