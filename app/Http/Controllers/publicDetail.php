@@ -24,11 +24,16 @@ class publicDetail extends Controller
 
         $sv_top_view = $this::get_top_view_service(15);
 
-        $rating = $this::getRating($id);
+        $rating_data = $this::getRating($id);
+        $rating = $this::paginate($rating_data,1,10);
         // dd($rating);
         $checklogin = $this::check_Login();
 
         $count_rating = $this::count_rating_service($id);
+        foreach ($count_rating as $r) {
+            $countRating = $r->num_rating;
+        }
+        // return $count_rating;
         // return $checklogin;
         if ($checklogin != "null") {
             $checkUserRating = $this::checkUserRating($id,$checklogin);
@@ -44,7 +49,7 @@ class publicDetail extends Controller
     		return view('VietNamTour.404');
     	}
     	else{
-    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','count_rating'));
+    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating'));
     	}
     }
 
@@ -340,12 +345,15 @@ class publicDetail extends Controller
     {
         // $result = DB::select("SELECT vr_title, vr_ratings_details,vr_rating,user_id,service_id,created_at,username FROM `vnt_visitor_ratings` AS r INNER JOIN vnt_user AS i ON r.user_id = i.user_id WHERE r.service_id = '$idservice'");
 
-        $result = DB::table('vnt_visitor_ratings')
-                    ->join('vnt_user','vnt_visitor_ratings.user_id','=','vnt_user.user_id')
-                    ->leftjoin('vnt_contact_info','vnt_visitor_ratings.user_id','=','vnt_contact_info.user_id')
-                    ->select('vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
-                    ->where('service_id',$idservice)->get();
-        return $result;
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://vntourweb/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 5.0,
+        ]);
+        $response = $client->request('GET',"getRating/{$idservice}");
+
+        return json_decode($response->getBody()->getContents());
     }
 
     public function check_Login()
@@ -361,46 +369,43 @@ class publicDetail extends Controller
 
     public function checkUserRating($idservice,$iduser)
     {
-        $result = DB::table('vnt_visitor_ratings')
-                    ->join('vnt_user','vnt_visitor_ratings.user_id','=','vnt_user.user_id')
-                    ->leftjoin('vnt_contact_info','vnt_visitor_ratings.user_id','=','vnt_contact_info.user_id')
-                    ->select('vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
-                    ->where('service_id',$idservice)
-                    ->where('vnt_visitor_ratings.user_id',$iduser)
-                    ->orderBy('vnt_visitor_ratings.created_at','desc')
-                    ->limit(10)
-                    ->get();
-        return $result;
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://vntourweb/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 5.0,
+        ]);
+        $response = $client->request('GET',"checkUserRating/{$idservice}&user_id={$iduser}");
+
+        return json_decode($response->getBody()->getContents());
     }
 
     public function save_rating($id_service, $rating, $detail)
     {
-        $ra = (int)$rating;
         $user_id = $this::check_Login();
-        $rating = new ratingsModel();
-        $rating->vr_title = "d";
-        $rating->vr_ratings_details = $detail;
-        $rating->vr_rating = $ra;
-        $rating->user_id = $user_id;
-        $rating->service_id = $id_service;
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://vntourweb/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 15.0,
+        ]);
+        $response = $client->request('GET',"save_rating/id={$id_service}&rating={$rating}&detail={$detail}&user={$user_id}");
 
-        $mytime = Carbon\Carbon::now();
-        $rating->created_at = $mytime->toDateTimeString();
-
-        $rating->save();
-
-        return 1;
+        return json_decode($response->getBody()->getContents());
     }
 
     public function save_update_rating($id_service, $rating, $detail)
     {
         $user_id = $this::check_Login();
-        $mytime = Carbon\Carbon::now();
-        DB::table('vnt_visitor_ratings')
-            ->where('user_id', $user_id)
-            ->where('service_id', $id_service)
-            ->update(['vr_rating' => $rating, 'vr_ratings_details' => $detail,'created_at' => $mytime->toDateTimeString()]);
-        return 1;
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://vntourweb/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 15.0,
+        ]);
+        $response = $client->request('GET',"save_update_rating/id={$id_service}&rating={$rating}&detail={$detail}&user={$user_id}");
+
+        return json_decode($response->getBody()->getContents());
     }
 
     public function ThemVaCapNhatLike($idservice)
@@ -477,5 +482,56 @@ class publicDetail extends Controller
         $response = $client->request('GET',"count-rating-service/{$idservice}");
 
         return json_decode($response->getBody()->getContents());
+    }
+
+
+    public function paginate_rating($idservice,$page,$limit){
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://vntourweb/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 5.0,
+        ]);
+        $response = $client->request('GET',"getRating/{$idservice}");
+
+        $data = json_decode($response->getBody()->getContents());
+        $pa = $this::paginate($data,$page,$limit);
+        return $pa;
+    }
+
+    public function paginate($data, $page,$limit)
+    {
+        // data du lieu de phan trang
+        // page trang hien tai
+        // limit hien thi so ket qua moi trang
+        // bat dau tu phan tu nao
+
+        // dd($data);
+        if ($data == null) {
+            $result_paginate['data'] = null;
+            $result_paginate['total_page'] = 0;
+            $result_paginate['current_page'] = 0;
+            $result_paginate['limit'] = $limit;
+        }
+        else{
+            $current_page  = $page;
+            $total_records = count($data); // tong so item;
+
+            $total_page    = ceil($total_records/$limit);
+
+            if ($current_page > $total_page) { $current_page = $total_page; }
+            else if ($current_page < 1) { $current_page = 1; }
+
+            $start = ($current_page - 1) * $limit;
+            $data == null ? $result = null : $result = $result = array_slice($data,$start,$limit);// lay danh sach say khi phan trang
+
+            $result_paginate['data'] = $result;
+            $result_paginate['total_page'] = $total_page;
+            $result_paginate['current_page'] = $current_page;
+            $result_paginate['limit'] = $limit;
+        }
+            
+        return $result_paginate;
+
     }
 }

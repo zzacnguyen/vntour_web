@@ -1,6 +1,7 @@
 $(document).ready(function () {
 	checkLogin();
 	check_rating();
+	paginate_rating();
 })
 
 
@@ -173,5 +174,57 @@ function ThemVaCapNhat() {
 	})
 	.done(function (response) {
 		
+	})
+}
+
+var current_page = 2;
+
+function paginate_rating() {
+	// paginate_rating/76&1&2
+	var id_sv = $('#id_sv').val();
+	
+	$('#btn-rating').click(function () {
+		var path = 'paginate_rating/'+ id_sv +'&'+ current_page +'&10';
+
+		$.ajax({
+			url: path,
+			type: 'GET'
+		})
+		.done(function (response) {
+			var lam = new String();
+		
+			if (response.data.length > 0 && current_page <= response.total_page) 
+			{
+				response.data.forEach(function (data){
+
+					lam += '<div class="chat-message left">';
+					if(data.contact_avatar == null){
+						lam += '<img class="message-avatar" src="public/resource/images/avatar2.jpg" alt="">';
+					}
+					else{
+						lam += '<img class="message-avatar" src="public/resource/images/avatar/'+ data.contact_avatar +'" alt="">';
+					}
+
+					lam += '<div class="message">';
+					lam += '<a class="message-author" style="color: #007bff"> '+ data.username +' - ';
+					for(i = 0; i < data.vr_rating; i++){
+						lam += '<i style="color: yellow;" class="fas fa-star"></i>';
+					}
+
+					lam += '</a>';
+					lam += '<span class="message-date"> '+ data.created_at +' </span>';
+					lam += '<span class="message-content">';
+					lam += data.vr_ratings_details;
+					lam += '</span>';
+					lam += '</div>';
+					lam += '</div>';
+				});
+
+				$('#list-rating').append(lam);
+				current_page++;
+			}
+			// else{ $('#btn-rating').css('display','none'); }
+				
+		})
 	})
 }

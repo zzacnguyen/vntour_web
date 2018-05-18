@@ -143,6 +143,7 @@
 					<div class="hotel-detail-right">
 						<div class="title" style="text-align: left; margin-bottom: 5px;">
 							<div id="latitude" data-lati="{{$sv->pl_latitude}}" data-lon="{{$sv->pl_longitude}}"></div>
+							<input type="hidden" value="{{$sv->sv_id}}" id="id_sv">
 							<p>
 								<a>{{$sv->city_name}} <i class="fas fa-angle-double-right"></i></a> 
 								<a>{{$sv->district_name}} <i class="fas fa-angle-double-right"></i></a> 
@@ -150,9 +151,8 @@
 							</p>
 							<h4 style="font-size: 20px;" id="sv_name">{{$sv->sv_name}}</h4> {{-- ten dich vu --}}
 							<div class="star">
-								@for($i = 0;$i < $sv->sv_rating; $i++)
-									<i class="fas fa-star"></i>
-								@endfor
+								<span>{{$sv->sv_rating}}</span> <i class="fas fa-star"></i>
+								
 								<span style="color: black" id="loaihinhdichvu">
 									@if($sv->sv_types == "1")
 										- Ăn uống
@@ -299,9 +299,9 @@
 										<div class="wrapper wrapper-content animated fadeInRight" style="padding: 0;">
 										    <div class="row">
 										        <div class="col-lg-12">
-										            <div class="ibox float-e-margins" style="border-style: none;">
+										            <div  class="ibox float-e-margins" style="border-style: none;">
 										                <div class="ibox-content">
-										                    <h5 style="font-weight: 700;">ĐÁNH GIÁ DỊCH VỤ</h5>
+										                    <h5 style="font-weight: 700;">ĐÁNH GIÁ DỊCH VỤ - {{$countRating}} đánh giá</h5>
 										                </div>
 										                @if($checklogin == "null")
 										                	<div class="ibox-content">
@@ -361,7 +361,7 @@
 																</div>
 											               	@else
 											               		@foreach($checkUserRating as $ra)
-											               		<div class="chat-discussion" style="background-color: white; height: 100px; overflow: hidden;">
+											               		<div id="listRating" class="chat-discussion" style="background-color: white; height: 100px; overflow: hidden;">
 												               		<div class="chat-message left">
 									                                    @if($ra->contact_avatar == null)
 									                                    	<img class="message-avatar" src="public/resource/images/avatar2.jpg" alt="">
@@ -444,9 +444,9 @@
 										                <div class="ibox-content">
 										                    <div class="row">
 										                        <div class="col-md-12">
-										                            <div class="chat-discussion" style="background-color: white;">
-										                            @if($rating != null)
-										                            	@foreach($rating as $r)
+										                            <div id="list-rating" class="chat-discussion" style="background-color: white; height: 900px;">
+										                            @if($rating['data'] != null)
+										                            	@foreach($rating['data'] as $r)
 										                                <div class="chat-message left">
 										                                    @if($r->contact_avatar == null)
 										                                    	<img class="message-avatar" src="public/resource/images/avatar2.jpg" alt="">
@@ -473,6 +473,9 @@
 										                            @endif
 										                            </div>
 										                        </div>
+										                        <div class="col-md-12" style="padding: 20px;padding-bottom: 0">
+										                        	<button id="btn-rating" style="width: 100%;padding: 10px;" class="btn btn-success">Xem thêm đánh giá</button>
+										                        </div>
 										                    </div>
 										                </div>
 										            </div>
@@ -495,11 +498,12 @@
 					</div>
 				</div>
 				<div class="col-md-4" style="padding-left: 0;">
+					@if($sv_lancan_hon != null)
 					<div class="left-box" style="margin-top: 16px;">
 						<div class="box-title text-center">
 							<h4><b style="font-size: 20px;">Một số dịch vụ lân cận</b></h4>
 						</div>
-						@if($sv_lancan_hon != null)
+						
 							<div class="box-body">
 								<ul style="padding: 14px 15px 10px 15px;">
 									@foreach($sv_lancan_hon as $top)
@@ -516,16 +520,17 @@
 									@endforeach
 								</ul>
 							</div>
-						@else
-							<p style="padding: 10px;">Hiện chưa có địa điểm lân cận với địa điểm này</p>
-						@endif
+						
 					</div>
+					@endif
+
+					@if($sv_lancan != null)
 					<div class="right-content">
 						<div class="title-right-content">
 							<h5 class="text-center">Địa điểm cùng khu vực</h5>
 						</div>
 						<div class="body-right-content" style="height: 600px;overflow-y: scroll;">
-							@if($sv_lancan != null)
+							
 								@foreach($sv_lancan as $s)
 									<div class="item-cafe">
 										<ul>
@@ -554,12 +559,9 @@
 										</ul>
 									</div>
 								@endforeach
-							@else
-								<p style="padding: 10px;">Hiện chưa có địa điểm cùng khu vực với địa điểm này</p>
-							@endif
 						</div>
 					</div>	
-					
+					@endif
 				</div>
 			</div>
 		</div>
