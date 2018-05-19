@@ -36,6 +36,8 @@ Route::get('paginate_rating/{idsv}&{page}&{limit}','publicDetail@paginate_rating
 
 Route::get('login_detail/{id}&{type}','publicDetail@login_detail');
 
+Route::get('delete-rating/{idrating}','publicDetail@delete_rating');
+
 
 // Route::get('count_rating_service/{idservice}','publicDetail@count_rating_service');
 

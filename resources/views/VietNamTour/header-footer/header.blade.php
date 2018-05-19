@@ -176,7 +176,7 @@
 										<input type="text" hidden="hidden" value="all" name="city">
 										<input type="text" hidden="hidden" value="all" name="type">
 									</form>
-									<div class="body-search" id="thanSearch">
+									<div class="body-search" id="thanSearch" style="border: 1px solid #ddd;">
 										<div class="item-search" id="IDitem-search">
 											<div id="eatCha" style="display: none;">
 												<div class="title-search">
@@ -510,7 +510,7 @@
 											</div>
 										</div>
 									</li>
-									<li id="id-language">
+									{{-- <li id="id-language">
 										<a href="" id="language">
 											<img src="public/resource/images/icons/vn.png" alt="" style="width: 20px; height: 20px;">
 										</a>
@@ -519,7 +519,7 @@
 										    	<img src="public/resource/images/icons/us.png" alt="" style="width: 20px; height: 20px;">
 										    </a>
 										  </div>
-									</li>
+									</li> --}}
 								</ul>
 							</div>
 						</div>

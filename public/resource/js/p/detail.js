@@ -2,6 +2,8 @@ $(document).ready(function () {
 	checkLogin();
 	check_rating();
 	paginate_rating();
+	deleteRating(); 
+	// deleteRatingUser()
 })
 
 
@@ -192,7 +194,7 @@ function paginate_rating() {
 		})
 		.done(function (response) {
 			var lam = new String();
-		
+		console.log(response);
 			if (response.data.length > 0 && current_page <= response.total_page) 
 			{
 				response.data.forEach(function (data){
@@ -227,4 +229,65 @@ function paginate_rating() {
 				
 		})
 	})
+}
+
+
+function deleteRating() 
+{		
+	var lamm = document.getElementsByClassName("close-rating");
+	for (var i = 0; i < lamm.length; i++) {
+		lamm[i].onclick = function () {
+			var id = this.getAttribute("data-id");
+			var conf = confirm('Bạn có chắc chắn muốn xóa bình luận này?');
+			if(conf)
+			{
+				$.ajax({
+				   type: "GET",
+				   url: 'delete-rating/' + id
+				}).done(function (response) {
+					console.log(response);
+					if (parseInt(response) == 1) 
+					{
+						//get_tripchudule
+						alert('Đã xóa lịch trình vừa chọn');
+						
+						location.reload();
+					}
+					else
+					{
+						alert('Lỗi không xóa được');
+					}
+				})
+			}
+			
+		}
+	}
+}
+
+function deleteRatingUser() {
+	var lamm = document.getElementsByClassName("close-rating2");
+	lamm[0].onclick = function () {
+		var conf = confirm('Bạn có chắc chắn muốn xóa bình luận này?');
+		if(conf)
+		{
+			var id = this.getAttribute("data-id");
+			$.ajax({
+			   type: "GET",
+			   url: 'delete-rating/' + id
+			}).done(function (response) {
+				console.log(response);
+				if (parseInt(response) == 1) 
+				{
+					//get_tripchudule
+					alert('Đã xóa bình luận vừa chọn');
+					location.reload();
+				}
+				else
+				{
+					alert('Lỗi không xóa được');
+				}
+			})
+		}
+	}
+		
 }

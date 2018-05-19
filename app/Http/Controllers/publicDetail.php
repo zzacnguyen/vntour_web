@@ -45,6 +45,9 @@ class publicDetail extends Controller
             if (count($checkUserRating) == 0) {
                 $checkUserRating = null;
             }
+            $quyen = $this::get_quyen_user();
+            // dd($quyen->level);
+            $quyen_u = $quyen->level;
         }
         else{
             $checkUserRating = null;
@@ -54,7 +57,7 @@ class publicDetail extends Controller
     		return view('VietNamTour.404');
     	}
     	else{
-    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating'));
+    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating','quyen_u'));
     	}
     }
 
@@ -554,5 +557,33 @@ class publicDetail extends Controller
 
     public function login_detail($id,$type){
         return view('VietNamTour.content.login_detail');
+    }
+
+    public function get_quyen_user()
+    {
+        $user_id = Session::get('user_info')->id;
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://vntourweb/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 5.0,
+        ]);
+        $response = $client->request('GET',"get-quyen-user/{$user_id}");
+
+        // dd(json_decode($response->getBody()->getContents()));
+        return json_decode($response->getBody()->getContents());
+    }
+
+    public function delete_rating($id)
+    {
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://vntourweb/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 5.0,
+        ]);
+        $response = $client->request('GET',"delete-rating/{$id}");
+
+        return json_decode($response->getBody()->getContents());
     }
 }

@@ -68,17 +68,17 @@
 			<div class="col-md-3 .col-sm-4">
 				<div class="left-box">
 					<div class="box-title">
-						Cần Thơ
-						<span>{{$count_sv['num_all']}}</span>
+						{{$name_city}}
+						<span>{{$count_sv->num_all}}</span>
 					</div>
 					<div class="box-body">
 						<ul>
-							<li><a href="" class="active-type">Tất cả<span class="active-type">{{$count_sv['num_all']}}</span></a></li>
-							<li><a href="city/{{$idcity}}&type=4&page=1">Tham quan<span>{{$count_sv['num_see']}}</span></a></li>
-							<li><a href="city/{{$idcity}}&type=1&page=1">Ăn uống<span>{{$count_sv['num_eat']}}</span></a></li>
-							<li><a href="city/{{$idcity}}&type=2&page=1">Khách sạn<span>{{$count_sv['num_hotel']}}</span></a></li>
-							<li><a href="city/{{$idcity}}&type=5&page=1">Vui chơi<span>{{$count_sv['num_enter']}}</span></a></li>
-							<li><a href="city/{{$idcity}}&type=3&page=1">Phương tiện<span>{{$count_sv['num_tran']}}</span></a></li>
+							<li><a href="city/{{$idcity}}&type=all&page=1" class="active-type">Tất cả<span class="active-type">{{$count_sv->num_all}}</span></a></li>
+							<li><a href="city/{{$idcity}}&type=4&page=1">Tham quan<span>{{$count_sv->num_see}}</span></a></li>
+							<li><a href="city/{{$idcity}}&type=1&page=1">Ăn uống<span>{{$count_sv->num_eat}}</span></a></li>
+							<li><a href="city/{{$idcity}}&type=2&page=1">Khách sạn<span>{{$count_sv->num_hotel}}</span></a></li>
+							<li><a href="city/{{$idcity}}&type=5&page=1">Vui chơi<span>{{$count_sv->num_enter}}</span></a></li>
+							<li><a href="city/{{$idcity}}&type=3&page=1">Phương tiện<span>{{$count_sv->num_tran}}</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -92,17 +92,17 @@
 							@foreach($service_city['data'] as $sv)
 							<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top:0;">
 								<div class="destination-grid">
-									<a href="detail/id={{$sv['id_service']}}&type={{$sv['sv_type']}}">
-										<img src="public/thumbnails/{{$sv['image']}}" alt="" style="min-height:269px;">
+									<a href="detail/id={{$sv->id_service}}&type={{$sv->sv_type}}">
+										<img src="public/thumbnails/{{$sv->image}}" alt="" style="height:269px !important;">
 									</a>
 									<div class="destination-name">
-										<h4>{{$sv['name']}}</h4>
+										<h4>{{$sv->name}}</h4>
 									</div>
 									<div class="destination-icon">
-										<a>{{$sv['rating']}} <i class="far fa-star"></i></a>
-										<a>{{$sv['view']}} <i class="fas fa-eye"></i></a>
-										<a>{{$sv['like']}} <i class="far fa-heart"></i></a>
-										<a>{{$sv['point']}} <i class="far fa-bookmark"></i></a>
+										<a>{{$sv->rating}} <i class="far fa-star"></i></a>
+										<a>{{$sv->view}} <i class="fas fa-eye"></i></a>
+										<a>{{$sv->like}} <i class="far fa-heart"></i></a>
+										<a>{{$sv->point}} <i class="far fa-bookmark"></i></a>
 									</div>
 								</div>
 							</div>

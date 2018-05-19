@@ -110,6 +110,27 @@
     	border-radius: 0;
     	background-color: #7482b3;
 	}
+	.close-rating{
+		position: absolute;
+    	top: 0px;
+    	right: 7px;
+    	color: #cecece;
+	}
+
+	.close-rating:hover{
+		color: red !important;
+	}
+
+
+	.close-rating2{
+		position: absolute;
+    	top: 0px;
+    	right: 7px;
+    	color: #cecece;
+	}
+	.close-rating2:hover{
+		color: red !important;
+	}
 </style>
 
 
@@ -371,7 +392,7 @@
 											               	@else
 											               		@foreach($checkUserRating as $ra)
 											               		<div id="listRating" class="chat-discussion" style="background-color: white; height: 100px; overflow: hidden;">
-												               		<div class="chat-message left">
+												               		<div class="chat-message left" style="position: relative;">
 									                                    @if($ra->contact_avatar == null)
 									                                    	<img class="message-avatar" src="public/resource/images/avatar2.jpg" alt="">
 									                                    @else
@@ -390,6 +411,9 @@
 									    										{{$ra->vr_ratings_details}}
 								                                            </span>
 									                                    </div>
+									                                    <span class="close-rating2" data-id="{{$ra->id}}" style="cursor: pointer;" onclick="deleteRatingUser()">
+									                                    	<i class="fas fa-times"></i>
+									                                    </span>
 									                                </div>
 									                            </div>
 
@@ -457,7 +481,7 @@
 										                            <div id="list-rating" class="chat-discussion" style="background-color: white; height: 900px;">
 										                            @if($rating['data'] != null)
 										                            	@foreach($rating['data'] as $r)
-										                                <div class="chat-message left">
+										                                <div class="chat-message left" style="position: relative;">
 										                                    @if($r->contact_avatar == null)
 										                                    	<img class="message-avatar" src="public/resource/images/avatar2.jpg" alt="">
 										                                    @else
@@ -476,6 +500,12 @@
 										    										{{$r->vr_ratings_details}}
 									                                            </span>
 										                                    </div>
+										                                    @if($quyen_u == 1 || $quyen_u == 2)
+																				<span class="close-rating" data-id="{{$r->id}}" onclick="deleteRating({{$r->id}})">
+											                                    	<i class="fas fa-times"></i>
+											                                    </span>
+										                                    @endif
+
 										                                </div>
 										                                @endforeach
 										                            
