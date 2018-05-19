@@ -207,6 +207,9 @@ Route::get('schedule-delete/{id}','accountController@DeleteDetailTripSchedule');
 Route::get('schedule-search-ervices/{key}','accountController@searchServices_All_lichtrinh');
 Route::get('save-trip-schedule-array','accountController@saveTripSchedule_array');
 
+Route::get('delete-schedule-detail/{id}','accountController@delete_Schedule_detail');
+
+
 
 
 //get con search

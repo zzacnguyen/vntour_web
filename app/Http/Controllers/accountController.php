@@ -368,7 +368,7 @@ class accountController extends Controller
         }
         else
         {
-            return view('VietNamTour.login');
+            return redirect()->back();
         }
         $dv = $this::get_service_lichtrinh();
         // dd($chitiet);
@@ -490,11 +490,11 @@ class accountController extends Controller
 
         $result = json_decode($response->getContents());
         if ($result == "status:200") {
-            return redirect()->back();
+            return 1;
         }
         else
         {
-            return "Lỗi không thêm được!";
+            return -1;
         }
     }
 
@@ -533,8 +533,15 @@ class accountController extends Controller
                 }
             }
         }
-
-        return 1;
+        if (!empty($detail_lichtrinh)) {
+            $path_success = "get_tripchudule_detail/".$id_lichtrinh;
+            return $path_success;
+        }
+        else
+        {
+            return 1;
+        }
+            
     }
 
 
@@ -573,6 +580,39 @@ class accountController extends Controller
             return "Lỗi không thêm được!";
         }
     }
+
+
+    public function delete_Schedule_detail($idlichtrinh)
+    {
+        $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://vntourweb/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+        $response = $client->request('GET',"delete-all-detail-schedule-web/{$idlichtrinh}");
+        $result1 = json_decode($response->getBody()->getContents());
+
+        if ($result1 == "status:200") {
+            $response2 = $client->request('GET',"delete-schedule-web/{$idlichtrinh}");
+            $result2 = json_decode($response2->getBody()->getContents());
+            if ($result2 == "status:200") {
+                return 1;
+            }
+            else{
+                return -1;
+            }
+        }
+        else
+        {
+            return -2;
+        }
+    }
+
+
+
+
+
     //service user
     public function get_add_service_user()
     {

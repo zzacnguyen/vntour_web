@@ -36,8 +36,8 @@
 			line-height: 31px;
 			border-top: 1px solid #333;
 			border-left: 1px solid #333;
-			border-bottom: 1px solid #333;
-			background-color: #666;
+			/*border-bottom: 1px solid #333;
+			background-color: #666;*/
 			color: #ccc;
 			overflow: hidden;
 			position: relative;
@@ -51,9 +51,8 @@
 		}
 
 		ul.tabs li.active {
-			background-color: #fff;
+			background-color: #00a680;
 			color: #333;
-			border-bottom: 1px solid #fff;
 			display: block;
 		}
 
@@ -151,7 +150,9 @@
 								  <li class="active text-center" rel="tab1">KT</li>
 								  <li class="text-center" rel="tab2" style="border-right: 1px solid black;">CKT</li>
 								  <li class="text-center"  style="background-color: white;border:none;">
-								  		<a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> <i class="fas fa-plus"></i></a>
+								  		<a href="" style="margin-bottom: 6px; padding-left: 16px;padding-right: 16px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> 
+								  			<i class="fas fa-plus"></i>
+								  		</a>
 								  </li>
 							</ul>
 							<div class="tab_container">
@@ -170,13 +171,29 @@
 												</li> --}}
 												@foreach($danhsach_CKT as $d)
 													@if($d->id == $id_lichtrinh)
-														<li class="active">
+														<li class="active" style="position: relative;">
 															<a  href="get_tripchudule_detail/{{$d->id}}"> {{$d->trip_name}}</a>
-															<span class="lam-lich badge badge-success">Còn 3 ngày</span>
+															<span data-id="{{$d->id}}"  class="xoa_lichtrinh"  onclick="xoa_lichtrinh()" style="position: absolute;top: 6px;right: 10px;color: #615a5a;cursor: pointer;">
+																<i class="fas fa-times"></i>
+															</span>
+															{{-- <span class="lam-lich badge badge-success">Còn 3 ngày</span> --}}
 														</li>
 													@else
 														<li class="">
 															<a href="get_tripchudule_detail/{{$d->id}}"> {{$d->trip_name}}</a>
+															<span data-id="{{$d->id}}" class="xoa_lichtrinh"  onclick="xoa_lichtrinh()" style="position: absolute;top: 6px;right: 10px;color: #615a5a;cursor: pointer;">
+																<i class="fas fa-times"></i>
+															</span>
+															{{-- <span class="lam-lich badge badge-success">Còn 
+																@foreach($lichtrinh as $l)
+																	{{
+																		date_format($l->trip_startdate,"Y-m-d H:i:s")
+																		
+																	}} 
+
+																@endforeach
+																	
+															ngày</span> --}}
 														</li>
 													@endif
 
@@ -204,10 +221,16 @@
 													@if($d->id == $id_lichtrinh)
 														<li class="active">
 															<a  href="get_tripchudule_detail/{{$d->id}}"> {{$d->trip_name}}</a>
+															<span data-id="{{$d->id}}" class="xoa_lichtrinh" onclick="xoa_lichtrinh()" style="position: absolute;top: 6px;right: 10px;color: #615a5a;cursor: pointer;">
+																<i class="fas fa-times"></i>
+															</span>
 														</li>
 													@else
 														<li class="">
 															<a href="get_tripchudule_detail/{{$d->id}}"> {{$d->trip_name}}</a>
+															<span data-id="{{$d->id}}" class="xoa_lichtrinh"  onclick="xoa_lichtrinh()" style="position: absolute;top: 6px;right: 10px;color: #615a5a;cursor: pointer;">
+																<i class="fas fa-times"></i>
+															</span>
 														</li>
 													@endif
 
@@ -238,16 +261,19 @@
 							      			<div class="form-group">
 											    <label class="">Tên lịch trình</label>
 											    <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Tên lịch trình" required="required" name="trip_name">
-										    	
+										    	<span id="err_name" style="color:red;display:none;">Tên lịch trình ko được để trống</span>
 										  	</div>
 											  <div class="form-group">
 											    <label >Ngày bắt đầu</label>
 											    <input type="date" class="form-control" id="" placeholder="Ngày bắt đầu" required="required" name="trip_startdate">
+											    <span id="err_star" style="color:red;display:none;">Ngày bắt đầu ko được để trống</span>
+											    <span id="err_star_max" style="color:red;display:none;">Ngày bắt đầu phải lớn hơn ngày hiện tại</span>
 											  </div>
 											  <div class="form-group">
 											    <label >Ngày kết thúc</label>
 											    <input type="date" class="form-control datepicker" id="" placeholder="Ngày kết thúc" required="required" name="trip_enddate">
-
+											    <span id="err_end" style="color:red;display:none;">Ngày kết thúc ko được để trống</span>
+											    <span id="err_star_min" style="color:red;display:none;">Ngày kết thúc phải lớn hơn ngày bắt đầu</span>
 											  </div>
 							      		</div>
 							      		<div class="col-md-6">
@@ -295,7 +321,7 @@
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        <button type="button" id="addLichtrinh" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;">Thêm</button>
+							        <button type="button" id="addLichtrinh" class="btn btn-primary" style="margin-bottom: 0;padding: 10px 41px !important;border-radius: 0px !important;margin-left: 9px; background-color: #1b00ff;">Thêm</button>
 						      </div>
 					      	</form>
 						    </div>
@@ -316,8 +342,8 @@
 								@else
 									@foreach($lichtrinh as $l)
 										<h5 style="" class="">Tên lịch trình: <b>{{$l->trip_name}}</b></h5>
-										<span>Ngày bắt đầu: <b>{{$l->trip_startdate}}</b></span><br>
-										<span>Ngày kết thúc: <b>{{$l->trip_enddate}}</b></span>
+										<span>Ngày bắt đầu: <b>{{date('d-m-Y',strtotime($l->trip_startdate))}}</b></span><br>
+										<span>Ngày kết thúc: <b>{{date('d-m-Y',strtotime($l->trip_enddate))}}</b></span>
 									@endforeach
 										
 								@endif
@@ -375,6 +401,7 @@
 							        <h5 class="modal-title" id="exampleModalLabel">Thêm chi tiết lich trình</h5>
 							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							          <span aria-hidden="true">&times;</span>
+							          <input type="hidden" value="{{$id_lichtrinh}}" id="id_lich_trinh">
 							        </button>
 							      </div>
 							      <div class="modal-body">
@@ -387,7 +414,7 @@
 										@endif
 										    
 									  </div>
-									  <div class="form-group">
+									  {{-- <div class="form-group">
 									    <label for="exampleInputPassword1"><b>Dịch vụ</b></label>
 									    <select class="js-example-basic-single col-md-4" name="service_id" style="width: 100%;">
 							              	<option value="0">Chọn dịch vụ</option>
@@ -397,11 +424,53 @@
 							              		@endforeach
 							              	@endif
 										</select>
-									  </div>
+									  </div> --}}
+
+									  <div class="col-md-12" id="themchitiet">
+							      			<div class="form-group">
+											    <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Nhập tên để chọn dịch vụ" required="required" id="search-schedule2" style="position: relative;">
+										    	
+										  	</div>
+										  	<div id="list-detail2">
+										  		<ul id="list-serach-sv2" style="padding: 0">
+										  			{{-- <li style="position: relative;" data-id="1" class="chon-sv">
+										  				<img src="public/resource/images/avatar1.jpg" alt="" style="height: 50px;width: 50px;">
+										  				<div class="text-lam">
+										  					<span><b>Cafe Chat</b></span><br>
+										  					<span class="text-con">Can Thơ</span>
+										  				</div>
+										  				<span class="type-sv badge badge-success">Ăn uống</span>
+										  			</li>
+										  			<li style="position: relative;" data-id="1" class="chon-sv">
+										  				<img src="public/resource/images/avatar1.jpg" alt="" style="height: 50px;width: 50px;">
+										  				<div class="text-lam">
+										  					<span><b>Cafe Chat</b></span><br>
+										  					<span class="text-con">Can Thơ</span>
+										  				</div>
+										  				<span class="type-sv badge badge-success">Ăn uống</span>
+										  			</li> --}}
+										  		</ul>
+										  	</div>
+
+										  	<div id="danh-sach2">
+										  		<ul id="myUL2" style="list-style-type: none;padding: 0;">
+											  		{{-- <li style="position: relative; display: inline-flex;" data-id="1" class="">
+										  				<img src="public/resource/images/avatar1.jpg" alt="" style="height: 50px;width: 50px;">
+										  				<div class="text-lam">
+										  					<span><b>Cafe Chat</b></span><br>
+										  					<span class="text-con">Can Thơ</span>
+										  				</div>
+										  				<span style="position: absolute;" class="type-sv badge badge-success">Ăn uống</span>
+										  				<span class="xoaxoa"><i class="fas fa-times"></i></span>
+									  				</li> --}}
+												</ul>
+										  	</div>
+							      		</div>
 							      </div>
 							      <div class="modal-footer" style="height: 55px;">
 							        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        <button type="submit" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;">Thêm</button>
+							        <button id="btnthemchitiet" type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;">Thêm
+							        </button>
 							      </div>
 						      	</form>
 							    </div>
