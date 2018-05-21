@@ -54,7 +54,7 @@ class CMS_ComponentController extends Controller
     {
         $data = DB::table('vnt_user') 
         ->select( DB::raw('DATE_FORMAT(vnt_user.created_at, "%d-%m-%Y") as created_at'),
-            'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
+            'vnt_user.user_id','username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
         )
         ->join('vnt_admin_user', 'vnt_admin_user.user_id', '=', 'vnt_user.user_id')
         ->leftJoin('vnt_contact_info', 'vnt_contact_info.user_id', '=', 'vnt_user.user_id')
@@ -73,7 +73,7 @@ class CMS_ComponentController extends Controller
     {
         $data = DB::table('vnt_user') 
         ->select( DB::raw('DATE_FORMAT(vnt_user.created_at, "%d-%m-%Y") as created_at'),
-            'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
+            'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address','vnt_moderator_users.account_active','vnt_user.user_id'
         )
         ->join('vnt_moderator_users', 'vnt_moderator_users.user_id', '=', 'vnt_user.user_id')
         ->leftJoin('vnt_contact_info', 'vnt_contact_info.user_id', '=', 'vnt_user.user_id')
@@ -82,6 +82,27 @@ class CMS_ComponentController extends Controller
         // return $data;
         if (view()->exists('CMS.components.com_user.moderator.list_mod')){
             return view('CMS.components.com_user.moderator.list_mod', ['data'=>$data]);
+        }
+        else {
+            return view('CMS.components.error');
+        }
+    }
+
+
+    public function _DISPLAY_LIST_WAITMOD_USER()
+    {
+        $data = DB::table('vnt_user') 
+        ->select( DB::raw('DATE_FORMAT(vnt_user.created_at, "%d-%m-%Y") as created_at'),
+            'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
+        )
+        ->join('vnt_moderator_users', 'vnt_moderator_users.user_id', '=', 'vnt_user.user_id')
+        ->leftJoin('vnt_contact_info', 'vnt_contact_info.user_id', '=', 'vnt_user.user_id')
+        ->where('vnt_moderator_users.account_active', '=', 0)
+        ->orderBy('vnt_user.user_id', 'desc')
+        ->paginate(4);
+        // return $data;
+        if (view()->exists('CMS.components.com_user.moderator.list_wait_mod.blade')){
+            return view('CMS.components.com_user.moderator.list_wait_mod.blade', ['data'=>$data]);
         }
         else {
             return view('CMS.components.error');
@@ -169,6 +190,26 @@ class CMS_ComponentController extends Controller
 		
     }
 
+    public function _DISPLAY_TOURIST_PLACES_UNACTIVE()
+    {
+        $data = DB::table('vnt_tourist_places') 
+        ->select( DB::raw('DATE_FORMAT(vnt_tourist_places.updated_at, "%d-%m-%Y") as updated_at'),
+            'pl_name', 'pl_details','pl_address', 'pl_phone_number', 'pl_latitude', 'pl_longitude','pl_status', 'vnt_tourist_places.id'
+        )       
+        ->orderBy('vnt_tourist_places.id', 'desc')
+        ->orderBy('vnt_tourist_places.updated_at', 'desc')
+        ->where('pl_status', '=', '0')
+        ->paginate(15);
+        // return $data;
+        if (view()->exists('CMS.components.com_tourist_places.list_touris_places_unactive'))
+        {
+            return view('CMS.components.com_tourist_places.list_touris_places_unactive', ['data'=>$data]);
+        }
+        else    {
+            return view('CMS.components.error');
+        }
+        
+    }
 
     public function _DISPLAY_LIST_SERVICES()
     {
@@ -240,10 +281,108 @@ class CMS_ComponentController extends Controller
         return $data;
     }
 
+
+    public function _DISPLAY_LIST_SERVICES_BY_FOODANDDRINK()
+    {
+        $data = DB::table('vnt_services') 
+        ->select( DB::raw('DATE_FORMAT(vnt_services.updated_at, "%d-%m-%Y") as updated_at'),
+            'sv_description', 'sv_open','sv_close', 'sv_highest_price', 'sv_lowest_price',
+             'sv_phone_number','sv_types', 'sv_website','eat_name','sv_status', 'image_banner','vnt_services.id' 
+        )
+        ->join('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')     
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->join('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_services.id')
+        ->orderBy('vnt_services.id', 'desc')
+        ->orderBy('vnt_services.updated_at', 'desc')
+        ->paginate(15);
+        return $data;
+    }
+
+    public function _DISPLAY_LIST_SERVICES_BY_HOTEL()
+    {
+        $data = DB::table('vnt_services') 
+        ->select( DB::raw('DATE_FORMAT(vnt_services.updated_at, "%d-%m-%Y") as updated_at'),
+            'sv_description', 'sv_open','sv_close', 'sv_highest_price', 'sv_lowest_price',
+             'sv_phone_number','sv_types', 'sv_website','hotel_name','sv_status', 'image_banner','vnt_services.id' 
+        )
+        ->join('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')     
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->join('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_services.id')
+        ->orderBy('vnt_services.id', 'desc')
+        ->orderBy('vnt_services.updated_at', 'desc')
+        ->paginate(15);
+        return $data;
+    }
+
+    public function _DISPLAY_LIST_SERVICES_BY_SIGHTSEEING()
+    {
+        $data = DB::table('vnt_services') 
+        ->select( DB::raw('DATE_FORMAT(vnt_services.updated_at, "%d-%m-%Y") as updated_at'),
+            'sv_description', 'sv_open','sv_close', 'sv_highest_price', 'sv_lowest_price',
+             'sv_phone_number','sv_types', 'sv_website','sightseeing_name','sv_status', 'image_banner','vnt_services.id' 
+        )
+        ->join('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')     
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->join('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_services.id')
+        ->orderBy('vnt_services.id', 'desc')
+        ->orderBy('vnt_services.updated_at', 'desc')
+        ->paginate(15);
+        return $data;
+    }
+
+
+
+    public function _DISPLAY_LIST_SERVICES_BY_TRANSPORT()
+    {
+        $data = DB::table('vnt_services') 
+        ->select( DB::raw('DATE_FORMAT(vnt_services.updated_at, "%d-%m-%Y") as updated_at'),
+            'sv_description', 'sv_open','sv_close', 'sv_highest_price', 'sv_lowest_price',
+             'sv_phone_number','sv_types', 'sv_website','transport_name','sv_status', 'image_banner','vnt_services.id' 
+        )
+        ->join('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')     
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->join('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_services.id')
+        ->orderBy('vnt_services.id', 'desc')
+        ->orderBy('vnt_services.updated_at', 'desc')
+        ->paginate(15);
+        return $data;
+    }
+
     public function _GET_VIEW_LIST_SERVICES_BY_ENTERTAIMENTS()
     {
         $data  = $this::_DISPLAY_LIST_SERVICES_BY_ENTERTAIMENTS();
         return view('CMS.components.com_services.list_servicesEntertainments',
+        ['data'=>$data]);
+    }
+
+    public function _GET_VIEW_LIST_SERVICES_BY_FOODANDDRINK()
+    {
+        $data  = $this::_DISPLAY_LIST_SERVICES_BY_FOODANDDRINK();
+        return view('CMS.components.com_services.list_servicesFoodAndDrink',
+        ['data'=>$data]);
+    }
+
+    public function _GET_VIEW_LIST_SERVICES_BY_HOTEL()
+    {
+        $data  = $this::_DISPLAY_LIST_SERVICES_BY_HOTEL();
+        return view('CMS.components.com_services.list_servicesHotels',
+        ['data'=>$data]);
+    }
+    public function _GET_VIEW_LIST_SERVICES_BY_SIGHTSEEING()
+    {
+        $data  = $this::_DISPLAY_LIST_SERVICES_BY_SIGHTSEEING();
+        return view('CMS.components.com_services.list_servicesSightseeing',
+        ['data'=>$data]);
+    }
+
+    public function _GET_VIEW_LIST_SERVICES_BY_TRANSPORT()
+    {
+        $data  = $this::_DISPLAY_LIST_SERVICES_BY_TRANSPORT();
+        return view('CMS.components.com_services.list_servicesTransport',
         ['data'=>$data]);
     }
 
@@ -277,7 +416,7 @@ class CMS_ComponentController extends Controller
     {
         $data = DB::table('vnt_user') 
         ->select( DB::raw('DATE_FORMAT(vnt_user.created_at, "%d-%m-%Y") as created_at'),
-            'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
+            'vnt_tour_guide.user_id', 'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address','account_active'
         )
         ->join('vnt_tour_guide', 'vnt_tour_guide.user_id', '=', 'vnt_user.user_id')
         ->leftJoin('vnt_contact_info', 'vnt_contact_info.user_id', '=', 'vnt_user.user_id')
@@ -291,6 +430,7 @@ class CMS_ComponentController extends Controller
             return view('CMS.components.error');
         }
     }
+
 
 
     public function _DISPLAY_LIST_POINT()

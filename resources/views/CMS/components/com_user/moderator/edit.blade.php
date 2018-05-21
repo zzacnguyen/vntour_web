@@ -17,7 +17,7 @@
 </script>
 
 <div id="page-title">
-    <h2>Thêm mạng xã hội</h2>
+    <h2>Duyệt người dùng</h2>
 
     <div id="theme-options" class="admin-options">
     <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
@@ -28,7 +28,7 @@
         <div class="col-md-7 col-md-offset-2">
             <div class="book-tour-container bg-success">
                 <div class="frm-heading">
-                THÊM MẠNG XÃ HỘI MỚI
+                DUYỆT NGƯỜI DÙNG
                 <span></span>
                 </div>
             </div>

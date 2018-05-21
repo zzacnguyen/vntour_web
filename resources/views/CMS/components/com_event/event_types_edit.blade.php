@@ -30,7 +30,7 @@
         <div class="col-md-7 col-md-offset-2">
             <div class="book-tour-container bg-success">
                 <div class="frm-heading">
-                CHỈNH SỬA HÌNH SỰ KIỆN
+                CHỈNH SỬA LOẠI HÌNH SỰ KIỆN
                 <span></span>
                 </div>
             </div>

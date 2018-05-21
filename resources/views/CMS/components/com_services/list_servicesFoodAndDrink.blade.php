@@ -74,8 +74,8 @@
                     @foreach($data as $item)
                     <tr>
                         <td><a href="javascript:void(0);">
-                            @if($item->entertainments_name != null)
-                                -{{ $item->entertainments_name }}
+                            @if($item->eat_name != null)
+                                -{{ $item->eat_name }}
                             @endif
                             </a>
                         </td>

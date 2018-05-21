@@ -20,6 +20,7 @@ use App\Http\Requests\AddTypeEventRequest;
 use App\Http\Requests\AddSocialRequest;
 
 use App\taskModel;
+use App\tourguideModel;
 use DB;
 use App\touristPlacesModel;
 use App\servicesModel;
@@ -33,6 +34,7 @@ use App\entertainmentsModel;
 use App\pointModel;
 use App\typesModel;
 use App\SocialModel;
+use App\ModModel;
 
 class CMS_AddDataController extends Controller
 {
@@ -309,4 +311,60 @@ class CMS_AddDataController extends Controller
             return json_encode("status:500");
         }
     }
+
+    public function AcctiveMod($user_id)
+    {
+        ModModel::where('user_id',$user_id)
+        ->update(['account_active'=>1]);
+        return redirect()->route('ALL_LIST_MOD')->with('message', "Hoàn tất, Tài khoản đã trở thành kiểm duyệt viên!");
+    }
+    
+     public function UnAcctiveMod($user_id)
+    {
+        ModModel::where('user_id',$user_id)
+        ->update(['account_active'=>0]);
+        return redirect()->route('ALL_LIST_MOD')->with('message', "Hoàn tất, Tài khoản đã tắt chức năng kiểm duyệt!");
+    }
+    public function ACCTIVE_TOURGUIDE($user_id)
+    {
+        tourguideModel::where('user_id',$user_id)
+        ->update(['account_active'=>1]);
+        return redirect()->route('ALL_LIST_MOD')->with('message', "Hoàn tất, Tài khoản đã trở thành tài khoản hướng dẫn viên du lịch!");
+    }
+    
+     public function UNACCTIVE_TOURGUIDE($user_id)
+    {
+        tourguideModel::where('user_id',$user_id)
+        ->update(['account_active'=>0]);
+        return redirect()->route('ALL_LIST_MOD')->with('message', "Hoàn tất, Tài khoản đã tắt chức năng dành cho hướng dẫn viên du lịch!");
+    }
+    public function ACCTIVE_PLACES($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>1]);
+        return redirect()->route('ALL_LIST_PLACE')->with('message', "Hoàn tất, Địa điểm đã được duyệt!");
+    }
+    
+    public function ACCTIVE_PLACES2($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>1]);
+        return redirect()->route('_DISPLAY_TOURIST_PLACES_UNACTIVE')->with('message', "Hoàn tất, Địa điểm vừa chọn đã được duyệt!");
+    }
+    
+     public function UNACCTIVE_PLACES2($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>-1]);
+        return redirect()->route('_DISPLAY_TOURIST_PLACES_UNACTIVE')->with('message', "Hoàn tất, Địa điểm đã bị đánh dấu spam!");
+    }
+    public function UNACCTIVE_PLACES($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>0]);
+        return redirect()->route('ALL_LIST_PLACE')->with('message', "Hoàn tất, Địa điểm đã bị tắt!");
+    }
+
+
+
 }

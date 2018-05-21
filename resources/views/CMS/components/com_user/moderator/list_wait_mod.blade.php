@@ -37,7 +37,7 @@
 
 <div id="page-title">
     <h2>Danh sách người dùng</h2>
-    <p>Kiểm duyệt viên</p>
+    <p>Dưới đây là dữ liệu tất cả người dùng hiện có.</p>
     <div id="theme-options" class="admin-options">
     <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
         <i class="glyph-icon icon-linecons-cog icon-spin"></i>
@@ -59,8 +59,6 @@
                     <th>Email</th>
                     <th>Website</th>
                     <th>Ngày đăng ký</th>
-                    <th>Được duyệt</th>
-                    <th>Thao tác</th>
                 </tr>
                 </thead>
 
@@ -73,7 +71,6 @@
                     <th>Email</th>
                     <th>Website</th>
                     <th>Ngày đăng ký</th>
-                    <th>Thao tác</th>
                 </tr>
                 </tfoot>
                 <tbody>
@@ -86,16 +83,6 @@
                         <td>{{ $item->contact_email_address }}</td>
                         <td>{{ $item->contact_website }}</td>
                         <td>{{ $item->created_at }}</td>
-                        <td> <?php if($item->account_active == 1)  
-                                echo "Được duyệt";
-                                 else 
-                                 echo "Chưa duyệt"; ?> </td>
-                        <td><a href="{{ route('ACCTIVE_MOD', $item->user_id) }}">
-                            <i class="glyph-icon tooltip-button demo-icon icon-bolt bg-success"></i>
-                        </a>
-                            
-                           <a href="{{ route('UNACCTIVE_MOD', $item->user_id) }}"> <i class="glyph-icon tooltip-button demo-icon icon-bell-slash bg-danger"></a></i>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>

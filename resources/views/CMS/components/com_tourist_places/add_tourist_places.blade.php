@@ -92,7 +92,7 @@
                     <label for="content"   title="Nội dung giới thiệu địa điểm">Nội dung chi tiết: </label>
                     <textarea style="height: 500px" id="content" ></textarea>
                     <input type="hidden" value="{{ old('content') }}" name="content" id="content2">
-                    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+                    <script src="vntour_web/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
                     <script>
                         var editor = CKEDITOR.replace( 'content' );
 

@@ -269,7 +269,7 @@
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
                         </span>
-                        Dịch vụ
+                        Hướng dẫn sử dụng
                     </a>
                 </div>
             </div>

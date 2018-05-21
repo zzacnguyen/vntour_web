@@ -66,6 +66,10 @@
 
 	//NGƯỜI DÙNG - MODERTAROR
 	Route::get('lvnt-list-mod','CMS_ComponentController@_DISPLAY_LIST_MODERATOR_USER')->name('ALL_LIST_MOD');
+	Route::get('lvtn-active-mod/user={user_id}', 'CMS_AddDataController@AcctiveMod')->name('ACCTIVE_MOD');
+	Route::get('lvtn-unactive-mod/user={user_id}', 'CMS_AddDataController@UnAcctiveMod')->name('UNACCTIVE_MOD');
+
+
 
 
 	//NGƯỜI DÙNG - DOANH NGHIỆP
@@ -79,17 +83,28 @@
 
 	////NGƯỜI DÙNG - HƯỚNG DẪN VIÊN DU LỊCH
 	Route::get('lvnt-list-tour-guide','CMS_ComponentController@_DISPLAY_LIST_TOURGUIDE')->name('ALL_LIST_TOURGUIDE');
-
+	// Route::get('lvnt-list-tour-guide','CMS_ComponentController@_DISPLAY_LIST_TOURGUIDE')->name('ALL_LIST_TOURGUIDE');
+	Route::get('lvtn-active-tourguide/user={user_id}', 'CMS_AddDataController@ACCTIVE_TOURGUIDE')->name('ACCTIVE_TOURGUIDE');
+	Route::get('lvtn-unactive-tourguide/user={user_id}', 'CMS_AddDataController@UNACCTIVE_TOURGUIDE')->name('UNACCTIVE_TOURGUIDE');
 
 	//TẤT CẢ NGƯỜI DÙNG
 	Route::get('lvtn-list-user', 'CMS_ComponentController@_DISPLAY_LIST_ALL_USER')->name('ALL_LIST_USER');
+	Route::get('lvtn-list-user-wait', 'CMS_ComponentController@_DISPLAY_LIST_WAITMOD_USER')->name('_DISPLAY_LIST_WAITMOD_USER');
+
 
 
 	//DANH SÁCH ĐỊA ĐIỂM
 	Route::get('lvtn-list-address', 'CMS_ComponentController@_DISPLAY_TOURIST_PLACES')->name('ALL_LIST_PLACE');
+	Route::get('lvtn-list-address-unactive', 'CMS_ComponentController@_DISPLAY_TOURIST_PLACES_UNACTIVE')->name('_DISPLAY_TOURIST_PLACES_UNACTIVE');
 
 	//THÊM ĐỊA ĐIỂM - GET
 	Route::get('lvtn-add-tourist-places', 'CMS_ModuleController@_GETVIEW_ADD_TOURIST_PLACES')->name('ADD_TOURIST_PLACES');
+	Route::get('lvtn-active-place/id={user_id}', 'CMS_AddDataController@ACCTIVE_PLACES')->name('ACCTIVE_PLACES');
+
+	Route::get('lvtn-active2-place/id={user_id}', 'CMS_AddDataController@ACCTIVE_PLACES2')->name('ACCTIVE_PLACES2');
+
+	Route::get('lvtn-unactive-place/id={user_id}', 'CMS_AddDataController@UNACCTIVE_PLACES')->name('UNACCTIVE_PLACES');
+	Route::get('lvtn-unactive2-place/id={user_id}', 'CMS_AddDataController@UNACCTIVE_PLACES2')->name('UNACCTIVE_PLACES2');
 	//THÊM ĐỊA ĐIỂM - POST
 	Route::post('lvtn-add-tourist-places', 'CMS_AddDataController@_POST_TOURIST_PLACES');
 
@@ -107,6 +122,11 @@
 	//DANH SÁCH DỊCH VỤ
 		//VUI CHƠI GIẢI TRÍ - GET
 		Route::get('lvtn-services-entertaiments', 'CMS_ComponentController@_GET_VIEW_LIST_SERVICES_BY_ENTERTAIMENTS')->name('_GET_VIEW_SERVICES_BY_ENTERTAIMENTS');
+		Route::get('lvtn-services-food', 'CMS_ComponentController@_GET_VIEW_LIST_SERVICES_BY_FOODANDDRINK')->name('_GET_VIEW_LIST_SERVICES_BY_FOODANDDRINK');
+		Route::get('lvtn-services-hotels', 'CMS_ComponentController@_GET_VIEW_LIST_SERVICES_BY_HOTEL')->name('_GET_VIEW_LIST_SERVICES_BY_HOTEL');
+		Route::get('lvtn-services-sightseeing', 'CMS_ComponentController@_GET_VIEW_LIST_SERVICES_BY_SIGHTSEEING')->name('_GET_VIEW_LIST_SERVICES_BY_SIGHTSEEING');
+
+		Route::get('lvtn-services-transport', 'CMS_ComponentController@_GET_VIEW_LIST_SERVICES_BY_TRANSPORT')->name('_GET_VIEW_LIST_SERVICES_BY_TRANSPORT');
 		// Route::get('lvtn-')
 		//ĂN UỐNG - ẨM THỰC
 
@@ -144,6 +164,7 @@
 	Route::get('lvtn-list-social', 'CMS_ModuleController@_GETVIEW_LIST_SOCIAL')->name('_GETVIEW_LIST_SOCIAL');
 	Route::get('lvtn-add-social', 'CMS_ModuleController@_GETVIEW_ADD_SOCIAL')->name('_GETVIEW_ADD_SOCIAL');
 	Route::post('lvtn-add-social', 'CMS_AddDataController@ADD_SOCIAL');
+
 
 
 
