@@ -90,7 +90,7 @@ function load_user_thongke(path) {
 						lam += '<span style="font-size:10px;"><i class="fas fa-star"></i> '+ data.rating +'</span>';
 						lam += '</div>';
 						lam += '<div>';
-						lam += '<span class="badge badge-warning">Top 11</span>';
+						lam += '<span class="badge badge-warning"></span>';
 						lam += '</div>';
 						lam += '</a>';
 					})

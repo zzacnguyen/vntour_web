@@ -184,7 +184,10 @@ class accountController extends Controller
                 
                 if($response=="ok")
                 {
-                    return redirect()->back();
+                    return redirect()->back()->with(['message_edit'=>'Cập nhật thành công!']);
+                }
+                else{
+                    return redirect()->back()->with(['message_edit'=>'Lỗi không cập nhật được!']);
                 }
                 
             }
@@ -212,7 +215,10 @@ class accountController extends Controller
                 ])->getBody();
                 if($response=="ok")
                 {
-                    return redirect()->back();
+                    return redirect()->back()->with(['message_edit'=>'Cập nhật thành công!']);;
+                }
+                else{
+                    return redirect()->back()->with(['message_edit'=>'Lỗi không cập nhật được!']);
                 }
                
             }
@@ -239,15 +245,16 @@ class accountController extends Controller
                 ])->getBody();
         $result = json_decode($response->getContents());
         if ($result == 1) {
-            return json_decode($response);
-            return redirect()->back();
+            return redirect()->back()->with(['message_uplevel'=>'Đăng ký thành công!']);
         }
         else if($result == 0)
         {
-            return "Hiện tại bạn không thể đăng ký thêm quyền";
+            // return "Hiện tại bạn không thể đăng ký thêm quyền";
+            return redirect()->back()->with(['message_uplevel'=>'Hiện tại bạn không thể đăng ký thêm quyền!']);
         }
         else{
-            return "Lỗi không thêm được";
+            return redirect()->back()->with(['message_uplevel'=>'Lỗi không đăng ký được!']);
+            // return "Lỗi không đăng ký được";
         }
     }
 

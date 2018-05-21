@@ -26,7 +26,7 @@ body{
 
 /* Set all odd list items to a different color (zebra-stripes) */
 #danh-sach ul li:nth-child(odd) {
-  background: #f9f9f9;
+  /*background: #f9f9f9;*/
 }
 
 /* Darker background-color on hover */
@@ -118,7 +118,10 @@ body{
 
 #list-detail ul{
   list-style-type: none;
-  padding: 0;
+    padding: 0;
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #list-detail ul li{
@@ -172,11 +175,12 @@ ul.#list-serach-sv{
 
 
 #danh-sach ul li{
-  display: inline-flex;
-  width: 100%;
-  cursor: pointer;
-  border-bottom: 1px solid #ddd;
-  padding: 0;
+    display: inline-flex;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+    margin-bottom: 3px;
 }
 
 #danh-sach ul li:hover{

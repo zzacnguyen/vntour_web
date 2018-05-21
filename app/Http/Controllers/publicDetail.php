@@ -51,6 +51,7 @@ class publicDetail extends Controller
         }
         else{
             $checkUserRating = null;
+            $quyen_u = null;
         }
         // return $checkUserRating;
     	if ($sv == null) {
@@ -99,16 +100,20 @@ class publicDetail extends Controller
             if (count($checkUserRating) == 0) {
                 $checkUserRating = null;
             }
+            $quyen = $this::get_quyen_user();
+            // dd($quyen->level);
+            $quyen_u = $quyen->level;
         }
         else{
             $checkUserRating = null;
+            $quyen_u = null;
         }
         // return $checkUserRating;
         if ($sv == null) {
             return view('VietNamTour.404');
         }
         else{
-            return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating'));
+            return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating','quyen_u'));
         }
     }
 

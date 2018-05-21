@@ -197,7 +197,7 @@
 
 					<div class="input-text col-md-12">
 						<label class="col-md-2" style="padding: 0;">Nhập trực tiếp</label>
-						<input type="text" name="vido" placeholder="Vĩ độ" class="col-md-4">
+						<input type="text" name="vido" placeholder="Vĩ độ" class="col-md-4" {{old('vido')}}>
 						<input type="text" name="kinhdo" placeholder="Kinh độ" class="col-md-4">
 					</div>
           {{-- <div class="col-md-12">

@@ -20,7 +20,7 @@
 		}
 	</style>
 
-	<section class="content-info">
+	<section class="content-info" style="min-height: 600px;">
 		<div class="container">
 			<div class="content">
 				<div class="row">

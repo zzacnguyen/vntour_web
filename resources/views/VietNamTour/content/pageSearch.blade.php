@@ -213,7 +213,8 @@
 								@foreach($result_all as $r)
 									<div class="col-md-4 col-sm-6 col-12 thumbnail-padding">
 										<div class="destination-grid">
-											<a class="searchdichvu" {{-- href="detail/id={{$r->id_service}}&type={{$r->sv_type}}" --}} data-id="{{$r->id_service}}" data-type="{{$r->sv_type}}"><img style="height: 265px; cursor: pointer;" src="public/thumbnails/{{$r->image}}" alt="" ></a>
+											{{-- detail-search/id=53&type=3 --}}
+											<a class="searchdichvu" href="detail-search/id={{$r->id_service}}&type={{$r->sv_type}}" data-id="{{$r->id_service}}" data-type="{{$r->sv_type}}"><img style="height: 265px; cursor: pointer;" src="public/thumbnails/{{$r->image}}" alt="" ></a>
 											<div class="destination-name">
 												<h4>{{$r->name}}</h4>
 												<h5>{{$r->name_city}}</h5>

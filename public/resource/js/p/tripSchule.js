@@ -21,17 +21,17 @@ function timkiem() {
 				type: 'GET'
 			})
 			.done(function (response) {
-				// console.log(response);
+				console.log(response);
 				var lam = new String(); // khoi tao bien luu pha hien thi len view
 				var type = null;
 				response.forEach(function (data) {
 					if(data.sv_types != 3){
 						loai = parseInt(data.sv_types);
-						lam += '<li style="position: relative;" data-id="'+ data.sv_id +'" data-name="'+ data.sv_name +'" data-type="'+ data.sv_types +'" data-img="'+ data.image_details_1 +'" class="chon-sv" onclick="add()">';
+						lam += '<li style="position: relative;" data-id="'+ data.sv_id +'" data-name="'+ data.sv_name +'" data-type="'+ data.sv_types +'" data-img="'+ data.image_details_1 +'" data-city="'+ data.name_city +'" data-district="'+ data.name_district +'" data-ward="'+ data.name_ward +'" class="chon-sv" onclick="add()">';
 						lam += '<img src="public/thumbnails/'+ data.image_details_1 +'" alt="" style="height: 50px;width: 50px;">';
 						lam += '<div class="text-lam">';
 						lam += '<span><b>'+ data.sv_name +'</b></span><br>';
-						lam += '<span class="text-con"></span>';
+						lam += '<span class="text-con" style="color:#ddd;">'+ data.name_city +'<i class="fas fa-angle-double-right"></i>'+ data.name_district +'<i class="fas fa-angle-double-right"></i>'+ data.name_ward +'</span>';
 						lam += '</div>';
 						if (loai == 1) {
 							type = "Ăn uống";
@@ -131,6 +131,9 @@ function add() {
 			var name = this.getAttribute("data-name");
 			var img = this.getAttribute("data-img");	
 			var loai = parseInt(this.getAttribute("data-type"));	
+			var city = this.getAttribute("data-city");
+			var district = this.getAttribute("data-district");
+			var ward = this.getAttribute("data-ward");
 			// console.log(loai);
 			var type = null;
 			var lam = new String();
@@ -139,7 +142,7 @@ function add() {
 			lam += '<img src="public/thumbnails/'+ img +'" alt="" style="height: 50px;width: 50px;">';
 			lam += '<div class="text-lam">';
 			lam += '<span><b style="font-size=11px">'+ name +'</b></span><br>';
-			lam += '<span class="text-con"></span>';
+			lam += '<span class="text-con" style="color:#8c8787;">'+ city + ' <i class="fas fa-angle-double-right"></i> '+ district +' <i class="fas fa-angle-double-right"></i> '+ ward +'</span>';
 			lam += '</div>';
 			if (loai === 1) {
 				type = "Ăn uống";

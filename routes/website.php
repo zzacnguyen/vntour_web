@@ -141,6 +141,8 @@ Route::post('search-vicinity','pageController@get_search_vicinity')->name('searc
 
 Route::get('search-vicinity-type/{lat}&{lon}&{radius}&{type}&{page}&{limit}','pageController@get_vicinity_select_type');
 
+Route::get('get-service-top-search','pageController@get_service_max_search');
+
 
 
 

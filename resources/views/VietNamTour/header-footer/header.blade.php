@@ -91,7 +91,8 @@
 				<div class="container">
 					<nav class="navbar navbar-expand-lg navbar-light menuTop" id="id-menu-Top">
 						<a class="navbar-brand" href="{{route('/')}}" style="color: #304FFE !important;"><!-- VietNamTour -->
-							<img src="https://static.tacdn.com/img2/langs/vi/branding/rebrand/TA_logo_primary_v2.svg" alt="" style="height: 50px; width: 160px;">
+							{{-- <img src="https://static.tacdn.com/img2/langs/vi/branding/rebrand/TA_logo_primary_v2.svg" alt="" style="height: 50px; width: 160px;"> --}}
+							<img src="public/resource/images/logo-vnt.png" alt="" style="height: 50px; width: 160px;">
 						</a>
 						<!-- <button class="btn btn-success navbar-toggler" id="btnsearch-xs"><i class="fas fa-search"></i></button> -->
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="color: white; background-color: white;">
@@ -247,7 +248,28 @@
 												@endforeach
 											</div> --}}
 										</div>
+
+										<div id="list-top-search">
 											
+											{{-- <div class="item-search">
+												<div class="title-search">
+													<h5>Lịch sử tìm kiếm</h5>
+												</div>
+												@foreach($litSearch as $lis)
+													<div class="content-search">
+														<a href="detail/id={{$lis->sv_id}}&type={{$lis->sv_type}}">
+															<div class="left-content-search">
+																<img src="public/thumbnails/{{$lis->sv_image}}" alt="">
+															</div>
+															<div class="right-content-search">
+																<p>{{$lis->sv_name}}</p>
+																<p style="font-size: 13px; color: #d2cece; font-weight: 400;height: 24px;overflow: hidden;">{{$lis->sv_description}} </p>
+															</div>
+														</a>		
+													</div>
+												@endforeach
+											</div> --}}
+										</div>
 										
 											
 									</div>
@@ -390,114 +412,67 @@
 											<div class="content-nofi">
 												<ul id="body-nofi" style="width: 200px;">
 													@if(Session::has('login') && Session::get('login') == true)
-														@if(Session::get('user_info')->level == 1)
-														<li style="height: 27px;">
-															<a href="{{route('placeuser')}}" class="a-content-nofi">
-																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-map-marker"></i> 
-																		Danh sách địa điểm
-																	</p>	
-																</a>
-														</li>
-														<li style="height: 27px;">
-															<a href="service-user" class="a-content-nofi">
-																<p class="text-nofi" style="height: auto;width: auto;">
-																	<i class="fas fa-archive"></i> 
-																	Danh sách dịch vụ
-																</p>	
-															</a>
-														</li>
-														<li style="height: 27px;">
-															<a href="{{route('get_tripchudule')}}" class="a-content-nofi">
-																<p class="text-nofi" style="height: auto;width: auto;">
-																	<i class="fas fa-archive"></i> 
-																	Lịch trình
-																</p>	
-															</a>
-														</li>
-														
-														@elseif(Session::get('user_info')->level == 2)
-															<li style="height: 27px;">
-																<a href="{{route('placeuser')}}" class="a-content-nofi">
-																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-map-marker"></i> 
-																		Danh sách địa điểm
-																	</p>	
-																</a>
-															</li>
-															<li style="height: 27px;">
-																<a href="service-user" class="a-content-nofi">
-																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-archive"></i> 
-																		Danh sách dịch vụ
-																	</p>	
-																</a>
-															</li>
-															{{-- <li style="height: 27px;">
-																<a href="" class="a-content-nofi">
-																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-archive"></i> 
-																		Lịch trình
-																	</p>	
-																</a>
-															</li> --}}
+														@for($i=0;$i<count(Session::get('user_info')->level);$i++)
+															@if(Session::get('user_info')->level[$i] == 1 || Session::get('user_info')->level[$i] == 2)
+																<li style="height: 27px;">
+																	<a href="{{route('placeuser')}}" class="a-content-nofi">
+																			<p class="text-nofi" style="height: auto;width: auto;">
+																				<i class="fas fa-map-marker"></i> 
+																				Danh sách địa điểm
+																			</p>	
+																		</a>
+																</li>
+																<li style="height: 27px;">
+																	<a href="service-user" class="a-content-nofi">
+																		<p class="text-nofi" style="height: auto;width: auto;">
+																			<i class="fas fa-archive"></i> 
+																			Danh sách dịch vụ
+																		</p>	
+																	</a>
+																</li>
+																<li style="height: 27px;">
+																	<a href="{{route('get_tripchudule')}}" class="a-content-nofi">
+																		<p class="text-nofi" style="height: auto;width: auto;">
+																			<i class="fas fa-archive"></i> 
+																			Lịch trình
+																		</p>	
+																	</a>
+																</li>
+															@endif
 
-														@elseif(Session::get('user_info')->level == 3)
-															<li style="height: 27px;">
-																<a href="{{route('placeuser')}}" class="a-content-nofi">
-																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-map-marker"></i> 
-																		Danh sách địa điểm
-																	</p>	
-																</a>
-															</li>
-															<li style="height: 27px;">
-																<a href="service-user" class="a-content-nofi">
-																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-archive"></i> 
-																		Danh sách dịch vụ
-																	</p>	
-																</a>
-															</li>
-										
+															@if(Session::get('user_info')->level[$i] == 3 || Session::get('user_info')->level[$i] == 4)
+																<li style="height: 27px;">
+																	<a href="{{route('placeuser')}}" class="a-content-nofi">
+																		<p class="text-nofi" style="height: auto;width: auto;">
+																			<i class="fas fa-map-marker"></i> 
+																			Danh sách địa điểm
+																		</p>	
+																	</a>
+																</li>
+																<li style="height: 27px;">
+																	<a href="service-user" class="a-content-nofi">
+																		<p class="text-nofi" style="height: auto;width: auto;">
+																			<i class="fas fa-archive"></i> 
+																			Danh sách dịch vụ
+																		</p>	
+																	</a>
+																</li>
+															@endif
 
-														@elseif(Session::get('user_info')->level == 4)
-															<li style="height: 27px;">
-																<a href="{{route('placeuser')}}" class="a-content-nofi">
-																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-map-marker"></i> 
-																		Địa điểm
-																	</p>	
-																</a>
-															</li>
-															<li style="height: 27px;">
-																<a href="service-user" class="a-content-nofi">
-																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-archive"></i> 
-																		Danh sách Dịch vụ
-																	</p>	
-																</a>
-															</li>
-															{{-- <li style="height: 27px;">
-																<a href="{{route('addplace')}}" class="a-content-nofi">
-																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-map-marker"></i> 
-																		Giao việc
-																	</p>	
-																</a>
-															</li> --}}
-														@elseif(Session::get('user_info')->level == 5)
-															<li style="height: 27px;">	
+															@if(Session::get('user_info')->level[$i] == 5)
+																<li style="height: 27px;">	
 																<a href="{{route('get_tripchudule')}}" class="a-content-nofi">
 																	<p class="text-nofi" style="height: auto;width: auto;">
-																		<i class="fas fa-map-marker"></i> 
+																		<i class="fas fa-list-ul"></i>
 																		Lịch trình
 																	</p>	
 																</a>
 															</li>
-														@endif
-													@endif
-
+															@endif
+														@endfor
+													@endif	
+														
+														
 													{{-- <li style="height: 27px;">
 														<a href="" class="a-content-nofi">
 															<p class="text-nofi" style="height: auto;width: auto;">

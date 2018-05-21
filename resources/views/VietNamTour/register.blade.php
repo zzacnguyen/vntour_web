@@ -36,7 +36,7 @@
 							</div>
 							<div class="register text-center" style="border: none;">
 								<h5 class="text-center">Bạn đã có tài khoản</h5>
-								<a href="{{route('loginW')}}" class="btn btn-success btnregister">Login</a>
+								<a href="{{route('loginW')}}" class="btn btn-success btnregister">Đăng nhập</a>
 							</div>
 						</form>
 					</div>

@@ -283,7 +283,7 @@
 										  	</div>
 										  	<div id="list-detail">
 										  		<ul id="list-serach-sv">
-										  			<li style="position: relative;" data-id="1" class="chon-sv">
+										  			{{-- <li style="position: relative;" data-id="1" class="chon-sv">
 										  				<img src="public/resource/images/avatar1.jpg" alt="" style="height: 50px;width: 50px;">
 										  				<div class="text-lam">
 										  					<span><b>Cafe Chat</b></span><br>
@@ -298,7 +298,7 @@
 										  					<span class="text-con">Can Thơ</span>
 										  				</div>
 										  				<span class="type-sv badge badge-success">Ăn uống</span>
-										  			</li>
+										  			</li> --}}
 										  		</ul>
 										  	</div>
 
@@ -395,7 +395,7 @@
 
 							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 100px;">
 							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
+							    <div class="modal-content" style="border-radius: 0;">
 						    	<form action="add_detailtripchudule/{{$id_lichtrinh}}" method="post">
 							      <div class="modal-header">
 							        <h5 class="modal-title" id="exampleModalLabel">Thêm chi tiết lich trình</h5>
@@ -469,7 +469,7 @@
 							      </div>
 							      <div class="modal-footer" style="height: 55px;">
 							        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        <button id="btnthemchitiet" type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;">Thêm
+							        <button id="btnthemchitiet" type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 10px 41px !important;border-radius: 0px !important;margin-left: 9px; background-color: #1b00ff;">Thêm
 							        </button>
 							      </div>
 						      	</form>

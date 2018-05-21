@@ -7,7 +7,7 @@
 	<title>Login</title>
 </head>
 <body>
-	<section class="content" style="background-image: url({{asset('/resource/images/background/4.jpg')}});">
+	<section class="content" style="background-image: url({{asset('public/resource/images/background/4.jpg')}});">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4"></div>	
@@ -29,11 +29,11 @@
 								<input id="txtpass" type="password" placeholder="Password" name="password" required="required">
 								<small id="thongbao" style="color: red; display: none;">Tên tài khoản hoặc mật khẩu không đúng</small>
 
-								<a href="" style="font-size: 14px;width: 100%;display: inline-block;"><i>Quên mật khẩu</i></a>
+								{{-- <a href="" style="font-size: 14px;width: 100%;display: inline-block;"><i>Quên mật khẩu</i></a> --}}
 
 								<button class="btn btn-success float-right btnlogin" type="" id="btnlogin">Login</button>
 							</div>
-							<div class="login-social">
+							{{-- <div class="login-social">
 								<h5 class="text-center">Login social</h5>
 								<div class="row">
 									<div class="col-md-6">
@@ -43,10 +43,10 @@
 										<a href="" class="btn btn-warning btngoogle" style="background-color: #dd4b39">Google+</a>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 							<div class="register text-center">
 								<h5 class="text-center">Đăng ký tài khoản mới tại đây</h5>
-								<a href="{{route('registerW')}}" class="btn btn-info btnregister">Register</a>
+								<a href="{{route('registerW')}}" class="btn btn-info btnregister">Đăng ký</a>
 							</div>
 						</form>
 					</div>

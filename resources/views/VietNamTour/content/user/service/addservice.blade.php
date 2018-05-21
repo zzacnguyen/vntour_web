@@ -92,11 +92,11 @@
 						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 						<div class="input-text">
 							<label>Giá thấp nhất</label>
-							<input name="sv_lowest_price" type="text" min="0" value="0">
+							<input name="sv_lowest_price" type="number" min="0" value="0">
 						</div>
 						<div class="input-text">
 							<label>Giá cao nhất</label>
-							<input name="sv_highest_price" type="text" min="0" value="0">
+							<input name="sv_highest_price" type="number" min="0" value="0">
 						</div>
 						<br>
 						{{-- //========================= CHI TIET =================== --}}

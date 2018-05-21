@@ -24,6 +24,7 @@ $(document).ready(function () {
 		search();
 		$('#text-search-top').click(function () {
 			list_tim_kiem();
+			list_top_search();
 		})
 })
 
@@ -82,6 +83,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_eat').html(eat);
+					$('#search_eat').css('display','block');
 				}else{document.getElementById('eatCha').style.display = 'none';}
 
 				if (response.hotel.length > 0) 
@@ -97,6 +99,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_hotel').html(eat);
+					$('#search_hotel').css('display','block');
 				}else{document.getElementById('hotelCha').style.display = 'none';}
 
 				if (response.tran.length > 0) 
@@ -112,6 +115,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_tran').html(eat);
+					$('#search_tran').css('display','block');
 				}else{document.getElementById('tranCha').style.display = 'none';}
 
 				if (response.see.length > 0) 
@@ -127,6 +131,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_see').html(eat);
+					$('#search_see').css('display','block');
 				}else{document.getElementById('seeCha').style.display = 'none';}
 
 				if (response.enter.length > 0) 
@@ -142,6 +147,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_enter').html(eat);
+					$('#search_enter').css('display','block');
 				}else{document.getElementById('enterCha').style.display = 'none';}
 
 			}).fail(function (response) {
@@ -172,6 +178,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_eat').html(eat);
+					$('#search_eat').css('display','block');
 				}else{document.getElementById('eatCha').style.display = 'none';}
 
 				if (response.hotel.length > 0) 
@@ -187,6 +194,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_hotel').html(eat);
+					$('#search_hotel').css('display','block');
 				}else{document.getElementById('hotelCha').style.display = 'none';}
 
 				if (response.tran.length > 0) 
@@ -202,6 +210,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_tran').html(eat);
+					$('#search_tran').css('display','block');
 				}else{document.getElementById('tranCha').style.display = 'none';}
 
 				if (response.see.length > 0) 
@@ -217,6 +226,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_see').html(eat);
+					$('#search_see').css('display','block');
 				}else{document.getElementById('seeCha').style.display = 'none';}
 
 				if (response.enter.length > 0) 
@@ -232,6 +242,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_enter').html(eat);
+					$('#search_enter').css('display','block');
 				}else{document.getElementById('enterCha').style.display = 'none';}
 
 			}).fail(function (response) {
@@ -263,6 +274,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_eat').html(eat);
+					$('#search_eat').css('display','block');
 				}else{document.getElementById('eatCha').style.display = 'none';}
 
 			}).fail(function (response) {
@@ -294,6 +306,7 @@ function search() {
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
 					$('#search_eat').html(eat);
+					$('#search_eat').css('display','block');
 				}else{document.getElementById('eatCha').style.display = 'none';}
 
 			}).fail(function (response) {
@@ -302,11 +315,17 @@ function search() {
 			
 		}
 		else{
-			$('#search_eat').html("");
-			$('#search_hotel').html("");
-			$('#search_tran').html("");
-			$('#search_see').html("");
-			$('#search_enter').html("");
+			// $('#search_eat').html("");
+			// $('#search_hotel').html("");
+			// $('#search_tran').html("");
+			// $('#search_see').html("");
+			// $('#search_enter').html("");
+
+			$('#search_eat').css('display','none');
+			$('#search_hotel').css('display','none');
+			$('#search_tran').css('display','none');
+			$('#search_see').css('display','none');
+			$('#search_enter').css('display','none');
 		}
 		
 		// save_dichvu_searchCon();
@@ -385,9 +404,43 @@ function list_tim_kiem() {
 		.done(function (response) {
 			// console.log(response);
 			// detail-search/200&type=1
+			if (response.length > 0) 
+			{
+				var eat = new String();
+				eat +=  '<div class="title-search">';
+				eat +=	'<h5>Lịch sử tìm kiếm</h5>';
+				eat +=	'</div>';
+				response.forEach(function (data) {
+					eat += 	'<div class="content-search">';
+					eat +=	'<a href="detail-search/id='+ data.sv_id +'&type=' + data.sv_type + '" class="" >';
+					eat +=	'<div class="left-content-search">';
+					eat +=	'<img src="public/thumbnails/'+ data.sv_image +'" alt="">';
+					eat +=	'</div>';
+					eat +=	'<div class="right-content-search">';
+					eat +=	'<p>'+ data.sv_name +'</p>';
+					eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 20px;max-width:321px;text-overflow: ellipsis;">Mô tả</p>';
+					eat +=	'</div>';
+					eat +=	'</a>';		
+					eat +=	'</div>';
+				})
+				$('#lichsusearch').html(eat);
+			}
+						
+		})
+}
+
+function list_top_search() {
+	
+	$.ajax({
+			url: 'get-service-top-search',
+			type: 'GET'
+		})
+		.done(function (response) {
+			// console.log(response);
+			// detail-search/200&type=1
 			var eat = new String();
 			eat +=  '<div class="title-search">';
-			eat +=	'<h5>Lịch sử tìm kiếm</h5>';
+			eat +=	'<h5>Top dịch vụ được tìm kiếm nhiều nhất</h5>';
 			eat +=	'</div>';
 			response.forEach(function (data) {
 				eat += 	'<div class="content-search">';
@@ -402,7 +455,7 @@ function list_tim_kiem() {
 				eat +=	'</a>';		
 				eat +=	'</div>';
 			})
-			$('#lichsusearch').html(eat);		
+			$('#list-top-search').html(eat);		
 		})
 }
 

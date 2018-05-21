@@ -228,9 +228,6 @@
 						    			@if($q->quyen == 0)
 											<option selected="selected">Bạn không thể đăng ký thêm quyền</option>
 										@else
-											@if($q->quyen == 4)
-												<option value="4">Moderator</option>
-											@endif
 											@if($q->quyen == 3)
 												<option value="3">Cộng tác viên</option>
 											@endif
@@ -337,6 +334,34 @@
 	{{-- <script src="public/resource/js/detail-hotel.js"></script> --}}
 	<script src="public/resource/js/menu-style.js"></script>
 	<script src="public/resource/js/p/account.js"></script>
+
+	@if(Session::has('message_edit'))
+		
+		<script>
+			@if(Session::get('message_edit') == "Cập nhật thành công!")
+				Command: toastr["success"]("{{Session::get('message_edit')}}")
+			@else
+				Command: toastr["error"]("{{Session::get('message_edit')}}")
+			@endif
+			toastr.options = {
+			  "closeButton": false,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-right",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "5000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+			}
+		</script>
+	@endif
 	
 	@if(Session::has('message'))
 		
@@ -367,6 +392,38 @@
 			}
 		</script>
 	@endif
+
+	@if(Session::has('message_uplevel'))
+		
+		<script>
+			@if(Session::get('message_uplevel') == "Đăng ký thành công!")
+				Command: toastr["success"]("{{Session::get('message_uplevel')}}")
+			@elseif(Session::get('message') == "Hiện tại bạn không thể đăng ký thêm quyền!")
+				Command: toastr["warning"]("{{Session::get('message_uplevel')}}")
+			@else
+				Command: toastr["error"]("{{Session::get('message_uplevel')}}")
+			@endif
+			toastr.options = {
+			  "closeButton": false,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-right",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "5000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+			}
+		</script>
+	@endif
+
+	{{-- message_uplevel --}}
 
 
 @include('VietNamTour.header-footer.footer')

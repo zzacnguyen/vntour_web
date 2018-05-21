@@ -1,6 +1,6 @@
 <!-- ================== FOOTER ============= -->
 	<footer>
-		<div class="container">
+		{{-- <div class="container">
 			<div class="row">
 				<div class="col-md-3 col-sm-12 col-12">
 					<p style="text-align: justify;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
@@ -52,6 +52,9 @@
 					</div>
 				</div>
 			</div>
+		</div> --}}
+		<div class="container">
+			<div class="col--md-6">Liên hệ: 0939812940</div>
 		</div>
 	</footer>
 	<!-- ================== END FOOTER ============= -->

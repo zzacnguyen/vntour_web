@@ -807,7 +807,7 @@ footer .footer-text a:hover{
     width: 100%;
     background: white;
     height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     opacity: 0;
     visibility: hidden;
