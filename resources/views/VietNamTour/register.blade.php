@@ -21,15 +21,21 @@
 							<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 							<div class="login">
 								@if(Session::has('userexist'))
-									<small style="color: red;">Email này đã được sử dụng trước đó</small>
-								@elseif(count($errors) > 0)
-									@foreach ($errors->all() as $error)
-					                  <small class="float-left" style="color: red;">{{ $error }}</small>
-					              	@endforeach
+									<small style="color: red;">Tài khoản này đã được sử dụng trước đó</small>
+								@elseif(Session::has('validate'))
+				                  	<small class="float-left" style="color: red;">Tài khoản và mật khẩu có độ dài từ 4-20 ký tự</small>
 					            @elseif(Session::has('password'))
 					            	<small style="color: red;">Mật khẩu không trùng khớp</small>
+					            @elseif(Session::has('validate'))
+					            	<small style="color: red;">Tài khoản mật khẩu có độ dài lớn hơn 4 ký tự</small>
 								@endif
-								<input type="text" placeholder="Email" name="username" required="required">
+								
+								@if(Session::has('userexist') || Session::has('password') || Session::has('validate'))
+									<input type="text" placeholder="Tài khoản" name="username" required="required" value="{{Session::get('username')}}">
+								@else
+									<input type="text" placeholder="Tài khoản" name="username" required="required" value="">
+								@endif
+								
 								<input type="password" placeholder="Mật khẩu" name="password" required="required">
 								<input type="password" placeholder="Xác nhận mật khẩu" name="passwordC">
 								<button class="btn btn-info float-right btnlogin" type="submit" name="btnregister">Đăng ký</button>

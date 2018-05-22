@@ -24,13 +24,13 @@ class editservice extends FormRequest
     public function rules()
     {
         return [
-            "sv_description"=>"required",
+            "sv_name"=>"required",
         ];
     }
     public function messages()
     {
         return[
-            "sv_description.required"=>"Tên địa điểm không được bỏ trống",
+            "sv_name.required"=>"Tên địa điểm không được bỏ trống",
         ];
     }
 }

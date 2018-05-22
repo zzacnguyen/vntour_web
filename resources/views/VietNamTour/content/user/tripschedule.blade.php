@@ -332,7 +332,7 @@
 					<div class="col-md-9">
 						<div class="right-user" style="padding: 5px 15px;">
 							<div class="col-md-12">
-								<h4 style="padding:10px;" class="text-center"><b>Danh sách địa điểm</b></h4>
+								<h4 style="padding:10px;" class="text-center"><b>Chi tiết lịch trình</b></h4>
 							</div>
 							<div class="col-md-12" style="padding-left: 0;">
 								@if($chitiet == null)

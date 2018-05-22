@@ -24,7 +24,7 @@ class addservice extends FormRequest
     public function rules()
     {
         return [
-            "sv_description"=>"required",
+            "sv_name"=>"required",
             "img1"=>"required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "img2"=>"required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "img3"=>"required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
@@ -33,7 +33,7 @@ class addservice extends FormRequest
     public function messages()
     {
         return[
-            "sv_description.required"=>"Tên địa điểm không được bỏ trống",
+            "sv_name.required"=>"Tên địa điểm không được bỏ trống",
             "img1.required"=>"Ảnh không được bỏ trống",
             "img1.mimes"=>"Không đúng định dạng ảnh",
             "img1.max"=>"kích thước quá lớn",

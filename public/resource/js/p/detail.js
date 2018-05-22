@@ -135,6 +135,7 @@ function check_rating() {
 		
 		var rating = $('#txtrating2').val();
         var detail = $('#txtdetail2').val();
+        // alert(detail);
         if (rating == null || rating == 0) {
             $('#errorating').css('display','block');
         }

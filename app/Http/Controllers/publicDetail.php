@@ -421,6 +421,8 @@ class publicDetail extends Controller
     public function save_update_rating($id_service, $rating, $detail)
     {
         $user_id = $this::check_Login();
+        $lam = "save_update_rating/id={$id_service}&rating={$rating}&detail={$detail}&user={$user_id}";
+        // return $lam;
         $client = new Client([
             // Base URI is used with relative requests
             'base_uri' => 'http://vntourweb/vntour_api/',

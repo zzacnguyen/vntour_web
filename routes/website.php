@@ -19,7 +19,7 @@ Route::get('logoutW','pageController@LogoutSession')->name('logoutW'); // logout
 Route::get('loginW','pageController@getlogin')->name('loginW');
 
 Route::post('loginpost','pageController@LoginSession')->name('loginpost');
-Route::post('registerWpost','loginController@registerW')->name('registerWpost');
+Route::post('registerWpost','loginController@register_web')->name('registerWpost');
 // login facebook
 Route::get('login/facebook/redirect', 'loginController@redirectToProvider')->name('loginfacebook');
 Route::get('login/facebook/callback', 'loginController@handleProviderCallback');

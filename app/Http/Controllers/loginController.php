@@ -7,6 +7,7 @@ use App\usersModel;
 use Auth;
 use Validator;
 use DB;
+use GuzzleHttp\Client;
 use Hash;
 use Socialite;
 use App\contact_infoModel;
@@ -54,6 +55,7 @@ class loginController extends Controller
         $messages = [
             'username.email'        => 'Không đúng định dạng email',
             'password.min'    => 'Tài khoản có độ dài từ 4-20 ký tự',
+            'password.max' => 'fdfdfđ'
         ];
         $validator = Validator::make($request->all(), [
             'username' => 'min:4',
@@ -63,10 +65,10 @@ class loginController extends Controller
             return redirect('registerW')->withErrors($validator)->withInput();
         } 
         elseif ($this->check_username_existW($user)) {
-            return redirect('registerW')->with(['userexist' => 'exist']);
+            return redirect()->back()->with(['userexist' => 'exist','username' => $user]);
         }
         elseif($pass != $passold){
-            return redirect('registerW')->with(['password' => 'pass']);
+            return redirect()->back()->with(['password' => 'pass']);
         }
         else 
         {
@@ -87,6 +89,64 @@ class loginController extends Controller
             return redirect('registersuccess');
         }
     }
+
+    public function register_web(Request $request)
+    {
+        $user = $request->input('username');
+        $pass     = $request->input('password');
+        $passold     = $request->input('passwordC');
+
+        $messages = [
+            'username.email'        => 'Không đúng định dạng email',
+            'password.min'    => 'Tài khoản có độ dài từ 4-20 ký tự',
+            'password.max' => 'sdsdsdsd',
+            'username.min' => 'sdsdsd'
+        ];
+        $validator = Validator::make($request->all(), [
+            'username' => 'min:4',
+            'username' => 'max:20',
+            'password' => 'min:4',
+            'password' => 'max:20'
+        ],$messages);
+
+        if (strlen($user) < 4 || strlen($user) > 20 || strlen($pass) < 4 || strlen($pass) > 20) {
+            return redirect()->back()->with(['validate' => 'validate','username' => $user]);
+        }
+        elseif ($pass != $passold) {
+            return redirect()->back()->with(['password' => 'pass','username' => $user]);
+        } 
+        else{
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://vntourweb/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('POST', 'registerWpost', [
+                'form_params' => [
+                    'username' => $user,
+                    'password' => $pass,
+                    'passwordC'=> $passold
+                ]
+            ])->getBody()->getContents();
+            if ($response == "-2") {
+                return redirect()->back()->with(['userexist' => 'exist','username' => $user]);
+            }
+            elseif($response == "-3"){
+                return redirect()->back()->with(['password' => 'pass','username' => $user]);
+            }
+            elseif($response == "-1"){
+                return redirect()->back()->with(['validate' => 'validateee','username' => $user]);
+            }
+            elseif($response == "1"){
+                return redirect('registersuccess');
+            }
+        }
+
+            
+    }
+
+
 
     function check_username_existW($user){
         $result = DB::table('vnt_user')

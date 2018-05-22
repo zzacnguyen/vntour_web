@@ -1,6 +1,6 @@
 <?php
 include 'website.php';
-include 'cms.php';
+// include 'cms.php';
 /*
 |--------------------------------------------------------------------------
 | Web Routes

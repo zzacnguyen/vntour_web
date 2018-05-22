@@ -50,7 +50,7 @@
 							      <th scope="col" class="text-center">Tên địa điểm</th>
 							      <th scope="col" class="text-center">Địa chỉ</th>
 							      <th scope="col" class="text-center">Ngày tạo</th>
-							      <th scope="col" class="text-center" style="width: 50px;">Trạng thái</th>
+							      <th scope="col" class="text-center" style="width: 50px;">Đã duyệt</th>
 							      <th scope="col" class="text-center" style="width: 166px;">
 							      	<a href="{{route('addplaceuser')}}" class="btn btn-sm btn-primary" id="myBtn">
 							      		<i class="fas fa-plus"></i> Thêm mới

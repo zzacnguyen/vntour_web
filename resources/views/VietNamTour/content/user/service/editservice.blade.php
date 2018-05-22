@@ -19,7 +19,7 @@
 						<div class="input-text">
 							<label>Tên dịch vụ</label>
 							<input type="hidden" name="status" value="{{$data->sv_status}}">
-							<input name="sv_description" type="text" value="{{$data->sv_name}}">
+							<input name="sv_name" type="text" value="{{$data->sv_name}}">
 							<p class="text-danger">{{$errors->first('sv_description')}}</p>
 						</div>
 						<div class="input-text col-md-12" style="padding: 0;margin-bottom: 5px;">
@@ -102,13 +102,13 @@
 						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 						<div class="input-text">
 							<label>Giờ đóng cửa</label>
-							<input type="number" name="time_begin" value="{{$data->sv_close}}" >
+							<input type="time" name="time_begin" value="{{$data->sv_open}}" >
 							
 						</div>
 						<div class="input-text">
 							<label>Giờ mở cửa</label>
 							
-							<input name="time_end" type="number" value="{{$data->sv_open}}">
+							<input name="time_end" type="time" value="{{$data->sv_close}}">
 						</div>
 						<br>
 						{{-- //========================= GIA ======================= --}}
@@ -127,7 +127,7 @@
 						<h6 style="color: #bd1717;">Mô tả chi tiết</h6>
 						<div class="input-text" class="col-md-12" style="padding: 0">
 							{{-- <label style="padding: 0;" class="col-md-2">Mô tả dịch vụ</label> --}}
-							<textarea name="mota" id="ten" class="col-md-9" style="margin-left: 27px;">{!!$data->sv_description!!}</textarea>
+							<textarea name="mota" id="ten" class="col-md-9" style="margin-left: 27px;">{!!$data->sv_content!!}</textarea>
       						<script>CKEDITOR.replace('ten');</script>
       						
 						</div>

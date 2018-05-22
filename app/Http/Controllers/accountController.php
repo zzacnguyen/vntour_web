@@ -659,9 +659,10 @@ class accountController extends Controller
         if ($phone == null) { $phone = "Đang cập nhật";}
         $website = $request->sv_website;
         if ($website == null) { $website = "Đang cập nhật";}
-
+        
         $response = $client->request('POST',"post_add_service_user/{$user_id}",[
             'form_params' => [
+                'sv_name' => $request->sv_name,
                 'sv_description' => $request->sv_description,
                 'sv_types'=>$request->sv_types,
                 'city'=>$request->city,
@@ -679,7 +680,8 @@ class accountController extends Controller
                 'img2'=>$name1,
                 'img3'=>$name2
             ]
-        ])->getBody();
+        ])->getBody()->getContents();
+        // dd($response);
         if($response=='ok')
         {
             return redirect()->route('service_user')->with(['message'=>'Thêm thành công']);
@@ -699,7 +701,8 @@ class accountController extends Controller
             'timeout'  => 20.0,
         ]);
         $user_id = Session::get('user_info')->id;
-        $response = $client->request('GET',"get_service_user/{$user_id}")->getBody();
+        $response = $client->request('GET',"get_service_user/{$user_id}")->getBody()->getContents();
+
         $data=json_decode($response);
         // dd($data);
         $flag = 1;
@@ -716,6 +719,7 @@ class accountController extends Controller
         ]);
         $response = $client->request('GET',"get_edit_service_user/{$id}/{$user_id}")->getBody();
          $data=json_decode($response);
+         // dd($data);
         if($data == null){
             return view('VietNamTour.404');
         }
@@ -768,7 +772,8 @@ class accountController extends Controller
         ]);
         $response = $client->request('POST',"post_edit_service_user/{$id}",[
             'form_params' => [
-                'sv_description' => $request->sv_description,
+                'sv_name' => $request->sv_name,
+                'sv_description' => $request->sv_name,
                 'sv_types'=>$request->sv_types,
                 'city'=>$request->city,
                 'district'=>$request->districtt,

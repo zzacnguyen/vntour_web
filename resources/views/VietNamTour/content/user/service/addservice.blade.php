@@ -18,7 +18,7 @@
 						<input type="hidden" name="_token" value="{{csrf_token()}}">
 						<div class="input-text">
 							<label>Tên dịch vụ</label>
-							<input name="sv_description" type="text" value="{{old('sv_description')}}">
+							<input name="sv_name" type="text" value="{{old('sv_description')}}">
 							<p class="text-danger">{{$errors->first('sv_description')}}</p>
 						</div>
 						<div class="input-text col-md-12" style="padding: 0;margin-bottom: 5px;">
@@ -70,21 +70,22 @@
 						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 						<div class="input-text">
 							<label>Giờ đóng cửa</label>
-							{{-- <input type="number" name="time_begin" min="0" max="24"> --}}
-							<select name="time_begin" id="" class="js-example-basic-single col-md-8" style="">
+							<input type="time" name="time_begin">
+							{{-- <select name="time_begin" id="" class="js-example-basic-single col-md-8" style="">
 								@for($i=0;$i<24;$i++)
 									<option value="{{$i}}">{{$i}}</option>
 								@endfor
-							</select>
+							</select> --}}
 							
 						</div>
 						<div class="input-text">
 							<label>Giờ mở cửa</label>
-							<select name="time_end" id="" class="js-example-basic-single col-md-8" style="">
+							<input type="time" name="time_end" >
+							{{-- <select name="time_end" id="" class="js-example-basic-single col-md-8" style="">
 								@for($i=0;$i<24;$i++)
 									<option value="{{$i}}">{{$i}}</option>
 								@endfor
-							</select>
+							</select> --}}
 						</div>
 						<br>
 						{{-- //========================= GIA ======================= --}}

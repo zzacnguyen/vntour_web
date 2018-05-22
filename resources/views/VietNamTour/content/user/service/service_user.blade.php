@@ -182,7 +182,7 @@
 					<div class="col-md-9">
 						<div class="right-user" style="padding: 5px 15px;">
 							<div class="col-md-12">
-								<h4 style="padding:10px;" class="text-center"><b>Danh sách dịch vụ bạn đã thêm</b></h4>
+								<h4 style="padding:10px;" class="text-center"><b>Danh sách dịch vụ</b></h4>
 							</div>
 							<table class="table table-bordered" style="font-size: 12px;">
 							  <thead>
@@ -191,9 +191,9 @@
 							      <th scope="col" class="text-center">Loại hình</th>
 							      <th scope="col" class="text-center">Ngày tạo</th>
 							      <th scope="col" class="text-center" style="width: 60px;">Thông tin</th>
-							      <th scope="col" class="text-center" style="width: 50px;">Trạng thái</th>
+							      <th scope="col" class="text-center" style="width: 50px;">Đã duyệt</th>
 							      <th scope="col" class="text-center" style="width: 166px;">
-							      	<a class="btn btn-sm btn-primary" id="myBtn" href="{{route('serviceuser')}}">
+							      	<a class="btn btn-sm btn-primary" {{-- id="myBtn" --}} href="{{route('serviceuser')}}">
 							      		<i class="fas fa-plus"></i> Thêm mới
 									</a>
 							      </th>
@@ -235,7 +235,7 @@
 											<a href="{{route('edit_service_user',$val->sv_id)}}" class="btn btn-sm btn-info" title="Chi tiết dịch vụ">
 												<i class="far fa-edit"></i> Chi tiết
 											</a>
-											<a href="detail/id={{$val->sv_id}}&type={{$val->sv_type}}" class="btn btn-success btn-sm" title="Trang chi tiết">
+											<a target="blank" href="detail/id={{$val->sv_id}}&type={{$val->sv_type}}" class="btn btn-success btn-sm" title="Trang chi tiết">
 												<i class="fas fa-file-alt"></i>
 											</a>
 								      		{{-- <button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button> --}}

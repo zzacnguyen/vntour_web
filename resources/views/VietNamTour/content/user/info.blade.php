@@ -84,7 +84,7 @@
 										<a href=""><i class="far fa-edit"></i> Thông tin tài khoản</a>
 									</li>
 									<li class="">
-										<a id="btnnangcap" data-toggle="modal" data-target="#myModal"><i class="fas fa-user-secret"></i> Nâng cấp tài khoản</a>
+										<a id="btnnangcap" data-toggle="modal" data-target="#myModal"><i class="fas fa-user-secret"></i> Nâng cấp cai trò</a>
 									</li>
 									<li>
 										<a href="" data-toggle="modal" data-target="#exampleModal">
@@ -173,13 +173,13 @@
 					    <!-- Modal content-->
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title">Nâng cấp tài khoản</h5>
+					        <h5 class="modal-title">Nâng cấp vai trò</h5>
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>
 					      </div>
 					      <div class="modal-body">
 					      	<form action="{{route('register_uplevel_user')}}" method="post">
 					        <div class="form-group col-md-12 row">
-							    <label class="col-md-4" for="exampleInputEmail1">Quyền hiện tại</label>
+							    <label class="col-md-4" for="exampleInputEmail1">Vai trò hiện tại</label>
 							    <label style="color: red;" class="col-md-8" for="">
 							    	@if($quyen_hientai != null)
 							    		@foreach($quyen_hientai as $quyen)
@@ -198,7 +198,7 @@
 
 
 							<div class="form-group col-md-12 row">
-							    <label class="col-md-4" for="exampleInputEmail1">Quyền đang xét</label>
+							    <label class="col-md-4" for="exampleInputEmail1">Vai trò đang xét</label>
 							    <label style="color: red;" class="col-md-8" for="">
 							    	@if($quyen_dangxet != null)
 										@for($i = 0; $i < count($quyen_dangxet); $i++)
@@ -226,7 +226,7 @@
 
 							    	@foreach($quyen2 as $q)
 						    			@if($q->quyen == 0)
-											<option selected="selected">Bạn không thể đăng ký thêm quyền</option>
+											<option selected="selected">Bạn không thể đăng ký thêm vai trò</option>
 										@else
 											@if($q->quyen == 3)
 												<option value="3">Cộng tác viên</option>
