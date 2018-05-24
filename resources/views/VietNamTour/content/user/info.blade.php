@@ -177,7 +177,7 @@
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>
 					      </div>
 					      <div class="modal-body">
-					      	<form action="{{route('register_uplevel_user')}}" method="post">
+					      	<form action="{{route('register-uplevel-user')}}" method="post">
 					        <div class="form-group col-md-12 row">
 							    <label class="col-md-4" for="exampleInputEmail1">Vai trò hiện tại</label>
 							    <label style="color: red;" class="col-md-8" for="">

@@ -172,7 +172,7 @@ Route::get('info','accountController@get_info_account')->name('info');
 Route::post('info',['as'=>'postinfo','uses'=>'accountController@post_edit_info_account']);
 Route::get('get_quyen_dangky','accountController@get_quyen_dangky');
 
-Route::post('register_uplevel_user','accountController@register_uplevel_user')->name('register_uplevel_user');
+Route::post('register-uplevel-user','accountController@register_uplevel_user')->name('register-uplevel-user');
 
 //test
 

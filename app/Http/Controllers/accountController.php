@@ -238,7 +238,7 @@ class accountController extends Controller
                     'timeout'  => 20.0,
                 ]);
 
-        $response = $client->request('POST', 'savequyendangky/'.$user_id.'', [
+        $response = $client->request('POST', 'save-upgrade-level-user/'.$user_id.'', [
                     'form_params' => [
                         'quyen' => $request->selectnangcap
                     ]

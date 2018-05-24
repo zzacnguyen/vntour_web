@@ -367,7 +367,7 @@ border-radius: 4px;
 								</div> --}}
 							</div>
 							<br>	
-							<div class="service">
+							<div class="service" style="margin-top: 5px;">
 								<ul>
 									{{-- <li>
 										<div class="icon-f"><i class="fas fa-paper-plane"></i></div>
@@ -384,9 +384,9 @@ border-radius: 4px;
 										<div class="icon-f">
 											<i class="far fa-clock"></i>
 										</div>
-										<span id="giomocua">{{$sv->sv_close}}</span> {{-- gio mo cua --}}
-										<i class="fas fa-arrow-right"></i> 
-										<span id="giodongcua">{{$sv->sv_open}}</span> {{-- gio mo cua --}}
+										<span id="giomocua">{{$sv->sv_open}}</span> {{-- gio mo cua --}}
+										-
+										<span id="giodongcua">{{$sv->sv_close}}</span> {{-- gio mo cua --}}
 									</li>
 
 									<li>
