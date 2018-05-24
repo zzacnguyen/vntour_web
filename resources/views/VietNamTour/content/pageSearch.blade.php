@@ -87,6 +87,10 @@
 									      </div>
 
 									      <div class="modal-body">
+									      	<div class="form-group col-md-12 row">
+									      		<small class="col-md-12" style="color: red;">Chúng tôi cần biết vị trí của bạn để thục hiện chức năng này</small>
+											    <button onclick="tryGeolocation()">Lấy vị trí</button>
+										  	</div>
 										  	<div class="form-group col-md-12 row">
 											    <label class="col-md-3" for="exampleInputEmail1">Vĩ độ</label>
 											    <div class="col-md-9">
@@ -266,38 +270,49 @@
 
 <div class="container">
 	<script>
-	var x = document.getElementById("demo");
-	 
-	function getLocation() {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition, showError);
-		} 
-		else {
-			x.innerHTML = "Trình duyệt của bạn không hỗ trợ Geolocation.";
-		}
-	}
-	 
-	function showPosition(position) {
-		x.innerHTML = "Vĩ độ: " + position.coords.latitude +
-		"<br>Kinh độ: " + position.coords.longitude;
-	}
-	 
-	function showError(error) {
-		switch(error.code) {
-		case error.PERMISSION_DENIED:
-		x.innerHTML = "Người dùng từ chối cấp quyền định vị."
-		break;
-		case error.POSITION_UNAVAILABLE:
-		x.innerHTML = "Không có thông tin vị trí."
-		break;
-		case error.TIMEOUT:
-		x.innerHTML = "Hết thời gian gửi yêu cầu định vị."
-		break;
-		case error.UNKNOWN_ERROR:
-		x.innerHTML = "Lỗi chưa xác định."
-		break;
-		}
-	}
+		var apiGeolocationSuccess = function(position) {
+            alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+        };
+
+        var tryAPIGeolocation = function() {
+            jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function(success) {
+                apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
+          })
+          .fail(function(err) {
+            alert("API Geolocation error! \n\n"+err);
+          });
+        };
+
+        var browserGeolocationSuccess = function(position) {
+            alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+        };
+
+        var browserGeolocationFail = function(error) {
+          switch (error.code) {
+            case error.TIMEOUT:
+              alert("Browser geolocation error !\n\nTimeout.");
+              break;
+            case error.PERMISSION_DENIED:
+              if(error.message.indexOf("Only secure origins are allowed") == 0) {
+                tryAPIGeolocation();
+              }
+              break;
+            case error.POSITION_UNAVAILABLE:
+              alert("Browser geolocation error !\n\nPosition unavailable.");
+              break;
+          }
+        };
+
+        var tryGeolocation = function() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                browserGeolocationSuccess,
+              browserGeolocationFail,
+              {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
+          }
+        };
+
+// tryGeolocation();
 	</script>
 </div>
 
