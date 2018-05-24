@@ -239,7 +239,7 @@ class pageController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"count_city_service_all_image");
+        $response = $client->request('GET',"count-city-service-all-image");
 
         return json_decode($response->getBody()->getContents());
     }

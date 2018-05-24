@@ -150,7 +150,7 @@ class publicCityController extends Controller
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
-        $response = $client->request('GET',"get_service_city_new/{$idcity}&{$id_district}&{$type}&{$boloc}");
+        $response = $client->request('GET',"get-service-city-new/{$idcity}&{$id_district}&{$type}&{$boloc}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -225,7 +225,7 @@ class publicCityController extends Controller
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
-        $response = $client->request('GET',"count_service_all_and_type/{$idcity}");
+        $response = $client->request('GET',"count-service-all-and-type/{$idcity}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -276,7 +276,7 @@ class publicCityController extends Controller
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
-        $response = $client->request('GET',"get_district_city/{$idcity}");
+        $response = $client->request('GET',"get-district-city/{$idcity}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -288,7 +288,7 @@ class publicCityController extends Controller
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
-        $response = $client->request('GET',"get_name_city/{$id}");
+        $response = $client->request('GET',"get-name-city/{$id}");
 
         return json_decode($response->getBody()->getContents());
     }

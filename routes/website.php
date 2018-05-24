@@ -245,7 +245,7 @@ Route::post('change-pass','accountController@changePassword');
 // save user search
 	//save-user-search/{idserivce}&{iduser}
 Route::get('save_user_search/{idservice}','accountController@save_user_search');
-Route::get('list_user_search','pageController@get_user_search');
+Route::get('list-user-search','pageController@get_user_search');
 
 Route::get('detail-search/id={id}&type={type}','publicDetail@get_detail_search');
 

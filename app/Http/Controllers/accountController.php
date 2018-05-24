@@ -60,7 +60,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"get_info_user/{$user_id}");
+            $response = $client->request('GET',"get-info-user/{$user_id}");
             
             return json_decode($response->getBody()->getContents());
         }
@@ -273,7 +273,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"get_quyen_dangky_moi/{$user_id}");
+            $response = $client->request('GET',"get-quyen-dangky-moi/{$user_id}");
             
             return json_decode($response->getBody()->getContents());
         }
@@ -293,7 +293,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"get_quyen_dangxet_userList/{$user_id}");
+            $response = $client->request('GET',"get-quyen-dangxet-user-list/{$user_id}");
             
             return json_decode($response->getBody()->getContents());
         }
@@ -313,7 +313,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"get_quyen_userList/{$user_id}");
+            $response = $client->request('GET',"get-quyen-user-list/{$user_id}");
             
             return json_decode($response->getBody()->getContents());
         }
@@ -529,7 +529,7 @@ class accountController extends Controller
         $result_List = json_decode($responseList->getContents());
         if($result_List == "status:200"){
             if ($detail_lichtrinh != null) {
-                $lamlist = $client->request('GET',"get_idtripschedule_web");
+                $lamlist = $client->request('GET',"get-idtripschedule-web");
 
                 $id_lichtrinh = json_decode($lamlist->getBody()->getContents());
                 for ($i=0; $i < count($detail_lichtrinh) ; $i++) { 
@@ -561,7 +561,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"get_service_lichtrinh");
+            $response = $client->request('GET',"get-service-lichtrinh");
             
             return json_decode($response->getBody()->getContents());
     }
@@ -629,7 +629,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"get_add_place_user")->getBody();
+        $response = $client->request('GET',"get-add-place-user")->getBody();
          $data=json_decode($response);
         return view('VietNamTour.content.user.service.addservice',compact('data'));
     }
@@ -660,7 +660,7 @@ class accountController extends Controller
         $website = $request->sv_website;
         if ($website == null) { $website = "Đang cập nhật";}
         
-        $response = $client->request('POST',"post_add_service_user/{$user_id}",[
+        $response = $client->request('POST',"post-add-service-user/{$user_id}",[
             'form_params' => [
                 'sv_name' => $request->sv_name,
                 'sv_description' => $request->sv_description,
@@ -682,7 +682,7 @@ class accountController extends Controller
             ]
         ])->getBody()->getContents();
         // dd($response);
-        if($response=='ok')
+        if($response =='1')
         {
             return redirect()->route('service_user')->with(['message'=>'Thêm thành công']);
         }
@@ -701,7 +701,7 @@ class accountController extends Controller
             'timeout'  => 20.0,
         ]);
         $user_id = Session::get('user_info')->id;
-        $response = $client->request('GET',"get_service_user/{$user_id}")->getBody()->getContents();
+        $response = $client->request('GET',"get-service-user/{$user_id}")->getBody()->getContents();
 
         $data=json_decode($response);
         // dd($data);
@@ -717,7 +717,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"get_edit_service_user/{$id}/{$user_id}")->getBody();
+        $response = $client->request('GET',"get-edit-service-user/{$id}/{$user_id}")->getBody();
          $data=json_decode($response);
          // dd($data);
         if($data == null){
@@ -770,7 +770,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('POST',"post_edit_service_user/{$id}",[
+        $response = $client->request('POST',"post-edit-service-user/{$id}",[
             'form_params' => [
                 'sv_name' => $request->sv_name,
                 'sv_description' => $request->sv_name,
@@ -809,7 +809,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"get_place_user/{$user_id}")->getBody();
+        $response = $client->request('GET',"get-place-user/{$user_id}")->getBody();
         $data= json_decode($response);
         // return $data;
         return view('VietNamTour.content.user.place.place_user',compact('data'));
@@ -838,7 +838,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"get_edit_place_user/{$user_id}/{$id}")->getBody();
+        $response = $client->request('GET',"get-edit-place-user/{$user_id}/{$id}")->getBody();
          $data=json_decode($response);
          return view('VietNamTour.content.user.place.editplace',compact('data'));
     }
@@ -853,7 +853,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('POST',"post_edit_place_user/{$user_id}/{$id}",[
+        $response = $client->request('POST',"post-edit-place-user/{$user_id}/{$id}",[
             'form_params' => [
                 'place_name' => $request->place_name,
                 'place_address'=>$request->place_address,
@@ -882,7 +882,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"get_add_place_user")->getBody();
+        $response = $client->request('GET',"get-add-place-user")->getBody();
          $data=json_decode($response);
         
         return view('VietNamTour.content.user.place.addplace',compact('data'));
@@ -896,7 +896,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('POST',"post_add_place_user/{$user_id}",[
+        $response = $client->request('POST',"post-add-place-user/{$user_id}",[
             'form_params' => [
                 'place_name' => $request->place_name,
                 'place_address'=>$request->place_address,
@@ -981,7 +981,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-        $response = $client->request('GET',"load_place_ward/{$idward}");
+        $response = $client->request('GET',"load-place-ward/{$idward}");
             
         return json_decode($response->getBody()->getContents());
     }
@@ -1035,7 +1035,7 @@ class accountController extends Controller
             ]);
         if ($type == "active") { $flag = 2; }else{ $flag = 3; }
 
-        $response = $client->request('GET',"get_service_user_active/{$user_id}&{$type}");
+        $response = $client->request('GET',"get-service-user-active/{$user_id}&{$type}");
         $data=json_decode($response->getBody()->getContents());
         // dd($data);
         return view('VietNamTour.content.user.service.service_user',compact('data','flag'));
@@ -1102,7 +1102,7 @@ class accountController extends Controller
                 'timeout'  => 20.0,
             ]);
 
-        $response = $client->request('GET',"getListTripSchedule_web_type/{$user_id}&type={$type}");
+        $response = $client->request('GET',"get-list-trip-schedule-web-type/{$user_id}&type={$type}");
         return json_decode($response->getBody()->getContents());
     }
 
@@ -1114,7 +1114,7 @@ class accountController extends Controller
                 'timeout'  => 20.0,
             ]);
 
-        $response = $client->request('GET',"searchServices_All_lichtrinh/{$keyword}");
+        $response = $client->request('GET',"search-services-all-lichtrinh/{$keyword}");
         return json_decode($response->getBody()->getContents());
     }
 

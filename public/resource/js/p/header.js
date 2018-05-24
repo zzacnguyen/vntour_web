@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 	// load select city
 		$.ajax({
-			url: 'http://vntourweb/vntour_api/count_city_service_all',
+			url: 'http://vntourweb/vntour_api/count-city-service-all',
 			type: 'GET'
 		})
 		.done(function (response) {
@@ -62,7 +62,7 @@ function search() {
 		// $('#thanSearch').html('');
 		if (id_tinh == "all" && type == "all" && keyword.length > 0) 
 		{
-			path = 'http://vntourweb/vntour_api/searchServices_All/keyword=' + keyword_handle;
+			path = 'http://vntourweb/vntour_api/search-services-all/keyword=' + keyword_handle;
 			$.ajax({
 				url: path,
 				type: 'GET',
@@ -157,7 +157,7 @@ function search() {
 		}
 		else if(id_tinh != "all" && type == "all" && keyword.length > 0)
 		{
-			path = 'http://vntourweb/vntour_api/searchService_City_AllType/idcity='+ id_tinh +'&keyword=' + keyword_handle;
+			path = 'http://vntourweb/vntour_api/search-service-city-all-type/idcity='+ id_tinh +'&keyword=' + keyword_handle;
 
 			$.ajax({
 				url: path,
@@ -252,7 +252,7 @@ function search() {
 		}
 		else if(id_tinh != "all" && type != "all" && keyword.length > 0)
 		{
-			path = 'http://vntourweb/vntour_api/searchService_City_Type/idcity='+ id_tinh +'&type='+ type +'&keyword=' + keyword_handle;
+			path = 'http://vntourweb/vntour_api/search-service-city-type/idcity='+ id_tinh +'&type='+ type +'&keyword=' + keyword_handle;
 			var title = 'Bộ lọc: ' + ten_tinh + ' + ' + ten_type;
 
 			$.ajax({
@@ -269,7 +269,7 @@ function search() {
 					$('#tieudeSearchEat').html(title);
 					var eat = new String(); // khoi tao bien luu phan hien thi len view
 					response.forEach(function (data) {
-						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + 1;
+						var url_detail = 'detail-search/id='+ data.sv_id +'&type=' + type;
 						// var url_detail = 'data-id='+ data.sv_id +' '+ 'data-type=' + 1;
 						eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 					})
@@ -284,7 +284,7 @@ function search() {
 		}
 		else if(id_tinh == "all" && type != "all" && keyword.length > 0)
 		{
-			path = 'http://vntourweb/vntour_api/searchServices_AllCity_idType/type='+ type +'&keyword=' + keyword_handle;
+			path = 'http://vntourweb/vntour_api/search-services-all-city-id-type/type='+ type +'&keyword=' + keyword_handle;
 			var title = 'Bộ lọc: ' + ten_tinh + ' + ' + ten_type;
 
 			$.ajax({
@@ -398,7 +398,7 @@ function save_dichvu_searchCon() {
 function list_tim_kiem() {
 	
 	$.ajax({
-			url: 'list_user_search',
+			url: 'list-user-search',
 			type: 'GET'
 		})
 		.done(function (response) {

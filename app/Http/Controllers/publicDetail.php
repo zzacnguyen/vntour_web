@@ -347,7 +347,7 @@ class publicDetail extends Controller
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
-        $response = $client->request('GET',"get_service_id/{$id}&type={$type}");
+        $response = $client->request('GET',"get-service-id/{$id}&type={$type}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -360,7 +360,7 @@ class publicDetail extends Controller
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
-        $response = $client->request('GET',"dichvu_lancan/idcity={$idcity}&id={$id}&limit={$limit}");
+        $response = $client->request('GET',"dichvu-lancan/idcity={$idcity}&id={$id}&limit={$limit}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -413,7 +413,7 @@ class publicDetail extends Controller
             // You can set any number of default request options.
             'timeout'  => 15.0,
         ]);
-        $response = $client->request('GET',"save_rating/id={$id_service}&rating={$rating}&detail={$detail}&user={$user_id}");
+        $response = $client->request('GET',"save-rating/id={$id_service}&rating={$rating}&detail={$detail}&user={$user_id}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -429,7 +429,7 @@ class publicDetail extends Controller
             // You can set any number of default request options.
             'timeout'  => 15.0,
         ]);
-        $response = $client->request('GET',"save_update_rating/id={$id_service}&rating={$rating}&detail={$detail}&user={$user_id}");
+        $response = $client->request('GET',"save-update-rating/id={$id_service}&rating={$rating}&detail={$detail}&user={$user_id}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -494,7 +494,7 @@ class publicDetail extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"get_service_top_view/{$limit}")->getBody();
+        $response = $client->request('GET',"get-service-top-view/{$limit}")->getBody();
         return json_decode($response->getContents());
     }
 
