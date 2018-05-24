@@ -170,7 +170,7 @@
             </div>
             <div id="pac-container">
               <input id="pac-input" type="text"
-                  placeholder="Enter a location">
+                  placeholder="Nhập tên địa điểm muốn tìm">
             </div>
           </div>
           <div id="map" style="width: 100%;height: 500px;"></div>
@@ -213,7 +213,7 @@
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
+          center: {lat: 10.046616, lng: 105.767905},
           zoom: 13
         });
         var card = document.getElementById('pac-card');
