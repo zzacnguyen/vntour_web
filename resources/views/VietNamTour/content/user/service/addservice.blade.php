@@ -5,6 +5,43 @@
 
 <script src="{{asset('public/resource/js/ckeditor/ckeditor.js')}}"></script>
 
+<style>
+    .preview-area img{
+      	height: 200px;
+    	width: 227px;
+    	padding: 5px;
+    	margin-left: 5px;
+    	border: 1px solid #ddd;
+    }
+    .close-img{
+      	position: absolute;
+    	top: 4px;
+    	right: 4px;
+	    color: white;
+	    font-weight: 700;
+	    border-radius: 50%;
+	    background-color: #000000b8;
+	    height: 24px;
+	    width: 24px;
+	    padding-left: 7px;
+	    cursor: pointer;
+    }
+    .close-img:hover{
+      	color: red;
+    }
+    .preview-area{
+		list-style-type: none;
+		height: 210px;
+		padding: 5px;
+		border: 1px solid #ddd;
+    }
+    .preview-area li{
+      	float: left;
+    }
+</style>
+
+
+
 
 <section class="addplace">
 		<div class="container">
@@ -109,7 +146,7 @@
       						
 						</div>
 						<div class="input-text" class="col-md-12" style="padding: 0">
-							<label style="padding: 0;" class="col-md-2">Ảnh mô tả</label>
+							{{-- <label style="padding: 0;" class="col-md-2">Ảnh mô tả</label>
 							<input type="file" style="border:none; margin-left: 27px;" class="col-md-9" name="img1">
 							<p class="text-danger">{{$errors->first('img1')}}</p>
 							<label style="padding: 0;" class="col-md-2">Ảnh mô tả</label>
@@ -117,7 +154,19 @@
 							<p class="text-danger">{{$errors->first('img2')}}</p>
 							<label style="padding: 0;" class="col-md-2">Ảnh mô tả</label>
 							<input type="file" style="border:none; margin-left: 27px;" class="col-md-9" name="img3">
-							<p class="text-danger">{{$errors->first('img3')}}</p>
+							<p class="text-danger">{{$errors->first('img3')}}</p> --}}
+						
+
+
+							<input type="file" class="dimmy" id="image-input" multiple />
+						    <div>
+						      <ul class="preview-area" id="list-img" style="display: none;"></ul>
+						    </div>
+							
+
+							<input type="text" style="" class="col-md-9" name="img1" id="img1">
+							<input type="text" style="" class="col-md-9" name="img2" id="img2">
+							<input type="text" style="" class="col-md-9" name="img3" id="img3">
 						</div>
 
 						<button type="button" class="btn btn-success col-md-12" id="btnaddplace">Thêm dịch vụ</button>
@@ -142,7 +191,85 @@
 <script src="public/resource/js/p/addservice.js"></script>
 
 
+<script type="text/javascript">
 
+      var inputLocalFont = document.getElementById("image-input");
+      inputLocalFont.addEventListener("change",previewImages,false);
+
+      function previewImages(){
+          var fileList = this.files;
+          console.log(fileList);
+          var dem = 0;
+          var anyWindow = window.URL || window.webkitURL;
+
+              for(var i = 0; i < 3; i++){
+                
+                var name = fileList[i].name;
+                console.log(name);
+                var extension = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(extension,['gif','png','jpg','jpeg']) == -1) 
+                {
+                  alert('Khong phai dinh dang anh');
+                }
+                else
+                {
+                  dem++;
+                  var objectUrl = anyWindow.createObjectURL(fileList[i]);
+                  $('#list-img').css('display','block');
+                  $('.preview-area').append('<li class="item-img" style="position: relative;"><img src="' + objectUrl + '" />' + '<span class="close-img" onclick="close_img()">X</span></li>');
+                  window.URL.revokeObjectURL(fileList[i]);
+                  if (dem == 1) 
+                  {
+                  	$('#img1').val(name);
+                  }
+                  else if(dem == 2)
+                  {
+              		$('#img2').val(name);
+                  }
+                  else if(dem == 3)
+                  {
+              		$('#img3').val(name);
+                  }
+                  	name = null;
+                } 
+              }
+      }
+
+
+      var dem_index = 0;
+      function close_img() 
+      {
+	        var c = document.getElementsByClassName('item-img');
+			var tab = [];
+			var liIndex = 0;
+			for (var i = 0; i < c.length; i++) {
+				tab.push(c[i].innerHTML)
+			}
+			
+			var i;
+			for (i = 0; i < c.length; i++) {
+			  c[i].onclick = function() {
+			    liIndex = tab.indexOf(this.innerHTML);
+			  }
+			}
+			c[liIndex].parentNode.removeChild(c[liIndex]);
+			dem_index = liIndex;
+			console.log(liIndex);
+			if (liIndex == 0) 
+			{
+				$('#img1').val(null);
+			}
+			else if(liIndex == 1)
+			{
+				$('#img2').val(null);
+			}
+			else if(liIndex == 2)
+			{
+				$('#img3').val(null);
+			}
+
+      }
+    </script>
 
 
 @include('VietNamTour.header-footer.footer')

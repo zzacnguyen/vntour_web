@@ -317,7 +317,7 @@
 									<ul class="float-left ul-right-menu-lam">
 										<li class=""><a href="" style="color: #00a680 !important;"><i class="fas fa-home"></i></a></li>
 										<li class="hover-menu hidden-xs"><a href="{{route('gioi-thieu')}}">Giới thiệu</a></li>
-										{{-- <li class="hover-menu hidden-xs"><a href="">Bài viết</a></li> --}}
+										<li class="hover-menu hidden-xs"><a href="">Danh sách địa điểm</a></li>
 										{{-- <li class="hover-menu hidden-xs"><a href="">Liên hệ</a></li> --}}
 										{{-- <li class="hover-menu">
 											<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14px !important;">
