@@ -635,18 +635,25 @@ class accountController extends Controller
     }
     public function post_add_service_user(addservice $request)
     {
+
+        $lamlam = $request->file('image-input');
+        dd($lamlam);
+
         $file = $request->file('img1');
         $name = $file->getClientOriginalName();
         $destinationPath = 'public/thumbnails';
         $file->move($destinationPath,$name);
+
         $file = $request->file('img2');
         $name1 = $file->getClientOriginalName();
         $destinationPath = 'public/thumbnails';
         $file->move($destinationPath,$name1);
+
         $file = $request->file('img3');
         $name2 = $file->getClientOriginalName();
         $destinationPath = 'public/thumbnails';
         $file->move($destinationPath,$name2);
+
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests

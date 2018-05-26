@@ -144,9 +144,20 @@ class pageController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"loginpost/user={$username}&pass={$password}");
+        // $response = $client->request('GET',"loginpost/user={$username}&pass={$password}");
+
+        $response = $client->request('POST', 'loginpost', [
+        
+                    
+                    'form_params' => [
+                        'username' => $username,
+                        'password' => $password
+                    ]
+                ]);
+
+
         $lam = json_decode($response->getBody()->getContents());
-        // dd($lam);
+        dd($lam);
         if ($lam != null) {
             Session()->put('login',true);  
             Session()->put('user_info',$lam);

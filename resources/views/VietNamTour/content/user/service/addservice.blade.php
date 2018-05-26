@@ -158,15 +158,15 @@
 						
 
 
-							<input type="file" class="dimmy" id="image-input" multiple />
+							<input type="file" class="dimmy" id="image-input" name="image-input" multiple />
 						    <div>
 						      <ul class="preview-area" id="list-img" style="display: none;"></ul>
 						    </div>
 							
 
-							<input type="text" style="" class="col-md-9" name="img1" id="img1">
-							<input type="text" style="" class="col-md-9" name="img2" id="img2">
-							<input type="text" style="" class="col-md-9" name="img3" id="img3">
+							<input type="file" style="" class="col-md-9" name="img1" id="img1">
+							<input type="file" style="" class="col-md-9" name="img2" id="img2">
+							<input type="file" style="" class="col-md-9" name="img3" id="img3">
 						</div>
 
 						<button type="button" class="btn btn-success col-md-12" id="btnaddplace">Thêm dịch vụ</button>
@@ -193,82 +193,7 @@
 
 <script type="text/javascript">
 
-      var inputLocalFont = document.getElementById("image-input");
-      inputLocalFont.addEventListener("change",previewImages,false);
-
-      function previewImages(){
-          var fileList = this.files;
-          console.log(fileList);
-          var dem = 0;
-          var anyWindow = window.URL || window.webkitURL;
-
-              for(var i = 0; i < 3; i++){
-                
-                var name = fileList[i].name;
-                console.log(name);
-                var extension = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(extension,['gif','png','jpg','jpeg']) == -1) 
-                {
-                  alert('Khong phai dinh dang anh');
-                }
-                else
-                {
-                  dem++;
-                  var objectUrl = anyWindow.createObjectURL(fileList[i]);
-                  $('#list-img').css('display','block');
-                  $('.preview-area').append('<li class="item-img" style="position: relative;"><img src="' + objectUrl + '" />' + '<span class="close-img" onclick="close_img()">X</span></li>');
-                  window.URL.revokeObjectURL(fileList[i]);
-                  if (dem == 1) 
-                  {
-                  	$('#img1').val(name);
-                  }
-                  else if(dem == 2)
-                  {
-              		$('#img2').val(name);
-                  }
-                  else if(dem == 3)
-                  {
-              		$('#img3').val(name);
-                  }
-                  	name = null;
-                } 
-              }
-      }
-
-
-      var dem_index = 0;
-      function close_img() 
-      {
-	        var c = document.getElementsByClassName('item-img');
-			var tab = [];
-			var liIndex = 0;
-			for (var i = 0; i < c.length; i++) {
-				tab.push(c[i].innerHTML)
-			}
-			
-			var i;
-			for (i = 0; i < c.length; i++) {
-			  c[i].onclick = function() {
-			    liIndex = tab.indexOf(this.innerHTML);
-			  }
-			}
-			c[liIndex].parentNode.removeChild(c[liIndex]);
-			dem_index = liIndex;
-			console.log(liIndex);
-			if (liIndex == 0) 
-			{
-				$('#img1').val(null);
-			}
-			else if(liIndex == 1)
-			{
-				$('#img2').val(null);
-			}
-			else if(liIndex == 2)
-			{
-				$('#img3').val(null);
-			}
-
-      }
+      
     </script>
 
 
