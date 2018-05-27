@@ -289,17 +289,17 @@ border-radius: 4px;
 							<ul>
 								<li>
 									<a>
-										<img src="public/thumbnails/{{$sv->image_details_1}}"/>
+										<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="public/thumbnails/{{$sv->image_details_2}}"/>
+										<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="public/thumbnails/{{$sv->image_banner}}"/>
+										<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_banner}}"/>
 									</a>
 								</li>
 								
