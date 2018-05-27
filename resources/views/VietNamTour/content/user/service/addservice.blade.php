@@ -51,11 +51,11 @@
 					<h4>Thêm dịch vụ mới</h4>
 					<h6 style="color: #bd1717;">Thông tin cơ bản</h6>
 					<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
-					<form action="" method="post" enctype='multipart/form-data' id="formAdd">
+					<form method="post" enctype='multipart/form-data' id="formAdd">
 						<input type="hidden" name="_token" value="{{csrf_token()}}">
 						<div class="input-text">
 							<label>Tên dịch vụ</label>
-							<input name="sv_name" type="text" value="{{old('sv_description')}}">
+							<input name="sv_name" type="text" value="{{old('sv_name')}}">
 							<p class="text-danger">{{$errors->first('sv_description')}}</p>
 						</div>
 						<div class="input-text col-md-12" style="padding: 0;margin-bottom: 5px;">
@@ -156,17 +156,18 @@
 							<input type="file" style="border:none; margin-left: 27px;" class="col-md-9" name="img3">
 							<p class="text-danger">{{$errors->first('img3')}}</p> --}}
 						
+							<input type="file" accept="image/*" style="" class="col-md-9" name="banner" id="banner">
+							
+							<input type="file" accept="image/*" style="" class="col-md-9" name="details1" id="">
+							<input type="file" accept="image/*" style="" class="col-md-9" name="details2" id="">
 
-
-							<input type="file" class="dimmy" id="image-input" name="image-input" multiple />
+							<input type="file" class="dimmy" id="image-input" accept="image/*" name="image-input[]" multiple />
 						    <div>
 						      <ul class="preview-area" id="list-img" style="display: none;"></ul>
 						    </div>
 							
 
-							<input type="file" style="" class="col-md-9" name="img1" id="img1">
-							<input type="file" style="" class="col-md-9" name="img2" id="img2">
-							<input type="file" style="" class="col-md-9" name="img3" id="img3">
+							
 						</div>
 
 						<button type="button" class="btn btn-success col-md-12" id="btnaddplace">Thêm dịch vụ</button>

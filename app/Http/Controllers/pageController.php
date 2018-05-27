@@ -157,7 +157,7 @@ class pageController extends Controller
 
 
         $lam = json_decode($response->getBody()->getContents());
-        dd($lam);
+        // dd($lam);
         if ($lam != null) {
             Session()->put('login',true);  
             Session()->put('user_info',$lam);

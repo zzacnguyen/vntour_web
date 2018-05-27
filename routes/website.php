@@ -220,7 +220,9 @@ Route::get('delete-schedule-detail/{id}','accountController@delete_Schedule_deta
 Route::get('conSearch/{idcity}&type={type}&keyword={key}&select={select}','pageController@conSearch');
 //service user
 Route::get('add-service-user',['as'=>'serviceuser','uses'=>'accountController@get_add_service_user']);
-Route::post('add-service-user',['as'=>'postserviceuser','uses'=>'accountController@post_add_service_user']);
+
+Route::post('add-service-user','accountController@post_add_service_user2')->name('postserviceuser');
+
 Route::get('service-user',['as'=>'service_user','uses'=>'accountController@get_service_user']);
 Route::get('service-user/add/{id}','accountController@addservice_user');
 Route::get('server-user-edit/{id}',['as'=>'edit_service_user','uses'=>'accountController@edit_service_user']);
@@ -255,7 +257,9 @@ Route::get('detail-search/id={id}&type={type}','publicDetail@get_detail_search')
 
 Route::get('list_place','accountController@list_place');
 
-
+//
+Route::post('img-test/{id}','accountController@img_la');
+Route::get('check-iage','accountController@check_iage');
 
 
 

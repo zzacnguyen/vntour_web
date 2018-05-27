@@ -8,6 +8,7 @@ use App\Http\Requests\edituserplace;
 use App\Http\Requests\addservice;
 use App\Http\Requests\editservice;
 use Session;
+use App\servicesModel;
 use DB;
 use App\contact_infoModel;
 use GuzzleHttp\Client;
@@ -635,24 +636,24 @@ class accountController extends Controller
     }
     public function post_add_service_user(addservice $request)
     {
-
+        return "asasas";
         $lamlam = $request->file('image-input');
-        dd($lamlam);
+        // return ($lamlam);
 
-        $file = $request->file('img1');
-        $name = $file->getClientOriginalName();
-        $destinationPath = 'public/thumbnails';
-        $file->move($destinationPath,$name);
+        // $file = $request->file('img1');
+        // $name = $file->getClientOriginalName();
+        // $destinationPath = 'public/thumbnails';
+        // $file->move($destinationPath,$name);
 
-        $file = $request->file('img2');
-        $name1 = $file->getClientOriginalName();
-        $destinationPath = 'public/thumbnails';
-        $file->move($destinationPath,$name1);
+        // $file = $request->file('img2');
+        // $name1 = $file->getClientOriginalName();
+        // $destinationPath = 'public/thumbnails';
+        // $file->move($destinationPath,$name1);
 
-        $file = $request->file('img3');
-        $name2 = $file->getClientOriginalName();
-        $destinationPath = 'public/thumbnails';
-        $file->move($destinationPath,$name2);
+        // $file = $request->file('img3');
+        // $name2 = $file->getClientOriginalName();
+        // $destinationPath = 'public/thumbnails';
+        // $file->move($destinationPath,$name2);
 
         $user_id = Session::get('user_info')->id;
         $client = new Client([
@@ -682,21 +683,92 @@ class accountController extends Controller
                 'time_end'=>$request->time_end,
                 'sv_lowest_price'=>$request->sv_lowest_price,
                 'sv_highest_price'=>$request->sv_highest_price,
-                'mota'=>$request->mota,
-                'img1'=>$name,
-                'img2'=>$name1,
-                'img3'=>$name2
+                'mota'=>$request->mota
             ]
         ])->getBody()->getContents();
         // dd($response);
         if($response =='1')
         {
+            return $request->all();
+            $idsvv = servicesModel::max('id');
+            // dd($idsvv);
+            $response2 = $client->request('POST',"upload-image/{$idsvv}",[
+            'form_params' => [
+                'image_banner' => $request->file('banner'),
+                'image_details_1' => $request->file('details1'),
+                'image_details_2'=>$request->file('details2'),
+                'image_status'=>1
+            ]
+            ])->getBody()->getContents();
+
+            return $response2;
             return redirect()->route('service_user')->with(['message'=>'Thêm thành công']);
         }
         else{
             return "Loi";
         }
 
+    }
+
+    public function post_add_service_user2(Request $request)
+    {
+        // $lamlam = $request->all();
+        // return $lamlam;
+        $user_id = Session::get('user_info')->id;
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://vntourweb/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 20.0,
+        ]);
+
+        $phone = $request->sv_phone_number;
+        if ($phone == null) { $phone = "Đang cập nhật";}
+        $website = $request->sv_website;
+        if ($website == null) { $website = "Đang cập nhật";}
+        
+        $response = $client->request('POST',"post-add-service-user/{$user_id}",[
+            'form_params' => [
+                'sv_name' => $request->sv_name,
+                'sv_description' => $request->sv_description,
+                'sv_types'=>$request->sv_types,
+                'city'=>$request->city,
+                'district'=>$request->districtt,
+                'ward'=>$request->ward,
+                'diadiem'=>$request->diadiem,
+                'sv_phone_number'=>$phone,
+                'sv_website'=>$website,
+                'time_begin'=>$request->time_begin,
+                'time_end'=>$request->time_end,
+                'sv_lowest_price'=>$request->sv_lowest_price,
+                'sv_highest_price'=>$request->sv_highest_price,
+                'mota'=>$request->mota
+            ]
+        ])->getBody()->getContents();
+        // dd($response);
+        if($response =='1')
+        {
+            // return $request->all();
+            $idsvv = servicesModel::max('id');
+            // dd($idsvv);
+            $response2 = $client->request('POST',"upload-image/{$idsvv}",[
+            'multipart' => [
+                'name'     => 'image',
+                'contents' => fopen('C:\fakepath\users.PNG', 'r')
+                // 'image_banner' => $request->file('banner'),
+                // 'image_details_1' => $request->file('details1'),
+                // 'image_details_2'=>$request->file('details2'),
+                // 'image_status'=>1
+            ]
+            ])->getBody()->getContents();
+            // $this->client->request("POST", $urlonS2, array('Content-Type => multipart/form-data'),'file'=>$file);
+
+            return $response2;
+            return redirect()->route('service_user')->with(['message'=>'Thêm thành công']);
+        }
+        else{
+            return "Loi";
+        }
     }
 
     public function get_service_user()
@@ -1123,6 +1195,53 @@ class accountController extends Controller
 
         $response = $client->request('GET',"search-services-all-lichtrinh/{$keyword}");
         return json_decode($response->getBody()->getContents());
+    }
+
+
+
+    public function img_la(Request $request,$id){
+        // return $request->all();
+        $date = date("Y_m_d");
+        $timedate = date("h_i_s");
+        $time = '_'.$date.'_'.$timedate;
+        
+        $path_banner = 'http://vntourweb/vntour_api/public'.'/banners/';
+        // $path_details1 = public_path().'/details1/';
+        // $path_details2 = public_path().'/details2/';
+        $path_icon = 'http://vntourweb/vntour_api/public'.'/icons/';
+        $path_thumb = 'http://vntourweb/vntour_api/public'.'/thumbnails/';
+
+        // $path_banner = '../../upload/img/banners/';
+        // $path_details1 = '../../upload/img/details1/';
+        // $path_details2 ='../../upload/img/details2/';
+        // $path_icon = '../../upload/img/icons/';
+        // $path_thumb = '../../upload/img/thumbnails/';
+
+        //upload banner
+        $file_banner = $request->file('banner');
+        $image_banner = \Image::make($file_banner);
+     
+        $image_banner->resize(768,720);
+        $image_banner->save($path_banner.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
+        $image_banner->resize(600,400);
+        $image_banner->save($path_thumb.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
+        $image_banner->resize(50,50);
+        $image_banner->save($path_icon.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
+
+        $thumbnail = new imagesModel();
+        $thumbnail->image_banner = "banner_".$time.'.'.$file_banner->getClientOriginalExtension();
+        $thumbnail->image_details_1 ="details1_";
+        $thumbnail->image_details_2 = "details2_";
+        $thumbnail->image_status =1;
+        $thumbnail->service_id=$id_service;
+        $thumbnail->save();
+        return json_encode("status:200");
+    }
+
+
+
+    public function check_iage(){
+        return view('VietNamTour.content.user.service.image');
     }
 
 }
