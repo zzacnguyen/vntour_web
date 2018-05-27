@@ -624,6 +624,7 @@ class accountController extends Controller
     //service user
     public function get_add_service_user()
     {
+        $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
             'base_uri' => 'http://vntourweb/vntour_api/',
@@ -632,7 +633,7 @@ class accountController extends Controller
         ]);
         $response = $client->request('GET',"get-add-place-user")->getBody();
          $data=json_decode($response);
-        return view('VietNamTour.content.user.service.addservice',compact('data'));
+        return view('VietNamTour.content.user.service.addservice',compact('data','user_id'));
     }
     public function post_add_service_user(addservice $request)
     {

@@ -112,24 +112,138 @@ function autoloadPlace() {
 function submitform() {
 	var c = document.getElementsByClassName('item-img');
 	$('#btnaddplace').click(function () {
-		if ($('select[name=city]').val() == 0) 
-		{
-			alert('Vui lòng chọn Tỉnh thành cho dịch vụ');
-		}
-		else if(c.length < 3)
-		{
-			alert('Bạn phải chọn 3 ảnh cho dịch vụ!');
-		}
-		else{
-			var fileList = document.getElementById("image-input").files;
-			console.log(fileList);
-			// $('#img1').val(c[0].getAttribute("data-img"));
-			// $('#img2').val(c[1].getAttribute("data-img"));
-			// $('#img3').val(c[2].getAttribute("data-img"));
-			$('#formAdd').submit();
-		}
+		// if ($('select[name=city]').val() == 0) 
+		// {
+		// 	alert('Vui lòng chọn Tỉnh thành cho dịch vụ');
+		// }
+		// else if(c.length < 3)
+		// {
+		// 	alert('Bạn phải chọn 3 ảnh cho dịch vụ!');
+		// }
+		// else{
+		// 	var fileList = document.getElementById("image-input").files;
+		// 	console.log(fileList);
+		// 	// $('#img1').val(c[0].getAttribute("data-img"));
+		// 	// $('#img2').val(c[1].getAttribute("data-img"));
+		// 	// $('#img3').val(c[2].getAttribute("data-img"));
+		// 	$('#formAdd').submit();
+		// }
+		// var id_user = $('#id_user').val();
+		// var data = $('form#formAdd').serialize();
+		// console.log(data);
+		// $.ajax({
+		// 	url: 'vntourweb/vntour_api/post-add-service-user/' + id_user, // Url to which the request is send
+		// 	type: "POST",             // Type of request to be send, called as method
+		// 	data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+		// 			          // To unable request pages to be cached
+		//        // To send DOMDocument or non processed data file it is set to false
+		// 	success: function(data)   // A function to be called if request succeeds
+		// 	{
+		// 		console.log(data);
+		// 	}
+		// });
+
+		// var form = $('#formAdd')[0];
+
+		// // Create an FormData object 
+  //       var data = new FormData(form);
+		// var path_uplad_img = 'http://vntourweb/vntour_api/upload-image/235';
+		// $.ajax({
+		// 	url: path_uplad_img, // Url to which the request is send
+		// 	type: "POST",  
+		// 	enctype: 'multipart/form-data',           // Type of request to be send, called as method
+		// 	data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+		// 	contentType: false,       // The content type used when sending data to the server.
+		// 	cache: false,             // To unable request pages to be cached
+		// 	processData:false,        // To send DOMDocument or non processed data file it is set to false
+		// 	success: function(data)   // A function to be called if request succeeds
+		// 	{
+		// 		console.log(data);
+		// 	}
+		// });
+		// return 1;
+
+//========================================================================================
+		console.log($('#banner'));
+
+		// lay du lieu  
+		var editorText = CKEDITOR.instances.ten.getData();
+
+
+		var form = $('#formAdd')[0];
+
+		// Create an FormData object 
+        var data = new FormData(form);
+
+		// If you want to add an extra field for the FormData
+        data.append("mota", editorText);
+
+		// disabled the submit button
+        $("#btnSubmit").prop("disabled", true);
+
+		// console.log(data);
+        var id_user = $('#id_user').val();
+        var path = 'http://vntourweb/vntour_api/post-add-service-user/' + id_user;
+        console.log(path);
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: path,
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+            	console.log(data);
+            	if (parseInt(data) > 0) 
+            	{
+            		anh(parseInt(data));
+            	}
+            },
+            error: function (e) {
+
+                // $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+                // $("#btnSubmit").prop("disabled", false);
+
+            }
+        });
+
+
+        //==== upload anh
+
+
+
+
+
 	})
 }
+
+
+
+// upload anh
+function anh(id) {
+	var form = $('#formAdd')[0];
+
+		// Create an FormData object 
+        var data = new FormData(form);
+		var path_uplad_img = 'http://vntourweb/vntour_api/upload-image/' + id;
+		$.ajax({
+			url: path_uplad_img, // Url to which the request is send
+			type: "POST",  
+			enctype: 'multipart/form-data',           // Type of request to be send, called as method
+			data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+			contentType: false,       // The content type used when sending data to the server.
+			cache: false,             // To unable request pages to be cached
+			processData:false,        // To send DOMDocument or non processed data file it is set to false
+			success: function(data)   // A function to be called if request succeeds
+			{
+				console.log(data);
+			}
+		});
+}
+
 
 //xu ly anh
 

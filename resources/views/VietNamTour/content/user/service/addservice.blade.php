@@ -50,8 +50,9 @@
 				<div class="col-md-8 content">
 					<h4>Thêm dịch vụ mới</h4>
 					<h6 style="color: #bd1717;">Thông tin cơ bản</h6>
+					<input id="id_user" type="hidden" value="{{$user_id}}">
 					<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
-					<form method="post" enctype='multipart/form-data' id="formAdd">
+					<form action="" method="post" enctype='multipart/form-data' id="formAdd">
 						<input type="hidden" name="_token" value="{{csrf_token()}}">
 						<div class="input-text">
 							<label>Tên dịch vụ</label>
@@ -143,6 +144,7 @@
 							<label style="padding: 0;" class="col-md-2">Mô tả dịch vụ</label>
 							<textarea name="mota" id="ten" class="col-md-9" style="margin-left: 27px;"></textarea>
       						<script>CKEDITOR.replace('ten');</script>
+      						{{-- <textarea id="occho">dadsddadada</textarea> --}}
       						
 						</div>
 						<div class="input-text" class="col-md-12" style="padding: 0">
