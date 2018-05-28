@@ -109,7 +109,6 @@ function autoloadPlace() {
 	})
 }
 
-
 function submitform() {
 	var c = document.getElementsByClassName('item-img');
 	$('#btnaddplace').click(function () {
@@ -129,9 +128,9 @@ function submitform() {
 	        $("#btnSubmit").prop("disabled", true);
 
 			// console.log(data);
-	        var id_user = $('#id_user').val();
-	        var path = 'http://vntourweb/vntour_api/post-add-service-user/' + id_user;
-	        console.log(path);
+	        var id_sv = $('#id_sv').val();
+	        var path = 'http://vntourweb/vntour_api/post-edit-service-user/' + id_sv;
+	        // console.log(path);
 	        $.ajax({
 	            type: "POST",
 	            enctype: 'multipart/form-data',
@@ -145,7 +144,8 @@ function submitform() {
 	            	console.log(data);
 	            	if (parseInt(data) > 0) 
 	            	{
-	            		anh(parseInt(data));
+	            		// anh(parseInt(data));
+	            		location.href = "http://vntourweb/vntour_web/service-user";
 	            	}
 	            },
 	            error: function (e) {
@@ -161,9 +161,6 @@ function submitform() {
 	})
 }
 
-
-
-// upload anh
 function anh(id) {
 	var form = $('#formAdd')[0];
 
@@ -190,77 +187,6 @@ function anh(id) {
 }
 
 
-//xu ly anh
-
-	var inputLocalFont = document.getElementById("image-input");
-      inputLocalFont.addEventListener("change",previewImages,false);
-      var dem = 0;
-      function previewImages(){
-          var fileList = this.files;
-          console.log(fileList);
-          
-          var anyWindow = window.URL || window.webkitURL;
-
-              for(var i = 0; i < fileList.length; i++){
-                
-                var name = fileList[i].name;
-                // console.log(name);
-                var extension = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(extension,['gif','png','jpg','jpeg']) == -1) 
-                {
-                  alert('Khong phai dinh dang anh');
-                }
-                else
-                {
-                  dem++;
-                  console.log(dem);
-                  if (dem <= 3) 
-                  {
-                  	var objectUrl = anyWindow.createObjectURL(fileList[i]);
-	                  $('#list-img').css('display','block');
-	                  $('.preview-area').append('<li data-img="'+ name +'" class="item-img" style="position: relative;"><img src="' + objectUrl + '" />' + '<span class="close-img" onclick="close_img()">X</span></li>');
-	                  window.URL.revokeObjectURL(fileList[i]);
-                  }
-                  else
-                  {
-                  	alert('Bạn chỉ được chọn tối đa 3 ảnh');
-                  }
-                } 
-              }
-      }
-
-
-      function close_img() 
-      {
-	        var c = document.getElementsByClassName('item-img');
-			var tab = [];
-			var liIndex = 0;
-			for (var i = 0; i < c.length; i++) {
-				tab.push(c[i].innerHTML)
-			}
-			
-			var i;
-			for (i = 0; i < c.length; i++) {
-			  c[i].onclick = function() {
-			    liIndex = tab.indexOf(this.innerHTML);
-			  }
-			}
-			c[liIndex].parentNode.removeChild(c[liIndex]);
-			dem = c.length;
-      }
-
-
-
-// show toast
-function show_toast() {
-	var t = document.getElementById('toast');
-	t.classList.add('toast-show');
-	// setTimeout(function () {
-	// 	t.classList.remove('toast-show');
-	// },1000);
-}
-
-
 function validateForm() {
 	var sv_name = $('input[name=sv_name]').val();
 	var time_begin = $('input[name=time_begin]').val();
@@ -277,10 +203,10 @@ function validateForm() {
 	if (sv_name.length > 5) 
 	{
 		$('#null_name').css('display','none');
-		if($('select[name=city]').val() > 0)
+		if(true)
 		{
 			$('#null_city').css('display','none');
-			if($('select[name=diadiem]').val() > 0){
+			if(true){
 				$('#null_place').css('display','none');
 
 				if (sv_lowest_price <= sv_highest_price) 
@@ -290,15 +216,16 @@ function validateForm() {
 					if (editorText.length > 50) 
 					{
 						$('#null_chitiet').css('display','none');
-						if (banner > 0 && details1 > 0 && details2 > 0) 
-						{
-							return 1;
-						}
-						else{
-							$('#null_image').css('display','block');
-							scrolltop(850);
-							return -1;
-						}
+						// if (banner > 0 && details1 > 0 && details2 > 0) 
+						// {
+						// 	return 1;
+						// }
+						// else{
+						// 	$('#null_image').css('display','block');
+						// 	scrolltop(850);
+						// 	return -1;
+						// }
+						return 1;
 					}
 					else
 					{

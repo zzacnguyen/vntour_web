@@ -445,23 +445,23 @@ border-radius: 4px;
 										<h5 style="font-weight: 700;padding-left: 17px;">Album ảnh</h5>
 										<section class="demo" style="background-color: transparent;">
 											<div class="gallery">
-												<a style="background-color: transparent;" href="public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-12"><img src="public/thumbnails/{{$sv->image_banner}}" alt="" title="" /></a>
+												<a style="background-color: transparent;" href="public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-12"><img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_banner}}" alt="" title="" /></a>
 
-												<a href="public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-6">
-													<img src="public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
+												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-6">
+													<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
 												</a>
 
-												<a href="public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-6">
-													<img src="public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
+												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-6">
+													<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
 												</a>
 
-												<a href="public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-4"><img src="public/thumbnails/{{$sv->image_banner}}" alt="" title="" />
+												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-4"><img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_banner}}" alt="" title="" />
 												</a>
 
-												<a href="public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-4"><img src="public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
+												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-4"><img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
 												</a>
 
-												<a href="public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-4"><img src="public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
+												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-4"><img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
 												</a>
 											</div>
 										</section>

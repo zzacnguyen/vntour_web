@@ -811,7 +811,7 @@ class accountController extends Controller
             foreach ($city as $value) {
                 $city = $value;
             }
-            return view('VietNamTour.content.user.service.editservice',compact('data','city'));
+            return view('VietNamTour.content.user.service.editservice',compact('data','city','user_id'));
         }
             
     }

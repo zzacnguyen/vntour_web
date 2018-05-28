@@ -13,6 +13,20 @@
     	margin-left: 5px;
     	border: 1px solid #ddd;
     }
+    .preview-area2 img {
+		width: 223px;
+		height: 149px;
+    }
+
+    .preview-area3 img {
+		width: 223px;
+		height: 149px;
+    }
+
+    .preview-area4 img {
+		width: 223px;
+		height: 149px;
+    }
     .close-img{
       	position: absolute;
     	top: 4px;
@@ -38,6 +52,28 @@
     .preview-area li{
       	float: left;
     }
+
+    #toast{
+    	display: inline-table;
+    	padding: 20px 90px;
+    	background-color: #5da954;
+    	position: fixed;
+    	top: 100px;
+    	right: 37%;
+    	z-index: 100;
+    	font-size: 20px;
+    	font-weight: 700;
+    	color: white;
+    	border-radius: 3px;
+    	box-shadow: 0 0 20px rgba(0,0,3,0.5);
+    	visibility: hidden;
+    	/*transition: 0.5s;*/
+    	/*animation: fadeInOut 3s;*/
+    }
+    .toast-show{
+    	visibility: visible !important;
+    	transition: 1s;
+    }
 </style>
 
 
@@ -57,7 +93,7 @@
 						<div class="input-text">
 							<label>Tên dịch vụ</label>
 							<input name="sv_name" type="text" value="{{old('sv_name')}}">
-							<p class="text-danger">{{$errors->first('sv_description')}}</p>
+							<p class="text-danger" id="null_name" style="display: none;">Tên dịch vụ phải có độ dài tối thiểu 5 ký tự</p>
 						</div>
 						<div class="input-text col-md-12" style="padding: 0;margin-bottom: 5px;">
 							<label class="col-md-2" style="padding: 0;">Loại hình</label>
@@ -68,6 +104,7 @@
 								<option value="3">Phương tiện</option>
 								<option value="5">Vui chơi</option>
 							</select>
+							
 						</div>
 						<div class="input-text col-md-12" style="margin-bottom: 10px; padding: 0">
 							<label class="col-md-2" style="padding: 0;">Tỉnh thành</label>
@@ -77,22 +114,26 @@
 								  <option value="{{$c->id}}">{{$c->province_city_name}}</option>
 								@endforeach
 							</select>
+
 							<label class="col-md-2" style="margin-right: -10px;display: inline-block;font-weight: bold;font-size: 14px">Quận huyện</label>
 							<select class="js-example-basic-single col-md-3" name="districtt" id="district">
 	              				<option value="0">Chọn quận huyện</option>
 							</select>
+							<p class="text-danger" id="null_city" style="display: none;">Vui lòng chọn tỉnh thành cho dịch vụ</p>
 						</div>
 
 						<div class="col-md-12" style="margin-bottom: 10px;padding: 0;">
 							<label class="col-md-2" style="width: 150px;font-size: 14px;font-weight: bold;padding: 0;">Khu vực</label>
 							<select class="js-example-basic-single col-md-4" name="ward" id="ward" style="padding: 0; margin-left: 27px;">
+								<option value="0">Chọn khu vực</option>
 							</select>
 
 							
 							<label class="col-md-2" style="margin-right: -10px;display: inline-block;">Địa điểm</label>
 							<select class="js-example-basic-single col-md-3" name="diadiem" id="place" style="">
-	          					<option value="1">Chọn tỉnh thành phố</option>
+	          					<option value="0">Chọn địa điểm</option>
 							</select>
+							<p class="text-danger" id="null_place" style="display: none;">Vui lòng chọn địa điểm cho dịch vụ</p>
 						</div>
 
 						<div class="input-text">
@@ -137,6 +178,9 @@
 							<label>Giá cao nhất</label>
 							<input name="sv_highest_price" type="number" min="0" value="0">
 						</div>
+						<div class="input-text">
+							<p class="text-danger" id="price_error" style="display: none;">Gia thấp nhất không được lớn hơn giá cao nhất</p>
+						</div>
 						<br>
 						{{-- //========================= CHI TIET =================== --}}
 						<h6 style="color: #bd1717;">Mô tả chi tiết</h6>
@@ -147,9 +191,13 @@
       						{{-- <textarea id="occho">dadsddadada</textarea> --}}
       						
 						</div>
+						<div class="input-text">
+							<p class="text-danger" id="null_chitiet" style="display: none;">Tên dịch vụ phải có độ dài tối thiểu 50 ký tự</p>
+						</div>
+						<br>
 						<div class="input-text" class="col-md-12" style="padding: 0">
-							{{-- <label style="padding: 0;" class="col-md-2">Ảnh mô tả</label>
-							<input type="file" style="border:none; margin-left: 27px;" class="col-md-9" name="img1">
+							<label style="padding: 0;" class="col-md-12" style="width: 100%;">Ảnh mô tả chi tiết</label><br>
+							{{-- <input type="file" style="border:none; margin-left: 27px;" class="col-md-9" name="img1">
 							<p class="text-danger">{{$errors->first('img1')}}</p>
 							<label style="padding: 0;" class="col-md-2">Ảnh mô tả</label>
 							<input type="file" style="border:none; margin-left: 27px;" class="col-md-9" name="img2">
@@ -157,11 +205,31 @@
 							<label style="padding: 0;" class="col-md-2">Ảnh mô tả</label>
 							<input type="file" style="border:none; margin-left: 27px;" class="col-md-9" name="img3">
 							<p class="text-danger">{{$errors->first('img3')}}</p> --}}
-						
-							<input type="file" accept="image/*" style="" class="col-md-9" name="banner" id="banner">
+							<p class="text-danger" id="null_image" style="display: none;">Bạn phải chọn 3 ảnh chi tiết</p>
+							<div class="row">
+								<div class="col-md-4">
+									<input type="file" accept="image/*" style="width: 100%;" name="banner" id="banner">
+									<div class="preview-area2" style="width: 223px;height: 149px;">
+										{{-- <ul class=""></ul> --}}
+									</div>
+								</div>
+								<div class="col-md-4">
+									<input type="file" accept="image/*" style="width: 100%;" name="details1" id="details1">
+									<div class="preview-area3" style="width: 223px;height: 149px;">
+										{{-- <ul class=""></ul> --}}
+									</div>
+								</div>
+								<div class="col-md-4">
+									<input type="file" accept="image/*" style="width: 100%;" name="details2" id="details2">
+									<div class="preview-area4" style="width: 223px;height: 149px;">
+										{{-- <ul class=""></ul> --}}
+									</div>
+								</div>
+							</div>
+							<hr>
 							
-							<input type="file" accept="image/*" style="" class="col-md-9" name="details1" id="">
-							<input type="file" accept="image/*" style="" class="col-md-9" name="details2" id="">
+									
+								
 
 							<input type="file" class="dimmy" id="image-input" accept="image/*" name="image-input[]" multiple />
 						    <div>
@@ -179,6 +247,11 @@
 			</div>
 		</div>
 	</section>
+
+	{{-- <button id="clicktoast" onclick="show_toast()">lamsmanas</button> --}}
+	<div id="toast">
+		Thêm thành công!
+	</div>
 
 {{-- <script src="public/resource/js/ckeditor.js"></script> --}}
 <script src="public/resource/js/select2.full.js"></script>
