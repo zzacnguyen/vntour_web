@@ -421,7 +421,7 @@ class accountController extends Controller
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
-            $response = $client->request('GET',"list-schedule-details_web/{$idTripSchedule}");
+            $response = $client->request('GET',"list-schedule-details-web/{$idTripSchedule}");
             
             return json_decode($response->getBody()->getContents());
         }

@@ -145,7 +145,7 @@
 							</div>
 						</div>
 						<br> --}}
-						<div class="left-user" style="height: 500px;">
+						<div class="left-user" style="height: 546px;">
 							<ul class="tabs">
 								  <li class="active text-center" rel="tab1">KT</li>
 								  <li class="text-center" rel="tab2" style="border-right: 1px solid black;">CKT</li>
