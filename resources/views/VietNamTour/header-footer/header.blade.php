@@ -315,21 +315,55 @@
 							<div class="col-md-10 col-6">
 								<div class="right-menu-lam">
 									<ul class="float-left ul-right-menu-lam">
-										<li class=""><a href="" style="color: #00a680 !important;"><i class="fas fa-home"></i></a></li>
-										<li class="hover-menu hidden-xs"><a href="{{route('gioi-thieu')}}">Giới thiệu</a></li>
-										<li class="hover-menu hidden-xs"><a href="">Danh sách địa điểm</a></li>
-										{{-- <li class="hover-menu hidden-xs"><a href="">Liên hệ</a></li> --}}
-										{{-- <li class="hover-menu">
-											<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14px !important;">
-											  </a>
-											  <div class="dropdown-menu">
-											    <a class="dropdown-item" href="####">Action</a>
-											    <a class="dropdown-item" href="#">Another action</a>
-											    <a class="dropdown-item" href="#">Something else here</a>
-											    <div class="dropdown-divider"></div>
-											    <a class="dropdown-item" href="#">Separated link</a>
-											  </div>
-										</li> --}}
+										<li class="">
+											<a href="" style="color: #00a680 !important;"><i class="fas fa-home"></i></a>
+										</li>
+										<li class="hover-menu hidden-xs">
+											<a href="{{route('gioi-thieu')}}">Giới thiệu</a>
+										</li>
+									
+										@if(Session::has('login') && Session::get('login') == true)
+											@for($i=0;$i<count(Session::get('user_info')->level);$i++)
+												@if(Session::get('user_info')->level[$i] == 1 || Session::get('user_info')->level[$i] == 2)
+													<li class="hover-menu hidden-xs">
+														<a href="{{route('placeuser')}}">
+															Địa điểm	
+														</a>
+													</li>
+													<li class="hover-menu hidden-xs">
+														<a href="service-user" class="a-content-nofi">
+															Danh sách dịch vụ	
+														</a>
+													</li>
+													<li class="hover-menu hidden-xs">
+														<a href="{{route('get_tripchudule')}}" class="a-content-nofi">
+															Lịch trình	
+														</a>
+													</li>
+												@endif
+
+												@if(Session::get('user_info')->level[$i] == 3 || Session::get('user_info')->level[$i] == 4)
+													<li class="hover-menu hidden-xs">
+														<a href="{{route('placeuser')}}" class="a-content-nofi">
+															Địa điểm
+														</a>
+													</li>
+													<li class="hover-menu hidden-xs">
+														<a href="service-user" class="a-content-nofi">
+															Dịch vụ	
+														</a>
+													</li>
+												@endif
+
+												@if(Session::get('user_info')->level[$i] == 5)
+													<li class="hover-menu hidden-xs">	
+													<a href="{{route('get_tripchudule')}}" class="a-content-nofi">
+														Lịch trình
+													</a>
+												</li>
+												@endif
+											@endfor
+										@endif	
 									</ul>
 										
 								</div>
@@ -403,12 +437,10 @@
 											</div>
 										</div>
 									</li> --}}
-									<li class="cha-notification">
+									{{-- <li class="cha-notification">
 										<a class="a-notification" data-id-hienthi="id-tuychinh"><i class="fas fa-plus"></i></a>
 										<div class="notification" id="id-tuychinh" style="width: 200px;">
-											{{-- <div class="title-nofi">
-												<h6 class="text-center" style="padding: 0; font-weight: 700;">Thông báo</h6>
-											</div> --}}
+											
 											<div class="content-nofi">
 												<ul id="body-nofi" style="width: 200px;">
 													@if(Session::has('login') && Session::get('login') == true)
@@ -471,20 +503,11 @@
 															@endif
 														@endfor
 													@endif	
-														
-														
-													{{-- <li style="height: 27px;">
-														<a href="" class="a-content-nofi">
-															<p class="text-nofi" style="height: auto;width: auto;">
-																<i class="fas fa-cogs"></i> 
-																Cài đặt
-															</p>	
-														</a>
-													</li> --}}
+													
 												</ul>
 											</div>
 										</div>
-									</li>
+									</li> --}}
 									{{-- <li id="id-language">
 										<a href="" id="language">
 											<img src="public/resource/images/icons/vn.png" alt="" style="width: 20px; height: 20px;">

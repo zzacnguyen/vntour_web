@@ -29,6 +29,9 @@
 			padding-top: 8px;
 			padding-left: 16px;
 		}
+		.giathap, .giacao{
+			font-size: 12px
+		}
 	</style>
 
 	<!-- ==================TINH TP============= -->
@@ -74,7 +77,7 @@
 	<!-- ==================END TINH TP============= -->
 
 	<!-- ================== POPULAR DESTINATION============= -->
-	<section class="destination" style="background-image: url('public/resourceVNT/images/background/1.jpg');">
+	<section class="destination" style="background-image: url('public/resource/images/background/1.jpg');">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
@@ -100,10 +103,10 @@
 								<h5>{{$see->name_city}}</h5>
 							</div>
 							<div class="destination-icon">	
-								<a>{{$see->rating}} <i class="far fa-star"></i></a>	
-								<a>{{$see->view}} <i class="fas fa-eye"></i></a>
-								<a>{{$see->like}} <i class="far fa-thumbs-up"></i></a>
-								<a>{{$see->point}} <i class="far fa-bookmark"></i></a>
+								<a>{{$see->rating}} <i class="far fa-star"></i></a>
+								<a><span class="chuyenso">{{$see->view}}</span> <i class="fas fa-eye"></i></a>
+								<a><span class="chuyenso">{{$see->like}}</span> <i class="far fa-thumbs-up"></i></a>
+								<a><span class="chuyenso">{{$see->point}}</span> <i class="far fa-bookmark"></i></a>
 							</div>
 						</div>
 					</div>
@@ -146,9 +149,9 @@
 							</div>
 							<div class="destination-icon">	
 								<a>{{$eat->rating}} <i class="far fa-star"></i></a>	
-								<a>{{$eat->view}} <i class="fas fa-eye"></i></a>
-								<a>{{$eat->like}} <i class="far fa-thumbs-up"></i></a>
-								<a>{{$eat->point}} <i class="far fa-bookmark"></i></a>
+								<a><span class="chuyenso">{{$eat->view}}</span> <i class="fas fa-eye"></i></a>
+								<a><span class="chuyenso">{{$eat->like}}</span> <i class="far fa-thumbs-up"></i></a>
+								<a><span class="chuyenso">{{$eat->point}}</span> <i class="far fa-bookmark"></i></a>
 							</div>
 						</div>
 					</div>
@@ -198,14 +201,15 @@
 								<p class="">{{$hotel->description}}</p>
 								<div class="free-service">
 									<a>{{$hotel->rating}}  <i class="far fa-star"></i></a>	
-									<a>{{$hotel->view}} <i class="fas fa-eye"></i></a>
-									<a>{{$hotel->like}}  <i class="far fa-thumbs-up"></i></a>
-									<a>{{$hotel->point}} <i class="far fa-bookmark"></i></a>
+									<a><span class="chuyenso">{{$hotel->view}}</span> <i class="fas fa-eye"></i></a>
+									<a><span class="chuyenso">{{$hotel->like}}</span> <i class="far fa-thumbs-up"></i></a>
+									<a><span class="chuyenso">{{$hotel->point}}</span> <i class="far fa-bookmark"></i></a>
 								</div>
 							</div>
 							<div class="hotel-right">
 								<div class="price">
-									{{$hotel->sv_lowest_price}}-{{$hotel->sv_highest_price}}
+									<span class="giathap">{{$hotel->sv_lowest_price}}</span> - 
+									<span class="giacao">{{$hotel->sv_highest_price}}</span>
 								</div>
 								<div class="btn">
 									{{-- <a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$hotel['id_service']}}" class="btn btn-warning">Details</a> --}}
@@ -254,9 +258,9 @@
 							</div>
 							<div class="destination-icon">	
 								<a>{{$enter->rating}} <i class="far fa-star"></i></a>	
-								<a>{{$enter->view}} <i class="fas fa-eye"></i></a>
-								<a>{{$enter->like}} <i class="far fa-thumbs-up"></i></a>
-								<a>{{$enter->point}} <i class="far fa-bookmark"></i></a>
+								<a><span class="chuyenso">{{$enter->view}}</span> <i class="fas fa-eye"></i></a>
+								<a><span class="chuyenso">{{$enter->like}}</span> <i class="far fa-thumbs-up"></i></a>
+								<a><span class="chuyenso">{{$enter->point}}</span> <i class="far fa-bookmark"></i></a>
 							</div>
 						</div>
 					</div>
@@ -297,9 +301,9 @@
 							</div>
 							<div class="destination-icon">	
 								<a>{{$stran->rating}} <i class="far fa-star"></i></a>	
-								<a>{{$stran->view}} <i class="fas fa-eye"></i></a>
-								<a>{{$stran->like}} <i class="far fa-thumbs-up"></i></a>
-								<a>{{$stran->point}} <i class="far fa-bookmark"></i></a>
+								<a><span class="chuyenso">{{$stran->view}}</span> <i class="fas fa-eye"></i></a>
+								<a><span class="chuyenso">{{$stran->like}}</span> <i class="far fa-thumbs-up"></i></a>
+								<a><span class="chuyenso">{{$stran->point}}</span> <i class="far fa-bookmark"></i></a>
 							</div>
 						</div>
 					</div>
@@ -358,7 +362,8 @@ $(document).ready(function(){
 });
 </script>
 
-{{-- <script src="resource/js/menu-style.js"></script> --}}
-{{-- <script src="resource/js/p/index.js"></script> --}}
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff"></script> --}}
+
+<script src="public/resource/js/p/shareFun.js"></script>
 
 @include('VietNamTour.header-footer.footer')
