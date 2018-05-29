@@ -42,7 +42,7 @@
 					<div class="col-md-12">
 						<div class="right-user" style="padding: 5px 15px;">
 							<div class="col-md-12">
-								<h4 style="padding:10px;" class="text-center"><b>Danh sách địa điểm bạn đã thêm</b></h4>
+								<h4 style="padding:10px;" class="text-center"><b>Danh sách địa điểm</b></h4>
 							</div>
 							<table class="table table-bordered table-hover" style="font-size: 12px;">
 							  <thead>
