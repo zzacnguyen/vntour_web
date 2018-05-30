@@ -146,7 +146,7 @@ class publicCityController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -221,7 +221,7 @@ class publicCityController extends Controller
     public function count_service_all_and_type($idcity){
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -272,7 +272,7 @@ class publicCityController extends Controller
         //get_district_city/{id}
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -284,7 +284,7 @@ class publicCityController extends Controller
     public function get_name_city($id){
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);

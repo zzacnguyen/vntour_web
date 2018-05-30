@@ -330,7 +330,7 @@ class publicDetail extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -343,7 +343,7 @@ class publicDetail extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -356,7 +356,7 @@ class publicDetail extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -371,7 +371,7 @@ class publicDetail extends Controller
 
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -395,7 +395,7 @@ class publicDetail extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -409,7 +409,7 @@ class publicDetail extends Controller
         $user_id = $this::check_Login();
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 15.0,
         ]);
@@ -425,7 +425,7 @@ class publicDetail extends Controller
         // return $lam;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 15.0,
         ]);
@@ -439,7 +439,7 @@ class publicDetail extends Controller
         $user_id = $this::check_Login();
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -457,7 +457,7 @@ class publicDetail extends Controller
             // return $id_service.'-'.$user_id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://vntourweb/vntour_api/',
+                'base_uri' => 'http://localhost/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -479,7 +479,7 @@ class publicDetail extends Controller
     public function get_service_lancan($lat,$lon,$radius){
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -490,7 +490,7 @@ class publicDetail extends Controller
     public function get_top_view_service($limit){
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -501,7 +501,7 @@ class publicDetail extends Controller
     public function count_rating_service($idservice){
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -515,7 +515,7 @@ class publicDetail extends Controller
     public function paginate_rating($idservice,$page,$limit){
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -571,7 +571,7 @@ class publicDetail extends Controller
         $user_id = Session::get('user_info')->id;
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
@@ -585,7 +585,7 @@ class publicDetail extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);

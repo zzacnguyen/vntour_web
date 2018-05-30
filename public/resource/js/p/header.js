@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 	// load select city
 		$.ajax({
-			url: 'http://vntourweb/vntour_api/count-city-service-all',
+			url: 'http://localhost/vntour_api/count-city-service-all',
 			type: 'GET'
 		})
 		.done(function (response) {
@@ -62,7 +62,7 @@ function search() {
 		// $('#thanSearch').html('');
 		if (id_tinh == "all" && type == "all" && keyword.length > 0) 
 		{
-			path = 'http://vntourweb/vntour_api/search-services-all/keyword=' + keyword_handle;
+			path = 'http://localhost/vntour_api/search-services-all/keyword=' + keyword_handle;
 			$.ajax({
 				url: path,
 				type: 'GET',
@@ -157,7 +157,7 @@ function search() {
 		}
 		else if(id_tinh != "all" && type == "all" && keyword.length > 0)
 		{
-			path = 'http://vntourweb/vntour_api/search-service-city-all-type/idcity='+ id_tinh +'&keyword=' + keyword_handle;
+			path = 'http://localhost/vntour_api/search-service-city-all-type/idcity='+ id_tinh +'&keyword=' + keyword_handle;
 
 			$.ajax({
 				url: path,
@@ -252,7 +252,7 @@ function search() {
 		}
 		else if(id_tinh != "all" && type != "all" && keyword.length > 0)
 		{
-			path = 'http://vntourweb/vntour_api/search-service-city-type/idcity='+ id_tinh +'&type='+ type +'&keyword=' + keyword_handle;
+			path = 'http://localhost/vntour_api/search-service-city-type/idcity='+ id_tinh +'&type='+ type +'&keyword=' + keyword_handle;
 			var title = 'Bộ lọc: ' + ten_tinh + ' + ' + ten_type;
 
 			$.ajax({
@@ -284,7 +284,7 @@ function search() {
 		}
 		else if(id_tinh == "all" && type != "all" && keyword.length > 0)
 		{
-			path = 'http://vntourweb/vntour_api/search-services-all-city-id-type/type='+ type +'&keyword=' + keyword_handle;
+			path = 'http://localhost/vntour_api/search-services-all-city-id-type/type='+ type +'&keyword=' + keyword_handle;
 			var title = 'Bộ lọc: ' + ten_tinh + ' + ' + ten_type;
 
 			$.ajax({

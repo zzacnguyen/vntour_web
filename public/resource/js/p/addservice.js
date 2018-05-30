@@ -130,7 +130,7 @@ function submitform() {
 
 			// console.log(data);
 	        var id_user = $('#id_user').val();
-	        var path = 'http://vntourweb/vntour_api/post-add-service-user/' + id_user;
+	        var path = 'http://localhost/vntour_api/post-add-service-user/' + id_user;
 	        console.log(path);
 	        $.ajax({
 	            type: "POST",
@@ -169,7 +169,7 @@ function anh(id) {
 
 		// Create an FormData object 
         var data = new FormData(form);
-		var path_uplad_img = 'http://vntourweb/vntour_api/upload-image/' + id;
+		var path_uplad_img = 'http://localhost/vntour_api/upload-image/' + id;
 		$.ajax({
 			url: path_uplad_img, // Url to which the request is send
 			type: "POST",  

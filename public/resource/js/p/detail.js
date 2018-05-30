@@ -20,7 +20,7 @@ function checkLogin() {
 		.done(function (response) {
 			if (response > 0) 
 			{
-				var pathCheckLike = 'http://vntourweb/vntour_api/checkLike/userid=' + response + '&svid=' + service_id;
+				var pathCheckLike = 'http://localhost/vntour_api/checkLike/userid=' + response + '&svid=' + service_id;
 				
 				$.ajax({
 						url: pathCheckLike,

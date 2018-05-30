@@ -289,17 +289,18 @@ border-radius: 4px;
 							<ul>
 								<li>
 									<a>
-										<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}"/>
+										<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}"/>
+										{{-- <img src="http://localhost/vntour_api/public/thumbnails/banner__2018_01_04_11_24_46.jpg"/> --}}
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}"/>
+										<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_banner}}"/>
+										<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_banner}}"/>
 									</a>
 								</li>
 								
@@ -445,23 +446,23 @@ border-radius: 4px;
 										<h5 style="font-weight: 700;padding-left: 17px;">Album ảnh</h5>
 										<section class="demo" style="background-color: transparent;">
 											<div class="gallery">
-												<a style="background-color: transparent;" href="public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-12"><img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_banner}}" alt="" title="" /></a>
+												<a style="background-color: transparent;" href="public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-12"><img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_banner}}" alt="" title="" /></a>
 
-												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-6">
-													<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
+												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-6">
+													<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
 												</a>
 
-												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-6">
-													<img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
+												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-6">
+													<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
 												</a>
 
-												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-4"><img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_banner}}" alt="" title="" />
+												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-4"><img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_banner}}" alt="" title="" />
 												</a>
 
-												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-4"><img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
+												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-4"><img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
 												</a>
 
-												<a href="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-4"><img src="http://vntourweb/vntour_api/public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
+												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-4"><img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
 												</a>
 											</div>
 										</section>

@@ -74,13 +74,12 @@
 										@endif
 									</label>
 									<button class="btn btn-primary float-right" style="margin-left: 20px;" id="btntimquanhday" data-toggle="modal" data-target="#myModal">Tìm quanh đây</button>
-
 									<div id="myModal" class="modal fade" role="dialog" style="margin-top: 100px;">
 									  <div class="modal-dialog">
 
 									    <!-- Modal content-->
 									    <div class="modal-content">
-								    	<form action="{{route('search-vicinity')}}" method="post">
+								    	<form action="{{route('search-vicinity')}}" method="post" name="formtimquanhday">
 									      <div class="modal-header">
 									      	<h4 class="modal-title">Tọa độ của bạn</h4>
 									        <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -89,18 +88,18 @@
 									      <div class="modal-body">
 									      	<div class="form-group col-md-12 row">
 									      		<small class="col-md-12" style="color: red;">Chúng tôi cần biết vị trí của bạn để thục hiện chức năng này</small>
-											    <button onclick="tryGeolocation()">Lấy vị trí</button>
+											    
 										  	</div>
 										  	<div class="form-group col-md-12 row">
 											    <label class="col-md-3" for="exampleInputEmail1">Vĩ độ</label>
 											    <div class="col-md-9">
-											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtlat" value="10.044718399999999">
+											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtlat">
 											    </div>
 										  	</div>
 										  	<div class="form-group col-md-12 row">
 											    <label class="col-md-3" for="exampleInputEmail1">Kinh độ</label>
 											    <div class="col-md-9">
-											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtlon" value="105.7632514">
+											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtlon">
 											    </div>
 										  	</div>
 										  	<div class="form-group col-md-12 row">
@@ -113,7 +112,7 @@
 
 									      <div class="modal-footer">
 									        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        		<button type="submit" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;">Tìm kiếm</button>
+							        		<button type="submit" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;" id="btn-timquanhday-sub">Tìm kiếm</button>
 									      </div>
 										</form>
 									    </div>
@@ -271,7 +270,9 @@
 <div class="container">
 	<script>
 		var apiGeolocationSuccess = function(position) {
-            alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+            // alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+            $('input[name=txtlat').val('sdcccc');
+            $('input[name=txtlon').val(position.coords.longitude);
         };
 
         var tryAPIGeolocation = function() {
@@ -284,7 +285,9 @@
         };
 
         var browserGeolocationSuccess = function(position) {
-            alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+            // alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+            $('input[name=txtlat').val(position.coords.latitude);
+            $('input[name=txtlon').val(position.coords.longitude);
         };
 
         var browserGeolocationFail = function(error) {
@@ -311,6 +314,7 @@
               {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
           }
         };
+
 
 // tryGeolocation();
 	</script>

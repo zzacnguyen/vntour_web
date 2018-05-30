@@ -5,6 +5,8 @@ $(document).ready(function (argument) {
 	$('#allser').click(function (argument) {
 		window.location.reload();
 	})
+	timquanhday();
+	// submit_timquanhday();
 })
 
 function clickse() {
@@ -150,8 +152,37 @@ function save_dichvu_search() {
 
 function timquanhday() {
 	$('#btntimquanhday').click(function () {
-		var latitude = 10.044718399999999;
-		var longitude = 105.7632514;
-		return 1;
+		tryGeolocation();
 	})
+}
+
+function submit_timquanhday() {
+	$('#btn-timquanhday-sub').click(function () {
+		var form = $('#formtimquanhday')[0];
+        var lat = $('input[name=txtlat]').val();
+        var lon = $('input[name=txtlon]').val();
+        var radius = $('input[name=txtradius]').val();
+        console.log(path);
+        $.ajax({
+            type: "POST",
+            url: 'search-vicinity',
+            data: {txtlat: lat, txtlon: lon, txtradius: radius},
+            timeout: 600000,
+            success: function (data) {
+            	// console.log(data);
+            	if (parseInt(data) > 0) 
+            	{
+            		anh(parseInt(data));
+            	}
+            },
+            error: function (e) {
+
+                // $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+                // $("#btnSubmit").prop("disabled", false);
+
+            }
+        });
+	})
+		
 }

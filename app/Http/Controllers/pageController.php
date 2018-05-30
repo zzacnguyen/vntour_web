@@ -18,7 +18,7 @@ use GuzzleHttp\Client;
 
 class pageController extends Controller
 {
-    // $path = "http://vntourweb/vntour_api/";
+    // $path = "http://localhost/vntour_api/";
     public function layindex()
     {
         return view('VietNamTour.content.index');
@@ -140,7 +140,7 @@ class pageController extends Controller
 
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -177,7 +177,7 @@ class pageController extends Controller
 
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -200,7 +200,7 @@ class pageController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -214,7 +214,7 @@ class pageController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -227,7 +227,7 @@ class pageController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -246,7 +246,7 @@ class pageController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -265,7 +265,7 @@ class pageController extends Controller
 
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -506,7 +506,7 @@ class pageController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -600,7 +600,7 @@ class pageController extends Controller
             $user_id = Session::get('user_info')->id;
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://vntourweb/vntour_api/',
+                'base_uri' => 'http://localhost/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -614,7 +614,7 @@ class pageController extends Controller
     public function get_service_max_search(){
         $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://vntourweb/vntour_api/',
+                'base_uri' => 'http://localhost/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);
@@ -628,7 +628,7 @@ class pageController extends Controller
         $lat = $request->txtlat;
         $lon = $request->txtlon;
         $radius = $request->txtradius;
-
+        // return $request->all();
         $top_search = $this::get_service_max_search();
         $result = $this::search_vicinity($lat,$lon,$radius);
 
@@ -679,7 +679,7 @@ class pageController extends Controller
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
@@ -690,7 +690,7 @@ class pageController extends Controller
     public function search_vicinity_type($lat,$lon,$radius){
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://vntourweb/vntour_api/',
+            'base_uri' => 'http://localhost/vntour_api/',
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
