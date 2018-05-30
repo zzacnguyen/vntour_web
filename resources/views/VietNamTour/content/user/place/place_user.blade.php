@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="public/resource/css/detail-tab.css">
 <link rel="stylesheet" href="public/resource/css/user.css">
 <link rel="stylesheet" href="public/resource/css/bootstrap.css">
+<link rel="stylesheet" href="public/resource/css/pagination.css">
 <link rel="stylesheet" href="public/resource/css/dataTables.bootstrap.min.css">
 	
 	<style type="text/css">
@@ -18,6 +19,30 @@
 		body{
 			background-color: #eee;
 		}
+		ul, li {
+            list-style: none;
+        }
+
+        #wrapper {
+            width: 900px;
+            margin: 20px auto;
+        }
+
+        .data-container {
+            margin-top: 20px;
+        }
+
+        .data-container ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .data-container li {
+            margin-bottom: 5px;
+            padding: 5px 10px;
+            background: #eee;
+            color: #666;
+        }
 	</style>
 
 	<section class="content-info" style="min-height: 600px;">
@@ -83,15 +108,16 @@
 							</table>
 
 
-							{{-- <nav aria-label="Page navigation example">
-							  <ul class="pagination">
-							    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-							    <li class="page-item"><a class="page-link" href="#">1</a></li>
+							<nav aria-label="Page navigation example">
+							  <ul class="pagination" id="pagination">
+							    {{-- <li class="page-item active"><a class="page-link" href="#">1</a></li>
 							    <li class="page-item"><a class="page-link" href="#">2</a></li>
-							    <li class="page-item"><a class="page-link" href="#">3</a></li>
-							    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+							    <li class="page-item"><a class="page-link" href="#">3</a></li> --}}
 							  </ul>
-							</nav> --}}
+							</nav>
+							
+
+
 						</div>
 
 					</div>
@@ -116,7 +142,8 @@ $(document).ready(function(){
 	<script type="text/javascript" src="public/resource/js/popper.js"></script>
 	<script type="text/javascript" src="public/resource/js/bootstrap.js"></script>
 	<script src="public/resource/js/jquery.twbsPagination.js"></script>
-	{{-- <script src="public/resource/js/p/place_user.js"></script> --}}
+	<script src="public/resource/js/p/place_user.js"></script>
+	<script src="public/resource/js/pagination.min.js"></script>
 
 	@if(Session::has('message'))
 		<script>
@@ -141,4 +168,11 @@ $(document).ready(function(){
 		}
 		</script>
 	@endif
+
+<script>
+  
+</script>
+
+
+
 @include('VietNamTour.header-footer.footer')

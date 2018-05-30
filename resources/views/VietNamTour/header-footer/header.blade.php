@@ -364,6 +364,10 @@
 												@endif
 											@endfor
 										@endif	
+
+										<li class="hover-menu hidden-xs">
+											<a href="{{route('point-for-user')}}">Điểm thưởng</a>
+										</li>
 									</ul>
 										
 								</div>

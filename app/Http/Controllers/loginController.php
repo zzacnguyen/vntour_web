@@ -118,7 +118,7 @@ class loginController extends Controller
         else{
             $client = new Client([
                 // Base URI is used with relative requests
-                'base_uri' => 'http://vntourweb/vntour_api/',
+                'base_uri' => 'http://localhost/vntour_api/',
                 // You can set any number of default request options.
                 'timeout'  => 20.0,
             ]);

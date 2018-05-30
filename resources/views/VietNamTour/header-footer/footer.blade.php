@@ -1,5 +1,5 @@
 <!-- ================== FOOTER ============= -->
-	<footer>
+	<footer style="position: fixed;padding-top: 20px; padding-bottom: 20px;">
 		{{-- <div class="container">
 			<div class="row">
 				<div class="col-md-3 col-sm-12 col-12">

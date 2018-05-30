@@ -91,9 +91,9 @@
 											<i class="fas fa-lock"></i> Đổi mật khẩu
 										</a>
 									</li>
-									{{-- <li>
+									<li>
 										<a href=""><i class="fas fa-lock"></i> Điểm thưởng</a>
-									</li> --}}
+									</li>
 									<li style="border-bottom: 1px solid #ddd;">
 										<a href="{{route('logoutW')}}"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
 									</li>

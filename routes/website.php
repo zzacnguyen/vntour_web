@@ -174,6 +174,9 @@ Route::get('get_quyen_dangky','accountController@get_quyen_dangky');
 
 Route::post('register-uplevel-user','accountController@register_uplevel_user')->name('register-uplevel-user');
 
+Route::get('point-for-user','accountController@getPointUser')->name('point-for-user');
+
+
 //test
 
 Route::get('getRating/{id}','publicDetail@getRating');

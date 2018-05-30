@@ -904,7 +904,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"get_place_user/{$user_id}")->getBody();
+        $response = $client->request('GET',"get-place-user/{$user_id}")->getBody();
         $data= $this::paginate(json_decode($response),$current_page,$limit);
         return $data;
     }
@@ -1243,6 +1243,26 @@ class accountController extends Controller
 
     public function check_iage(){
         return view('VietNamTour.content.user.service.image');
+    }
+
+
+
+
+
+    // ============= POINT =====================
+    public function getPointUser(){
+        $user_id = Session::get('user_info')->id;
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://localhost/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+
+        $response = $client->request('GET',"point-for-user/{$user_id}");
+        $data = json_decode($response->getBody()->getContents());
+        
+        return view('VietNamTour.content.user.point',compact('data'));
     }
 
 }
