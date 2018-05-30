@@ -170,20 +170,38 @@ class loginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('facebook')->user();
-        dd($user);
-        $social = usersModel::where('user_facebook_id',$user->id)->orWhere('username',$user->email)->first();
-        if ($social) {
-            Auth::login($social);
-            return redirect('/');
+        // dd($user);
+        
+        $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://localhost/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+        $response = json_decode($client->request('GET', "check-user-social/{$user->id}&{$user->email}")->getBody()->getContents());
+        // dd($response);
+
+        if ($response == null) {
+            $username = $user->email;
+            $password = '1';
+            $social_login_id = $user->id;
+        
+            $response2 = $client->request('POST', 'register-social', [
+                'form_params' => [
+                    'username' => $username,
+                    'password' => $password,
+                    'social_login_id'=> $social_login_id
+                ]
+            ])->getBody()->getContents();
+            $result = json_decode($response2);
+            if ($result == 1) {
+                return redirect('/');
+            }
         }
         else{
-            $u = usersModel::create([
-                'username'         => $user->email,
-                'user_facebook_id' => $user->id,
-                'user_groups_id'   => 1
-            ]);
-            $u->save();
-            Auth::login($u);
+            $info = json_decode($client->request('GET', "get-info-user-social/{$response->user_id}")->getBody()->getContents());
+            Session()->put('login',true);  
+            Session()->put('user_info',$info);
             return redirect('/');
         }
     }

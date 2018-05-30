@@ -33,7 +33,7 @@
 
 								<button class="btn btn-success float-right btnlogin" type="" id="btnlogin">Login</button>
 							</div>
-							{{-- <div class="login-social">
+							<div class="login-social">
 								<h5 class="text-center">Login social</h5>
 								<div class="row">
 									<div class="col-md-6">
@@ -43,7 +43,7 @@
 										<a href="" class="btn btn-warning btngoogle" style="background-color: #dd4b39">Google+</a>
 									</div>
 								</div>
-							</div> --}}
+							</div>
 							<div class="register text-center">
 								<h5 class="text-center">Đăng ký tài khoản mới tại đây</h5>
 								<a href="{{route('registerW')}}" class="btn btn-info btnregister">Đăng ký</a>

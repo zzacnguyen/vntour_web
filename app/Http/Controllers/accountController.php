@@ -1261,7 +1261,8 @@ class accountController extends Controller
 
         $response = $client->request('GET',"point-for-user/{$user_id}");
         $data = json_decode($response->getBody()->getContents());
-        
+        // return $user_id;
+        // dd($data);
         return view('VietNamTour.content.user.point',compact('data'));
     }
 
