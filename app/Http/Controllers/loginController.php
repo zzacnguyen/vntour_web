@@ -183,7 +183,7 @@ class loginController extends Controller
 
         if ($response == null) {
             $username = $user->email;
-            $password = '1';
+            $password = '123456';
             $social_login_id = $user->id;
         
             $response2 = $client->request('POST', 'register-social', [

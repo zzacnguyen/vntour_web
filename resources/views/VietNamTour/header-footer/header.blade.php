@@ -286,8 +286,8 @@
 												@else
 													<img src="public/resource/images/avatar/{{Session::get('user_info')->avatar}}" style="height: 33px; width: 33px;">
 												@endif
-												
-												{{Session::get('user_info')->username}} <i class="fas fa-caret-down"></i>
+												<span style="max-width: 100px;overflow: hidden;display: inline-flex;">{{Session::get('user_info')->username}}</span>
+												 <i class="fas fa-caret-down"></i>
 											</a>
 											<div class="user-form">
 												<ul>

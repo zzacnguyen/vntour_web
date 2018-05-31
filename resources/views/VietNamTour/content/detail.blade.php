@@ -3,10 +3,14 @@
 
 
 <link rel="stylesheet" href="public/resource/css/hotel.css">
+<link rel="stylesheet" href="public/resource/css/font-awesome.min.css">
 <link rel="stylesheet" href="public/resource/css/hotel-detail.css">
 <link rel="stylesheet" href="public/resource/css/lightbox.min.css">
 <link rel="stylesheet" href="public/resource/css/detail-tab.css">
 <link rel="stylesheet" href="public/resource/css/chat.css">
+<link rel="stylesheet" href="public/resource/JSsocial/jssocials.css">
+<link rel="stylesheet" href="public/resource/JSsocial/jssocials-theme-flat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -349,23 +353,31 @@ border-radius: 4px;
 										{{$sv->sv_point}}
 									</a>
 								</div> --}}
-								<div class="col-md-6 text-center">
+								<div class="col-md-4 text-center">
 									<a title="Lượt xem">
 										<i class="fas fa-eye"></i>
 										{{$sv->sv_view}}
 									</a>
 								</div>
-								<div class="col-md-6 text-center">
+								<div class="col-md-4 text-center">
 									<a id="like01">
 										<i id="color-like" class="fas fa-heart"></i>
 										<span id="num_like">{{$sv->sv_like}}</span>
 									</a>
 								</div>
-								{{-- <div class="col-md-3 text-center">
-									<a id="">
-										<i class="fas fa-share"></i>
-									</a>
-								</div> --}}
+								<div class="col-md-4 text-center">
+									<div id="fb-root"></div>
+									<script>(function(d, s, id) {
+									  var js, fjs = d.getElementsByTagName(s)[0];
+									  if (d.getElementById(id)) return;
+									  js = d.createElement(s); js.id = id;
+									  js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.0&appId=174049813400388&autoLogAppEvents=1';
+									  fjs.parentNode.insertBefore(js, fjs);
+									}(document, 'script', 'facebook-jssdk'));
+									</script>
+
+									<div class="fb-share-button" data-href="https://www.facebook.com/lam.themen" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Flam.themen&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+								</div>
 							</div>
 							<br>	
 							<div class="service" style="margin-top: 5px;">
@@ -1023,6 +1035,7 @@ border-radius: 4px;
 	</script>
 	
 	<script src="public/resource/js/p/detail.js"></script>
+	<script src="public/resource/JSsocial/jssocials.js"></script>
 	
 	<script type="text/javascript" src="public/resource/js/owl.carousel.js"></script>
 	<script type="text/javascript">
@@ -1116,6 +1129,22 @@ border-radius: 4px;
 		  
 		  
 		});
+
+	</script>
+
+	<script type="text/javascript">
+		$("#share").jsSocials({
+            shares: [{
+		        share: "facebook",
+		        logo: "http://js-socials.com/demos/fb-logo.png"
+		    }],
+            url: "https://www.facebook.com/lam.themen",
+		    label: "Share",
+		    logo: "fa-facebook-square",
+		    showLabel: false,
+		    showCount: false,
+		    shareIn: "popup"
+        });
 
 	</script>
 
