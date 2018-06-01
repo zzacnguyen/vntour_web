@@ -75,6 +75,61 @@
     	visibility: visible !important;
     	transition: 1s;
     }
+
+    //
+	section#loader{
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    background-color: #00000066;
+	    height: 100%;
+	    width: 100%;
+    }
+    #loader .lam11{
+    	height: 50px;
+    	width: 50px;
+    	background-color: black;
+    	display: none;
+    }
+    #loader .lds-facebook {
+	    position: absolute;
+		display: inline-block;
+		position: relative;
+		width: 64px;
+		height: 64px;
+		top: 50%;
+		left: 50%;
+	}
+	#loader .lds-facebook div {
+	  display: inline-block;
+	  position: absolute;
+	  left: 6px;
+	  width: 13px;
+	  background: #00a680;
+	  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+	}
+	#loader .lds-facebook div:nth-child(1) {
+	  left: 6px;
+	  animation-delay: -0.24s;
+	}
+	#loader .lds-facebook div:nth-child(2) {
+	  left: 26px;
+	  animation-delay: -0.12s;
+	}
+	#loader .lds-facebook div:nth-child(3) {
+	  left: 45px;
+	  animation-delay: 0;
+	}
+	@keyframes lds-facebook {
+	  0% {
+	    top: 6px;
+	    height: 51px;
+	  }
+	  50%, 100% {
+	    top: 19px;
+	    height: 26px;
+	  }
+	}
 </style>
 
 <section class="addplace">
@@ -258,6 +313,16 @@
 				</div>
 				<div class="col-md-2"></div>
 			</div>
+		</div>
+	</section>
+	<section id="loader" style="display: none; position: fixed;top: 0;left: 0;
+	    background-color: #00000066;
+	    height: 100%;
+	    width: 100%;">
+		<div class="lam11"></div>
+		<div class="lds-facebook" id="lds-facebook"><div></div><div></div><div></div></div>
+		<div id="thanhcong" style="display: none;position: absolute;top: 40%;text-align: center;padding: 10px;color: white;width: 100%;">
+			<h3 class="text-center" style="width: 100%">Cập nhật thành công</h3>
 		</div>
 	</section>
 

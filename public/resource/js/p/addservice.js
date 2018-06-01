@@ -141,7 +141,11 @@ function submitform() {
 	            contentType: false,
 	            cache: false,
 	            timeout: 600000,
+	            beforeSend:function () {
+	            	$('#loader').css('display','block');
+	            },
 	            success: function (data) {
+	            	$('#loader').css('display','none');
 	            	console.log(data);
 	            	if (parseInt(data) > 0) 
 	            	{
@@ -182,7 +186,7 @@ function anh(id) {
 			{
 				show_toast();
 				setTimeout(function () {
-					location.href = "http://vntourweb/vntour_web/service-user";
+					location.href = "service-user";
 				},2000);
 				
 			}

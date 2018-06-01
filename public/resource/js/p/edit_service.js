@@ -140,12 +140,19 @@ function submitform() {
 	            contentType: false,
 	            cache: false,
 	            timeout: 600000,
+	            beforeSend:function () {
+	            	$('#loader').css('display','block');
+	            },
 	            success: function (data) {
 	            	console.log(data);
 	            	if (parseInt(data) > 0) 
 	            	{
 	            		// anh(parseInt(data));
-	            		location.href = "http://vntourweb/vntour_web/service-user";
+	            		
+	            		$('#lds-facebook').css('display','none');
+	            		$('#thanhcong').css('display','block');
+	            		
+	            		location.href = "service-user";
 	            	}
 	            },
 	            error: function (e) {

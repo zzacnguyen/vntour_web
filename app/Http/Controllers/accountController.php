@@ -781,6 +781,7 @@ class accountController extends Controller
             'timeout'  => 20.0,
         ]);
         $user_id = Session::get('user_info')->id;
+        // dd(Session::get('user_info'));
         $response = $client->request('GET',"get-service-user/{$user_id}")->getBody()->getContents();
 
         $data=json_decode($response);

@@ -980,11 +980,12 @@ border-radius: 4px;
 		  var styledMapType = new google.maps.StyledMapType(styles);
 		  map.mapTypes.set('Styled', styledMapType);
 		 
+		  var myLatLng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
 		  marker = new google.maps.Marker({
 		    map:map,
-		    draggable:true,
+		    draggable:false,
 		    animation: google.maps.Animation.DROP,
-		    position: gmap
+		    position: myLatLng
 		  });
 		  google.maps.event.addListener(marker, 'click', toggleBounce);
 		}
