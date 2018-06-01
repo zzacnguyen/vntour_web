@@ -18,7 +18,7 @@ function loadData(current_page) {
 			type: 'GET'
 		})
 		.done(function (response) {
-			console.log(response);
+			// console.log(response);
 			var lam = new String(); // khoi tao bien luu pha hien thi len view
 			tong = response.total_page;
 			if(response.data.length != 0)
@@ -39,7 +39,7 @@ function loadData(current_page) {
 				    
 				    lam += '</td>';
 				    lam += '<td class="text-center">';
-					lam += '<a class="btn btn-sm btn-info" href="{{route("edit_placeuser",'+ data.id +')}}"><i class="far fa-edit"></i> Chi tiết</a>';
+					lam += '<a class="btn btn-sm btn-info" href="edit-place-user/'+ data.id +' "><i class="far fa-edit"></i> Chi tiết</a>';
 				    lam += '<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>';
 				    lam += '</td>';
 					lam += '</tr>';

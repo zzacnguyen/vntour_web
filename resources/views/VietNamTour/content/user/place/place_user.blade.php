@@ -84,7 +84,7 @@
 							    </tr>
 							  </thead>
 							  <tbody id="list-place">
-								@foreach($data as $val)
+								{{-- @foreach($data as $val)
 								    <tr>
 								      <td >{{$val->pl_name}}</td>
 								      <td>{{$val->pl_address}}</td>
@@ -103,7 +103,7 @@
 								      		<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>
 								      </td>
 									</tr>
-								@endforeach
+								@endforeach --}}
 							  </tbody>
 							</table>
 

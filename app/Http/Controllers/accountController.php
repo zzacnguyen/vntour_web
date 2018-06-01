@@ -920,6 +920,7 @@ class accountController extends Controller
         ]);
         $response = $client->request('GET',"get-edit-place-user/{$user_id}/{$id}")->getBody();
          $data=json_decode($response);
+         // dd ($data->info);
          return view('VietNamTour.content.user.place.editplace',compact('data'));
     }
 
@@ -939,8 +940,8 @@ class accountController extends Controller
                 'place_address'=>$request->place_address,
                 'place_phone'=>$request->place_phone,
                 'place_ward'=>$request->ward,
-                'vido'=>$request->place_kinhdo,
-                'kinhdo'=>$request->place_vido
+                'vido'=>$request->vido,
+                'kinhdo'=>$request->kinhdo
             ]
         ])->getBody();
         if($response=="ok")
