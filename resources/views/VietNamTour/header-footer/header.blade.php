@@ -289,7 +289,7 @@
 												<span style="max-width: 100px;overflow: hidden;display: inline-flex;">{{Session::get('user_info')->username}}</span>
 												 <i class="fas fa-caret-down"></i>
 											</a>
-											<div class="user-form">
+											<div class="user-form" id="user-form">
 												<ul>
 													<li><a href="{{route('info')}}"><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
 													
@@ -363,11 +363,11 @@
 												</li>
 												@endif
 											@endfor
+											<li class="hover-menu hidden-xs">
+												<a href="{{route('point-for-user')}}">Điểm thưởng</a>
+											</li>
 										@endif	
 
-										<li class="hover-menu hidden-xs">
-											<a href="{{route('point-for-user')}}">Điểm thưởng</a>
-										</li>
 									</ul>
 										
 								</div>
@@ -534,6 +534,20 @@
 	<!-- ================== end header ============= -->
 
 <script src="public/resource/js/select2.full.js"></script>
+<script type="text/javascript">
+	$('#id-user-form').click(function () {
+		$('#user-form').toggle();
+	});
+	$(document).ready(function () {
+		var lam = document.getElementById('id-user-form');
+		// console.log(lam);
+		window.onclick = function(event) 
+		{
+			if (event.target != lam) { $('#user-form').css('display','none');}
+		}
+	})
+		
+</script>
 
 <script type="text/javascript">
 	// In your Javascript (external .js resource or <script> tag)

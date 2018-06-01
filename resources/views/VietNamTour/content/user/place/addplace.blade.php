@@ -214,8 +214,9 @@
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 10.046616, lng: 105.767905},
-          zoom: 13
+          zoom: 13,
         });
+        
         var card = document.getElementById('pac-card');
         var input = document.getElementById('pac-input');
         var types = document.getElementById('type-selector');
@@ -235,7 +236,8 @@
         infowindow.setContent(infowindowContent);
         var marker = new google.maps.Marker({
           map: map,
-          anchorPoint: new google.maps.Point(0, -29)
+          anchorPoint: new google.maps.Point(0, -29),
+          draggable: true
         });
 
         autocomplete.addListener('place_changed', function() {
@@ -280,6 +282,13 @@
           infowindowContent.children['place-name'].textContent = place.name;
           infowindowContent.children['place-address'].textContent = address;
           infowindow.open(map, marker);
+        });
+
+        //
+        google.maps.event.addListener(marker, "drag", function(){
+          $('input[name=vido]').val(marker.getPosition().lat());
+          $('input[name=kinhdo]').val(marker.getPosition().lng());
+          
         });
 
         // Sets a listener on a radio button to change the filter type on Places

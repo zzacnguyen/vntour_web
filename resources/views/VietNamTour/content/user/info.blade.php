@@ -23,6 +23,26 @@
 	    padding: .75rem 2rem;
 		margin-bottom: 0px;
 	}
+	body{
+		width: auto;
+		height: auto;
+	}
+	.content .left-user .avatar {
+	    position: relative;
+	}
+	.upload-image {
+	    position: absolute;
+	    bottom: 20px;
+	    right: 0;
+	}
+	.inputfile {
+		width: 0.1px;
+		height: 0.1px;
+		opacity: 0;
+		overflow: hidden;
+		position: absolute;
+		z-index: -1;
+	}
 </style>
 
 <script>
@@ -62,7 +82,7 @@
 	// 	}); 	
 	// });
 </script>
-	<section class="content-info">
+	<section class="content-info" style="height: 478px;">
 		<div class="container">
 			<div class="content">
 				<div class="row">
@@ -76,8 +96,11 @@
 									<img id='img-upload' src="{{asset('public/resource/images/avatar/'.$info->contact_avatar)}}" alt="">
 								@endif
 								
-								{{-- <h5 class="text-center">Lam The Men</h5> --}}
+								{{-- <div class="upload-image">
+									<input type="file" id="imgInp" name="image" value="" class="inputfile">
+								</div> --}}
 							</div>
+							
 							<div class="options">
 								<ul>
 									<li class="active">
@@ -324,7 +347,7 @@
 		    $("#myBtn").click(function(){
 		        $("#myModal").modal();
 		    });
-
+		});
 		    
 	</script>
 

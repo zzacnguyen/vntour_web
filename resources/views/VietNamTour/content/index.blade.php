@@ -47,7 +47,7 @@
 				    				<span>{{$value->num_service}}</span>
 				    			</div>
 					    		<a href="city/{{$value->id_city}}&type=all&page=1">
-					    			<img src="public/thumbnails/{{$value->image}}" alt="" style="height: 214px;"></a>
+					    			<img src="http://localhost/vntour_api/public/thumbnails/{{$value->image}}" alt="" style="height: 214px;"></a>
 					    	</div>
 					    	<div class="grid-content">
 					    		<div class="grid-price text-left">
@@ -96,7 +96,7 @@
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
 							<a href="detail/id={{$see->id_service}}&type={{$see->sv_type}}" class="click_view">
-								<img src="public/thumbnails/{{$see->image}}" alt="">
+								<img src="http://localhost/vntour_api/public/thumbnails/{{$see->image}}" alt="">
 							</a>
 							<div class="destination-name">
 								<h4>{{$see->name}}</h4>
@@ -141,7 +141,7 @@
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
 							<a href="detail/id={{$eat->id_service}}&type={{$eat->sv_type}}" class="click_view">
-								<img src="public/thumbnails/{{$eat->image}}" alt="">
+								<img src="http://localhost/vntour_api/public/thumbnails/{{$eat->image}}" alt="">
 							</a>
 							<div class="destination-name">
 								<h4>{{$eat->name}}</h4>
@@ -188,7 +188,7 @@
 						<div class="hotel-item">
 							<div class="hotel-image">
 								<div class="img">
-									<img src="public/thumbnails/{{$hotel->image}}" alt="">
+									<img src="http://localhost/vntour_api/public/thumbnails/{{$hotel->image}}" alt="">
 								</div>
 							</div>
 							<div class="hotel-body">
@@ -250,7 +250,7 @@
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
 							<a href="detail/id={{$hotel->id_service}}&type={{$hotel->sv_type}}" class="click_view">
-								<img src="public/thumbnails/{{$enter->image}}" alt="">
+								<img src="http://localhost/vntour_api/public/thumbnails/{{$enter->image}}" alt="">
 							</a>
 							<div class="destination-name">
 								<h4>{{$enter->name}}</h4>
@@ -293,7 +293,7 @@
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
 							<a href="detail/id={{$stran->id_service}}&type={{$stran->sv_type}}" class="click_view">
-								<img src="public/thumbnails/{{$stran->image}}" alt="">
+								<img src="http://localhost/vntour_api/public/thumbnails/{{$stran->image}}" alt="">
 							</a>
 							<div class="destination-name">
 								<h4>{{$stran->name}}</h4>

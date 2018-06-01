@@ -26,10 +26,14 @@
 	table tbody tr:nth-child(odd) {
 	    background-color: white;
 	}
+	body{
+		width: auto;
+		height: auto;
+	}
 </style>
 
 
-	<section class="addplace" style="margin-top:150px;">
+	<section class="addplace" style="margin-top:150px; height: 450px;>
 		<div class="container">
 			<div class="content">
 				<div class="row justify-content-md-center">
