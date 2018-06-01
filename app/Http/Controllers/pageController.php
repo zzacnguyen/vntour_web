@@ -218,7 +218,7 @@ class pageController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"getServicesTake/type={$type}&id={$take}");
+        $response = $client->request('GET',"get-services-take/type={$type}&take={$take}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -683,7 +683,7 @@ class pageController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"timquanhday/lat={$lat}&lon={$lon}&radius={$radius}")->getBody();
+        $response = $client->request('GET',"search-near/lat={$lat}&lon={$lon}&radius={$radius}")->getBody();
         return json_decode($response->getContents());
     }
 

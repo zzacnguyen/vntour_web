@@ -13,7 +13,7 @@
 				<div class="col-md-4"></div>	
 				<div class="col-md-4 form-login tada">
 					<div class="title">
-						<h3 class="text-center">Login</h3>
+						<h3 class="text-center">Đăng nhập</h3>
 					</div>
 					<div class="body">
 						<form action="loginpost" method="post">
@@ -34,19 +34,21 @@
 								<button class="btn btn-success float-right btnlogin" type="" id="btnlogin">Login</button>
 							</div>
 							<div class="login-social">
-								<h5 class="text-center">Login social</h5>
+								<h5 class="text-center" style="margin-top: 15px;display: inline-block;width: 100%;border-top: 1px solid #ddd;padding-top: 6px;">Đăng nhập bằng Facebook</h5>
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<a href="{{route('loginfacebook')}}" class="btn btn-warning btnfacebook" style="background-color: #3b5999">Facebook</a>
 									</div>
-									<div class="col-md-6">
+									{{-- <div class="col-md-6">
 										<a href="" class="btn btn-warning btngoogle" style="background-color: #dd4b39">Google+</a>
-									</div>
+									</div> --}}
 								</div>
 							</div>
 							<div class="register text-center">
 								<h5 class="text-center">Đăng ký tài khoản mới tại đây</h5>
-								<a href="{{route('registerW')}}" class="btn btn-info btnregister">Đăng ký</a>
+								<div class="col-md-12" style="padding-left: 0;padding-right: 0;">
+									<a href="{{route('registerW')}}" class="btn btn-info btnregister" style="width: 100%;">Đăng ký</a>
+								</div>
 							</div>
 						</form>
 					</div>

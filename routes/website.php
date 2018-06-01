@@ -98,7 +98,7 @@ Route::get('image_city/{id}','pageController@image_city');
 //================================= TEST ======================================
 Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
 Route::get('searchServices_All/keyword={k}','pageController@searchServices_All');
-Route::get('getlam/id={id}&l={l}','pageController@getServicesTake');
+
 Route::get('likelam/{idser}','publicDetail@count_service_all_and_type');
 
 Route::get('count_service_all_and_type/{id}','publicCityController@count_service_all_and_type');//test add view service

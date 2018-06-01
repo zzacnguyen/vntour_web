@@ -20,7 +20,7 @@ $(document).ready(function () {
 						response.forEach(function (data) {
 							lam += '<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top: 0;">';
 							lam += '<div class="destination-grid">';
-							lam += '<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id=';
+							lam += '<a href="detail/id=';
 							lam += data.sv_id;
 							lam += '&type=' + data.sv_type +'">';
 							lam += '<img src="thumbnails/' + data.image + '" alt="Error" style="min-height: 265px;">'
@@ -223,7 +223,7 @@ function loctheocity() {
 
 		var li    =  $('select[name=selectLimit]').val();
 
-		var path = 'city-all/id='+ city_id +'&district='+ district +'&type='+ type +'&fil='+ fil +'&page=1&li=' + li;
+		var path = 'http://localhost/vntour_api/'+ 'city-all/id='+ city_id +'&district='+ district +'&type='+ type +'&fil='+ fil;
 		console.log(path);
 		$.ajax({
 					url: path,
@@ -231,14 +231,14 @@ function loctheocity() {
 				}).done(function(response){
 					var lam = new String();
 					
-					if (response.data == null) {
+					if (response == null) {
 						$('#content_place').html("<h2>Không có dịch vụ để hiển thị</h2>");
 					}
 					else{
-						response.data.forEach(function (data) {
+						response.forEach(function (data) {
 							lam += '<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top: 0;">';
 							lam += '<div class="destination-grid">';
-							lam += '<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id=';
+							lam += '<a href="detail/id=';
 							lam += data.id_service;
 							lam += '&type=' + data.sv_type +'">';
 							lam += '<img src="public/thumbnails/' + data.image + '" alt="Error" style="min-height: 265px;">'

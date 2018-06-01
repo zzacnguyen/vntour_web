@@ -91,9 +91,9 @@
 											<i class="fas fa-lock"></i> Đổi mật khẩu
 										</a>
 									</li>
-									<li>
+									{{-- <li>
 										<a href=""><i class="fas fa-lock"></i> Điểm thưởng</a>
-									</li>
+									</li> --}}
 									<li style="border-bottom: 1px solid #ddd;">
 										<a href="{{route('logoutW')}}"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
 									</li>
@@ -123,7 +123,7 @@
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="inputEmail4">Số điện thoại</label>
+											<label for="">Số điện thoại</label>
 											<input name="phone" type="number" class="form-control" id="" placeholder="Điện thoại" value="{{$info->contact_phone}}">
 											<p class="text-danger">{{$errors->first('phone')}}</p>
 										</div>
@@ -134,19 +134,17 @@
 										</div>
 									</div>
 									<div class="form-row">
-										<div class="form-group col-md-12">
-									
-											<div class="input-group">
+										<div class="form-group col-md-6">
+											<label for="">Ảnh đại điện</label>
+											<input type="file" id="imgInp" name="image" value="" class="form-control">
+											{{-- <div class="input-group">
 												<span class="input-group-btn">
-													<span class="btn btn-primary btn-file">
-														Chọn tệp… <input type="file" id="imgInp" name="image" value="" >
-														
-													</span>
+													Chọn tệp… 
 												</span>
 												<input type="text" class="form-control" value="" readonly>
 											
 												
-											</div>
+											</div> --}}
 											<p class="text-danger">{{ $errors->first('image') }}</p>
 										</div>	
 									

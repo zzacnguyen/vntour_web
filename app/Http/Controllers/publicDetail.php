@@ -360,7 +360,7 @@ class publicDetail extends Controller
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
-        $response = $client->request('GET',"dichvu-lancan/idcity={$idcity}&id={$id}&limit={$limit}");
+        $response = $client->request('GET',"service-same-city/idcity={$idcity}&id={$id}&limit={$limit}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -375,7 +375,7 @@ class publicDetail extends Controller
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
-        $response = $client->request('GET',"getRating/{$idservice}");
+        $response = $client->request('GET',"get-rating-w/{$idservice}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -399,7 +399,7 @@ class publicDetail extends Controller
             // You can set any number of default request options.
             'timeout'  => 5.0,
         ]);
-        $response = $client->request('GET',"checkUserRating/{$idservice}&user_id={$iduser}");
+        $response = $client->request('GET',"check-user-rating/{$idservice}&user_id={$iduser}");
 
         return json_decode($response->getBody()->getContents());
     }
@@ -483,7 +483,7 @@ class publicDetail extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
-        $response = $client->request('GET',"timquanhday/lat={$lat}&lon={$lon}&radius={$radius}")->getBody();
+        $response = $client->request('GET',"search-near/lat={$lat}&lon={$lon}&radius={$radius}")->getBody();
         return json_decode($response->getContents());
     }
 

@@ -1259,7 +1259,7 @@ class accountController extends Controller
                 'timeout'  => 20.0,
             ]);
 
-        $response = $client->request('GET',"point-for-user/{$user_id}");
+        $response = $client->request('GET',"point-for-userw/{$user_id}");
         $data = json_decode($response->getBody()->getContents());
         // return $user_id;
         // dd($data);
