@@ -968,23 +968,6 @@
 			</div>
 		</div>
 	</section>
-
-	<section>
-		<div style="" class="lam-la">
-		  <h4>Lam dep trai</h4>
-		  <div class="lam-content">
-		    <div class="lam-left">
-		      <img src="http://static.asiawebdirect.com/m/bangkok/portals/vietnam/homepage/ha-long-bay/attractions/pagePropertiesImage/halong-attractions.jpg.jpg" alt="">
-		    </div>
-		    <div class="lam-right" style="">
-		      <i>3223</i><br>
-		      <i>3223</i><br>
-		      <i>3223</i><br>
-		      <i>3223</i>
-		    </div>
-		  </div>
-		</div>
-	</section>
 	
 
 	<script type="text/javascript">

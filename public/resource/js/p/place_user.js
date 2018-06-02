@@ -32,7 +32,7 @@ function loadData(current_page) {
 				    lam += '<td class="text-center">'+ data.created_at.slice(0,data.created_at.indexOf(" ")) +'</td>';
 				    lam += '<td class="text-center">';
 
-				    if (data.pl_status != 1) 
+				    if (data.pl_status == 1) 
 				    {lam += '<i class="fa fa-check"></i>';}
 					else 
 					{lam += '<i class="fas fa-times"></i>';}

@@ -31,6 +31,10 @@
 		    overflow: hidden;
 		    border-bottom: 1px solid #ddd;
 		}
+
+		.left-box{
+			height: auto !important;
+		}
 		.left-box .box-body ul {
 			list-style-type: none;
 		    line-height: 18px;

@@ -230,32 +230,38 @@ function loctheocity() {
 					type: 'GET'
 				}).done(function(response){
 					var lam = new String();
-					
+					console.log(response);
 					if (response == null) {
 						$('#content_place').html("<h2>Không có dịch vụ để hiển thị</h2>");
 					}
 					else{
-						response.forEach(function (data) {
-							lam += '<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top: 0;">';
-							lam += '<div class="destination-grid">';
-							lam += '<a href="detail/id=';
-							lam += data.id_service;
-							lam += '&type=' + data.sv_type +'">';
-							lam += '<img src="public/thumbnails/' + data.image + '" alt="Error" style="min-height: 265px;">'
-							lam += '</a>';
-							lam += '<div class="destination-name">';
-							lam += '<h4>' + data.name + '</h4>';
-							lam += '</div>';
-							lam += '<div class="destination-icon">';
-							lam += '<a> ' + data.rating + ' <i class="far fa-star"></i></a>';
-							lam += '<a> ' + data.view + ' <i class="fas fa-eye"></i></a>';
-							lam += '<a> ' + data.like +' <i class="far fa-thumbs-up"></i></a>';
-							lam += '<a> ' + data.point + ' <i class="far fa-bookmark"></i></a>';
-							lam += '</div>';
-							lam += '</div>';
-							lam += '</div>';
-							$('#content_place').html(lam);
-						})
+						try{
+							response.forEach(function (data) {
+								lam += '<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top: 0;">';
+								lam += '<div class="destination-grid">';
+								lam += '<a href="detail/id=';
+								lam += data.id_service;
+								lam += '&type=' + data.sv_type +'">';
+								lam += '<img src="public/thumbnails/' + data.image + '" alt="Error" style="min-height: 265px;">'
+								lam += '</a>';
+								lam += '<div class="destination-name">';
+								lam += '<h4>' + data.name + '</h4>';
+								lam += '</div>';
+								lam += '<div class="destination-icon">';
+								lam += '<a> ' + data.rating + ' <i class="far fa-star"></i></a>';
+								lam += '<a> ' + data.view + ' <i class="fas fa-eye"></i></a>';
+								lam += '<a> ' + data.like +' <i class="far fa-thumbs-up"></i></a>';
+								lam += '<a> ' + data.point + ' <i class="far fa-bookmark"></i></a>';
+								lam += '</div>';
+								lam += '</div>';
+								lam += '</div>';
+								$('#content_place').html(lam);
+							})
+						}
+						catch(e){
+							$('#content_place').html("<h2>Không có dịch vụ để hiển thị</h2>");
+						}
+							
 					}
 				});
 	})

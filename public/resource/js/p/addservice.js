@@ -146,7 +146,7 @@ function submitform() {
 	            },
 	            success: function (data) {
 	            	$('#loader').css('display','none');
-	            	console.log(data);
+	            	// console.log(data);
 	            	if (parseInt(data) > 0) 
 	            	{
 	            		anh(parseInt(data));

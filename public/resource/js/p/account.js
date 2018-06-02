@@ -18,7 +18,7 @@ function savenangcap() {
 		{
 			if(pass_new != pass_new2)
 			{
-				alert('Mật khẩu cũ không trùng khớp');
+				alert('Xác nhận mật khẩu không chính xác');
 			}
 			else{
 				if(pass_old == pass_new){

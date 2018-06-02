@@ -51,7 +51,7 @@
 						<div class="col-md-3">
 							<button class="btn btn-primary" id="btnLoc">Lọc</button>
 						</div>
-						<div class="col-md-1 text-right-filter"><span>Hiển thị</span></div>
+						{{-- <div class="col-md-1 text-right-filter"><span>Hiển thị</span></div>
 						<div class="col-md-1 float-right">
 							<div class="select-filter" style="width: 55px;">
 								<select name="selectLimit" id="">
@@ -60,7 +60,7 @@
 									<option value="27">27</option>
 								</select>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div><!-- end tools-ber -->
 			</div>
