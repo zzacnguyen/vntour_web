@@ -137,144 +137,179 @@
 	}
 
 //=================
-body {
-  font-family:"Open Sans", Helvetica, Arial, sans-serif;
-  color:#555;
-  max-width:680px;
-  margin:0 auto;
-  padding:0 20px;
-}
+	body {
+	  font-family:"Open Sans", Helvetica, Arial, sans-serif;
+	  color:#555;
+	  max-width:680px;
+	  margin:0 auto;
+	  padding:0 20px;
+	}
 
-* {
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  box-sizing:border-box;
-}
+	* {
+	  -webkit-box-sizing:border-box;
+	  -moz-box-sizing:border-box;
+	  box-sizing:border-box;
+	}
 
-*:before, *:after {
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
-box-sizing: border-box;
-}
+	*:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	}
 
-.clearfix {
-  clear:both;
-}
+	.clearfix {
+	  clear:both;
+	}
 
-.text-center {text-align:center;}
+	.text-center {text-align:center;}
 
-a {
-  color: tomato;
-  text-decoration: none;
-}
+	a {
+	  color: tomato;
+	  text-decoration: none;
+	}
 
-a:hover {
-  color: #2196f3;
-}
+	a:hover {
+	  color: #2196f3;
+	}
 
-pre {
-display: block;
-padding: 9.5px;
-margin: 0 0 10px;
-font-size: 13px;
-line-height: 1.42857143;
-color: #333;
-word-break: break-all;
-word-wrap: break-word;
-background-color: #F5F5F5;
-border: 1px solid #CCC;
-border-radius: 4px;
-}
-
-
-
-#a-footer {
-  margin: 20px 0;
-}
-
-.new-react-version {
-  padding: 20px 20px;
-  border: 1px solid #eee;
-  border-radius: 20px;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
-  
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-.new-react-version .react-svg-logo {
-  text-align: center;
-  max-width: 60px;
-  margin: 20px auto;
-  margin-top: 0;
-}
+	pre {
+	display: block;
+	padding: 9.5px;
+	margin: 0 0 10px;
+	font-size: 13px;
+	line-height: 1.42857143;
+	color: #333;
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: #F5F5F5;
+	border: 1px solid #CCC;
+	border-radius: 4px;
+	}
 
 
 
+	#a-footer {
+	  margin: 20px 0;
+	}
+
+	.new-react-version {
+	  padding: 20px 20px;
+	  border: 1px solid #eee;
+	  border-radius: 20px;
+	  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+	  
+	  text-align: center;
+	  font-size: 14px;
+	  line-height: 1.7;
+	}
+
+	.new-react-version .react-svg-logo {
+	  text-align: center;
+	  max-width: 60px;
+	  margin: 20px auto;
+	  margin-top: 0;
+	}
+
+	.success-box {
+	  margin:50px 0;
+	  padding:10px 10px;
+	  border:1px solid #eee;
+	  background:#f9f9f9;
+	}
+
+	.success-box img {
+	  margin-right:10px;
+	  display:inline-block;
+	  vertical-align:top;
+	}
+
+	.success-box > div {
+	  vertical-align:top;
+	  display:inline-block;
+	  color:#888;
+	}
 
 
-.success-box {
-  margin:50px 0;
-  padding:10px 10px;
-  border:1px solid #eee;
-  background:#f9f9f9;
-}
+	/* Rating Star Widgets Style */
+	.rating-stars ul {
+	  list-style-type:none;
+	  padding:0;
+	  
+	  -moz-user-select:none;
+	  -webkit-user-select:none;
+	}
+	.rating-stars ul > li.star {
+	  display:inline-block;
+	  
+	}
 
-.success-box img {
-  margin-right:10px;
-  display:inline-block;
-  vertical-align:top;
-}
+	/* Idle State of the stars */
+	.rating-widget .rating-stars #stars li {
+	  font-size:25px; /* Change the size of the stars */
+	  color:#ccc; /* Color on idle state */
+	}
 
-.success-box > div {
-  vertical-align:top;
-  display:inline-block;
-  color:#888;
-}
+	/* Hover state of the stars */
+	.rating-stars ul > li.star.hover > i.fa {
+	  color:#FFCC36;
+	}
 
+	/* Selected state of the stars */
+	.rating-stars ul > li.star.selected > i.fa {
+	  color:#FF912C !important;
+	}
 
+	.rating-widget .rating-stars #stars li.hover
+	{
+		cursor: pointer;
+		color: yellow;
+	}
 
-/* Rating Star Widgets Style */
-.rating-stars ul {
-  list-style-type:none;
-  padding:0;
-  
-  -moz-user-select:none;
-  -webkit-user-select:none;
-}
-.rating-stars ul > li.star {
-  display:inline-block;
-  
-}
+	.rating-widget .rating-stars #stars li.selected
+	{
+		color: yellow;
+	}
+	
+	#floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+  	}
+	#floating-panel {
+		margin-left: -52px;
+	}
 
-/* Idle State of the stars */
-.rating-widget .rating-stars #stars li {
-  font-size:25px; /* Change the size of the stars */
-  color:#ccc; /* Color on idle state */
-}
+	.lam-la{
+	  /*width:150px;*/
+	  /*border: 1px solid;*/
+	}
+	.lam-la h4{
+	  text-align: center;
+	}
+	.lam-la .lam-content{
+	  display:inline-flex;
+	  /*background-color: #ddd;*/
+	  padding: 5px 10px;
+	  margin-left:10%;
+	}
 
-/* Hover state of the stars */
-.rating-stars ul > li.star.hover > i.fa {
-  color:#FFCC36;
-}
+	.lam-la .lam-left img{
+	  height:50px;
+	  width:70px;
+	}
 
-/* Selected state of the stars */
-.rating-stars ul > li.star.selected > i.fa {
-  color:#FF912C !important;
-}
-
-.rating-widget .rating-stars #stars li.hover
-{
-	cursor: pointer;
-	color: yellow;
-}
-
-.rating-widget .rating-stars #stars li.selected
-{
-	color: yellow;
-}
-
+	.lam-la .lam-right{
+	  padding-left:5px;
+	  font-size:10px;
+	}
 
 </style>
 
@@ -800,6 +835,9 @@ border-radius: 4px;
 									<div class="tab-pane" id="tab_default_4">
 										<h5 style="font-weight: 700;padding-left: 17px;">THÔNG TIN BẢN ĐỒ</h5>
 										<div class="col-md-12">
+											<div id="floating-panel">
+										      <button id="drop" onclick="drop()">Lân Cận</button>
+										    </div>
 											<div id="googleMap" style="width: 100%; height: 400px;">
 												Google Map
 											</div>
@@ -926,6 +964,23 @@ border-radius: 4px;
 			</div>
 		</div>
 	</section>
+
+	<section>
+		<div style="" class="lam-la">
+		  <h4>Lam dep trai</h4>
+		  <div class="lam-content">
+		    <div class="lam-left">
+		      <img src="http://static.asiawebdirect.com/m/bangkok/portals/vietnam/homepage/ha-long-bay/attractions/pagePropertiesImage/halong-attractions.jpg.jpg" alt="">
+		    </div>
+		    <div class="lam-right" style="">
+		      <i>3223</i><br>
+		      <i>3223</i><br>
+		      <i>3223</i><br>
+		      <i>3223</i>
+		    </div>
+		  </div>
+		</div>
+	</section>
 	
 
 	<script type="text/javascript">
@@ -933,6 +988,110 @@ border-radius: 4px;
 		var marker;
 		var latitude = document.getElementById("latitude").getAttribute('data-lati');
 		var longitude = document.getElementById("latitude").getAttribute('data-lon');
+		var locations = [];
+		// lay danh sach lan can
+				function get_list_locations() {
+					var locations = [];
+					var path_list = 'http://localhost/vntour_api/get-location-service-vicinity/location='+ latitude +','+ longitude +'&radius=10000'
+					$.ajax({
+						url: path_list,
+						type: 'GET'
+					})
+					.done(function (response) {
+						console.log(response);
+						response.forEach(function (data){
+							var mang = {
+								lat: parseFloat(data.lat), 
+								lng:parseFloat(data.lng),
+								name: data.name,
+								img: data.image,
+								rating: data.rating,
+								type: data.sv_type
+							};
+							locations.push(mang);
+						})
+					});
+					return locations;
+				}
+
+				locations = get_list_locations();
+				
+				var markers = [];
+				var map;  
+				  function drop() {
+			        clearMarkers();
+
+			        console.log(locations);
+			        for (var i = 0; i < locations.length; i++) {
+			          // addMarkerWithTimeout(locations[i], i * 200,i);
+			          var marker = new google.maps.Marker({
+				        position: new google.maps.LatLng(locations[i]['lat'], locations[i]['lng']),
+				        map: map
+				      });
+			          markers.push(marker);
+		          	  var infowindow = new google.maps.InfoWindow();
+			          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				        return function() {
+				          // var name = '<div>'+ locations[i]['name'] +'<div>';
+				          var path_img = 'http://localhost/vntour_api/public/thumbnails/' + locations[i]['img'];
+				          var content = new String();
+							content += '<div style="" class="lam-la">';
+							content += '<h6>'+ locations[i]['name'] +'</h6>';
+							content += '<div class="lam-content">';
+							content += '<div class="lam-left">';
+							content += '<img src="'+ path_img +'" alt="">';
+							content += '</div>';
+							content += '<div class="lam-right" style="">';
+							content += '<i>'+ locations[i]['rating'] +'</i><br>';
+							content += '<i>3223</i><br>';
+							content += '<i>3223</i><br>';
+							content += '<i>3223</i>';
+							content += '</div>';
+							content += '</div>';
+							content += '</div>';
+				          infowindow.setContent(content);
+				          infowindow.open(map, marker);
+				        }
+				      })(marker, i));
+			        }
+			        // console.log(markers);
+			      }
+
+			      function addMarkerWithTimeout(position, timeout) {
+			      	
+			        window.setTimeout(function() {
+			          markers.push(new google.maps.Marker({
+			            position: position,
+			            map: map,
+			            animation: google.maps.Animation.DROP
+			          }));
+
+			          // add click
+			          if (true) 
+			          {
+			          	for (var i = 1; i <= markers.length; i++) {
+				          	var infowindow = new google.maps.InfoWindow({
+					          content: '<div>'+ i +'<div>'
+					        });
+				          	markers[i].addListener('click', function() {
+					          infowindow.open(map, this);
+					        });
+				          }
+			          }
+			        }, timeout);
+
+
+			      }
+
+			      function clearMarkers() {
+			        for (var i = 0; i < markers.length; i++) {
+			          markers[i].setMap(null);
+			        }
+			        markers = [];
+			      }
+
+
+		
 		function initialize()
 		{
 		    var mapProp = {
@@ -941,7 +1100,7 @@ border-radius: 4px;
 		        mapTypeId:google.maps.MapTypeId.ROADMAP
 		    };
 		 
-		    var map=new google.maps.Map(document.getElementById("googleMap")
+		    map = new google.maps.Map(document.getElementById("googleMap")
 		    ,mapProp);
 		 
 		  var styles = [
@@ -979,15 +1138,47 @@ border-radius: 4px;
 		 
 		  var styledMapType = new google.maps.StyledMapType(styles);
 		  map.mapTypes.set('Styled', styledMapType);
+		  	
+
+		    // Add the markers and infowindows to the map
+
+		    // if (locations.length > 0) 
+		    // {
+		    // 	for (var i = 0; i < locations.length; i++) {  
+				  // var myLatLng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
+			   //    var marker = new google.maps.Marker({
+			   //      position: new google.maps.LatLng(locations[i]['lat'], locations[i]['lng']),
+			   //      map: map
+			       
+			   //    });
+
+			   //    markers.push(marker);
+
+			   //    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			   //      return function() {
+			   //        infowindow.setContent(locations[i][0]);
+			   //        infowindow.open(map, marker);
+			   //      }
+			   //    })(marker, i));
+			   //  }
+		    // }
+			    
 		 
 		  var myLatLng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
+		  var contentString = '<div><b>'+ $('#sv_name').text() +'</b></div>';
+		  var infowindow = new google.maps.InfoWindow({
+	          content: contentString
+	        });
 		  marker = new google.maps.Marker({
 		    map:map,
 		    draggable:false,
 		    animation: google.maps.Animation.DROP,
-		    position: myLatLng
+		    position: myLatLng,
+		    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
 		  });
-		  google.maps.event.addListener(marker, 'click', toggleBounce);
+		  google.maps.event.addListener(marker, 'click', function function_name() {
+		  	infowindow.open(map, marker);
+		  });
 		}
 		 
 		function toggleBounce() {
