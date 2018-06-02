@@ -296,9 +296,6 @@
 	}
 	.lam-la .lam-content{
 	  display:inline-flex;
-	  /*background-color: #ddd;*/
-	  padding: 5px 10px;
-	  margin-left:10%;
 	}
 
 	.lam-la .lam-left img{
@@ -309,6 +306,12 @@
 	.lam-la .lam-right{
 	  padding-left:5px;
 	  font-size:10px;
+	}
+	li.lan-can{
+		padding: 5px 0px;
+	}
+	li.lan-can:hover{
+		background-color: #ddd;
 	}
 
 </style>
@@ -335,6 +338,7 @@
 								<li>
 									<a>
 										<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}"/>
+										<input type="hidden" value="{{$sv->image_details_1}}" id="img_sv">
 									</a>
 								</li>
 								<li>
@@ -858,7 +862,7 @@
 							<div class="box-body">
 								<ul style="padding: 14px 15px 10px 15px;">
 									@foreach($sv_lancan_hon as $top)
-									<li>
+									<li class="lan-can">
 										<a href="detail/id={{$top->id_service}}&type={{$top->sv_type}}">
 											<img style="height: 50px;" src="public/thumbnails/{{$top->image}}" alt="null">
 											<span class="" style="width: 247px;">
@@ -1006,7 +1010,9 @@
 								name: data.name,
 								img: data.image,
 								rating: data.rating,
-								type: data.sv_type
+								type: data.sv_type,
+								id: data.id_service,
+								distance: (data.distance/1000).toFixed(2)
 							};
 							locations.push(mang);
 						})
@@ -1034,6 +1040,20 @@
 				        return function() {
 				          // var name = '<div>'+ locations[i]['name'] +'<div>';
 				          var path_img = 'http://localhost/vntour_api/public/thumbnails/' + locations[i]['img'];
+				          var path_detail = 'detail/id='+ locations[i]['id'] +'&type=' + locations[i]['type'];
+
+				          //get rating
+				          var rating_sv = 'Đánh giá: ';
+				          if (parseFloat(locations[i]['rating']) > 0) 
+				          {
+				          	for (var j = 0; j < parseFloat(locations[i]['rating']); j++) {
+				          		rating_sv += '<i style="color:yellow" class="fa fa-star" aria-hidden="true"></i>';
+				          	}
+				          }
+				          else{
+				          	rating_sv = 'Chưa đó đánh giá';
+				          }
+				          
 				          var content = new String();
 							content += '<div style="" class="lam-la">';
 							content += '<h6>'+ locations[i]['name'] +'</h6>';
@@ -1042,10 +1062,11 @@
 							content += '<img src="'+ path_img +'" alt="">';
 							content += '</div>';
 							content += '<div class="lam-right" style="">';
-							content += '<i>'+ locations[i]['rating'] +'</i><br>';
-							content += '<i>3223</i><br>';
-							content += '<i>3223</i><br>';
-							content += '<i>3223</i>';
+							content += rating_sv +'<br>';
+							content += 'Khoảng cách: '+ locations[i]['distance'] +' Km<br><br>';
+
+							content += '<a style="font-size:12px;" href="'+ path_detail +'" target="_blank">Chi tiết</a><br>';
+							
 							content += '</div>';
 							content += '</div>';
 							content += '</div>';
@@ -1165,7 +1186,23 @@
 			    
 		 
 		  var myLatLng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
-		  var contentString = '<div><b>'+ $('#sv_name').text() +'</b></div>';
+		  var contentString = '<div><h6>'+ $('#sv_name').text() +'</h6><p>Địa điểm đang xét</p></div>';
+		  // var contentString = '<div style="" class="lam-la">';
+				// 			contentString += '<h6>'+ $('#sv_name').text() +'</h6>';
+				// 			contentString += '<div class="lam-content">';
+				// 			contentString += '<div class="lam-left">';
+				// 			var path_img_sv = 'http://localhost/vntour_api/public/thumbnails/' + $('#img_sv').val();
+				// 			contentString += '<img src="'+ path_img_sv +'" alt="">';
+				// 			contentString += '</div>';
+				// 			contentString += '<div class="lam-right" style="">';
+				// 			contentString += 'Địa điểm đang xem chi tiết';
+				// 			// contentString += 'Khoảng cách: '+ locations[i]['distance'] +' Km<br><br>';
+
+				// 			// contentString += '<a style="font-size:12px;" href="'+ path_detail +'" target="_blank">Chi tiết</a><br>';
+							
+				// 			contentString += '</div>';
+				// 			contentString += '</div>';
+				// 			contentString += '</div>';
 		  var infowindow = new google.maps.InfoWindow({
 	          content: contentString
 	        });
@@ -1174,7 +1211,7 @@
 		    draggable:false,
 		    animation: google.maps.Animation.DROP,
 		    position: myLatLng,
-		    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+		    icon: 'public/resource/images/icons/ic_place_blue_36dp.png'
 		  });
 		  google.maps.event.addListener(marker, 'click', function function_name() {
 		  	infowindow.open(map, marker);
