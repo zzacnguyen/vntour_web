@@ -332,7 +332,7 @@
 													</li>
 													<li class="hover-menu hidden-xs">
 														<a href="service-user" class="a-content-nofi">
-															Danh sách dịch vụ	
+															Dịch vụ	
 														</a>
 													</li>
 													<li class="hover-menu hidden-xs">
@@ -538,14 +538,6 @@
 	$('#id-user-form').click(function () {
 		$('#user-form').toggle();
 	});
-	$(document).ready(function () {
-		var lam = document.getElementById('id-user-form');
-		// console.log(lam);
-		window.onclick = function(event) 
-		{
-			if (event.target != lam) { $('#user-form').css('display','none');}
-		}
-	})
 		
 </script>
 

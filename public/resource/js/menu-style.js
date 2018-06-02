@@ -197,13 +197,14 @@ document.addEventListener("DOMContentLoaded",function () {
 	var chonTinh = document.getElementById('a-tinhTP');
 
 	window.onclick = function(event) {
-	    if (event.target != tttt) { bodySearch[0].classList.remove('active-search'); clickSearch = 0;}
+		// console.log(event.target);
+	    if (event.target != document.getElementById('text-search-top')) { bodySearch[0].classList.remove('active-search'); clickSearch = 0;}
 	    // if (event.target != tttt2) { bodySearch[1].classList.remove('active-search2'); }
-	    if (document.getElementById('id-user-form') != null) {
-	    	if (event.target != clickUser) 
-	    		{document.getElementsByClassName('user-form')[0].classList.remove("hienthi-search-form");}
-	    }
-	    
+	    // if (document.getElementById('id-user-form') != null) {
+	    // 	if (event.target != clickUser) 
+	    // 		{document.getElementsByClassName('user-form')[0].classList.remove("hienthi-search-form");}
+	    // }
+	    // if (event.target != document.getElementById('id-user-form')) { $('#user-form').css('display','none');}
 
 	    if (event.target != aSelect) {document.getElementById('a-tinhTP').classList.remove('click-select');}
 	    

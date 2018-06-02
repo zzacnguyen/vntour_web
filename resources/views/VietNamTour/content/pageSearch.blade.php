@@ -79,7 +79,7 @@
 
 									    <!-- Modal content-->
 									    <div class="modal-content">
-								    	<form action="{{route('search-vicinity')}}" method="post" name="formtimquanhday">
+								    	<form action="{{route('search-vicinity')}}" method="post" name="formtimquanhday" id="timquanhday_id">
 									      <div class="modal-header">
 									      	<h4 class="modal-title">Tọa độ của bạn</h4>
 									        <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -93,13 +93,13 @@
 										  	<div class="form-group col-md-12 row">
 											    <label class="col-md-3" for="exampleInputEmail1">Vĩ độ</label>
 											    <div class="col-md-9">
-											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtlat">
+											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtlat" readonly>
 											    </div>
 										  	</div>
 										  	<div class="form-group col-md-12 row">
 											    <label class="col-md-3" for="exampleInputEmail1">Kinh độ</label>
 											    <div class="col-md-9">
-											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Kinh độ" required="required" name="txtlon">
+											    	<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Vĩ độ" required="required" name="txtlon" readonly>
 											    </div>
 										  	</div>
 										  	<div class="form-group col-md-12 row">
@@ -112,7 +112,7 @@
 
 									      <div class="modal-footer">
 									        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        		<button type="submit" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;" id="btn-timquanhday-sub">Tìm kiếm</button>
+							        		<button type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;" id="btn-timquanhday-sub">Tìm kiếm</button>
 									      </div>
 										</form>
 									    </div>

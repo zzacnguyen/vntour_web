@@ -189,7 +189,7 @@
 							</select>
 
 							
-							<label class="col-md-2" style="margin-right: -10px;display: inline-block;">Địa điểm</label>
+							<label class="col-md-2" style="margin-right: -10px;font-weight: bold;font-size: 14px;display: inline-block;">Địa điểm</label>
 							<select class="js-example-basic-single col-md-3" name="diadiem" id="place" style="">
 	          					<option value="0">Chọn địa điểm</option>
 							</select>
@@ -291,10 +291,10 @@
 									
 								
 
-							<input type="file" class="dimmy" id="image-input" accept="image/*" name="image-input[]" multiple />
+							{{-- <input type="file" class="dimmy" id="image-input" accept="image/*" name="image-input[]" multiple />
 						    <div>
 						      <ul class="preview-area" id="list-img" style="display: none;"></ul>
-						    </div>
+						    </div> --}}
 							
 
 							

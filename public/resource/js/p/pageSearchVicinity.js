@@ -42,25 +42,25 @@ $(document).ready(function (argument) {
 
 		$('#hotel').click(function () {
 			path_cha = path + 2;
-			console.log(path_cha);
+			// console.log(path_cha);
 			searchCon(path_cha,1,9);
 		});
 
 		$('#tran').click(function () {
 			path_cha = path + 3;
-			console.log(path_cha);
+			// console.log(path_cha);
 			searchCon(path_cha,1,9);
 		});
 
 		$('#see').click(function () {
 			path_cha = path + 4;
-			console.log(path_cha);
+			// console.log(path_cha);
 			searchCon(path_cha,1,9);
 		});
 
 		$('#enter').click(function () {
 			path_cha = path + 5;
-			console.log(path_cha);
+			// console.log(path_cha);
 			searchCon(path_cha,1,9);
 		});
 	}

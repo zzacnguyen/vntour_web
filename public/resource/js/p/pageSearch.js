@@ -6,7 +6,7 @@ $(document).ready(function (argument) {
 		window.location.reload();
 	})
 	timquanhday();
-	// submit_timquanhday();
+	submit_timquanhday();
 })
 
 function clickse() {
@@ -162,27 +162,17 @@ function submit_timquanhday() {
         var lat = $('input[name=txtlat]').val();
         var lon = $('input[name=txtlon]').val();
         var radius = $('input[name=txtradius]').val();
+        if (lat > 0 && lon > 0) 
+        {
+        	$('#btn-timquanhday-sub').removeAttr('disabled');
+        	$('#timquanhday_id').submit();
+        }
+        else{
+        	$('#btn-timquanhday-sub').attr('disabled','disabled');
+        	alert('Không lấy được vị trí của bạn!!!');
+        }
         console.log(path);
-        $.ajax({
-            type: "POST",
-            url: 'search-vicinity',
-            data: {txtlat: lat, txtlon: lon, txtradius: radius},
-            timeout: 600000,
-            success: function (data) {
-            	// console.log(data);
-            	if (parseInt(data) > 0) 
-            	{
-            		anh(parseInt(data));
-            	}
-            },
-            error: function (e) {
-
-                // $("#result").text(e.responseText);
-                console.log("ERROR : ", e);
-                // $("#btnSubmit").prop("disabled", false);
-
-            }
-        });
+	        
 	})
 		
 }
