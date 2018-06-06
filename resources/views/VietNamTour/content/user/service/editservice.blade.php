@@ -402,10 +402,10 @@
 									<div class="col-md-6" style="padding-left: 0">
 										<div class="list-image-sv">
 											<h6><b>Ảnh đã tải lên</b></h6>
-											<ul id="list-detail-gallery">
+											<ul id="list-detail-gallery" class="list-detail-gallery">
 												<li>
 													<div class="item-gallery">
-														<img src="http://vntourweb/vntour_api/public/thumbnails/gallery/1/2_zing.jpg" alt="">
+														<img src="http://vntourweb/vntour_api/public/thumbnails/gallery/1/2_zing.jpg" alt="" class="img-img">
 														<span class="delete-img-gallery">X</span>
 													</div>
 												</li>
@@ -480,6 +480,9 @@
 				{
 					for (var i = 0; i < response.data.length; i++) {
 						// console.log(response.data[i]);
+						var p_img = response.data[i];
+						var data_img = response.data[i].slice(p_img.lastIndexOf("/") + 1, p_img.length);
+						console.log(data_img);
 						if (i < 4) 
 						{
 							lam += '<li class="nho">';
@@ -507,8 +510,8 @@
 						}
 						lamBig += '<li>';
 						lamBig += '<div class="item-gallery">';
-						lamBig += '<img src="'+ path + response.data[i] +'" alt="">';
-						lamBig += '<span class="delete-img-gallery">X</span>';
+						lamBig += '<img src="'+ path + response.data[i] +'" alt="" class="img-img">';
+						lamBig += '<span data-img="'+ data_img +'" class="delete-img-gallery" onclick="deletephoto()">X</span>';
 						lamBig += '</div>';
 						lamBig += '</li>';
 					}
@@ -522,6 +525,44 @@
 				}
 			}
 		});
+
+		$(document).ready(function () {
+			// lam();
+		})
+
+		function deletephoto() {
+			var id_sv = $('#id_sv').val();
+			var data_del = document.getElementsByClassName('delete-img-gallery');
+			var img = document.getElementsByClassName("img-img");
+			console.log(data_del);
+			for (var i = 0; i < data_del.length; i++) {
+				data_del[i].onclick = function () {
+					console.log(this.getAttribute("data-img"));
+					$.ajax({
+						type:"DELETE",
+						url:'http://localhost/vntour_api/delete-gallery-image/' + id_sv,
+						data:{
+							"_method":"DELETE",
+							success: function (response) {
+								console.log(response);
+							}
+						}
+					})
+				}
+			}
+		}
+		// $('.delete-img-gallery').on('click',function (e) {
+		// 	console.log('lam');
+		// 	e.preventDefault();
+			
+		// 	var conf = confirm('Bạn có chắc chắn muốn xóa ảnh vừa chọn');
+		// 	if (conf) 
+		// 	{
+		// 		$(this).parent("#list-detail-gallery").fadeOut("slow",function () {
+		// 			console.log("Xoa");
+		// 		})
+		// 	}
+		// });
 			
 	</script>
     <script type="text/template" id="qq-template-manual-trigger">

@@ -433,16 +433,3 @@ function scrolltop(height)
     jQuery('html, body').animate({scrollTop: height}, 500);
     return false;
 }
-
-
-// load image
-var path = 'http://localhost/vntour_api/';
-var id_sv = $('#id_sv').val();
-$.ajax({
-	url: path + 'get-gallery/' + id_sv,
-	type: "GET",  
-	success: function(data)   
-	{
-		console.log(data);
-	}
-});
