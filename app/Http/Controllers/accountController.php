@@ -1268,4 +1268,8 @@ class accountController extends Controller
         return view('VietNamTour.content.user.point',compact('data'));
     }
 
+    public function test_multiple(){
+        return view('VietNamTour.layout');
+    }
+
 }

@@ -218,7 +218,7 @@ function anh(id) {
                 {
                   dem++;
                   console.log(dem);
-                  if (dem <= 3) 
+                  if (dem <= 5) 
                   {
                   	var objectUrl = anyWindow.createObjectURL(fileList[i]);
 	                  $('#list-img').css('display','block');
@@ -227,7 +227,7 @@ function anh(id) {
                   }
                   else
                   {
-                  	alert('Bạn chỉ được chọn tối đa 3 ảnh');
+                  	
                   }
                 } 
               }
