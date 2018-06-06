@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="public/resource/css/select2.min.css">
 <link rel="stylesheet" href="public/resource/css/addplace.css">
+<link rel="stylesheet" href="public/resource/css/gallery.css">
 
 <!-- Fine Uploader New/Modern CSS file
 ====================================================================== -->
@@ -145,10 +146,10 @@
 	    max-height: 490px;
 	    overflow-y: hidden;
 	    width: inherit;
-	    border-radius: 6px;
+	    border-radius: 0px;
 	    background-color: #FDFDFD;
 	    border: 1px dashed #CCCCCC;
-	    padding: 20px;
+	    padding: 7px;
 	    overflow-x: hidden;
 	}
 
@@ -156,7 +157,7 @@
 	    color: white;
 	    background-color: #00a680 !important;
 	    font-size: 14px;
-	    padding: 9px 23px !important;
+	    padding: 9px 23px;
 	    background-image: none;
 	    border-radius: 0px !important;
 	    margin: 0 !important;
@@ -299,7 +300,8 @@
 						</div>
 						<br>
 						{{-- //========================= CHI TIET =================== --}}
-						<h6 style="color: #bd1717;">Mô tả chi tiết</h6>
+						<h6 style="color: #bd1717 !important;">Mô tả chi tiết</h6>
+						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 						<div class="input-text" class="col-md-12" style="padding: 0">
 							{{-- <label style="padding: 0;" class="col-md-2">Mô tả dịch vụ</label> --}}
 							<textarea name="mota" id="ten" class="col-md-9" style="margin-left: 27px;">{!!$data->sv_content!!}</textarea>
@@ -308,8 +310,12 @@
 						</div>
 						<div class="input-text">
 							<p class="text-danger" id="null_chitiet" style="display: none;">Tên dịch vụ phải có độ dài tối thiểu 50 ký tự</p>
-						</div>
-						<div class="input-text" class="col-md-12" style="padding: 0">
+						</div><br>
+			
+						<h6 style="color: #bd1717 !important;">Ảnh mô tả</h6>
+						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: -15px;"></div>
+
+						<div class="input-text" class="col-md-12" style="padding: 0"><br>
 							<label style="padding: 0;" class="col-md-2">Ảnh mô tả</label>
 							{{-- <input type="file" style="border:none; margin-left: 27px;" class="col-md-9" name="img1">
 							<p class="text-danger">{{$errors->first('img1')}}</p>
@@ -344,10 +350,19 @@
 
 						</div>
 
-						<div class="input-text">
-							<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-upload">Open Modal</button>
+						<div class="input-text row">
+							<div class="col-md-12" style="font-weight: bold;font-size: 14px;margin-bottom: 5px;">Thêm nhiều ảnh hơn</div>
+							<div class="col-md-4">
+								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-upload" style="border-radius: 0px;background-color: cornflowerblue;font-size: 14px;">
+									<i class="fa fa-upload" aria-hidden="true"></i> Thêm nhiều ảnh
+								</button>
+							</div>
+							<div class="col-md-8" style="padding-left: 0px;">
+								<label style="width: 100%;padding-left: 0; font-size: 12px;">Dịch vụ của bạn đã được kích hoạt. Có thể thêm nhiều ảnh hơn cho dịch vụ</label>
+							</div>
+								
 							<div id="modal-upload" class="modal fade" role="dialog">
-							  <div class="modal-dialog modal-lg">
+							  <div class="modal-dialog modal-lg-gallery">
 
 							    <!-- Modal content-->
 							    <div class="modal-content" style="margin-top:100px;border-radius: 0px;">
@@ -355,8 +370,8 @@
 							        <h4 class="modal-title">Tạo album ảnh</h4>
 							        <button type="button" class="close" data-dismiss="modal">&times;</button>
 							      </div> --}}
-							      <div class="modal-body" style="">
-							        <section>
+							      <div class="modal-body row" style="">
+							        <div class="col-md-6">
 										<!-- Fine Uploader DOM Element
 									    ====================================================================== -->
 									    <div id="fine-uploader-manual-trigger"></div>
@@ -383,7 +398,21 @@
 									            $('#fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
 									        });
 								    	</script>
-									</section>
+									</div>
+									<div class="col-md-6" style="padding-left: 0">
+										<div class="list-image-sv">
+											<h6><b>Ảnh đã tải lên</b></h6>
+											<ul id="list-detail-gallery">
+												<li>
+													<div class="item-gallery">
+														<img src="http://vntourweb/vntour_api/public/thumbnails/gallery/1/2_zing.jpg" alt="">
+														<span class="delete-img-gallery">X</span>
+													</div>
+												</li>
+											</ul>
+										</div>
+											
+									</div>
 							      </div>
 							      <div class="modal-footer" style="height: 50px;">
 							        <button style="height: 36px;width: 100px;padding: 0;border-radius: 0px !important;background-color: #e84545;margin-bottom: 0;" type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -392,10 +421,41 @@
 
 							  </div>
 							</div>
+
+							<div class="list-gallery col-md-12">
+								<ul id="list-gallery">
+									<li class="nho">
+										<img src="http://vntourweb/vntour_api/public/thumbnails/gallery/1/2_zing.jpg" alt="">
+									</li>
+
+									<li class="nho">
+										<img src="http://vntourweb/vntour_api/public/thumbnails/gallery/1/2_zing.jpg" alt="">
+									</li>
+
+									<li class="nho">
+										<img src="http://vntourweb/vntour_api/public/thumbnails/gallery/1/2_zing.jpg" alt="">
+									</li>
+
+									<li class="nho">
+										<img src="http://vntourweb/vntour_api/public/thumbnails/gallery/1/2_zing.jpg" alt="">
+									</li>
+
+									<li class="end-gallery nho nho-cuoi">
+										<img src="http://vntourweb/vntour_api/public/thumbnails/gallery/1/2_zing.jpg" alt="">
+										<div class="con-end-gallery">
+											<div class="con-end-gallery-num">+80</div>
+										</div>
+									</li>
+								</ul>
+								
+							</div>
 							
 						</div><br>
 
-						<button type="button" class="btn btn-success col-md-12" id="btnaddplace">Cập nhật dịch vụ</button>
+
+						<button style="background-color: #00a680" type="button" class="btn btn-success col-md-12" id="btnaddplace">
+							Cập nhật dịch vụ
+						</button>
 					</form>
 				</div>
 				<div class="col-md-2"></div>
@@ -404,15 +464,75 @@
 	</section>
 
 	{{--  ====================================================================== > --}}
+	<script type="text/javascript">
+		var path = 'http://localhost/vntour_api/';
+		var id_sv = $('#id_sv').val();
+		$.ajax({
+			url: path + 'get-gallery/' + id_sv,
+			type: "GET",  
+			success: function(response)   
+			{
+				// console.log(response.data);
+				var dem = 0;
+				var lam = new String();
+				var lamBig = new String();
+				if (response.data != null) 
+				{
+					for (var i = 0; i < response.data.length; i++) {
+						// console.log(response.data[i]);
+						if (i < 4) 
+						{
+							lam += '<li class="nho">';
+							lam += '<img src="'+ path + response.data[i] +'" alt="">';
+							lam += '</li>';
+						}
+						else if(i == 4){
+							var sum = 0;
+							if (response.data.length >= 5) 
+							{
+								sum = response.data.length - 5;
+								lam += '<li class="end-gallery nho nho-cuoi" data-toggle="modal" data-target="#modal-upload">';
+								lam += '<img src="'+ path + response.data[i] +'" alt="">';
+								lam += '<div class="con-end-gallery">';
+								lam += '<div class="con-end-gallery-num">+' + sum +'</div>';
+								lam += '</div>';
+								lam += '</li>';
+							}
+							else
+							{
+								lam += '<li class="nho">';
+								lam += '<img src="'+ path + response.data[i] +'" alt="">';
+								lam += '</li>';
+							}
+						}
+						lamBig += '<li>';
+						lamBig += '<div class="item-gallery">';
+						lamBig += '<img src="'+ path + response.data[i] +'" alt="">';
+						lamBig += '<span class="delete-img-gallery">X</span>';
+						lamBig += '</div>';
+						lamBig += '</li>';
+					}
+					// response.data.forEach(function (data) {
+						
+							
+					// })
+						
+					$('#list-gallery').html(lam);
+					$('#list-detail-gallery').html(lamBig);
+				}
+			}
+		});
+			
+	</script>
     <script type="text/template" id="qq-template-manual-trigger">
-        <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
+        <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Kéo ảnh vào đây">
             <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
                 <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
             </div>
             <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
                 <span class="qq-upload-drop-area-text-selector"></span>
             </div>
-            <div class="buttons">
+            <div class="buttons" style="width: auto;">
                 <div class="qq-upload-button-selector qq-upload-button">
                     <div style="font-size: 14px;">Chọn ảnh</div>
                 </div>
@@ -435,8 +555,10 @@
                     <span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>
                     <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
                     <span class="qq-upload-size-selector qq-upload-size"></span>
-                    <button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>
-                    <button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>
+                    <button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel" title="Xóa ảnh">
+                    	<i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Thủ lại</button>
                     <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>
                     <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
                 </li>
@@ -445,7 +567,7 @@
             <dialog class="qq-alert-dialog-selector">
                 <div class="qq-dialog-message-selector"></div>
                 <div class="qq-dialog-buttons">
-                    <button type="button" class="qq-cancel-button-selector">Close</button>
+                    <button type="button" class="qq-cancel-button-selector">Đóng</button>
                 </div>
             </dialog>
 
@@ -473,7 +595,6 @@
             color: white;
             background-color: #00ABC7;
             font-size: 14px;
-            padding: 7px 20px;
             background-image: none;
         }
 
@@ -511,11 +632,12 @@
 	    <!-- Your code to create an instance of Fine Uploader and bind to the DOM/template
 	    ====================================================================== -->
 	    <script>
+	    	var id_sv = $('#id_sv').val();
 	        $('#fine-uploader-manual-trigger').fineUploader({
 	            template: 'qq-template-manual-trigger',
 	            request: {
 	                // endpoint: 'http://localhost/vntour_api/test-mul'
-	                endpoint: 'http://localhost/vntour_api/public/resource/php-point/endpoint.php'
+	                endpoint: 'http://localhost/vntour_api/multiple-upload-image/' + id_sv
 	            },
 	            thumbnails: {
 	                placeholders: {
@@ -533,6 +655,8 @@
 	</section>
 
 {{-- <script src="public/resource/js/ckeditor.js"></script> --}}
+
+
 <script src="public/resource/js/select2.full.js"></script>
 
 <script type="text/javascript">
