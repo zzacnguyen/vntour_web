@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	thong_ke();
+	// hover_addevent();
 })
 
 function thong_ke() {
@@ -130,4 +131,15 @@ function chuyenso(x) {
 	else if((mau > 1000000)) return (mau/1000000).toFixed(1).toString() + 'M';
 	else if((mau > 1000)) return (mau/1000).toFixed(1).toString() + 'K';
 	else return mau;
+}
+
+
+function hover_addevent(x) {
+	// var lam = document.getElementsByClassName("row_service");
+	console.log(x);
+	var lambig;
+	if (x.getAttribute("data-status") == 1) 
+	{
+		alert('dadsd');
+	}
 }

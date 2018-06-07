@@ -70,6 +70,12 @@
 		#top_service ul li:hover{
 			background-color: #ddd;
 		}
+
+		.row_service::after{
+			height: 50px;
+			width: 50px;
+			background-color: black;
+		}
 	</style>
 
 	<section class="content-info" style="min-height: 600px;">
@@ -206,7 +212,7 @@
 							  <tbody>
 							  	@if($data != null)
 							  		@foreach($data as $val)
-							    	<tr class="row_service">
+							    	<tr class="row_service" data-status="{{$val->sv_status}}" onmouseover="hover_addevent(this)" style="position: relative;">
 								      	<td>{{$val->sv_name}}</td>
 								      	<td class="text-center">
 													@if($val->sv_type == 1)

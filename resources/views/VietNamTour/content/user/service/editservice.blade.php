@@ -167,12 +167,80 @@
 	    border-radius: 0px !important;
 	    box-shadow: none;
 	}
+	.button-them-event{
+		height: 36px !important;
+	    width: 150px !important;
+	    padding: 0 !important;
+	    border-radius: 0px !important;
+	    border:none !important;
+	    background-color: #007bff !important;
+	    margin-bottom: 0 !important;
+	}
 </style>
 
 <section class="addplace">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2"></div>
+				<div class="col-md-2">
+					<div class="" style="background-color: white; padding: 5px;position: fixed;top: 100px;">
+						<h6 class="text-center">Thêm sự kiện</h6>
+						<div class="content-event">
+							<button class="btn btn-primary" style="border-radius:0;" data-toggle="modal" data-target="#eventModal">Thêm sự kiện mới
+							</button>
+						</div>
+					</div>
+					<!-- Modal -->
+					<div id="eventModal" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
+
+					    <!-- Modal content-->
+					    <div class="modal-content" style="margin-top: 100px;border-radius: 0;">
+					    	<form method="post" id="form-event">
+					    		<div class="modal-header">
+							        <h5 class="modal-title">Thêm sự kiện</h5>
+							        <button type="button" class="close" data-dismiss="modal">&times;</button>
+						      	</div>
+
+								<div class="modal-body">
+									
+									<div class="form-group row">
+									    <label style="font-size: 13px;" class="col-sm-3 col-form-label"><b>Tên sự kiện</b></label>
+									    <div class="col-sm-9">
+									      <input type="text" class="form-control" name="event_name" style="border-radius: 0;">
+									    </div>
+									    <p class="text-danger col-sm-12" id="null_eventname" style="display: none;">Sự kiện phải có độ dài từ 5-100 ký tự</p>
+								  	</div>
+
+								  	<div class="form-group row">
+									    <label style="font-size: 13px;" class="col-sm-3 col-form-label"><b>Ngày bắt đầu</b></label>
+									    <div class="col-sm-9">
+									      <input type="date" class="form-control" name="event_start" style="border-radius: 0;">
+									    </div>
+									    <p class="text-danger col-sm-12" id="null_eventstart" style="display: none;">Vui lòng chọn ngày bắt đầu</p>
+									    <p class="text-danger col-sm-12" id="min_eventstart" style="display: none;">Ngày bắt đầu phải lớn hơn ngày hiện tại</p>
+								  	</div>
+
+								  	<div class="form-group row">
+									    <label style="font-size: 13px;" class="col-sm-3 col-form-label"><b>Ngày kết thúc</b></label>
+									    <div class="col-sm-9">
+									      <input type="date" class="form-control" name="event_end" style="border-radius: 0;">
+									    </div>
+									    <p class="text-danger col-sm-12" id="event_end" style="display: none;">Ngày bắt kết thúc phải lớn hợn ngày bắt đầu</p>
+								  	</div>
+									
+								</div>
+
+					      		<div class="modal-footer" style="height:53px">
+							        <button type="button" id="btn-event" class="btn btn-primary button-them-event">Thêm sự kiện</button>
+				      			</div>
+					    	</form>
+						      
+					    </div>
+
+					  </div>
+					</div>
+
+				</div>
 				<div class="col-md-8 content">
 					<h4>Cập nhật dịch vụ</h4>
 					<h6 style="color: #bd1717;">Thông tin cơ bản</h6>

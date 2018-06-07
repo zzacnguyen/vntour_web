@@ -3,6 +3,7 @@ $(document).ready(function () {
 	load_ward();
 	// autoloadPlace();
 	submitform();
+	sub_form_event();
 })
 
 
@@ -362,4 +363,84 @@ function scrolltop(height)
 {
     jQuery('html, body').animate({scrollTop: height}, 500);
     return false;
+}
+
+
+function validate_form_event() {
+	var name = $('input[name=event_name]').val();
+	var start = $('input[name=event_start]').val();
+	var end = $('input[name=event_end]').val();
+
+	if (name.length > 5) 
+	{
+		$('#null_eventname').css('display','none');
+		if (start.length > 0 && 100) 
+		{
+			$('#null_eventstart').css('display','none');
+			var date1 = new Date(start);
+			var today = new Date();
+			var dd = today.getDate();
+			if (date1 > today) 
+			{
+				$('#min_eventstart').css('display','none');
+				var date2 = new Date(end);
+				if (date2 > date1) 
+				{
+					return 1;
+				}
+				else{
+					$('#event_end').css('display','block');
+					return -1;
+				}
+			}
+			else{
+				$('#min_eventstart').css('display','block');
+				return -1;
+			}
+		}
+		else{
+			$('#null_eventstart').css('display','block');
+			return -1;
+		}
+	}
+	else{
+		$('#null_eventname').css('display','block');
+		return -1;
+	}
+}
+
+function sub_form_event() {
+	$('#btn-event').click(function () {
+		if (validate_form_event() == 1) 
+		{
+			var form = $('#form-event')[0];
+			var id_user = $('#id_user').val();
+			var id_sv = $('#id_sv').val();
+	        var data = new FormData(form);
+	        data.append("user_id", id_user);
+	        data.append("service_id", id_sv);
+	        data.append("event_status", 0);
+	        data.append("type_id", 1);
+			$.ajax({
+				url: 'http://localhost/vntour_api/add-event',
+				type: "POST",  
+				data: data, 
+				dataType: 'Json',
+				contentType: false,       
+				cache: false,            
+				processData:false,        
+				success: function(data)
+				{
+					if (data.success == true) 
+					{
+						$('#form-event')[0].reset();
+						$('#eventModal').modal('hide');
+					}
+					else{
+						alert('Lỗi không thêm được sự kiện!');
+					}
+				}
+			});
+		}
+	})
 }
