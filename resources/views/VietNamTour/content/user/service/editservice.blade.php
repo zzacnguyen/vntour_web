@@ -353,8 +353,8 @@
 						<div class="input-text row">
 							<div class="col-md-12" style="font-weight: bold;font-size: 14px;margin-bottom: 5px;">Thêm nhiều ảnh hơn</div>
 							<div class="col-md-4">
-								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-upload" style="border-radius: 0px;background-color: cornflowerblue;font-size: 14px;">
-									<i class="fa fa-upload" aria-hidden="true"></i> Thêm nhiều ảnh
+								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-upload" style="border-radius: 0px;background-color: cornflowerblue;font-size: 14px;padding: 5px 20px;">
+									<i class="fa fa-upload" aria-hidden="true"></i> Thêm ảnh
 								</button>
 							</div>
 							<div class="col-md-8" style="padding-left: 0px;">
@@ -465,89 +465,114 @@
 
 	{{--  ====================================================================== > --}}
 	<script type="text/javascript">
-		var path = 'http://localhost/vntour_api/';
-		var id_sv = $('#id_sv').val();
-		$.ajax({
-			url: path + 'get-gallery/' + id_sv,
-			type: "GET",  
-			success: function(response)   
-			{
-				// console.log(response.data);
-				var dem = 0;
-				var lam = new String();
-				var lamBig = new String();
-				if (response.data != null) 
+		function load_gallery() {
+			var path = 'http://localhost/vntour_api/';
+			var id_sv = $('#id_sv').val();
+			$.ajax({
+				url: path + 'get-gallery/' + id_sv,
+				type: "GET",  
+				success: function(response)   
 				{
-					for (var i = 0; i < response.data.length; i++) {
-						// console.log(response.data[i]);
-						var p_img = response.data[i];
-						var data_img = response.data[i].slice(p_img.lastIndexOf("/") + 1, p_img.length);
-						console.log(data_img);
-						if (i < 4) 
-						{
-							lam += '<li class="nho">';
-							lam += '<img src="'+ path + response.data[i] +'" alt="">';
-							lam += '</li>';
-						}
-						else if(i == 4){
-							var sum = 0;
-							if (response.data.length >= 5) 
-							{
-								sum = response.data.length - 5;
-								lam += '<li class="end-gallery nho nho-cuoi" data-toggle="modal" data-target="#modal-upload">';
-								lam += '<img src="'+ path + response.data[i] +'" alt="">';
-								lam += '<div class="con-end-gallery">';
-								lam += '<div class="con-end-gallery-num">+' + sum +'</div>';
-								lam += '</div>';
-								lam += '</li>';
-							}
-							else
+					// console.log(response.data);
+					var dem = 0;
+					var lam = new String();
+					var lamBig = new String();
+					if (response.data != null) 
+					{
+						for (var i = 0; i < response.data.length; i++) {
+							// console.log(response.data[i]);
+							var p_img = response.data[i];
+							var data_img = response.data[i].slice(p_img.lastIndexOf("/") + 1, p_img.length);
+							// console.log(data_img);
+							if (i < 4) 
 							{
 								lam += '<li class="nho">';
 								lam += '<img src="'+ path + response.data[i] +'" alt="">';
 								lam += '</li>';
 							}
+							else if(i == 4){
+								var sum = 0;
+								if (response.data.length >= 5) 
+								{
+									sum = response.data.length - 5;
+									lam += '<li class="end-gallery nho nho-cuoi" data-toggle="modal" data-target="#modal-upload">';
+									lam += '<img src="'+ path + response.data[i] +'" alt="">';
+									lam += '<div class="con-end-gallery">';
+									lam += '<div class="con-end-gallery-num">+' + sum +'</div>';
+									lam += '</div>';
+									lam += '</li>';
+								}
+								else
+								{
+									lam += '<li class="nho">';
+									lam += '<img src="'+ path + response.data[i] +'" alt="">';
+									lam += '</li>';
+								}
+							}
+							lamBig += '<li class="li-img">';
+							lamBig += '<div class="item-gallery">';
+							lamBig += '<img src="'+ path + response.data[i] +'" alt="">';
+							lamBig += '<span data-num="'+ i +'" data-img="'+ data_img +'" class="delete-img-gallery" onclick="deletephoto()">X</span>';
+							lamBig += '</div>';
+							lamBig += '</li>';
 						}
-						lamBig += '<li>';
-						lamBig += '<div class="item-gallery">';
-						lamBig += '<img src="'+ path + response.data[i] +'" alt="" class="img-img">';
-						lamBig += '<span data-img="'+ data_img +'" class="delete-img-gallery" onclick="deletephoto()">X</span>';
-						lamBig += '</div>';
-						lamBig += '</li>';
-					}
-					// response.data.forEach(function (data) {
-						
+						// response.data.forEach(function (data) {
 							
-					// })
-						
-					$('#list-gallery').html(lam);
-					$('#list-detail-gallery').html(lamBig);
+								
+						// })
+							
+						$('#list-gallery').html(lam);
+						$('#list-detail-gallery').html(lamBig);
+					}
 				}
-			}
+			});
+
+		}
+		$(document).ready(function () {
+			load_gallery();
 		});
 
-		$(document).ready(function () {
-			// lam();
-		})
+		function click_upload() {
+			$('#trigger-upload').click(function() {
+				setTimeout(function () {
+					load_gallery();
+				},2000);
+	        });
+		}
+
 
 		function deletephoto() {
 			var id_sv = $('#id_sv').val();
 			var data_del = document.getElementsByClassName('delete-img-gallery');
-			var img = document.getElementsByClassName("img-img");
-			console.log(data_del);
+			var img = document.getElementsByClassName("li-img");
+			// console.log(img);
 			for (var i = 0; i < data_del.length; i++) {
 				data_del[i].onclick = function () {
-					console.log(this.getAttribute("data-img"));
-					$.ajax({
-						type:"DELETE",
-						url:'http://localhost/vntour_api/delete-gallery-image/' + id_sv,
-						data:{
-							"_method":"DELETE",
-							success: function (response) {
-								console.log(response);
+					var num = this.getAttribute("data-num");
+					var conf = confirm('Bạn có chắc chắn muốn xóa ảnh vừa chọn');
+					if (conf) 
+					{
+						// console.log(this.getAttribute("data-img"));
+						var name = this.getAttribute("data-img");
+						$.ajax({
+							type:"DELETE",
+							url:'http://localhost/vntour_api/delete-gallery-image/' + id_sv,
+							data:{
+								"_method":"DELETE",
+								"name": name
+							},
+							dataType: 'Json'
+						}).done(function (response) {
+							// console.log(response.success);
+							if (response.success == true) 
+							{
+								img[num].style.display = "none";
+								load_gallery();
 							}
-						}
-					})
+							else{console.log(response);}
+						})
+					}
+						
 				}
 			}
 		}
@@ -691,6 +716,9 @@
 
 	        $('#trigger-upload').click(function() {
 	            $('#fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+	            setTimeout(function () {
+	            	load_gallery();
+	            },3000);
 	        });
     	</script>
 	</section>

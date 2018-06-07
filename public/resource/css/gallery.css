@@ -85,6 +85,10 @@
     position: relative;
 }
 
+.li-img{
+	transition: 0.5s ease;
+}
+
 .delete-img-gallery{
 	position: absolute;
     top: 2px;
