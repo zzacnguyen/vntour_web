@@ -759,4 +759,24 @@ class pageController extends Controller
         return $result_paginate;
 
     }
+
+
+    public function load_event_user(){
+        if (Session::has('user_info')) {
+            $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://localhost/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('GET',"load-event/{$user_id}")->getBody();
+            return $response->getContents();
+        }
+        else
+        {
+            $data_event = array('event_public' => 0, 'event_user' => 0, 'error' => 'login');
+            return json_encode($data_event);
+        }
+    }
 }

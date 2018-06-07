@@ -26,6 +26,54 @@
 		h4{
 			border-bottom: none !important;
 		}
+		.btn-thongbao{
+			display: table-cell;
+			width: 49%;
+			border: none;
+			background-color: #ddd;
+			padding: 5px 10px;
+			cursor: pointer;
+			font-size: 14px;
+		}
+		.btn-thongbao:hover{
+			background-color: white;
+			color: #00a680;
+			border: 1px solid #ddd;
+		}
+		.active-nofi{
+			background-color: #00a680 !important;
+			border: 1px solid #00a680; 
+		}
+		.active-nofi:hover{
+			color: white;
+		}
+		.notification .content-nofi ul {
+		    max-height: 200px;
+		    min-height: 70px;
+		}
+
+		.li-seen{
+			background-color: #ddd !important;
+			border: 1px solid snow !important;
+		}
+		.error-nofi{
+			font-size: 14px;
+			text-align: center;
+			display: table-cell;
+			vertical-align: middle;
+			padding-top: 17px !important;
+			color: #f63434;
+		}
+		.header #id-con ul.left-menu-lam li a.bell{
+		  -webkit-animation: ring 4s .7s ease-in-out infinite !important;
+		  -webkit-transform-origin: 50% 4px !important;
+		  -moz-animation: ring 4s .7s ease-in-out infinite !important;
+		  -moz-transform-origin: 50% 4px !important;
+		  animation: ring 4s .7s ease-in-out infinite !important;
+		  transform-origin: 50% 4px !important;
+		  margin: 0 !important;
+		  color: red !important;
+		}
 	</style>
 </head>
 <body>
@@ -63,6 +111,7 @@
 	<!-- ========== end icon =========== -->
 
 	<!-- ================== header ============= -->
+	<input type="hidden">
 	<section class="header">
 		<div class="img-carolsel">
 			<ul>
@@ -379,68 +428,63 @@
 							</div>
 							<div class="col-md-2 col-6">
 								<ul class="float-right left-menu-lam">
-									{{-- <li class="cha-notification">
-										<a id="athongbao" class="a-notification" data-id-hienthi="id-thongBao">
+									<li class="cha-notification">
+										<a id="athongbao" class="bell a-notification" data-id-hienthi="id-thongBao">
 											<!-- <i class="fas fa-bell"></i> -->
 											<i class="far fa-bell"></i>
 											<!-- <img src="images/bell.svg" alt="" style="width: 14px;height: 16px;"> -->
-											<span class="badge" id="num-thongbao">9</span>
+											{{-- <span class="badge" id="num-thongbao">9</span> --}}
 										</a>
 										<div class="notification" id="id-thongBao">
-											<div class="title-nofi">
-												<h6 class="text-center" style="padding: 0; font-weight: 700;">Thông báo</h6>
-											</div>
+											<!-- Tab links -->
+												
 											<div class="content-nofi" id="noidungthongbao">
-												<ul id="body-nofi">
-													<li>
-														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
-															</p>	
-														</a>
-													</li>
-													<li>
-														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
-															</p>	
-														</a>
-													</li>
-													<li>
-														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
-															</p>	
-														</a>
-													</li>
-													<li>
-														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
-															</p>	
-														</a>
-													</li>
-												</ul>
+												<div class="tab" style="padding: 5px;border-bottom: 1px solid #ddd;">
+												  <button class="btn-thongbao tablinks active active-nofi" onclick="openCity(event, 'cuatoi')">Của tôi
+												  </button>
+												  <button class="btn-thongbao tablinks" onclick="openCity(event, 'dichvu')">Dịch vụ
+												  </button>
+												</div>
+
+												<!-- Tab content -->
+												<div id="cuatoi" class="tabcontent" style="display: block">
+												  	<ul class="body-nofi" id="ul-cuatoi">
+														{{-- <li>
+															<a href="" class="a-content-nofi">
+																<div class="anh-nofi">
+																	<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
+																</div>
+																<p class="text-nofi">
+																	Get code suggestions while writing code directly to your Java IDE.
+																</p>	
+															</a>
+														</li> --}}
+													</ul>
+												</div>
+
+												<div id="dichvu" class="tabcontent" style="display: none;">
+												  	<ul class="body-nofi" id="ul-dichvu">
+														{{-- <li>
+															<a href="" class="a-content-nofi">
+																<div class="anh-nofi">
+																	<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
+																</div>
+																<p class="text-nofi">
+																	xdsffsfdfd
+																</p>	
+															</a>
+														</li> --}}
+													</ul>
+												</div>
+													
 											</div>
-											<div class="xem text-center" style="background-color: #ddd;">
+											{{-- <div class="xem text-center" style="background-color: #ddd;">
 												<a href="" style="color: black !important; font-size: 13px; padding: 5px; font-weight: 500; display: inline-block;">
 													Xem tất cả
 												</a>
-											</div>
+											</div> --}}
 										</div>
-									</li> --}}
+									</li>
 									{{-- <li class="cha-notification">
 										<a class="a-notification" data-id-hienthi="id-tuychinh"><i class="fas fa-plus"></i></a>
 										<div class="notification" id="id-tuychinh" style="width: 200px;">
@@ -513,9 +557,9 @@
 										</div>
 									</li> --}}
 									{{-- <li id="id-language">
-										<a href="" id="language">
+										<span href="" id="language" class="bell">
 											<img src="public/resource/images/icons/vn.png" alt="" style="width: 20px; height: 20px;">
-										</a>
+										</span>
 										  <div class="" id="content-language">
 										    <a class="" href="####">
 										    	<img src="public/resource/images/icons/us.png" alt="" style="width: 20px; height: 20px;">
@@ -539,6 +583,28 @@
 		$('#user-form').toggle();
 	});
 		
+	function openCity(evt, cityName) {
+	    // Declare all variables
+	    var i, tabcontent, tablinks;
+
+	    // Get all elements with class="tabcontent" and hide them
+	    tabcontent = document.getElementsByClassName("tabcontent");
+	    for (i = 0; i < tabcontent.length; i++) {
+	        tabcontent[i].style.display = "none";
+	    }
+
+	    // Get all elements with class="tablinks" and remove the class "active"
+	    tablinks = document.getElementsByClassName("tablinks");
+	    for (i = 0; i < tablinks.length; i++) {
+	        tablinks[i].className = tablinks[i].className.replace(" active", "");
+	        tablinks[i].className = tablinks[i].className.replace(" active-nofi", "");
+	    }
+
+	    // Show the current tab, and add an "active" class to the button that opened the tab
+	    document.getElementById(cityName).style.display = "block";
+	    evt.currentTarget.className += " active";
+	    evt.currentTarget.className += " active-nofi";
+	}
 </script>
 
 <script type="text/javascript">
@@ -546,4 +612,7 @@
 	$(document).ready(function() {
 	    $('.js-example-basic-single').select2();
 	});
+	$('#athongbao').click(function () {
+		$('#athongbao').removeClass("bell");
+	})
 </script>

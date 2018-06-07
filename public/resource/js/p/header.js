@@ -26,6 +26,11 @@ $(document).ready(function () {
 			list_tim_kiem();
 			list_top_search();
 		})
+		load_unseen_notification();
+
+		// setInterval(function () {
+		// 	load_unseen_notification();
+		// },5000);
 })
 
 function gantentinh() {
@@ -459,4 +464,97 @@ function list_top_search() {
 		})
 }
 
-//=============== LUU search neu co login
+//=============== Notification ===============
+function load_unseen_notification(view = '') {
+	$.ajax({
+		url: 'load-event-user',
+		type: 'GET',
+		dataType: 'Json',
+		success: function (data) {
+			console.log(data);
+			var cuatui = new String();
+			var dichvu = new String();
+			if (parseInt(data.event_public) != 0 && data.event_public.length > 0) 
+			{
+				var dem = 0;
+				for (var i = 0; i < data.event_public.length; i++) {
+					cuatui += create_element_notification(data.event_public[i]);
+					var status = parseInt(data.event_public[i].event_status);
+					if (status == 1) 
+					{
+
+					}
+					else if(status == 2)
+					{
+
+					}
+					else if(status == 0)
+					{
+
+					}
+				}
+				$('#ul-cuatoi').html(cuatui);
+			}
+			else{
+				$('#ul-cuatoi').html('');
+				if (data.error == 'login') 
+				{
+					$('#ul-cuatoi').html('<li class="error-nofi">Đăng nhập ngay để nhận được thông báo<li>');
+				}
+				else{
+					$('#ul-cuatoi').html('<li class="error-nofi">Chưa có thông báo<li>');
+				}
+			}
+
+			if (parseInt(data.event_user) != 0 && data.event_user.length > 0) 
+			{
+				for (var i = 0; i < data.event_user.length; i++) {
+					dichvu += create_element_notification(data.event_user[i]);
+				}
+				$('#ul-dichvu').html(dichvu);
+				// $('#athongbao').addClass("bell");
+			}
+			else{
+				$('#ul-dichvu').html('');
+				if (data.error == 'login') 
+				{
+					$('#ul-dichvu').html('<li class="error-nofi">Đăng nhập ngay để nhận được thông báo<li>');
+				}
+				else{
+					$('#ul-dichvu').html('<li class="error-nofi">Chưa có thông báo<li>');
+				}
+			}
+		} 
+	})
+}
+
+
+function create_element_notification(arr) {
+	var image;
+	if (arr.image_details_1 == null) {image = 'default.jpg';}
+	else{image = arr.image_details_1;}
+	var cuatui = new String();
+
+	//check seen event
+	if (arr.seen == null) { cuatui += '<li>'; }
+	else{ cuatui += '<li class="li-seen">'; }
+
+	cuatui += '<a class="a-content-nofi">';
+	cuatui += '<div class="anh-nofi">';
+	// check type event display image
+	if (parseInt(arr.type_id) == 2) 
+	{
+		cuatui += '<img src="http://localhost/vntour_web/public/resource/images/icons/active-user.png" alt="" class="img-icon-nofi">';
+	}
+	else{
+		cuatui += '<img src="http://localhost/vntour_api/public/thumbnails/'+ image +'" alt="" class="img-icon-nofi">';
+	}
+		
+	cuatui += '</div>';
+	cuatui += '<p class="text-nofi">';
+	cuatui += arr.event_name;
+	cuatui += '</p>';
+	cuatui += '</a>';
+	cuatui += '</li>';
+	return cuatui;
+}

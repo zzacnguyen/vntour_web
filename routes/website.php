@@ -268,7 +268,8 @@ Route::get('check-iage','accountController@check_iage');
 // test multiple uploat
 Route::get('test-multiple','accountController@test_multiple');
 
-
+//================= EVENT ===================
+Route::get('load-event-user','pageController@load_event_user');
 
 
 
