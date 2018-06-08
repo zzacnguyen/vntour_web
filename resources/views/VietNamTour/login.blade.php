@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="public/resource/css/bootstrap.css">
 	<link rel="stylesheet" href="public/resource/css/login.css">
-	<title>Login</title>
+	<title>Đăng nhập</title>
 </head>
 <body>
 	<section class="content" style="background-image: url({{asset('public/resource/images/background/4.jpg')}});">
@@ -31,7 +31,9 @@
 
 								{{-- <a href="" style="font-size: 14px;width: 100%;display: inline-block;"><i>Quên mật khẩu</i></a> --}}
 
-								<button class="btn btn-success float-right btnlogin" type="" id="btnlogin">Đăng nhập</button>
+								<button class="btn btn-success float-right btnlogin" type="" id="btnlogin" style="background-color: #00a680 !important">
+									Đăng nhập
+								</button>
 							</div>
 							<div class="login-social">
 								<h5 class="text-center" style="margin-top: 15px;display: inline-block;width: 100%;border-top: 1px solid #ddd;padding-top: 6px;">Đăng nhập bằng Facebook</h5>

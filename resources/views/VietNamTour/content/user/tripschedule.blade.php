@@ -107,6 +107,9 @@
 		    width: 92%;
 		    z-index: 4;
 		}
+		input{
+			border-radius: 0 !important;
+		}
 	</style>
 <body>
 	<section class="content-info">
@@ -320,8 +323,8 @@
 									  
 						      </div>
 						      <div class="modal-footer">
-						        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        <button type="button" id="addLichtrinh" class="btn btn-primary" style="margin-bottom: 0;padding: 10px 41px !important;border-radius: 0px !important;margin-left: 9px; background-color: #1b00ff;">Thêm</button>
+						        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 11px 12px !important;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+							        <button type="button" id="addLichtrinh" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 11px 40px;margin:0;">Thêm mới</button>
 						      </div>
 					      	</form>
 						    </div>
@@ -426,7 +429,7 @@
 										</select>
 									  </div> --}}
 
-									  <div class="col-md-12" id="themchitiet">
+									  <div class="col-md-12" id="themchitiet" style="padding: 0;">
 							      			<div class="form-group">
 											    <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Nhập tên để chọn dịch vụ" required="required" id="search-schedule2" style="position: relative;">
 										    	
@@ -468,8 +471,8 @@
 							      		</div>
 							      </div>
 							      <div class="modal-footer" style="height: 55px;">
-							        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        <button id="btnthemchitiet" type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 10px 41px !important;border-radius: 0px !important;margin-left: 9px; background-color: #1b00ff;">Thêm
+							        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 11px 12px !important;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+							        <button id="btnthemchitiet" type="button" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 11px 40px;margin:0;">Thêm
 							        </button>
 							      </div>
 						      	</form>

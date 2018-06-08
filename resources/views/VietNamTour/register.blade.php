@@ -5,7 +5,7 @@
 
 	<link rel="stylesheet" href="public/resource/css/bootstrap.css">
 	<link rel="stylesheet" href="public/resource/css/login.css">
-	<title>Login</title>
+	<title>Đăng ký</title>
 </head>
 <body>
 	<section class="content" style="background-image: url({{asset('public/resource/images/background/4.jpg')}});">
@@ -43,7 +43,7 @@
 							<div class="register text-center" style="border: none;">
 								<h5 class="text-center">Bạn đã có tài khoản</h5>
 								<div class="col-md-12" style="padding-left: 0;padding-right: 0;">
-									<a href="{{route('loginW')}}" class="btn btn-success btnregister" style="width: 100%;">Đăng nhập</a>
+									<a href="{{route('loginW')}}" class="btn btn-success btnregister" style="width: 100%;background-color: #00a680 !important">Đăng nhập</a>
 								</div>
 									
 							</div>

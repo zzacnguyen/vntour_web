@@ -181,7 +181,7 @@
 											</select>
 										</div>
 									</div>
-									<button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+									<button type="submit" class="btn btn-primary" style="background-color: #00a680;border-radius: 0;border: 1px solid #00a680;">Lưu thay đổi</button>
 								</form>
 							</div>
 						</div>
@@ -192,7 +192,7 @@
 					  <div class="modal-dialog">
 
 					    <!-- Modal content-->
-					    <div class="modal-content">
+					    <div class="modal-content" style="border-radius: 0;">
 					      <div class="modal-header">
 					        <h5 class="modal-title">Nâng cấp vai trò</h5>
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -272,8 +272,8 @@
 							
 					      </div>
 
-					      <div class="modal-footer">
-					        <button style="background-color: #dd4b39 !important" type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
+					      <div class="modal-footer" style="height: 55px;">
+					        <button style="border:none; background-color: #de5959 !important;padding: 11px 18px;" type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
 					        {{-- @if($quyen_hientai == [])
 					        	@for($i = 0; $i < count($quyen_hientai); $i++)
 					    			@if($quyen_hientai[$i] == 5 || $quyen_hientai[$i] == 4)
@@ -287,9 +287,9 @@
 					        @endif --}}
 				    		
 							@if($quyen_hientai[3]->active == 1 || $quyen_hientai[4]->active == 1)
-								<button style="background-color: #444fce !important; border-radius: 0px;padding: 7px 30px;" type="submit" class="btn btn-primary" data-dismiss="modal" disabled="disabled">Nâng cấp</button>
+								<button style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 6px 30px;" type="submit" class="btn btn-primary" data-dismiss="modal" disabled="disabled">Nâng cấp</button>
 							@else
-								<button style="background-color: #444fce !important; border-radius: 0px;padding: 7px 30px;" type="submit" class="btn btn-primary" >Nâng cấp</button>
+								<button style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 6px 30px;" type="submit" class="btn btn-primary" >Nâng cấp</button>
 				    		@endif
 					        
 					      </div>
@@ -303,7 +303,7 @@
 					{{-- // modal doi mat khau --}}
 					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 100px;">
 					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
+					    <div class="modal-content" style="border-radius: 0!important;">
 				    	<form action="change-pass" method="post" id="changepass">
 					      <div class="modal-header">
 					        <h5 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h5>
@@ -313,23 +313,29 @@
 					      </div>
 					      <div class="modal-body">
 					        
-						 	<div class="form-group">
-					        	<label for="">Mật khẩu cũ</label>
-							    <input type="password" class="form-control"  aria-describedby="emailHelp" placeholder="" name="password_old" value="" id="pass_old" required="required">
+						 	<div class="form-group row">
+					        	<label class="col-sm-4">Mật khẩu cũ</label>
+					        	<div class="col-sm-8">
+					        		<input type="password" class="form-control"  aria-describedby="emailHelp" name="password_old" value="" id="pass_old" required="required" style="border-radius: 0;">
+					        	</div>
 						  	</div>
-						  	<div class="form-group">
-					        	<label for="">Mật khẩu mới</label>
-							    <input type="password" class="form-control"  aria-describedby="emailHelp" placeholder="" name="password_new" id="pass_new" required="required">
+						  	<div class="form-group row">
+					        	<label class="col-sm-4">Mật khẩu mới</label>
+					        	<div class="col-sm-8">
+					        		<input type="password" class="form-control"  aria-describedby="emailHelp" name="password_new" id="pass_new" required="required" style="border-radius: 0;">
+					        	</div>
 						  	</div>
-						  	<div class="form-group">
-					        	<label for="">Xác nhận mật khẩu</label>
-							    <input type="password" class="form-control" aria-describedby="emailHelp" placeholder="" name="password_new2" id="pass_new2" required="required">
+						  	<div class="form-group row">
+					        	<label class="col-sm-4">Xác nhận mật khẩu</label>
+					        	<div class="col-sm-8">
+					        		<input type="password" class="form-control" aria-describedby="emailHelp" placeholder="" name="password_new2" id="pass_new2" required="required" style="border-radius: 0;">
+					        	</div>
 						  	</div>
 					      </div>
 					      <div class="modal-footer" style="height: 55px;">
 					        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
 					        {{-- <inpu class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;" id="btncapnhat">Cập nhật mật khẩu</a> --}}
-					        	<input type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;" id="btncapnhat" value="Cập nhật mật khẩu">
+					        	<input type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px; background-color: #00a680;border:none;" id="btncapnhat" value="Cập nhật mật khẩu">
 					      </div>
 				      	</form>
 					    </div>
