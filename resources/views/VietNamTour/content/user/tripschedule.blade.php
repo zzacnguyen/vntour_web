@@ -366,6 +366,7 @@
 								@else
 									@foreach($lichtrinh as $l)
 										<div class="" style="position: relative;">
+											<input type="hidden" value="{{$l->id}}" name="id_lt">
 											<h5 id="name-h" class="">Tên lịch trình: <b>{{$l->trip_name}}</b></h5>
 											<div id="star-s">
 												<span  style="display: block;width: 100%;">Ngày bắt đầu: 
@@ -394,24 +395,27 @@
 											        <button type="button" class="close" data-dismiss="modal">&times;</button>
 											      </div>
 											      <div class="modal-body">
-											        <div class="form-group">
+											      	@foreach($lichtrinh as $l)
+													<div class="form-group">
 													    <label class="">Tên lịch trình</label>
-													    <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Tên lịch trình" required="required" name="trip_name">
-												    	<span id="err_name" style="color:red;display:none;">Tên lịch trình ko được để trống</span>
+													    <input type="text" class="form-control" id="e_trip_name" aria-describedby="emailHelp" placeholder="Tên lịch trình" required="required" name="e_trip_name" value="{{$l->trip_name}}">
+												    	<span id="e_err_name" style="color:red;display:none;">Tên lịch trình ko được để trống</span>
 												  	</div>
 												  	<div class="form-group">
 													    <label >Ngày bắt đầu</label>
-													    <input type="date" class="form-control" id="" placeholder="Ngày bắt đầu" required="required" name="trip_startdate">
+													    <input type="date" class="form-control" id="" placeholder="Ngày bắt đầu" required="required" name="e_trip_startdate" value="{{$l->trip_startdate}}">
 													    <span id="err_star" style="color:red;display:none;">Ngày bắt đầu ko được để trống</span>
-													    <span id="err_star_max" style="color:red;display:none;">Ngày bắt đầu phải lớn hơn ngày hiện tại</span>
+													    <span id="e_err_star_max" style="color:red;display:none;">Ngày bắt đầu phải lớn hơn ngày hiện tại</span>
 													  </div>
 													<div class="form-group">
 													    <label >Ngày kết thúc</label>
-													    <input type="date" class="form-control datepicker" id="" placeholder="Ngày kết thúc" required="required" name="trip_enddate">
-													    <span id="err_end" style="color:red;display:none;">Ngày kết thúc ko được để trống</span>
-													    <span id="err_star_min" style="color:red;display:none;">Ngày kết thúc phải lớn hơn ngày bắt đầu</span>
+													    <input type="date" class="form-control datepicker" id="" placeholder="Ngày kết thúc" required="required" name="e_trip_enddate" value="{{$l->trip_enddate}}">
+													    <span id="e_err_end" style="color:red;display:none;">Ngày kết thúc ko được để trống</span>
+													    <span id="e_err_star_min" style="color:red;display:none;">Ngày kết thúc phải lớn hơn ngày bắt đầu</span>
 													  </div>
 											        </div>
+													@endforeach
+											        
 											      <div class="modal-footer">
 											        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 11px 12px !important;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 							        				<button type="button" id="editlichtrinh" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 11px 40px;margin:0;">Cập nhật</button>

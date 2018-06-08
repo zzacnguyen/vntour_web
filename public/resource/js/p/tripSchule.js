@@ -4,6 +4,7 @@ $(document).ready(function () {
 	timkiem2();
 	add_lichtrinh();
 	add_chitiet_lichtrinh();
+	edit_lichtrinh();
 })
 
 
@@ -464,3 +465,79 @@ function add_chitiet_lichtrinh() {
 		location.reload();
 	})
 }
+
+function edit_lichtrinh() {
+	$('#editlichtrinh').click(function () {
+		var id = $('input[name=id_lt]').val();
+		var name = $('#e_trip_name').val();
+		var start = $('input[name=e_trip_startdate]').val();
+		var end = $('input[name=e_trip_enddate]').val();
+		if (name.length > 0) 
+		{
+			$('#e_err_name').css('display','none');
+			if (start.length > 0) 
+			{
+				var date1 = new Date(start);
+				var today = new Date();
+				var dd = today.getDate();
+				if (date1 < today) 
+				{
+					$('#e_err_star_max').css('display','block');
+				}
+				else{
+					$('#e_err_star_max').css('display','none');
+					$('#e_err_end').css('display','none');
+					if (end.length > 0) 
+					{
+						$('#e_err_end').css('display','none');
+
+						// var endDate = parseDate(end).getTime();
+						var date2 = new Date(end);
+						if (date2 < date1) 
+						{
+							$('#e_err_star_min').css('display','block');
+						}
+						else
+						{
+							$.ajax({
+								url:'http://localhost/vntour_api/edit-schedule',
+								type: 'POST',
+								data:{id:id,trip_name:name, trip_startdate:start, trip_enddate:end}
+							})
+							.done(function (data) {
+								// console.log(data);
+								if (parseInt(data) == 1) 
+								{
+									alert('Cập nhật thành công');
+									location.reload();
+								}else{
+									alert('Lỗi không cập nhật được lịch trình');
+								}
+								
+							})
+							.fail(function () {
+								alert('Lỗi không cập nhật được lịch trình');
+							})
+						}	
+					}
+					else
+					{
+						$('#e_err_end').css('display','block');
+					}		
+				}	
+			}
+			else
+			{
+				$('#e_err_star').css('display','block');
+			}
+		}
+		else
+		{
+			$('#e_err_name').css('display','block');
+		}		
+							
+	})	
+		
+}
+
+
