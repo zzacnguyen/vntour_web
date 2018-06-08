@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="public/resource/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="public/resource/css/select2.min.css">
 <link rel="stylesheet" href="public/resource/css/tripSchedule.css">
+{{-- <link rel="stylesheet" href="public/resource/css/font-awesome.css"> --}}
 
 	<style type="text/css">
 		.table tbody tr:nth-child(2n+1) {
@@ -38,9 +39,10 @@
 			border-left: 1px solid #333;
 			/*border-bottom: 1px solid #333;
 			background-color: #666;*/
-			color: #ccc;
+			color: black;
 			overflow: hidden;
 			position: relative;
+			width: 36%;
 		}
 
 		.tab_last { border-right: 1px solid #333; }
@@ -52,7 +54,7 @@
 
 		ul.tabs li.active {
 			background-color: #00a680;
-			color: #333;
+			color: white;
 			display: block;
 		}
 
@@ -107,8 +109,20 @@
 		    width: 92%;
 		    z-index: 4;
 		}
+
 		input{
 			border-radius: 0 !important;
+		}
+		
+		a.btn{
+			border-radius: 0 !important;
+		}
+
+		.btn-new:hover{
+			/*font-weight: 600;*/
+		}
+		#edit-lichtrinh:hover{
+			background-color: #00a680;
 		}
 	</style>
 <body>
@@ -149,21 +163,28 @@
 						</div>
 						<br> --}}
 						<div class="left-user" style="height: 546px;">
-							<ul class="tabs">
-								  <li class="active text-center" rel="tab1">KT</li>
-								  <li class="text-center" rel="tab2" style="border-right: 1px solid black;">CKT</li>
-								  <li class="text-center"  style="background-color: white;border:none;">
-								  		<a href="" style="margin-bottom: 6px; padding-left: 16px;padding-right: 16px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> 
-								  			<i class="fas fa-plus"></i>
-								  		</a>
+							<ul class="tabs" style="position: relative;">
+								  <li class="active text-center" rel="tab1" title="Chưa hoàn thành">
+								  	<i class="far fa-clone"></i>
 								  </li>
+								  <li class="text-center" rel="tab2" style="border-right: 1px solid black;" title="Đã hoàn thành">
+								  	<i class="far fa-check-square"></i>
+								  </li>
+								  {{-- <li class="text-center"  style="background-color: white;border:none;" title="Thêm lịch trình">
+								  		
+								  </li> --}}
 							</ul>
+							<div class="themmoi" style="position: absolute;top:6px;right:21px;">
+								<a href="" style="margin-bottom: 6px; padding-left: 16px;padding-right: 16px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> 
+						  			<i class="fas fa-plus"></i>
+						  		</a>
+							</div>
 							<div class="tab_container">
 							  	<h3 class="d_active tab_drawer_heading" rel="tab1">Tab 1</h3>
 							  	<div id="tab1" class="tab_content">
 								  	{{-- <h2>Tab 1 content</h2> --}}
 								    <div class="options">
-										<ul>
+										<ul style="border-bottom: 1px solid #ddd;">
 											@if($danhsach_CKT == null)
 												{{-- <li class="">
 													<a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal"> Thêm mới lịch trình</a>
@@ -344,13 +365,65 @@
 									<span>Ngày kết thúc: <b></b></span>
 								@else
 									@foreach($lichtrinh as $l)
-										<h5 style="" class="">Tên lịch trình: <b>{{$l->trip_name}}</b></h5>
-										<span>Ngày bắt đầu: <b>{{date('d-m-Y',strtotime($l->trip_startdate))}}</b></span><br>
-										<span>Ngày kết thúc: <b>{{date('d-m-Y',strtotime($l->trip_enddate))}}</b></span>
-									@endforeach
+										<div class="" style="position: relative;">
+											<h5 id="name-h" class="">Tên lịch trình: <b>{{$l->trip_name}}</b></h5>
+											<div id="star-s">
+												<span  style="display: block;width: 100%;">Ngày bắt đầu: 
+													<b>{{date('d-m-Y',strtotime($l->trip_startdate))}}</b>
+												</span>
+												<span id="end-s" style="display: block;width: 100%;">Ngày kết thúc: 
+													<b>{{date('d-m-Y',strtotime($l->trip_enddate))}}</b>
+												</span>
+											</div>
+												
+										</div>
 										
-								@endif
+									@endforeach
+										<div id="edit-lichtrinh" style="position:absolute;top:-8px;right:50%;display:none;">
+											<span id="btn-capnhat" data-toggle="modal" data-target="#modal-edit" title="Chỉnh sửa lịch trình" class="edit-lichtrinh" style="cursor: pointer;padding: 5px 10px;background-color: #ddd;display: block">
+												<i class="fas fa-pencil-alt"></i>
+											</span>
+											<div id="modal-edit" class="modal fade" role="dialog">
+											  <div class="modal-dialog">
 
+											    <!-- Modal content-->
+											    <div class="modal-content" style="margin-top:100px; border-radius: 0;">
+										    	<form action="">
+											      <div class="modal-header">
+											        <h4 class="modal-title">Chỉnh sửa lịch trình</h4>
+											        <button type="button" class="close" data-dismiss="modal">&times;</button>
+											      </div>
+											      <div class="modal-body">
+											        <div class="form-group">
+													    <label class="">Tên lịch trình</label>
+													    <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Tên lịch trình" required="required" name="trip_name">
+												    	<span id="err_name" style="color:red;display:none;">Tên lịch trình ko được để trống</span>
+												  	</div>
+												  	<div class="form-group">
+													    <label >Ngày bắt đầu</label>
+													    <input type="date" class="form-control" id="" placeholder="Ngày bắt đầu" required="required" name="trip_startdate">
+													    <span id="err_star" style="color:red;display:none;">Ngày bắt đầu ko được để trống</span>
+													    <span id="err_star_max" style="color:red;display:none;">Ngày bắt đầu phải lớn hơn ngày hiện tại</span>
+													  </div>
+													<div class="form-group">
+													    <label >Ngày kết thúc</label>
+													    <input type="date" class="form-control datepicker" id="" placeholder="Ngày kết thúc" required="required" name="trip_enddate">
+													    <span id="err_end" style="color:red;display:none;">Ngày kết thúc ko được để trống</span>
+													    <span id="err_star_min" style="color:red;display:none;">Ngày kết thúc phải lớn hơn ngày bắt đầu</span>
+													  </div>
+											        </div>
+											      <div class="modal-footer">
+											        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 11px 12px !important;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+							        				<button type="button" id="editlichtrinh" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 11px 40px;margin:0;">Cập nhật</button>
+											      </div>
+										        </form>
+											    </div>
+
+											  </div>
+											</div>
+										</div>
+								@endif
+								
 									
 							</div>
 							<br>
@@ -360,7 +433,7 @@
 							      <th scope="col" class="text-center" style="width: 40%;">Tên địa điểm</th>
 							      <th scope="col" class="text-center">Ảnh min họa</th>
 							      <th scope="col" class="text-center" style="width: 10%;">
-							      	<a href="place-user/add/1" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
+							      	<a href="place-user/add/1" class="btn btn-sm btn-primary btn-new" data-toggle="modal" data-target="#exampleModal" style="border-radius: 0px;background-color: #00a680;border: 1px solid #00a680;">
 							      		<i class="fas fa-plus"></i> Thêm mới
 							      	</a>
 							      </th>
@@ -401,7 +474,7 @@
 							    <div class="modal-content" style="border-radius: 0;">
 						    	<form action="add_detailtripchudule/{{$id_lichtrinh}}" method="post">
 							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLabel">Thêm chi tiết lich trình</h5>
+							        <h5 class="modal-title" id="exampleModalLabel">Thêm chi tiết lịch trình</h5>
 							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							          <span aria-hidden="true">&times;</span>
 							          <input type="hidden" value="{{$id_lichtrinh}}" id="id_lich_trinh">
@@ -556,14 +629,38 @@ $(document).ready(function(){
 	
 	</script>
 	<script type="text/javascript">
-		// document.addEventListener("DOMContentLoaded",function () 
-		// {
-		// 	var clickUser = document.getElementById('list-detail');
-		// 	window.onclick = function(event) 
-		// 	{
-		// 		if (event.target != clickUser) { $('#list-detail').css('display','none');}
-		// 	}
-		// })
+		$(document).ready(function () {
+			$('#name-h').hover(function () {
+				$('#edit-lichtrinh').css('right','54%');
+				$('#edit-lichtrinh').css('top','-8px');
+				$('#edit-lichtrinh').css('display','block');
+			},function () {
+				$('#edit-lichtrinh').css('display','none');
+			})
+			$('#star-s').hover(function () {
+				$('#edit-lichtrinh').css('right','70%');
+				$('#edit-lichtrinh').css('top','38px');
+				$('#edit-lichtrinh').css('display','block');
+			},function () {
+				$('#edit-lichtrinh').css('display','none');
+				$('#edit-lichtrinh').hover(function () {
+					$('#edit-lichtrinh').css('display','block');
+				})
+			})
+
+			$('#edit-lichtrinh').hover(function () {
+				$('#edit-lichtrinh').css('display','block');
+				$('#edit-lichtrinh').css('background-color','#00a680 !important');
+			})
+
+			$('#btn-capnhat').click(function () {
+				
+			})
+		})
+
+		function function_name(argument) {
+			// body...
+		}
 			
 	</script>
 	

@@ -518,12 +518,14 @@ class accountController extends Controller
                     'timeout'  => 20.0,
                 ]);
         // them lich trinh
+        // return $request->all();
         $responseList = $client->request('POST', 'post-schedule/user='.$user_id.'', 
             [
                 'form_params' => [
                     'trip_name' => $lichtrinh['trip_name'],
                     'trip_startdate' => $lichtrinh['trip_startdate'],
                     'trip_enddate'=>$lichtrinh['trip_enddate'],
+                    'trip_status'=>0,
                 ]
             ])->getBody();
 
