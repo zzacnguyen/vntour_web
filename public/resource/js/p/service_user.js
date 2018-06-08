@@ -134,12 +134,12 @@ function chuyenso(x) {
 }
 
 
-function hover_addevent(x) {
-	// var lam = document.getElementsByClassName("row_service");
-	console.log(x);
-	var lambig;
-	if (x.getAttribute("data-status") == 1) 
-	{
-		alert('dadsd');
-	}
-}
+// function hover_addevent(x) {
+// 	// var lam = document.getElementsByClassName("row_service");
+// 	console.log(x);
+// 	var lambig;
+// 	if (x.getAttribute("data-status") == 1) 
+// 	{
+// 		alert('dadsd');
+// 	}
+// }

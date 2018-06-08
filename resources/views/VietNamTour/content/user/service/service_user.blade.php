@@ -212,7 +212,7 @@
 							  <tbody>
 							  	@if($data != null)
 							  		@foreach($data as $val)
-							    	<tr class="row_service" data-status="{{$val->sv_status}}" onmouseover="hover_addevent(this)" style="position: relative;">
+							    	<tr class="row_service" data-status="{{$val->sv_status}}" style="position: relative;">
 								      	<td>{{$val->sv_name}}</td>
 								      	<td class="text-center">
 													@if($val->sv_type == 1)

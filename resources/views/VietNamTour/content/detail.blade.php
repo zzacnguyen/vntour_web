@@ -352,7 +352,7 @@
 					</div>
 				</div>
 				<div class="col-md-5" style="padding-left: 0;">
-					<div class="hotel-detail-right">
+					<div class="hotel-detail-right" style="position: relative;">
 						<div class="title" style="text-align: left; margin-bottom: 5px;">
 							<div id="latitude" data-lati="{{$sv->pl_latitude}}" data-lon="{{$sv->pl_longitude}}"></div>
 							<input type="hidden" value="{{$sv->sv_id}}" id="id_sv">
@@ -457,6 +457,14 @@
 								</ul>
 							</div>
 						</div>
+					</div>
+					<div id="event-id" class="event" style="position: absolute;top:-13px;right: -12px;">
+						{{-- <div class="" style="position: relative;">
+							<img src="public/resource/images/icons/evenr.png" alt="" style="height: 92px;width: 165px;">
+							<div class="" style="position: absolute;top: 32px;right: 39px;color: white;transform: rotate(-5deg);font-size: 12px;width: 104px">
+								<h6 class="text-center" style="font-size: 12px;overflow: hidden;width: 100px;height: 27px;">Hội chợ...</h6>
+							</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>

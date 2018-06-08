@@ -536,10 +536,20 @@ function create_element_notification(arr) {
 	var cuatui = new String();
 
 	//check seen event
-	if (arr.seen == null) { cuatui += '<li>'; }
-	else{ cuatui += '<li class="li-seen">'; }
+	if (arr.seen == null) { cuatui += '<li class="li-seen">'; }
+	else{ cuatui += '<li>'; }
 
-	cuatui += '<a class="a-content-nofi">';
+	// check
+	if (parseInt(arr.type_id) == 1) 
+	{
+		cuatui += '<a onclick="seen_event_u('+ arr.id_event +','+ arr.sv_types+','+ arr.id_sv +')" class="a-content-nofi">';
+	}
+	else{
+		cuatui += '<a class="a-content-nofi">';
+	}
+		
+
+
 	cuatui += '<div class="anh-nofi">';
 	// check type event display image
 	if (parseInt(arr.type_id) == 2) 
@@ -557,4 +567,23 @@ function create_element_notification(arr) {
 	cuatui += '</a>';
 	cuatui += '</li>';
 	return cuatui;
+}
+
+
+function seen_event_u(id_event,type,id_sv) {
+	$.ajax({
+		url: 'seen-event-user',
+		type: 'POST',
+		data: {id_events:id_event}
+	})
+	.done(function (data) {
+		console.log(data);
+		location.href = 'detail/id='+ id_sv +'&type=' + type;
+	})
+	.fail(function () {
+		return 0;
+	})
+	.always(function() {
+    	location.href = 'detail/id='+ id_sv +'&type=' + type;
+  	});
 }

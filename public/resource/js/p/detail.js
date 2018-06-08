@@ -3,7 +3,7 @@ $(document).ready(function () {
 	check_rating();
 	paginate_rating();
 	deleteRating(); 
-	// deleteRatingUser()
+	load_event();
 })
 
 
@@ -291,4 +291,25 @@ function deleteRatingUser() {
 		}
 	}
 		
+}
+
+function load_event() {
+	var id = $('#id_sv').val();
+	$.ajax({
+	   type: "GET",
+	   url: 'http://localhost/vntour_api/load-event-sv/' + id,
+	   dataType: 'Json'
+	}).done(function (data) {
+		// console.log(data);
+		if (data.length > 0){
+			var lam = new String();
+			lam += '<div class="" style="position: relative;">';
+			lam += '<img src="public/resource/images/icons/evenr.png" alt="" style="height: 92px;width: 165px;">';
+			lam += '<div class="" style="position: absolute;top: 32px;right: 39px;color: white;transform: rotate(-5deg);font-size: 12px;width: 104px">';
+			lam += '<h6 class="text-center" style="font-size: 12px;overflow: hidden;">'+ data[0].event_name +'</h6>';
+			lam += '</div>';
+			lam += '</div>';
+			$('#event-id').html(lam);
+		}
+	})
 }

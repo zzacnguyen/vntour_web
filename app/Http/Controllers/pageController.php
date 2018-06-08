@@ -760,7 +760,7 @@ class pageController extends Controller
 
     }
 
-
+// ===================== EVENT ==================
     public function load_event_user(){
         if (Session::has('user_info')) {
             $user_id = Session::get('user_info')->id;
@@ -777,6 +777,34 @@ class pageController extends Controller
         {
             $data_event = array('event_public' => 0, 'event_user' => 0, 'error' => 'login');
             return json_encode($data_event);
+        }
+    }
+
+    public function seen_event_user(Request $request){
+        if (Session::has('user_info')) {
+            $user_id = Session::get('user_info')->id;
+            // return $user_id;
+            $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://localhost/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+            $response = $client->request('POST', 'seen-event-user', [
+                    'form_params' => [
+                        'user_id' => $user_id,
+                        'id_events' => $request->id_events
+                    ]
+                ])->getBody()->getContents();
+
+            if ($response == 1) {
+                return 1;
+            }
+            else{return -1;}
+        }
+        else
+        {
+            return -1;
         }
     }
 }
