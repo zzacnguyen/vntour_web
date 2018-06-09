@@ -124,6 +124,80 @@
 		#edit-lichtrinh:hover{
 			background-color: #00a680;
 		}
+
+		input[type=checkbox]
+		{
+		  /* Double-sized Checkboxes */
+		  -ms-transform: scale(2); /* IE */
+		  -moz-transform: scale(2); /* FF */
+		  -webkit-transform: scale(2); /* Safari and Chrome */
+		  -o-transform: scale(2); /* Opera */
+		  padding: 10px;
+		}
+		.containers {
+		  display: block;
+		  position: relative;
+		  padding-left: 35px;
+		  margin-bottom: 12px;
+		  cursor: pointer;
+		  font-size: 22px;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		/* Hide the browser's default checkbox */
+		.containers input {
+		  position: absolute;
+		  opacity: 0;
+		  cursor: pointer;
+		}
+
+		/* Create a custom checkbox */
+		.containers .checkmark {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  height: 25px;
+		  width: 25px;
+		  background-color: #eee;
+		}
+
+		/* On mouse-over, add a grey background color */
+		.containers:hover input ~ .checkmark {
+		  background-color: #ccc;
+		}
+
+		/* When the checkbox is checked, add a blue background */
+		.containers input:checked ~ .checkmark {
+		  background-color: #2196F3;
+		}
+
+		/* Create the checkmark/indicator (hidden when not checked) */
+		.containers .checkmark:after {
+		  content: "";
+		  position: absolute;
+		  display: none;
+		}
+
+		/* Show the checkmark when checked */
+		.containers input:checked ~ .checkmark:after {
+		  display: block;
+		}
+
+		/* Style the checkmark/indicator */
+		.containers .checkmark:after {
+		  left: 9px;
+		  top: 5px;
+		  width: 5px;
+		  height: 10px;
+		  border: solid white;
+		  border-width: 0 3px 3px 0;
+		  -webkit-transform: rotate(45deg);
+		  -ms-transform: rotate(45deg);
+		  transform: rotate(45deg);
+		}
 	</style>
 <body>
 	<section class="content-info">
@@ -378,7 +452,19 @@
 											</div>
 												
 										</div>
-										
+										<div class=" float-left" style="display: inline-flex;">
+											<label>Hoàn thành:</label>
+											@if($l->trip_status == 0)
+												<input type="checkbox" class="" style="width: 10px;margin-left: 16px;margin-top: 7px;" >
+											@else
+												<input type="checkbox" class="" style="width: 10px;margin-left: 16px;margin-top: 7px;" checked>
+											@endif
+											
+											{{-- <span class="containers">
+											  <input type="checkbox" checked="checked">
+											  <span class="checkmark"></span>
+											</span> --}}
+										</div>	
 									@endforeach
 										<div id="edit-lichtrinh" style="position:absolute;top:-8px;right:50%;display:none;">
 											<span id="btn-capnhat" data-toggle="modal" data-target="#modal-edit" title="Chỉnh sửa lịch trình" class="edit-lichtrinh" style="cursor: pointer;padding: 5px 10px;background-color: #ddd;display: block">
@@ -426,6 +512,8 @@
 											  </div>
 											</div>
 										</div>
+										
+											
 								@endif
 								
 									

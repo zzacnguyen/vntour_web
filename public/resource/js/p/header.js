@@ -28,9 +28,10 @@ $(document).ready(function () {
 		})
 		load_unseen_notification();
 
-		// setInterval(function () {
-		// 	load_unseen_notification();
-		// },5000);
+		setInterval(function () {
+			load_unseen_notification();
+		},5000);
+		click_old_event();
 })
 
 function gantentinh() {
@@ -508,11 +509,26 @@ function load_unseen_notification(view = '') {
 
 			if (parseInt(data.event_user) != 0 && data.event_user.length > 0) 
 			{
+				var num_event = 0;
 				for (var i = 0; i < data.event_user.length; i++) {
 					dichvu += create_element_notification(data.event_user[i]);
+					if (data.event_user[i].event_status == 0) 
+					{
+						num_event++;
+					}
 				}
 				$('#ul-dichvu').html(dichvu);
-				// $('#athongbao').addClass("bell");
+				if (num_event > 0) 
+				{
+					var text = 'Của tôi ('+ num_event +')';
+					$('#btn-dichvu').text(text);
+					$('#btn-dichvu').css('color','red');
+					$('#athongbao').addClass("bell");
+				}
+				else{
+					$('#btn-dichvu').css('color','black');
+				}
+				
 			}
 			else{
 				$('#ul-dichvu').html('');
@@ -536,23 +552,23 @@ function create_element_notification(arr) {
 	var cuatui = new String();
 
 	//check seen event
-	if (arr.seen == null) { cuatui += '<li class="li-seen">'; }
-	else{ cuatui += '<li>'; }
+	if (arr.seen == null) { cuatui += '<li class="li-seen" data-id="'+ arr.id_event +'">'; }
+	else{ cuatui += '<li data-id="'+ arr.id_event +'">'; }
 
 	// check
-	if (parseInt(arr.type_id) == 1) 
+	if (parseInt(arr.event_user) == 0) 
 	{
 		cuatui += '<a onclick="seen_event_u('+ arr.id_event +','+ arr.sv_types+','+ arr.id_sv +')" class="a-content-nofi">';
 	}
 	else{
-		cuatui += '<a class="a-content-nofi">';
+		cuatui += '<a id="" onclick="seen_event_user('+ arr.id_event +')" data-toggle="modal" data-target="#detail_event_Modal" class="a-content-nofi">';
 	}
 		
 
 
 	cuatui += '<div class="anh-nofi">';
 	// check type event display image
-	if (parseInt(arr.type_id) == 2) 
+	if (parseInt(arr.event_user) == 1) 
 	{
 		cuatui += '<img src="http://localhost/vntour_web/public/resource/images/icons/active-user.png" alt="" class="img-icon-nofi">';
 	}
@@ -562,11 +578,20 @@ function create_element_notification(arr) {
 		
 	cuatui += '</div>';
 	cuatui += '<p class="text-nofi">';
-	cuatui += arr.event_name;
+	if (parseInt(arr.event_user) == 0) 
+	{
+		cuatui += '<b>' + arr.event_name + '</b>' + '<br>Từ: ' + arr.event_start + ' đến ' + arr.event_end;
+	}
+	else
+	{
+		cuatui += arr.event_name;
+	}
+		
 	cuatui += '</p>';
 	cuatui += '</a>';
 	cuatui += '</li>';
 	return cuatui;
+	
 }
 
 
@@ -586,4 +611,41 @@ function seen_event_u(id_event,type,id_sv) {
 	.always(function() {
     	location.href = 'detail/id='+ id_sv +'&type=' + type;
   	});
+}
+
+function seen_event_user(id_event) {
+	$.ajax({
+		url: 'seen-event-user',
+		type: 'POST',
+		data: {id_events:id_event}
+	})
+	.done(function (data) {
+		console.log(data);
+	})
+	.fail(function () {
+		return 0;
+	})
+}
+
+
+function click_old_event() {
+	$('#btn-dichvu').click(function () {
+		$('#btn-dichvu').text('Của tôi');
+		var arr_id = document.querySelectorAll('#ul-dichvu li');
+		console.log(arr_id);
+		for (var i = 0; i < arr_id.length; i++) {
+			console.log(arr_id[i].getAttribute("data-id"));
+			$.ajax({
+				url: 'http://localhost/vntour_api/old-event-user/' + arr_id[i].getAttribute("data-id"),
+				type: 'GET'
+			})
+			.done(function (data) {
+				console.log(data);
+			})
+			.fail(function () {
+				return 0;
+			})
+		}
+		load_unseen_notification();
+	})
 }

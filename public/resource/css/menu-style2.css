@@ -1108,3 +1108,31 @@ button#btnsearch-xs{
   43% { transform: rotate(0); }
   100% { transform: rotate(0); }
 }
+
+
+// =========================== modal detail event =========================
+
+#detail_event_Modal .modal-content .modal-body{
+	/*position: relative;*/
+	min-height: 100px;
+}
+
+#detail_event_Modal .modal-content .modal-body .text-center.header-detail-event{
+	/*position: absolute;*/
+	font-size: 70px !important;
+	color: #00a680;
+}
+
+#detail_event_Modal .modal-content .modal-body .content-event {
+  
+}
+#detail_event_Modal .modal-content .modal-body .content-event ul{
+  
+}
+#detail_event_Modal .modal-content .modal-body .content-event ul li{
+	border: none;
+}
+
+#detail_event_Modal .modal-content .modal-body .content-event .btn-nofi a{
+
+}

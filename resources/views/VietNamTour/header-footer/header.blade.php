@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="public/resource/css/menu-style2.css">
 	<link rel="stylesheet" href="public/resource/css/select2.min.css">
 	<link rel="stylesheet" href="public/resource/css/font-awesome.css">
+	{{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous"> --}}
 	<style>
 		h4{
 			border-bottom: none !important;
@@ -440,9 +441,9 @@
 												
 											<div class="content-nofi" id="noidungthongbao">
 												<div class="tab" style="padding: 5px;border-bottom: 1px solid #ddd;">
-												  <button class="btn-thongbao tablinks active active-nofi" onclick="openCity(event, 'cuatoi')">Của tôi
+												  <button class="btn-thongbao tablinks active active-nofi" onclick="openCity(event, 'cuatoi')">Dịch vụ
 												  </button>
-												  <button class="btn-thongbao tablinks" onclick="openCity(event, 'dichvu')">Dịch vụ
+												  <button id="btn-dichvu" class="btn-thongbao tablinks" onclick="openCity(event, 'dichvu')">Của tôi
 												  </button>
 												</div>
 
@@ -475,6 +476,43 @@
 															</a>
 														</li> --}}
 													</ul>
+													<div id="detail_event_Modal" class="modal fade" role="dialog">
+													  <div class="modal-dialog">
+
+													    <!-- Modal content-->
+													    <div class="modal-content" style="margin-top: 100px;border-radius: 0;">
+
+													      {{-- <div class="modal-header">
+													        <button type="button" class="close" data-dismiss="modal">&times;</button>
+													        <h4 class="modal-title">Modal Header</h4>
+													      </div> --}}
+
+													      <div class="modal-body" style="min-height: 300px;">
+													        <div class="text-center header-detail-event">
+													        	<i class="far fa-check-circle"></i>
+													        	<h5>Vai trò doanh nghiệp đã được duyệt</h5>
+													        </div><br>
+													        <div class="content-event col-md-12 push-md-3">
+													        	<div class="">
+													        		<h6 style="text-align: left;">Chức năng mới</h6>
+													        	</div>
+													        	<ul>
+													        		<li>Quản lý địa điểm</li>
+													        		<li>Quản lý dịch vụ</li>
+													        	</ul>
+													        	<div class="text-center btn-nofi">
+													        		<a href="">Đăng nhập lại để trải nghiệm ngay</a>
+													        	</div>
+													        </div>
+													      </div>
+
+													      {{-- <div class="modal-footer">
+													        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+													      </div> --}}
+													    </div>
+
+													  </div>
+													</div>
 												</div>
 													
 											</div>
