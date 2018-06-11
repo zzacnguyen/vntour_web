@@ -5,7 +5,10 @@
 <link rel="stylesheet" href="public/resource/css/hotel.css">
 <link rel="stylesheet" href="public/resource/css/font-awesome.min.css">
 <link rel="stylesheet" href="public/resource/css/hotel-detail.css">
-<link rel="stylesheet" href="public/resource/css/lightbox.min.css">
+
+{{-- <link rel="stylesheet" href="public/resource/lightbox/lightbox.css"> --}}
+<link rel="stylesheet" href="public/resource/lightbox/css/glightbox.css">
+<link rel="stylesheet" href="public/resource/lightbox/lightbox.css">
 <link rel="stylesheet" href="public/resource/css/detail-tab.css">
 <link rel="stylesheet" href="public/resource/css/chat.css">
 <link rel="stylesheet" href="public/resource/JSsocial/jssocials.css">
@@ -501,29 +504,65 @@
 										</div>
 									</div>
 
-									<div class="tab-pane active" id="tab_default_2">
+									<div class="tab-pane active" id="tab_default_2" style="display: block">
 										<h5 style="font-weight: 700;padding-left: 17px;">Album ảnh</h5>
 										<section class="demo" style="background-color: transparent;">
-											<div class="gallery">
-												<a style="background-color: transparent;" href="public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-12"><img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_banner}}" alt="" title="" /></a>
-
-												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-6">
-													<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
-												</a>
-
-												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-6">
-													<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
-												</a>
-
-												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_banner}}" title="" data-fluidbox class="col-4"><img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_banner}}" alt="" title="" />
-												</a>
-
-												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" title="" data-fluidbox class="col-4"><img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" alt="" title="" />
-												</a>
-
-												<a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" title="" data-fluidbox class="col-4"><img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" alt="" title="" />
-												</a>
-											</div>
+											
+											<div class="gallery-detail" style="padding: 20px;display: inline-block;">
+												<ul class="box-container three-cols">
+											        <li class="box">
+											          <a href="http://localhost/vntour_api/public/resource/images/background.jpg" class="glightbox">
+															<img src="http://localhost/vntour_api/public/resource/images/background.jpg">
+														</a>
+											        </li>
+											        <li class="box">
+											          <a href="http://localhost/vntour_api/public/resource/images/background.jpg" class="glightbox">
+															<img src="http://localhost/vntour_api/public/resource/images/background.jpg" alt="image">
+														</a>
+											        </li>
+											        <li class="box">
+											          <a href="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" class="glightbox manuelin">
+															<img src="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" alt="image">
+														</a>
+											        </li>
+											        <li class="box">
+											          <a href="http://localhost/vntour_api/public/resource/images/background.jpg" class="glightbox">
+															<img src="http://localhost/vntour_api/public/resource/images/background.jpg">
+														</a>
+											        </li>
+											        <li class="box">
+											          <a href="http://localhost/vntour_api/public/resource/images/background.jpg" class="glightbox">
+															<img src="http://localhost/vntour_api/public/resource/images/background.jpg" alt="image">
+														</a>
+											        </li>
+											        <li class="box">
+											          <a href="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" class="glightbox manuelin">
+															<img src="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" alt="image">
+														</a>
+											        </li>
+											        <li class="box">
+											          <a href="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" class="glightbox manuelin">
+															<img src="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" alt="image">
+														</a>
+											        </li>
+											        <li class="box">
+											          <a href="http://localhost/vntour_api/public/resource/images/background.jpg" class="glightbox">
+															<img src="http://localhost/vntour_api/public/resource/images/background.jpg" alt="image">
+														</a>
+											        </li>
+											        <li class="box">
+											          <a href="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" class="glightbox manuelin">
+															<img src="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" alt="image">
+														</a>
+											        </li>
+											        <li class="box last-gallery">
+											        	{{-- <div class="num_img">+80</div> --}}
+											          <a href="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" class="glightbox manuelin" id="num_gallery">
+															<img src="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" alt="image">
+														</a>
+											        </li>
+										      	</ul>
+										    </div>
 										</section>
 									</div>
 
@@ -1224,17 +1263,22 @@
 
 
 
-	<script src="public/resource/js/lightbox.min.js"></script>
+	{{-- <script src="public/resource/js/lightbox.min.js"></script> --}}
 	<script src="public/resource/js/detail-hotel.js"></script>
 	<script src="public/resource/js/menu-style.js"></script>
 
 	{{-- <script src="resource/js/menu-style.js"></script> --}}
-	<script src="public/resource/lightbox/jquery.fluidbox.min.js"></script>
+	{{-- <script src="public/resource/lightbox/jquery.fluidbox.min.js"></script> --}}
+	<script src="public/resource/lightbox/js/glightbox.min.js"></script>
 
 	<script>
-		$(function () {			
-			$('.demo a[data-fluidbox]').fluidbox();
-		});
+		var lightbox = GLightbox({
+	    	'selector': 'glightbox',
+	    	openEffect: 'zoomIn',
+	    	slideEffect: 'slide',
+	    	loopAtEnd: false
+	    });
+
 	</script>
 
 	<script type="text/javascript">
@@ -1346,7 +1390,12 @@
 		    }
 		    
 		  });
-		  
+
+		  $('.gallery-detail #num_gallery::before').css(
+		        {
+		            'content': '+12'
+		        }
+		    )
 		  
 		});
 

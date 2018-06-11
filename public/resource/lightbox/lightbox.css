@@ -1,0 +1,124 @@
+.gallery-detail{
+	
+}
+
+.gallery-detail ul.box-container{
+	list-style-type: none;
+	padding: 0;
+	display: block;
+}
+
+
+.gallery-detail ul li{
+	height: 100px;
+	width: 100px;
+	float: left;
+	padding: 5px;
+}
+
+.gallery-detail ul li:nth-child(1){
+	display: table-cell;
+	height: 300px;
+	width: 75%;
+	float: left;
+	padding: 5px;
+}
+
+.gallery-detail ul li:nth-child(2){
+	display: table-cell;
+	height: 150px;
+	width: 25%;
+	float: left;
+	padding: 5px;
+}
+
+.gallery-detail ul li:nth-child(3){
+	display: table-cell;
+	height: 150px;
+	width: 25%;
+	float: left;
+	padding: 5px;
+}
+
+.gallery-detail ul li:nth-child(n+4){
+	display: table-cell;
+	height: 200px;
+	width: 50%;
+	float: left;
+	padding: 5px;
+}
+
+.gallery-detail ul li:nth-child(6){
+	display: table-cell;
+	height: 300px;
+	width: 100%;
+	float: left;
+	padding: 5px;
+}
+
+.gallery-detail ul li:nth-child(n + 7){
+	display: table-cell;
+	height: 150px;
+	width: 25%;
+	float: left;
+	padding: 5px;
+}
+
+.gallery-detail ul li.last-gallery{
+	position: relative;
+}
+
+.gallery-detail ul li.last-gallery a{
+	/*position: absolute;*/
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+}
+
+.gallery-detail ul li.last-gallery a::after{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #000000b3;
+}
+
+.gallery-detail ul li.last-gallery a::before{
+	content: "+80";
+	position: absolute;
+	top: 25%;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	color: white;
+	z-index: 1000;
+	font-size: 40px;
+	text-align: center;
+}
+
+.gallery-detail ul li a{
+	
+}
+
+.gallery-detail ul li a img{
+	height: 100%;
+	width: 100%;
+}
+
+@media (max-width: 546px){
+	.gallery-detail ul li:nth-child(n+4){
+		display: none;
+	}
+	.gallery-detail ul li:nth-child(n+1){
+		display: none;
+	}
+	.gallery-detail ul li:nth-child(n + 7){
+		display: table-cell;
+		height: 150px;
+		width: 100%;
+		float: left;
+		padding: 5px;
+	}
+}
