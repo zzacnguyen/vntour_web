@@ -1030,7 +1030,7 @@
 					    				<span>{{$s->name_city}}</span>
 					    			</div>
 						    		<a href="detail/id={{$s->id_service}}&type={{$s->sv_type}}" title="{{$s->name}}">
-						    			<img style="height: 214px" src="public/thumbnails/{{$s->image}}" alt="">
+						    			<img style="height: 214px" src="public/thumbnails/{{$s->image}}" onerror="this.src='public/images/default.jpg'" alt="">
 						    		</a>
 						    	</div>
 						    	<div class="grid-content">

@@ -5,6 +5,7 @@ $(document).ready(function () {
 	deleteRating(); 
 	load_event();
 	// load_gallery();
+	// check_url_image();
 })
 
 
@@ -380,4 +381,14 @@ function load_gallery() {
 		}
 	});
 
+}
+
+function check_url_image(img) {
+	var image_url = lam.getAttribute('src');
+	$.get(image_url)
+    .done(function() { 
+
+    }).fail(function() { 
+       img.setAttribute('src','public/images/default.jpg')
+    })
 }

@@ -142,7 +142,7 @@
 					<nav class="navbar navbar-expand-lg navbar-light menuTop" id="id-menu-Top">
 						<a class="navbar-brand" href="{{route('/')}}" style="color: #304FFE !important;"><!-- VietNamTour -->
 							{{-- <img src="https://static.tacdn.com/img2/langs/vi/branding/rebrand/TA_logo_primary_v2.svg" alt="" style="height: 50px; width: 160px;"> --}}
-							<img src="public/resource/images/logo-vnt.png" alt="" style="height: 50px; width: 160px;">
+							<img src="public/resource/images/logo-vnt-2.png" alt="" style="height: 50px; width: 160px;padding-top: 7px;padding-bottom: 4px;">
 						</a>
 						<!-- <button class="btn btn-success navbar-toggler" id="btnsearch-xs"><i class="fas fa-search"></i></button> -->
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="color: white; background-color: white;">
