@@ -84,7 +84,7 @@ function checkLogin() {
 					var chon = confirm('Bạn cần đăng nhập để Like dịch vụ này');
 					if (chon) 
 					{
-						window.location.assign('loginW');
+						$('#form-login').submit();
 					}
 				});
 					   

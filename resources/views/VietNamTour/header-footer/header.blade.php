@@ -11,8 +11,6 @@
 	<script type="text/javascript" src="public/resource/js/fontawesome-all.min.js"></script>
 	<script type="text/javascript" src="public/resource/js/fa-regular.js"></script>
 	
-	<link rel="stylesheet" href="public/resource/lightbox/styles.min.css">
-	<link rel="stylesheet" href="public/resource/lightbox/fluidbox.min.css">
 
 	<link rel="stylesheet" href="public/resource/css/bootstrap.css">
 	<link rel="stylesheet" href="public/resource/css/owl.carousel.min.css">

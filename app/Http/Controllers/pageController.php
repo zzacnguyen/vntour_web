@@ -47,11 +47,13 @@ class pageController extends Controller
         return view('VietNamTour.content.gioithieu');
     }
 
-    public function getlogin()
+    public function getlogin(Request $request)
     {
-        $id = null;
-        $type = null;
-    	return view('VietNamTour.login',compact('$id','type'));
+        if ($request->isremember) {
+            // echo $request->isremember;
+            Session()->put('isremember',$request->isremember);
+        }
+        return view('VietNamTour.login');
     }
 
     public function getlogin_Detail($id, $type)
@@ -148,13 +150,11 @@ class pageController extends Controller
 
         $response = $client->request('POST', 'loginpost', [
         
-                    
                     'form_params' => [
                         'username' => $username,
                         'password' => $password
                     ]
                 ]);
-
 
         $lam = json_decode($response->getBody()->getContents());
         // dd($lam);
@@ -162,7 +162,13 @@ class pageController extends Controller
             Session()->put('login',true);  
             Session()->put('user_info',$lam);
             // dd(Session::get('user_info')) ;
-            return redirect('/');
+            if (Session::has('isremember')) {
+                return redirect(Session::get('isremember'));
+            }
+            else{
+                return redirect('/');
+            }
+                
         }
         else{
             return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);

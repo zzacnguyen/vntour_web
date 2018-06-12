@@ -359,6 +359,7 @@
 						<div class="title" style="text-align: left; margin-bottom: 5px;">
 							<div id="latitude" data-lati="{{$sv->pl_latitude}}" data-lon="{{$sv->pl_longitude}}"></div>
 							<input type="hidden" value="{{$sv->sv_id}}" id="id_sv">
+							<input type="hidden" value="{{$sv->sv_types}}" id="id_sv_types">
 							<p>
 								<a>{{$sv->city_name}} <i class="fas fa-angle-double-right"></i></a> 
 								<a>{{$sv->district_name}} <i class="fas fa-angle-double-right"></i></a> 
@@ -402,12 +403,13 @@
 									</a>
 								</div>
 								<div class="col-md-4 text-center">
+
 									<a id="like01">
 										<i id="color-like" class="fas fa-heart"></i>
 										<span id="num_like">{{$sv->sv_like}}</span>
 									</a>
 								</div>
-								{{-- <div class="col-md-4 text-center">
+								<div class="col-md-4 text-center">
 									<div id="fb-root"></div>
 									<script>(function(d, s, id) {
 									  var js, fjs = d.getElementsByTagName(s)[0];
@@ -419,7 +421,7 @@
 									</script>
 
 									<div class="fb-share-button" data-href="https://www.facebook.com/lam.themen" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Flam.themen&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-								</div> --}}
+								</div>
 							</div>
 							<br>	
 							<div class="service" style="margin-top: 5px;">
@@ -621,8 +623,12 @@
 										                </div>
 										                @if($checklogin == "null")
 										                	<div class="ibox-content">
-										                		Bạn cần đăng nhập để đánh giá dịch vụ này - 
-										                		<a class="btn  btn-sm btn-outline-primary" href="login_detail/{{$sv->sv_id}}&{{$sv->sv_types}}">Đăng nhập ngay</a>
+										                		<form action="{{route('loginW')}}" method="GET" id="form-login">
+										                			<input type="hidden" value="detail/id={{$sv->sv_id}}&type={{$sv->sv_types}}" name="isremember">
+										                			Bạn cần đăng nhập để đánh giá dịch vụ này - 
+											                		<button class="btn btn-sm btn-outline-primary" type="submit">Đăng nhập ngay</button>
+										                		</form>
+											                		
 										                	</div>
 										                @else
 										                	@if($checkUserRating == null)
