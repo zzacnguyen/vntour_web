@@ -58,7 +58,12 @@ class publicDetail extends Controller
     		return view('VietNamTour.404');
     	}
     	else{
-    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating','quyen_u'));
+            $gallery = $this::load_gallery($id);
+            // foreach ($gallery as $value) {
+            //     $gallerys = $value;
+            // }
+            // return $gallery->data;
+    		return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating','quyen_u','gallery'));
     	}
     }
 
@@ -590,6 +595,18 @@ class publicDetail extends Controller
             'timeout'  => 5.0,
         ]);
         $response = $client->request('GET',"delete-rating/{$id}");
+
+        return json_decode($response->getBody()->getContents());
+    }
+
+    public function load_gallery($id){
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://localhost/vntour_api/',
+            // You can set any number of default request options.
+            'timeout'  => 5.0,
+        ]);
+        $response = $client->request('GET',"get-gallery/{$id}");
 
         return json_decode($response->getBody()->getContents());
     }

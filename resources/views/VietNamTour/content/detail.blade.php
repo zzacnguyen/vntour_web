@@ -407,7 +407,7 @@
 										<span id="num_like">{{$sv->sv_like}}</span>
 									</a>
 								</div>
-								<div class="col-md-4 text-center">
+								{{-- <div class="col-md-4 text-center">
 									<div id="fb-root"></div>
 									<script>(function(d, s, id) {
 									  var js, fjs = d.getElementsByTagName(s)[0];
@@ -419,7 +419,7 @@
 									</script>
 
 									<div class="fb-share-button" data-href="https://www.facebook.com/lam.themen" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Flam.themen&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-								</div>
+								</div> --}}
 							</div>
 							<br>	
 							<div class="service" style="margin-top: 5px;">
@@ -504,28 +504,74 @@
 										</div>
 									</div>
 
-									<div class="tab-pane active" id="tab_default_2" style="display: block">
+									<div class="tab-pane active" id="tab_default_2">
 										<h5 style="font-weight: 700;padding-left: 17px;">Album ảnh</h5>
 										<section class="demo" style="background-color: transparent;">
 											
 											<div class="gallery-detail" style="padding: 20px;display: inline-block;">
-												<ul class="box-container three-cols">
+												<ul class="box-container three-cols" id="box-gallery">
 											        <li class="box">
-											          <a href="http://localhost/vntour_api/public/resource/images/background.jpg" class="glightbox">
-															<img src="http://localhost/vntour_api/public/resource/images/background.jpg">
+											          <a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_banner}}" class="glightbox">
+															<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_banner}}">
 														</a>
 											        </li>
 											        <li class="box">
-											          <a href="http://localhost/vntour_api/public/resource/images/background.jpg" class="glightbox">
-															<img src="http://localhost/vntour_api/public/resource/images/background.jpg" alt="image">
+											          <a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" class="glightbox">
+															<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_1}}" alt="image">
 														</a>
 											        </li>
 											        <li class="box">
-											          <a href="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" class="glightbox manuelin">
-															<img src="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" alt="image">
+											          <a href="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" class="glightbox manuelin">
+															<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image_details_2}}" alt="image">
 														</a>
 											        </li>
-											        <li class="box">
+													@php
+														if($gallery->data != null){
+															$lam = 0;
+															$path = 'http://localhost/vntour_api/';
+															// $path_img = path->data + p_img;
+												        	foreach($gallery->data as $g){
+												        		if ($lam < 6) {
+												        			echo '<li class="box">';
+																	echo "<a href='".$path.$g."' class='glightbox'>";
+																	echo "<img src=".$path.$g.">";
+																	echo '</a>';
+																	echo '</li>';
+												        		}
+												        		elseif ($lam == 6) {
+												        			if (count($gallery->data) > 6) {
+												        				$num = count($gallery->data) - 6;
+												        				echo '<li class="box last-gallery">';
+																		echo "<a data-num='+".$num."' href='".$path.$g."' class='glightbox'>";
+																		echo "<img src=".$path.$g.">";
+																		echo '</a>';
+																		echo '</li>';
+												        			}
+												        			else
+												        			{
+												        				echo '<li class="box">';
+																		echo "<a href='".$path.$g."' class='glightbox'>";
+																		echo "<img src=".$path.$g.">";
+																		echo '</a>';
+																		echo '</li>';
+												        			}
+													        			
+												        		}
+												        		else{
+												        			echo '<li class="box" style="display:none;">';
+																	echo "<a href='".$path.$g."' class='glightbox'>";
+																	echo "<img src=".$path.$g.">";
+																	echo '</a>';
+																	echo '</li>';
+												        		}
+												        		$lam++;
+												        	}
+														}
+												        	
+												        
+													@endphp
+												        
+											        {{-- <li class="box">
 											          <a href="http://localhost/vntour_api/public/resource/images/background.jpg" class="glightbox">
 															<img src="http://localhost/vntour_api/public/resource/images/background.jpg">
 														</a>
@@ -556,11 +602,10 @@
 														</a>
 											        </li>
 											        <li class="box last-gallery">
-											        	{{-- <div class="num_img">+80</div> --}}
-											          <a href="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" class="glightbox manuelin" id="num_gallery">
+											          <a data-num="80" href="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" class="glightbox manuelin" id="num_gallery">
 															<img src="http://localhost/vntour_api/public/resource/images/Vietnam_Banner.jpg" alt="image">
 														</a>
-											        </li>
+											        </li> --}}
 										      	</ul>
 										    </div>
 										</section>
@@ -1032,7 +1077,7 @@
 						type: 'GET'
 					})
 					.done(function (response) {
-						console.log(response);
+						// console.log(response);
 						response.forEach(function (data){
 							var mang = {
 								lat: parseFloat(data.lat), 
@@ -1267,8 +1312,6 @@
 	<script src="public/resource/js/detail-hotel.js"></script>
 	<script src="public/resource/js/menu-style.js"></script>
 
-	{{-- <script src="resource/js/menu-style.js"></script> --}}
-	{{-- <script src="public/resource/lightbox/jquery.fluidbox.min.js"></script> --}}
 	<script src="public/resource/lightbox/js/glightbox.min.js"></script>
 
 	<script>

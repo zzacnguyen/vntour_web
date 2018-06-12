@@ -4,6 +4,7 @@ $(document).ready(function () {
 	paginate_rating();
 	deleteRating(); 
 	load_event();
+	// load_gallery();
 })
 
 
@@ -312,4 +313,71 @@ function load_event() {
 			$('#event-id').html(lam);
 		}
 	})
+}
+
+function load_gallery() {
+	var path = 'http://localhost/vntour_api/';
+	var id_sv = $('#id_sv').val();
+	$.ajax({
+		url: path + 'get-gallery/' + id_sv,
+		type: "GET",  
+		success: function(response)   
+		{
+			console.log(response.data);
+			var dem = 0;
+			var sum = 0;
+			var lam = new String();
+			var lamBig = new String();
+			if (response.data != null) 
+			{
+				for (var i = 0; i < response.data.length; i++) {
+					console.log(response.data[i]);
+					var p_img = response.data[i];
+					var data_img = response.data[i].slice(p_img.lastIndexOf("/") + 1, p_img.length);
+					var path_img = path + p_img;
+					console.log(data_img);
+					if (i < 6) 
+					{
+						lam += '<li class="box">';
+						lam += '<a href="'+ path_img +'" class="glightbox">';
+						lam += '<img src="'+ path_img +'">';
+						lam += '</a>';
+						lam += '</li>';
+					}
+					else if(i == 6){
+						
+						if (response.data.length > 6) 
+						{
+							sum = response.data.length - 6;
+							lam += '<li class="box last-gallery">';
+							lam += '<a data-num="+'+ sum +'" href="'+ path_img +'" class="glightbox a-last">';
+							lam += '<img src="'+ path_img +'">';
+							lam += '</a>';
+							lam += '</li>';
+						}
+						else
+						{
+							lam += '<li class="box">';
+							lam += '<a href="'+ path_img +'" class="glightbox">';
+							lam += '<img src="'+ path_img +'">';
+							lam += '</a>';
+							lam += '</li>';
+						}
+					}
+					else{
+						lam += '<li class="box" style="display:none;">';
+						lam += '<a href="'+ path_img +'" class="glightbox">';
+						lam += '<img src="'+ path_img +'">';
+						lam += '</a>';
+						lam += '</li>';
+					}
+				}
+					
+				$('#box-gallery').append(lam);
+				// if (sum > 0) {$('#num_gallery').addClass('a-last');}
+				// $('#list-detail-gallery').html(lamBig);
+			}
+		}
+	});
+
 }
