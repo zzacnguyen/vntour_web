@@ -411,36 +411,43 @@ function validate_form_event() {
 
 function sub_form_event() {
 	$('#btn-event').click(function () {
-		if (validate_form_event() == 1) 
-		{
-			var form = $('#form-event')[0];
-			var id_user = $('#id_user').val();
-			var id_sv = $('#id_sv').val();
-	        var data = new FormData(form);
-	        data.append("user_id", id_user);
-	        data.append("service_id", id_sv);
-	        data.append("event_status", 0);
-	        data.append("type_id", 1);
-			$.ajax({
-				url: 'http://localhost/vntour_api/add-event',
-				type: "POST",  
-				data: data, 
-				dataType: 'Json',
-				contentType: false,       
-				cache: false,            
-				processData:false,        
-				success: function(data)
-				{
-					if (data.success == true) 
+		var status = parseInt($('input[name=status]').val());
+		if (status == 1) {
+			if (validate_form_event() == 1) 
+			{
+				var form = $('#form-event')[0];
+				var id_user = $('#id_user').val();
+				var id_sv = $('#id_sv').val();
+		        var data = new FormData(form);
+		        data.append("user_id", id_user);
+		        data.append("service_id", id_sv);
+		        data.append("event_status", 0);
+		        data.append("type_id", 1);
+				$.ajax({
+					url: 'http://localhost/vntour_api/add-event',
+					type: "POST",  
+					data: data, 
+					dataType: 'Json',
+					contentType: false,       
+					cache: false,            
+					processData:false,        
+					success: function(data)
 					{
-						$('#form-event')[0].reset();
-						$('#eventModal').modal('hide');
+						if (data.success == true) 
+						{
+							$('#form-event')[0].reset();
+							$('#eventModal').modal('hide');
+						}
+						else{
+							alert('Lỗi không thêm được sự kiện!');
+						}
 					}
-					else{
-						alert('Lỗi không thêm được sự kiện!');
-					}
-				}
-			});
+				});
+			}
 		}
+		else{
+			alert('Dịch vụ của bạn chưa được duyệt - không thể thêm sự kiện cho dịch vụ này');
+		}
+			
 	})
 }

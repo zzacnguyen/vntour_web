@@ -59,7 +59,8 @@
 .list-image-sv ul{
 	list-style-type: none;
     padding: 0;
-    padding-top: 8px;
+    margin: 5px;
+    margin-top: 10px;
     max-height: 450px;
     overflow-x: hidden;
     overflow-y: auto;

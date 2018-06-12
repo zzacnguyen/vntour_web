@@ -187,6 +187,9 @@
 						<div class="content-event">
 							<button class="btn btn-primary" style="border-radius:0;" data-toggle="modal" data-target="#eventModal">Thêm sự kiện mới
 							</button>
+							{{-- <div class="">
+								<h6>Dịch vụ của bạn chưa được duyệt</h6>
+							</div> --}}
 						</div>
 					</div>
 					<!-- Modal -->
@@ -202,7 +205,12 @@
 						      	</div>
 
 								<div class="modal-body">
-									
+									<div class="form-group row">
+										@if($data->sv_status != 1)
+											<label class="col-md-12" style="color: red;">Dịch vụ của bạn chưa được DUYỆT không thể thêm sự kiện</label>
+											<label class="col-md-12" style="color: red;">Dịch vụ của bạn sẽ được xét duyệt sớm nhất có thể</label>
+										@endif
+									</div>
 									<div class="form-group row">
 									    <label style="font-size: 13px;" class="col-sm-3 col-form-label"><b>Tên sự kiện</b></label>
 									    <div class="col-sm-9">
@@ -231,7 +239,11 @@
 								</div>
 
 					      		<div class="modal-footer" style="height:53px">
-							        <button type="button" id="btn-event" class="btn btn-primary button-them-event">Thêm sự kiện</button>
+					      			@if($data->sv_status == 1)
+					      				<button type="button" id="btn-event" class="btn btn-primary button-them-event">Thêm sự kiện</button>
+					      			@else
+										<button disabled type="button" id="btn-event" class="btn btn-primary button-them-event">Thêm sự kiện</button>
+					      			@endif
 				      			</div>
 					    	</form>
 						      
@@ -434,11 +446,14 @@
 
 							    <!-- Modal content-->
 							    <div class="modal-content" style="margin-top:100px;border-radius: 0px;">
-							      {{-- <div class="modal-header">
-							        <h4 class="modal-title">Tạo album ảnh</h4>
+							      <div class="modal-header" style="padding: 6px 1rem;">
+							        <h5 class="modal-title">Tải ảnh lên</h5>
 							        <button type="button" class="close" data-dismiss="modal">&times;</button>
-							      </div> --}}
+							      </div>
 							      <div class="modal-body row" style="">
+							      	{{-- <div class="col-md-12">
+							      		<button type="button" class="close" data-dismiss="modal">&times;</button>
+							      	</div> --}}
 							        <div class="col-md-6">
 										<!-- Fine Uploader DOM Element
 									    ====================================================================== -->
@@ -482,9 +497,9 @@
 											
 									</div>
 							      </div>
-							      <div class="modal-footer" style="height: 50px;">
+							      {{-- <div class="modal-footer" style="height: 50px;">
 							        <button style="height: 36px;width: 100px;padding: 0;border-radius: 0px !important;background-color: #e84545;margin-bottom: 0;" type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-							      </div>
+							      </div> --}}
 							    </div>
 
 							  </div>
@@ -492,7 +507,7 @@
 
 							<div class="list-gallery col-md-12">
 								<ul id="list-gallery">
-									<li class="nho">
+									{{-- <li class="nho">
 										<img src="http://vntourweb/vntour_api/public/thumbnails/gallery/1/2_zing.jpg" alt="">
 									</li>
 
@@ -513,7 +528,7 @@
 										<div class="con-end-gallery">
 											<div class="con-end-gallery-num">+80</div>
 										</div>
-									</li>
+									</li> --}}
 								</ul>
 								
 							</div>
