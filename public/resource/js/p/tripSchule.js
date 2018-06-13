@@ -5,6 +5,7 @@ $(document).ready(function () {
 	add_lichtrinh();
 	add_chitiet_lichtrinh();
 	edit_lichtrinh();
+	check_schedule();
 })
 
 
@@ -538,6 +539,45 @@ function edit_lichtrinh() {
 							
 	})	
 		
+}
+
+function check_schedule() {
+	$('#check_schedule').change(function () {
+		var check = document.getElementById('check_schedule').checked;
+		if (!check) 
+		{
+			var conf = confirm('Lịch trình này đã được hoàn thành trước đó, bạn có chắc chắn muốn thay đổi trạng thái lịch trình này?');
+			post_checkSchedule(0);
+		}
+		else{
+			var conf = confirm('Bạn có chắc chắn muốn đánh dấu hoàn thành lịch trình này?');
+			if (conf) 
+			{
+				post_checkSchedule(1);
+			}
+		}
+	})
+}
+
+function post_checkSchedule(status) {
+	var id = $('input[name=id_lt]').val();
+	$.ajax({
+	   type: 'POST',
+	   data: {id:id,status_lt:status},
+	   url: 'success-schedule'
+	}).done(function (data) {
+		kq =  parseInt(data);
+		if (kq == 1) 
+		{
+			alert('Cập nhật thành công trạng thái lịch trình');
+		}
+		else{
+			alert('Lỗi không cập nhật được trạng thái lịch trình');
+		}
+	})
+	.fail(function () {
+		alert('Lỗi không cập nhật được trạng thái lịch trình');
+	})
 }
 
 

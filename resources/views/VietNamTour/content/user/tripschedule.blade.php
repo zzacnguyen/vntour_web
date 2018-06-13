@@ -455,9 +455,9 @@
 										<div class=" float-left" style="display: inline-flex;">
 											<label>Hoàn thành:</label>
 											@if($l->trip_status == 0)
-												<input type="checkbox" class="" style="width: 10px;margin-left: 16px;margin-top: 7px;" >
+												<input type="checkbox" class="" style="width: 10px;margin-left: 16px;margin-top: 7px;"  id="check_schedule">
 											@else
-												<input type="checkbox" class="" style="width: 10px;margin-left: 16px;margin-top: 7px;" checked>
+												<input type="checkbox" class="" style="width: 10px;margin-left: 16px;margin-top: 7px;" checked id="check_schedule">
 											@endif
 											
 											{{-- <span class="containers">
@@ -521,7 +521,7 @@
 							<br>
 							<table class="table table-bordered" style="font-size: 12px;">
 							  <thead>
-							    <tr>
+							    <tr style="font-size: 15px;">
 							      <th scope="col" class="text-center" style="width: 40%;">Tên địa điểm</th>
 							      <th scope="col" class="text-center">Ảnh min họa</th>
 							      <th scope="col" class="text-center" style="width: 10%;">

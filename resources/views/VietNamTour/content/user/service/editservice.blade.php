@@ -218,16 +218,28 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-2">
-					<div class="" style="background-color: white; padding: 5px;position: fixed;top: 100px;">
-						<h6 class="text-center">Thêm sự kiện</h6>
-						<div class="content-event">
-							<button class="btn btn-primary" style="border-radius:0;" data-toggle="modal" data-target="#eventModal">Thêm sự kiện mới
-							</button>
-							{{-- <div class="">
-								<h6>Dịch vụ của bạn chưa được duyệt</h6>
-							</div> --}}
+					<div class="" style="padding: 5px;padding-top: 0;position: fixed;top: 100px;">
+						<div class="" style="background-color: white;padding: 5px;">
+							<h6 class="text-center">Sự kiện đang diễn ra</h6>
+							<div class="content-event">
+								<ul style="padding: 0;list-style-type: none;">
+									<li style="color: red;"><marquee class="text"><i>Sinh nhật cafe Chất</i></marquee></li>
+								</ul>
+							</div>
+						</div>
+						<br>
+						<div class="" style="background-color: white;padding: 5px;">
+							<h6 class="text-center">Thêm sự kiện</h6>
+							<div class="content-event">
+								<button class="btn btn-primary" style="border-radius:0;" data-toggle="modal" data-target="#eventModal">Thêm sự kiện mới
+								</button>
+								{{-- <div class="">
+									<h6>Dịch vụ của bạn chưa được duyệt</h6>
+								</div> --}}
+							</div>
 						</div>
 					</div>
+						
 					<!-- Modal -->
 					<div id="eventModal" class="modal fade" role="dialog">
 					  <div class="modal-dialog">

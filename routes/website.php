@@ -215,6 +215,7 @@ Route::get('schedule-search-ervices/{key}','accountController@searchServices_All
 Route::get('save-trip-schedule-array','accountController@saveTripSchedule_array');
 
 Route::get('delete-schedule-detail/{id}','accountController@delete_Schedule_detail');
+Route::post('success-schedule','accountController@success_schedule');
 
 
 

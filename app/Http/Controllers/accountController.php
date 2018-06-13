@@ -1200,8 +1200,34 @@ class accountController extends Controller
                 'timeout'  => 20.0,
             ]);
 
-        $response = $client->request('GET',"search-services-all-lichtrinh/{$keyword}");
+        $response = $client->request('GET',"success-schedule");
         return json_decode($response->getBody()->getContents());
+    }
+
+    public function success_schedule(Request $request)
+    {
+        if (Session::has('user_info')) {
+            $user_id = Session::get('user_info')->id;
+            $client = new Client([
+                    // Base URI is used with relative requests
+                    'base_uri' => 'http://localhost/vntour_api/',
+                    // You can set any number of default request options.
+                    'timeout'  => 20.0,
+                ]);
+
+            $response = $client->request('POST',"success-schedule",[
+                'form_params' => [
+                    'id' => $request->id,
+                    'user_id'=> $user_id,
+                    'status_lt' => $request->status_lt
+                ]
+            ])->getBody();
+            return json_decode($response->getContents());
+        }
+        else{
+            return -1;
+        }
+            
     }
 
 
