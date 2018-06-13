@@ -176,6 +176,42 @@
 	    background-color: #007bff !important;
 	    margin-bottom: 0 !important;
 	}
+
+	#btn-add-type-event:hover{
+		background-color: #00a680;
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	.content-add-type{
+		background-color: white;
+	    top: 0;
+	    left: 54px;
+	    z-index: 10000;
+	    width: 300px;
+	    padding: 20px;
+	}
+
+	.content-add-type::before{
+		content: "";
+	    position: absolute;
+	    display: block;
+	    top: 7px;
+	    left: -18px;
+	    height: 0;
+	    width: 0;
+	    border-top: 12px solid transparent;
+	    border-bottom: 12px solid transparent;
+	    border-right: 18px solid #757575;
+	}
+
+	.content-add-type::after{
+		content: "";
+	}
+
+	button{
+		border-radius: 0 !important;
+	}
 </style>
 
 <section class="addplace">
@@ -212,11 +248,48 @@
 										@endif
 									</div>
 									<div class="form-group row">
-									    <label style="font-size: 13px;" class="col-sm-3 col-form-label"><b>Tên sự kiện</b></label>
+									    <label style="font-size: 13px;padding-right: 0;" class="col-sm-3 col-form-label"><b>Tên sự kiện</b></label>
 									    <div class="col-sm-9">
 									      <input type="text" class="form-control" name="event_name" style="border-radius: 0;">
 									    </div>
 									    <p class="text-danger col-sm-12" id="null_eventname" style="display: none;">Sự kiện phải có độ dài từ 5-100 ký tự</p>
+								  	</div>
+
+								  	<div class="form-group row">
+									    <label style="font-size: 13px;padding-right: 0;" class="col-sm-3 col-form-label"><b>Loại hình sự kiện</b></label>
+									    <div class="col-sm-9">
+									        <div class="input-group">
+											  <select class="custom-select" id="" name="type_event" style="border-radius: 0;">
+											    <option selected value="0">Chọn loại hình sự kiện</option>
+											    @if($type_event != null)
+											    	@foreach($type_event as $e)
+											    		<option value="{{$e->id}}">{{$e->type_name}}</option>
+											    	@endforeach
+											    @endif
+											  </select>
+											  <div class="input-group-append" style="position: relative;">
+											    <button class="btn btn-outline-secondary" type="button" style="border-radius: 0;font-size: 14px;font-weight: 500;" id="btn-add-type-event">+</button>
+											    <div class="content-add-type" id="content-add-type" style="position: absolute;display: none;">
+											    	<form id="form-add-type">
+											    		<div class="form-group row" style="margin: 0;padding: 0">
+											    			<h6><b>Thêm mới loại hình sự kiện</b></h6>
+											    		</div>
+											    		<div class="form-group row">
+														    <label style="font-size: 13px;padding-right: 0;" class="col-sm-12 col-form-label"><b>Tên loại hình</b></label>
+														    <div class="col-sm-12">
+														      <input type="text" class="form-control" name="type_name" style="border-radius: 0;width: 100%;">
+														    </div>
+														    <p class="text-danger col-sm-12" id="null_type_name" style="display: none;">Sự kiện phải có độ dài từ 5-50 ký tự</p>
+													  	</div>
+													  	<button class="btn btn-primary float-right" id="btn-add-type" type="button">
+													  		Thêm mới
+													  	</button>
+											    	</form>
+											    </div>
+											  </div>
+											</div>
+									    </div>
+									    <p class="text-danger col-sm-12" id="null_type" style="display: none;">Vui lòng chọn loại hình sự kiện</p>
 								  	</div>
 
 								  	<div class="form-group row">
@@ -240,9 +313,9 @@
 
 					      		<div class="modal-footer" style="height:53px">
 					      			@if($data->sv_status == 1)
-					      				<button type="button" id="btn-event" class="btn btn-primary button-them-event">Thêm sự kiện</button>
+					      				<button type="button" id="btn-event" class="btn btn-primary button-them-event" style="background-color: #00a680">Thêm sự kiện</button>
 					      			@else
-										<button disabled type="button" id="btn-event" class="btn btn-primary button-them-event">Thêm sự kiện</button>
+										<button disabled type="button" id="btn-event" class="btn btn-primary button-them-event" style="background-color: #00a680">Thêm sự kiện</button>
 					      			@endif
 				      			</div>
 					    	</form>
@@ -354,12 +427,12 @@
 						<h6 style="color: #bd1717;">Thời gian hoạt động</h6>
 						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 						<div class="input-text">
-							<label>Giờ đóng cửa</label>
+							<label>Giờ mở cửa</label>
 							<input type="time" name="time_begin" value="{{$data->sv_open}}" >
 							
 						</div>
 						<div class="input-text">
-							<label>Giờ mở cửa</label>
+							<label>Giờ đóng cửa</label>
 							
 							<input name="time_end" type="time" value="{{$data->sv_close}}">
 						</div>
@@ -433,14 +506,20 @@
 						<div class="input-text row">
 							<div class="col-md-12" style="font-weight: bold;font-size: 14px;margin-bottom: 5px;">Thêm nhiều ảnh hơn</div>
 							<div class="col-md-4">
-								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-upload" style="border-radius: 0px;background-color: cornflowerblue;font-size: 14px;padding: 5px 20px;">
+								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-upload" style="border-radius: 0px;background-color: cornflowerblue;font-size: 14px;padding: 5px 20px;" id="btn-modal-upload-image">
 									<i class="fa fa-upload" aria-hidden="true"></i> Thêm ảnh
 								</button>
 							</div>
 							<div class="col-md-8" style="padding-left: 0px;">
-								<label style="width: 100%;padding-left: 0; font-size: 12px;">Dịch vụ của bạn đã được kích hoạt. Có thể thêm nhiều ảnh hơn cho dịch vụ</label>
-							</div>
+								@if($data->sv_status == 1)
+									<label style="width: 100%;padding-left: 0; font-size: 12px;">Dịch vụ của bạn đã được duyệt. Có thể thêm nhiều ảnh hơn cho dịch vụ</label>
+								@else
+									<label style="width: 100%;padding-left: 0; font-size: 12px;">Dịch vụ chưa được duyệt - không thể thục hiện chức năng này</label>
+								@endif
 								
+							</div>
+
+							@if($data->sv_status == 1)
 							<div id="modal-upload" class="modal fade" role="dialog">
 							  <div class="modal-dialog modal-lg-gallery">
 
@@ -532,6 +611,74 @@
 								</ul>
 								
 							</div>
+
+							<script type="text/template" id="qq-template-manual-trigger">
+						        <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Kéo ảnh vào đây">
+						            <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+						                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+						            </div>
+						            <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+						                <span class="qq-upload-drop-area-text-selector"></span>
+						            </div>
+						            <div class="buttons" style="width: auto;">
+						                <div class="qq-upload-button-selector qq-upload-button">
+						                    <div style="font-size: 14px;">Chọn ảnh</div>
+						                </div>
+						                <button type="button" id="trigger-upload" class="btn btn-primary">
+						                    <i class="icon-upload icon-white"></i> Tải lên
+						                </button>
+						            </div>
+						            <span class="qq-drop-processing-selector qq-drop-processing">
+						                <span>Processing dropped files...</span>
+						                <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
+						            </span>
+						            <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
+						                <li>
+						                    <div class="qq-progress-bar-container-selector">
+						                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+						                    </div>
+						                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+						                    <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
+						                    <span class="qq-upload-file-selector qq-upload-file"></span>
+						                    <span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>
+						                    <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+						                    <span class="qq-upload-size-selector qq-upload-size"></span>
+						                    <button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel" title="Xóa ảnh">
+						                    	<i class="fa fa-trash" aria-hidden="true"></i>
+						                    </button>
+						                    <button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Thủ lại</button>
+						                    <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>
+						                    <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+						                </li>
+						            </ul>
+
+						            <dialog class="qq-alert-dialog-selector">
+						                <div class="qq-dialog-message-selector"></div>
+						                <div class="qq-dialog-buttons">
+						                    <button type="button" class="qq-cancel-button-selector">Đóng</button>
+						                </div>
+						            </dialog>
+
+						            <dialog class="qq-confirm-dialog-selector">
+						                <div class="qq-dialog-message-selector"></div>
+						                <div class="qq-dialog-buttons">
+						                    <button type="button" class="qq-cancel-button-selector">No</button>
+						                    <button type="button" class="qq-ok-button-selector">Yes</button>
+						                </div>
+						            </dialog>
+
+						            <dialog class="qq-prompt-dialog-selector">
+						                <div class="qq-dialog-message-selector"></div>
+						                <input type="text">
+						                <div class="qq-dialog-buttons">
+						                    <button type="button" class="qq-cancel-button-selector">Cancel</button>
+						                    <button type="button" class="qq-ok-button-selector">Ok</button>
+						                </div>
+						            </dialog>
+						        </div>
+						    </script>
+							@endif
+							
 							
 						</div><br>
 
@@ -673,71 +820,7 @@
 		// });
 			
 	</script>
-    <script type="text/template" id="qq-template-manual-trigger">
-        <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Kéo ảnh vào đây">
-            <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
-                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
-            </div>
-            <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
-                <span class="qq-upload-drop-area-text-selector"></span>
-            </div>
-            <div class="buttons" style="width: auto;">
-                <div class="qq-upload-button-selector qq-upload-button">
-                    <div style="font-size: 14px;">Chọn ảnh</div>
-                </div>
-                <button type="button" id="trigger-upload" class="btn btn-primary">
-                    <i class="icon-upload icon-white"></i> Tải lên
-                </button>
-            </div>
-            <span class="qq-drop-processing-selector qq-drop-processing">
-                <span>Processing dropped files...</span>
-                <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
-            </span>
-            <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
-                <li>
-                    <div class="qq-progress-bar-container-selector">
-                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
-                    </div>
-                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
-                    <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
-                    <span class="qq-upload-file-selector qq-upload-file"></span>
-                    <span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>
-                    <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
-                    <span class="qq-upload-size-selector qq-upload-size"></span>
-                    <button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel" title="Xóa ảnh">
-                    	<i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Thủ lại</button>
-                    <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>
-                    <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
-                </li>
-            </ul>
-
-            <dialog class="qq-alert-dialog-selector">
-                <div class="qq-dialog-message-selector"></div>
-                <div class="qq-dialog-buttons">
-                    <button type="button" class="qq-cancel-button-selector">Đóng</button>
-                </div>
-            </dialog>
-
-            <dialog class="qq-confirm-dialog-selector">
-                <div class="qq-dialog-message-selector"></div>
-                <div class="qq-dialog-buttons">
-                    <button type="button" class="qq-cancel-button-selector">No</button>
-                    <button type="button" class="qq-ok-button-selector">Yes</button>
-                </div>
-            </dialog>
-
-            <dialog class="qq-prompt-dialog-selector">
-                <div class="qq-dialog-message-selector"></div>
-                <input type="text">
-                <div class="qq-dialog-buttons">
-                    <button type="button" class="qq-cancel-button-selector">Cancel</button>
-                    <button type="button" class="qq-ok-button-selector">Ok</button>
-                </div>
-            </dialog>
-        </div>
-    </script>
+    
 
     <style>
         #trigger-upload {
@@ -815,7 +898,12 @@
 	// In your Javascript (external .js resource or <script> tag)
 	$(document).ready(function() {
 	    $('.js-example-basic-single').select2();
+	    $('#btn-add-type-event').click(function () {
+			$('#content-add-type').toggle("slow");
+		})
 	});
+
+		
 </script>
 
 {{-- <script src="public/resource/js/p/addplace.js"></script> --}}

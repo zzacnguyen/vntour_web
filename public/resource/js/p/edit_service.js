@@ -4,8 +4,16 @@ $(document).ready(function () {
 	// autoloadPlace();
 	submitform();
 	sub_form_event();
+	set_btn_upload();
+	add_type_event();
 })
 
+function set_btn_upload() {
+	if (parseInt($('input[name=status]').val()) != 1) 
+	{
+		$('#btn-modal-upload-image').css('disabled','disabled');
+	}
+}
 
 //load quan theo tinh thanh pho
 function load_district() {
@@ -370,37 +378,45 @@ function validate_form_event() {
 	var name = $('input[name=event_name]').val();
 	var start = $('input[name=event_start]').val();
 	var end = $('input[name=event_end]').val();
+	var type_event = $('select[name=type_event]').val();
 
 	if (name.length > 5) 
 	{
 		$('#null_eventname').css('display','none');
-		if (start.length > 0 && 100) 
+		if (type_event > 0) 
 		{
-			$('#null_eventstart').css('display','none');
-			var date1 = new Date(start);
-			var today = new Date();
-			var dd = today.getDate();
-			if (date1 > today) 
+			$('#null_type').css('display','none');
+			if (start.length > 0 && 100) 
 			{
-				$('#min_eventstart').css('display','none');
-				var date2 = new Date(end);
-				if (date2 > date1) 
+				$('#null_eventstart').css('display','none');
+				var date1 = new Date(start);
+				var today = new Date();
+				var dd = today.getDate();
+				if (date1 > today) 
 				{
-					return 1;
+					$('#min_eventstart').css('display','none');
+					var date2 = new Date(end);
+					if (date2 > date1) 
+					{
+						return 1;
+					}
+					else{
+						$('#event_end').css('display','block');
+						return -1;
+					}
 				}
 				else{
-					$('#event_end').css('display','block');
+					$('#min_eventstart').css('display','block');
 					return -1;
 				}
 			}
 			else{
-				$('#min_eventstart').css('display','block');
+				$('#null_eventstart').css('display','block');
 				return -1;
 			}
 		}
 		else{
-			$('#null_eventstart').css('display','block');
-			return -1;
+			$('#null_type').css('display','block');
 		}
 	}
 	else{
@@ -450,4 +466,37 @@ function sub_form_event() {
 		}
 			
 	})
+}
+
+function add_type_event() {
+	$('#btn-add-type').click(function () {
+		var name_type = $('input[name=type_name]').val();
+		if (name_type.length > 5 && name_type.length < 50) 
+		{
+			$.ajax({
+				url: 'http://localhost/vntour_api/post-type-event',
+				type: "POST",  
+				data: {type_name: name_type, type_status: 1}
+			})
+			.done(function (data) {
+				if (parseInt(data) == 1) 
+				{
+					$('#form-add-type')[0].reset();
+					$('#content-add-type').toggle("slow");
+				}
+				else{
+					alert('Lỗi không thêm mới được loại hình sự kiện');
+				}
+			})
+			.fail(function (data) {
+				alert('Lỗi không thêm mới được loại hình sự kiện');
+			})
+		}
+		else{
+			$('#null_type_name').css('font-size','14px');
+			$('#null_type_name').css('display','block');
+
+		}
+	})
+		
 }

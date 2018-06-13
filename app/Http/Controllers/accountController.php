@@ -785,7 +785,6 @@ class accountController extends Controller
         $user_id = Session::get('user_info')->id;
         // dd(Session::get('user_info'));
         $response = $client->request('GET',"get-service-user/{$user_id}")->getBody()->getContents();
-
         $data=json_decode($response);
         // dd($data);
         $flag = 1;
@@ -814,7 +813,10 @@ class accountController extends Controller
             foreach ($city as $value) {
                 $city = $value;
             }
-            return view('VietNamTour.content.user.service.editservice',compact('data','city','user_id'));
+
+            $response_type_event = $client->request('GET',"type-event")->getBody()->getContents();
+            $type_event = json_decode($response_type_event);
+            return view('VietNamTour.content.user.service.editservice',compact('data','city','user_id','type_event'));
         }
             
     }
