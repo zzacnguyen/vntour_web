@@ -198,9 +198,12 @@
 		  -ms-transform: rotate(45deg);
 		  transform: rotate(45deg);
 		}
+		button:hover{
+			font-weight: 500;
+		}
 	</style>
 <body>
-	<section class="content-info">
+	<section class="content-info" style="width: 100%;height: 100%;">
 		<div class="container">
 			<div class="content">
 				<div class="row">
@@ -418,8 +421,8 @@
 									  
 						      </div>
 						      <div class="modal-footer">
-						        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 11px 12px !important;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        <button type="button" id="addLichtrinh" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 11px 40px;margin:0;">Thêm mới</button>
+						        <button type="button" style="margin-bottom: 0;background: #de5959;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+							        <button type="button" id="addLichtrinh" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 6px 40px;margin:0;">Thêm mới</button>
 						      </div>
 					      	</form>
 						    </div>
@@ -503,8 +506,8 @@
 													@endforeach
 											        
 											      <div class="modal-footer">
-											        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 11px 12px !important;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-							        				<button type="button" id="editlichtrinh" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 11px 40px;margin:0;">Cập nhật</button>
+											        <button type="button" style="margin-bottom: 0;background: #de5959;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+							        				<button type="button" id="editlichtrinh" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 6px 40px;margin:0;">Cập nhật</button>
 											      </div>
 										        </form>
 											    </div>
@@ -636,8 +639,8 @@
 							      		</div>
 							      </div>
 							      <div class="modal-footer" style="height: 55px;">
-							        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 11px 12px !important;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        <button id="btnthemchitiet" type="button" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 11px 40px;margin:0;">Thêm
+							        <button type="button" style="margin-bottom: 0;background: #de5959;border-radius: 0px !important;border:1px solid #de5959; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+							        <button id="btnthemchitiet" type="button" class="btn btn-primary" style="border:1px solid #00a680;background-color: #00a680 !important; border-radius: 0px;padding: 6px 40px;margin:0;">Thêm
 							        </button>
 							      </div>
 						      	</form>

@@ -1,5 +1,5 @@
 <!-- ================== FOOTER ============= -->
-<footer style="bottom: 0;padding-top: 20px; padding-bottom: 20px;">
+<footer style="bottom: 0;padding-top: 20px;padding-bottom: 20px;">
 		
 		<div class="container">
 			<div class="col--md-6">Liên hệ: 0939812940</div>
