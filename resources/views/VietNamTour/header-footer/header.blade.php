@@ -220,7 +220,7 @@
 								<li class="nav-item" style="position: relative;">
 									<form class="form-inline form-search" action="{{route('search')}}">
 										<label class="boloc"><i class="fas fa-search"></i></label>
-										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Search" aria-label="Search" onekeyup="search()" name="keyword" required>
+										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Nhập tên dịch vụ để tìm kiếm..." aria-label="Search" onekeyup="search()" name="keyword" required>
 										<button class="btn btn-outline-success btn-search" id="btnsearchNhe" style="background-color: #00a680;">Tìm kiếm</button>
 										<input type="text" hidden="hidden" value="all" name="city">
 										<input type="text" hidden="hidden" value="all" name="type">

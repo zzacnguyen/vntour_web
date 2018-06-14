@@ -1203,7 +1203,7 @@ class accountController extends Controller
                 'timeout'  => 20.0,
             ]);
 
-        $response = $client->request('GET',"success-schedule");
+        $response = $client->request('GET',"search-services-all-lichtrinh/{$keyword}");
         return json_decode($response->getBody()->getContents());
     }
 

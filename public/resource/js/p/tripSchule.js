@@ -272,7 +272,7 @@ function add_lichtrinh() {
 								}
 								else
 								{
-									alert('Thêm thành công Lịch trình');
+									alert('Thêm thành công Lịch trình2');
 									location.reload();
 								}
 							})
@@ -547,13 +547,13 @@ function check_schedule() {
 		if (!check) 
 		{
 			var conf = confirm('Lịch trình này đã được hoàn thành trước đó, bạn có chắc chắn muốn thay đổi trạng thái lịch trình này?');
-			post_checkSchedule(0);
+			// post_checkSchedule(0);
 		}
 		else{
 			var conf = confirm('Bạn có chắc chắn muốn đánh dấu hoàn thành lịch trình này?');
 			if (conf) 
 			{
-				post_checkSchedule(1);
+				// post_checkSchedule(1);
 			}
 		}
 	})
