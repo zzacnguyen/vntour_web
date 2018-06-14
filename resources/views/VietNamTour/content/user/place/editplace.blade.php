@@ -82,13 +82,43 @@
         font-weight: 500;
         padding: 6px 12px;
       }
+      
+      #list-sv li{
+        
+      }
+      #list-sv li:hover a{
+        color: #00a680;
+        background-color: #ddd;
+      }
+      #list-sv li a{
+        text-decoration: none;
+        color: black;
+        display: inline-block;
+        width: 100%;
+        padding-left: 5px;
+      }
+      .sv-spam::before{
+      }
     </style>
 
 
 <section class="addplace">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2"></div>
+			<div class="col-md-2" style="">
+        <div class="" style="background-color: white;margin-top: 10px;">
+          <h5 class="text-center" style="padding-top: 5px;margin-bottom: 0;">Dịch vụ</h5>
+          <div class="div" style="height: 1px; width: 96%; background-color: red; margin-bottom: 10px;margin: 3px;padding-left: 3px;padding-right: 3px;display: block">
+            
+          </div>
+          <ul style="list-style-type: none;padding: 5px;" id="list-sv">
+           <li><a href=""><i class="far fa-check-circle"></i> Cafe Hoàng Phát</a></li>
+           {{-- <li><a href=""><i class="far fa-times-circle"></i> Caffe chats</a></li> --}}
+           {{-- <li><a href="" class="sv-spam"><i class="fas fa-exclamation-circle"></i> Caffe chats</a></li> --}}
+          </ul>
+        </div>
+          
+      </div>
 			<div class="col-md-8 content" style="margin-top: 10px;">
 				<h4 style="font-size: 25px; font-weight: bold;" class="text-center">Cập nhật địa điểm</h4>
 				<h5 style="color: red;">Thông tin cơ bản</h5>
@@ -195,14 +225,16 @@
 
 
 
-					<button type="button" class="btn btn-success col-md-12" id="btneditplace" style="margin-top: 20px;">
+					<button type="button" class="btn btn-success col-md-12" id="btneditplace" style="margin-top: 20px;border-radius: 0;background-color: #00a680;border:1px solid #00a680;margin-bottom: 15px;display: inline-block;">
 						Cập nhật địa điểm
 					</button>
 
 				</form>
 
 			</div>
-			<div class="col-md-2"></div>
+			<div class="col-md-2" style="position: fixed;top:110px;right: 78px;">
+        <img src="public/resource/images/icons/active-user.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Đã duyệt">   
+      </div>
 		</div>
 	</div>
 </section>

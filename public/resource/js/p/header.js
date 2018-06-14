@@ -481,18 +481,6 @@ function load_unseen_notification(view = '') {
 				for (var i = 0; i < data.event_public.length; i++) {
 					cuatui += create_element_notification(data.event_public[i]);
 					var status = parseInt(data.event_public[i].event_status);
-					if (status == 1) 
-					{
-
-					}
-					else if(status == 2)
-					{
-
-					}
-					else if(status == 0)
-					{
-
-					}
 				}
 				$('#ul-cuatoi').html(cuatui);
 			}
@@ -560,8 +548,11 @@ function create_element_notification(arr) {
 	{
 		cuatui += '<a onclick="seen_event_u('+ arr.id_event +','+ arr.sv_types+','+ arr.id_sv +')" class="a-content-nofi">';
 	}
+	else if(parseInt(arr.event_user) == 1){
+		cuatui += '<a id="" onclick="seen_event_user('+ arr.id_event +',2)" data-toggle="modal" data-target="#detail_event_Modal" class="a-content-nofi">';
+	}
 	else{
-		cuatui += '<a id="" onclick="seen_event_user('+ arr.id_event +')" data-toggle="modal" data-target="#detail_event_Modal" class="a-content-nofi">';
+		cuatui += '<a id="" onclick="seen_event_user('+ arr.id_event +',1,'+ arr.id_sv +')" class="a-content-nofi">';
 	}
 		
 
@@ -570,7 +561,14 @@ function create_element_notification(arr) {
 	// check type event display image
 	if (parseInt(arr.event_user) == 1) 
 	{
-		cuatui += '<img src="http://localhost/vntour_web/public/resource/images/icons/active-user.png" alt="" class="img-icon-nofi">';
+		cuatui += '<img src="http://localhost/vntour_web/public/resource/images/icons/active_user.png" alt="" class="img-icon-nofi" style="height:40px;width:40px;">';
+	}
+	else if (parseInt(arr.event_user) == 2) 
+	{
+		cuatui += '<img src="http://localhost/vntour_web/public/resource/images/icons/active-user.png" alt="" class="img-icon-nofi" style="height:40px;width:40px;">';
+	}
+	else if(arr.event_user == -1 || parseInt(arr.event_user) == 3){
+		cuatui += '<img src="http://localhost/vntour_web/public/resource/images/icons/spam.png" alt="" class="img-icon-nofi" style="height:40px;width:40px;">';
 	}
 	else{
 		cuatui += '<img src="http://localhost/vntour_api/public/thumbnails/'+ image +'" alt="" class="img-icon-nofi">';
@@ -613,14 +611,31 @@ function seen_event_u(id_event,type,id_sv) {
   	});
 }
 
-function seen_event_user(id_event) {
+function seen_event_user(id_event, type, id_sv_pla = '') {
 	$.ajax({
 		url: 'seen-event-user',
 		type: 'POST',
 		data: {id_events:id_event}
 	})
 	.done(function (data) {
-		console.log(data);
+		if (type == 1) 
+		{
+			var url_pl = 'edit-place-user/' + id_sv_pla;
+			var url_sv = 'server-user-edit/' + id_sv_pla;
+			$.ajax({
+				url: url_pl,
+				type:'GET'
+			})
+			.done(function () {
+				location.href = url_pl;
+			})
+			.fail(function () {
+				location.href = url_sv;
+			})
+		}
+		else{
+			console.log(data);
+		}
 	})
 	.fail(function () {
 		return 0;
@@ -648,4 +663,34 @@ function click_old_event() {
 		}
 		load_unseen_notification();
 	})
+}
+
+
+function checkUrl(url) {
+    var request = false;
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest;
+    } else if (window.ActiveXObject) {
+        request = new ActiveXObject("Microsoft.XMLHttp");
+    }
+
+    if (request) {
+        request.open("GET", url);
+        if (request.status == 200) { return true; }
+    }
+
+    return false;
+}
+
+function urlExists(url){
+	$.ajax({
+		url: url,
+		type:'GET'
+	})
+	.done(function () {
+		return true;
+	})
+	// .fail(function () {
+	// 	return false;
+	// })
 }

@@ -526,7 +526,7 @@
 								@if($data->sv_status == 1)
 									<label style="width: 100%;padding-left: 0; font-size: 12px;">Dịch vụ của bạn đã được duyệt. Có thể thêm nhiều ảnh hơn cho dịch vụ</label>
 								@else
-									<label style="width: 100%;padding-left: 0; font-size: 12px;">Dịch vụ chưa được duyệt - không thể thục hiện chức năng này</label>
+									<label style="width: 100%;padding-left: 0; font-size: 12px;color: red">Dịch vụ chưa được duyệt - không thể thực hiện chức năng này</label>
 								@endif
 								
 							</div>
@@ -700,7 +700,18 @@
 						</button>
 					</form>
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-md-2" style="position: fixed;top:100px;right: 78px;">
+					<div class="" style="background-color: transparent;">
+						@if($data->sv_status == 1)
+							<img src="public/resource/images/icons/active-user.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Đã duyệt">
+						@elseif($data->sv_status == -1)
+							<img src="public/resource/images/icons/spam.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Bị đánh dấu spam">
+						@else
+							<img src="public/resource/images/icons/unactive.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Chưa duyệt">
+						@endif
+						
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>

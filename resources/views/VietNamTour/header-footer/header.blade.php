@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="public/resource/css/menu-style2.css">
 	<link rel="stylesheet" href="public/resource/css/select2.min.css">
 	<link rel="stylesheet" href="public/resource/css/font-awesome.css">
-	{{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous"> --}}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
 	<style>
 		h4{
 			border-bottom: none !important;
@@ -448,7 +448,7 @@
 												<!-- Tab content -->
 												<div id="cuatoi" class="tabcontent" style="display: block">
 												  	<ul class="body-nofi" id="ul-cuatoi">
-														{{-- <li>
+														<li>
 															<a href="" class="a-content-nofi">
 																<div class="anh-nofi">
 																	<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
@@ -457,7 +457,7 @@
 																	Get code suggestions while writing code directly to your Java IDE.
 																</p>	
 															</a>
-														</li> --}}
+														</li>
 													</ul>
 												</div>
 
