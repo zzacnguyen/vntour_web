@@ -998,7 +998,7 @@ class accountController extends Controller
         ])->getBody();
         if($response=="ok")
         {
-            $this::add_event(2, 'Một địa điểm vừa được thêm mới - Đang chờ duyệt', $user_id);
+            // $this::add_event(2, 'Một địa điểm vừa được thêm mới - Đang chờ duyệt', $user_id);
             return redirect()->route('placeuser')->with(['message'=>'Thêm thành công!']);
         }
         else
@@ -1304,25 +1304,7 @@ class accountController extends Controller
     }
 
     //======================== EVENT ==================
-    public function add_event($type_event,$event_name, $user_id){
-        try 
-        {
-            $dt = Carbon::now();
-            $event = new eventModel();
-            $event->event_name   = $event_name;
-            $event->user_id      = $user_id;
-            $event->event_start  = $dt;
-            $event->event_end    = $dt;
-            $event->event_status = 0;
-            $event->type_id      = 1;
-            $event->event_user   = $type_event;
-            $event->service_id   = 0;
-            $event->save();
-        } catch (Exception $e) {
-            return -1;
-        }
-            
-    }
+    
 
     //======================= EDIT PLACE ==================
     public function get_sv_idplace($id_place)

@@ -203,7 +203,7 @@
 							      <th scope="col" class="text-center" style="width: 60px;">Thông tin</th>
 							      <th scope="col" class="text-center" style="width: 50px;">Đã duyệt</th>
 							      <th scope="col" class="text-center" style="width: 166px;">
-							      	<a class="btn btn-sm btn-primary" {{-- id="myBtn" --}} href="{{route('serviceuser')}}">
+							      	<a class="btn btn-sm btn-primary" {{-- id="myBtn" --}} href="{{route('serviceuser')}}" style="border-radius: 0;background-color: #00a680;border:1px solid #00a680">
 							      		<i class="fas fa-plus"></i> Thêm mới
 									</a>
 							      </th>
@@ -242,10 +242,10 @@
 								      		@endif
 								      	</td>
 								      	<td class="text-center">
-											<a href="{{route('edit_service_user',$val->sv_id)}}" class="btn btn-sm btn-info" title="Chi tiết dịch vụ">
+											<a href="{{route('edit_service_user',$val->sv_id)}}" class="btn btn-sm btn-info" title="Chi tiết dịch vụ" style="border-radius: 0;">
 												<i class="far fa-edit"></i> Chi tiết
 											</a>
-											<a target="blank" href="detail/id={{$val->sv_id}}&type={{$val->sv_type}}" class="btn btn-success btn-sm" title="Trang chi tiết">
+											<a target="blank" href="detail/id={{$val->sv_id}}&type={{$val->sv_type}}" class="btn btn-success btn-sm" title="Trang chi tiết" style="border-radius: 0;">
 												<i class="fas fa-file-alt"></i>
 											</a>
 								      		{{-- <button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button> --}}
