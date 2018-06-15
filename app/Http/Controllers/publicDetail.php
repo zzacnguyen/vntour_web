@@ -118,7 +118,8 @@ class publicDetail extends Controller
             return view('VietNamTour.404');
         }
         else{
-            return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating','quyen_u'));
+            $gallery = $this::load_gallery($id);
+            return view('VietNamTour.content.detail', compact('sv','sv_lancan','rating','checklogin','checkUserRating','sv_lancan_hon','sv_top_view','countRating','quyen_u','gallery'));
         }
     }
 

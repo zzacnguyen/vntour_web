@@ -152,7 +152,7 @@
 						</div>
 						<div class="input-text">
 							<label>Mô tả ngắn</label>
-							<input name="sv_description" type="text" value="">
+							<input name="sv_mota" type="text" value="">
 							<p class="text-danger" id="null_description" style="display: none;">Tên dịch vụ phải có độ dài tối thiểu 5 ký tự</p>
 						</div>
 						<div class="input-text col-md-12" style="padding: 0;margin-bottom: 5px;">

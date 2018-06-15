@@ -106,16 +106,39 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2" style="">
-        <div class="" style="background-color: white;margin-top: 10px;">
+        <div class="list-sv" style="background-color: white;margin-top: 10px;">
           <h5 class="text-center" style="padding-top: 5px;margin-bottom: 0;">Dịch vụ</h5>
           <div class="div" style="height: 1px; width: 96%; background-color: red; margin-bottom: 10px;margin: 3px;padding-left: 3px;padding-right: 3px;display: block">
-            
           </div>
+
           <ul style="list-style-type: none;padding: 5px;" id="list-sv">
-           <li><a href=""><i class="far fa-check-circle"></i> Cafe Hoàng Phát</a></li>
-           {{-- <li><a href=""><i class="far fa-times-circle"></i> Caffe chats</a></li> --}}
-           {{-- <li><a href="" class="sv-spam"><i class="fas fa-exclamation-circle"></i> Caffe chats</a></li> --}}
+            @if($data_sv != null)
+              @foreach($data_sv as $sv)
+                <li>
+                    <a href=""><i class="far fa-check-circle"></i> {{$sv->name}}</a>
+                    <div class="title-sv">
+                        
+                        <div class="content-sv">
+                          <img src="http://localhost/vntour_api/public/thumbnails/details1__2018_04_04_11_51_50.jpg" alt="">
+                          <div class="detail">
+                            <ul style="padding:0;list-style-type: none;">
+                              <li><h6 style="max-width: 184px;">Cafe chất ff sdfdsf dsfds fdfd</h6></li>
+                              <li><i class="fas fa-star"></i> 122</li>
+                              <li><i class="fas fa-eye"></i> 122</li>
+                              <li><i class="fas fa-thumbs-up"></i> 122</li>
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
+               </li>
+              @endforeach
+            @else
+              <li>Chưa có dịch vụ</li>
+            @endif
+              
           </ul>
+
+              
         </div>
           
       </div>

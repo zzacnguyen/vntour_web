@@ -927,8 +927,10 @@ class accountController extends Controller
         ]);
         $response = $client->request('GET',"get-edit-place-user/{$user_id}/{$id}")->getBody();
          $data=json_decode($response);
+
+         $data_sv = $this::get_sv_idplace($id);
          // dd ($data->info);
-         return view('VietNamTour.content.user.place.editplace',compact('data'));
+         return view('VietNamTour.content.user.place.editplace',compact('data','data_sv'));
     }
 
     public function post_edit_place_user(edituserplace $request,$id)
@@ -1301,10 +1303,7 @@ class accountController extends Controller
         return view('VietNamTour.content.user.point',compact('data'));
     }
 
-    public function test_multiple(){
-        return view('VietNamTour.layout');
-    }
-
+    //======================== EVENT ==================
     public function add_event($type_event,$event_name, $user_id){
         try 
         {
@@ -1323,5 +1322,22 @@ class accountController extends Controller
             return -1;
         }
             
+    }
+
+    //======================= EDIT PLACE ==================
+    public function get_sv_idplace($id_place)
+    {
+       $client = new Client([
+                // Base URI is used with relative requests
+                'base_uri' => 'http://localhost/vntour_api/',
+                // You can set any number of default request options.
+                'timeout'  => 20.0,
+            ]);
+
+        $response = $client->request('GET',"get-sv-idplace/{$id_place}");
+        $data = json_decode($response->getBody()->getContents());
+        // return $user_id;
+        // dd($data);
+        return $data;
     }
 }

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	load_district();
 	load_ward();
-	load_gallery();
+	// load_gallery();
 	submitform();
 })
 
@@ -113,6 +113,13 @@ function autoloadPlace() {
 function submitform() {
 	var c = document.getElementsByClassName('item-img');
 	$('#btnaddplace').click(function () {
+		var sv_name = $('input[name=sv_name]').val();
+		var time_begin = $('input[name=time_begin]').val();
+		var time_end = $('input[name=time_end]').val();
+		var sv_lowest_price = parseInt($('input[name=sv_lowest_price]').val());
+		var sv_highest_price = parseInt($('input[name=sv_highest_price]').val());
+		var editorText = CKEDITOR.instances.ten.getData();
+
 		if (validateForm() == 1) 
 		{
 			var editorText = CKEDITOR.instances.ten.getData();
@@ -134,32 +141,34 @@ function submitform() {
 	        console.log(path);
 	        $.ajax({
 	            type: "POST",
-	            enctype: 'multipart/form-data',
 	            url: path,
-	            data: data,
-	            processData: false,
-	            contentType: false,
-	            cache: false,
-	            timeout: 600000,
-	            beforeSend:function () {
+	            data: 
+	            {
+        			sv_name:sv_name,
+        			sv_description : $('input[name=sv_mota]').val(),
+        			mota: editorText,
+        			time_begin: time_begin,
+        			time_end: time_end,
+        			sv_lowest_price: sv_lowest_price,
+        			sv_highest_price: sv_highest_price, 
+        			sv_website: $('input[name=sv_phone_number]').val(),
+        			sv_phone_number: $('input[name=sv_website]').val(),
+        			sv_types: $('select[name=sv_types]').val(),
+        			diadiem: $('select[name=diadiem]').val(),
+        		},
+        		beforeSend:function () {
 	            	$('#loader').css('display','block');
-	            },
-	            success: function (data) {
-	            	$('#loader').css('display','none');
-	            	// console.log(data);
-	            	if (parseInt(data) > 0) 
-	            	{
-	            		anh(parseInt(data));
-	            	}
-	            },
-	            error: function (e) {
-
-	                // $("#result").text(e.responseText);
-	                console.log("ERROR : ", e);
-	                // $("#btnSubmit").prop("disabled", false);
-
 	            }
-	        });
+	        }).done(function (data) {
+	        	console.log(data);
+	        	if (parseInt(data) > 0) 
+            	{
+            		anh(parseInt(data));
+            	}
+            	else{
+            		alert(data);
+            	}
+	        })
 		}
 
 	})
@@ -189,7 +198,15 @@ function anh(id) {
 					location.href = "service-user";
 				},2000);
 				
-			}
+			},
+			error: function (e) {
+
+	                // $("#result").text(e.responseText);
+	                console.log("ERROR : ", e);
+	                console.log('loi anh');
+	                // $("#btnSubmit").prop("disabled", false);
+
+	            }
 		});
 }
 

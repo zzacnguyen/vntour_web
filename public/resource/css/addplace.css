@@ -53,3 +53,64 @@ body{
 	border-radius: 0px;
 }
 
+/* edit palce*/
+
+.list-sv ul li{
+	position: relative;
+	width: auto;
+}
+.list-sv ul li div.title-sv{
+	position: absolute;
+    top: 31px;
+    right: -5px;
+    background-color: white;
+    border: 1px solid #ddd;
+    height: auto;
+    min-width: 283px;
+    padding: 10px;
+    z-index: 1000;
+    display: none;
+}
+
+.list-sv ul li div.title-sv::before{
+	content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -12px;
+    left: 64%;
+    transform: translateX(50%);
+    border-bottom: 12px solid #a5a5a5;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+}
+
+
+.list-sv ul li div.title-sv .content-sv{
+	/*display: inline-flex;*/
+	display: -webkit-inline-box;
+    /*box-sizing: border-box;*/
+}	
+
+.list-sv ul li div.title-sv .content-sv img{
+	height: 70px;
+	width: 70px;
+	margin-right: 5px;
+}	
+
+.list-sv ul li div.title-sv .content-sv .detail{
+	font-size: 10px;
+}
+
+.list-sv ul li div.title-sv .content-sv .detail ul li:nth-child(1){
+	max-height: 57px;
+}
+.list-sv ul li div.title-sv .content-sv .detail ul li:nth-child(n+2){
+	float: left;
+	margin-right: 10px;
+}
+
+#list-sv li:hover div.title-sv{
+	display: block;
+}
+
