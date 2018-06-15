@@ -159,15 +159,21 @@ function submitform() {
         		beforeSend:function () {
 	            	$('#loader').css('display','block');
 	            }
-	        }).done(function (data) {
+	        })
+	        .done(function (data) {
 	        	console.log(data);
 	        	if (parseInt(data) > 0) 
             	{
             		anh(parseInt(data));
             	}
             	else{
+            		$('#loader').css('display','none');
             		alert(data);
             	}
+	        })
+	        .fail(function () {
+	        	$('#loader').css('display','none');
+	        	alert('Lỗi không thêm được!');
 	        })
 		}
 
@@ -193,6 +199,7 @@ function anh(id) {
 			processData:false,        // To send DOMDocument or non processed data file it is set to false
 			success: function(data)   // A function to be called if request succeeds
 			{
+				console.log(data)
 				show_toast();
 				setTimeout(function () {
 					location.href = "service-user";

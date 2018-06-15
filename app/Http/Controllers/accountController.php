@@ -247,6 +247,7 @@ class accountController extends Controller
                     ]
                 ])->getBody();
         $result = json_decode($response->getContents());
+        // dd($result);
         if ($result == 1) {
             return redirect()->back()->with(['message_uplevel'=>'Đăng ký thành công!']);
         }
@@ -929,7 +930,7 @@ class accountController extends Controller
          $data=json_decode($response);
 
          $data_sv = $this::get_sv_idplace($id);
-         // dd ($data->info);
+         // dd ($data_sv);
          return view('VietNamTour.content.user.place.editplace',compact('data','data_sv'));
     }
 

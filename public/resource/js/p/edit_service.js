@@ -6,6 +6,7 @@ $(document).ready(function () {
 	sub_form_event();
 	set_btn_upload();
 	add_type_event();
+	load_event();
 })
 
 function set_btn_upload() {
@@ -499,4 +500,25 @@ function add_type_event() {
 		}
 	})
 		
+}
+
+function load_event() {
+	var id = $('#id_sv').val();
+	$.ajax({
+	   type: "GET",
+	   url: 'http://localhost/vntour_api/load-event-sv/' + id,
+	   dataType: 'Json'
+	}).done(function (data) {
+		// console.log(data);
+		if (data.length > 0){
+			var lam = new String();
+			lam += '<li style="color: red;"><marquee class="text"><i>'+ data[0].event_name +'</i></marquee></li>';
+			$('#list-sv').html(lam);
+		}
+		else{
+			var lam = new String();
+			lam += '<li style="color: red;" class="text-center">Chưa có sự kiện</li>';
+			$('#list-sv').html(lam);
+		}
+	})
 }

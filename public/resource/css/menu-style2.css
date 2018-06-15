@@ -1127,10 +1127,23 @@ button#btnsearch-xs{
   
 }
 #detail_event_Modal .modal-content .modal-body .content-event ul{
-  
+  padding: 0;
+  overflow: hidden;
+  width: 100%;	
 }
 #detail_event_Modal .modal-content .modal-body .content-event ul li{
 	border: none;
+    padding: 0;
+    font-size: 1rem;
+    height: auto;
+    margin-left: 162px;
+    width: 100%;
+    font-weight: 400;
+    color: red;
+}
+
+#detail_event_Modal .modal-content .modal-body .content-event ul li:hover{
+	background-color: white !important;
 }
 
 #detail_event_Modal .modal-content .modal-body .content-event .btn-nofi a{

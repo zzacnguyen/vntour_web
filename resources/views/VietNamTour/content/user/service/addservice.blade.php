@@ -292,7 +292,7 @@
 									
 								
 
-							<input type="file" class="dimmy" id="image-input" accept="image/*" name="image-input[]" multiple />
+							<input style="display: none;" type="file" class="dimmy" id="image-input" accept="image/*" name="image-input[]" multiple />
 						    <div>
 						      <ul class="preview-area" id="list-img" style="display: none;"></ul>
 						    </div>
