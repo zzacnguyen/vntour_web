@@ -102,7 +102,7 @@
 										<a>{{$sv->rating}} <i class="far fa-star"></i></a>
 										<a>{{$sv->view}} <i class="fas fa-eye"></i></a>
 										<a>{{$sv->like}} <i class="far fa-heart"></i></a>
-										<a>{{$sv->point}} <i class="far fa-bookmark"></i></a>
+										{{-- <a>{{$sv->point}} <i class="far fa-bookmark"></i></a> --}}
 									</div>
 								</div>
 							</div>
@@ -113,7 +113,7 @@
 							
 					</div>
 				</div><!-- end place-list-content -->
-				<div class="pagination-inner">
+				{{-- <div class="pagination-inner">
 					<div class="row">
 						<div class="col-md-2 col-sm-2">
 							<div class="prev">
@@ -170,7 +170,7 @@
 						</div>
 					</div>
 
-				</div>
+				</div> --}}
 			</div><!-- end right -->
 		</div> <!-- end row -->
 	</div>

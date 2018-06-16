@@ -534,13 +534,14 @@ function load_unseen_notification(view = '') {
 
 
 function create_element_notification(arr) {
+	console.log($('input[name=user_id]').val());
 	var image;
 	if (arr.image_details_1 == null) {image = 'default.jpg';}
 	else{image = arr.image_details_1;}
 	var cuatui = new String();
 
 	//check seen event
-	if (arr.seen == null) { cuatui += '<li class="li-seen" data-id="'+ arr.id_event +'">'; }
+	if (arr.seen == null && arr.seen == $('input[name=user_id]').val()) { cuatui += '<li class="li-seen" data-id="'+ arr.id_event +'">'; }
 	else{ cuatui += '<li data-id="'+ arr.id_event +'">'; }
 
 	// check

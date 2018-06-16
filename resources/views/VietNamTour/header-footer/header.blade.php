@@ -374,9 +374,10 @@
 										</li>
 									
 										@if(Session::has('login') && Session::get('login') == true)
+											<input type="hidden" value="{{Session::get('user_info')->id}}" name="user_id">
 											@for($i=0;$i<count(Session::get('user_info')->level);$i++)
 												{{-- @if(Session::get('user_info')->level[$i] == 1 || Session::get('user_info')->level[$i] == 2)
-													<li class="hover-menu hidden-xs">
+													<li class="hover-menu hidden-xids">
 														<a href="{{route('placeuser')}}">
 															Địa điểm	
 														</a>
@@ -417,6 +418,8 @@
 											<li class="hover-menu hidden-xs">
 												<a href="{{route('point-for-user')}}">Điểm thưởng</a>
 											</li>
+										@else
+											<input type="hidden" value="0" name="user_id">
 										@endif	
 
 									</ul>
@@ -451,7 +454,7 @@
 												<!-- Tab content -->
 												<div id="cuatoi" class="tabcontent" style="display: block">
 												  	<ul class="body-nofi" id="ul-cuatoi">
-														<li>
+														{{-- <li>
 															<a href="" class="a-content-nofi">
 																<div class="anh-nofi">
 																	<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
@@ -460,7 +463,7 @@
 																	Get code suggestions while writing code directly to your Java IDE.
 																</p>	
 															</a>
-														</li>
+														</li> --}}
 													</ul>
 												</div>
 
