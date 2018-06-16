@@ -73,6 +73,9 @@
 		  margin: 0 !important;
 		  color: red !important;
 		}
+		button{
+			/*border:1px solid #00a680 !important;*/
+		}
 	</style>
 </head>
 <body>
@@ -372,7 +375,7 @@
 									
 										@if(Session::has('login') && Session::get('login') == true)
 											@for($i=0;$i<count(Session::get('user_info')->level);$i++)
-												@if(Session::get('user_info')->level[$i] == 1 || Session::get('user_info')->level[$i] == 2)
+												{{-- @if(Session::get('user_info')->level[$i] == 1 || Session::get('user_info')->level[$i] == 2)
 													<li class="hover-menu hidden-xs">
 														<a href="{{route('placeuser')}}">
 															Địa điểm	
@@ -388,7 +391,7 @@
 															Lịch trình	
 														</a>
 													</li>
-												@endif
+												@endif --}}
 
 												@if(Session::get('user_info')->level[$i] == 3 || Session::get('user_info')->level[$i] == 4)
 													<li class="hover-menu hidden-xs">
@@ -492,14 +495,14 @@
 													        </div><br>
 													        <div class="content-event col-md-12 push-md-3">
 													        	<div class="">
-													        		<h6 style="text-align: left;">Chức năng mới</h6>
+													        		<h6 style="text-align: center;">Chức năng mới</h6>
 													        	</div>
-													        	<ul>
-													        		<li>Quản lý địa điểm</li>
-													        		<li>Quản lý dịch vụ</li>
+													        	<ul style="padding: 0;">
+													        		<li><i>Quản lý địa điểm</i></li>
+													        		<li><i>Quản lý dịch vụ</i></li>
 													        	</ul>
 													        	<div class="text-center btn-nofi">
-													        		<a href="">Đăng nhập lại để trải nghiệm ngay</a>
+													        		<a href="{{route('logoutW')}}">Đăng nhập lại để trải nghiệm ngay</a>
 													        	</div>
 													        </div>
 													      </div>

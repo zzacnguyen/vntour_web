@@ -89,7 +89,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2"></div>
-			<div class="col-md-8 content" style="margin-top: 80px;">
+			<div class="col-md-8 content" style="">
 				<h4 style="font-size: 25px; font-weight: bold;" class="text-center">Thêm địa điểm mới</h4>
 				<h5 style="color: red;">Thông tin cơ bản</h5>
 				<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>

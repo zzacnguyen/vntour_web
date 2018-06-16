@@ -43,6 +43,14 @@
             background: #eee;
             color: #666;
         }
+        a.btn{
+        	border-radius: 0;
+        	/*border: 1px solid #00a680;*/
+        	margin-right: 3px;
+        }
+        button{
+        	border-radius: 0 !important;
+        }
 	</style>
 
 	<section class="content-info" style="min-height: 600px;">
@@ -77,7 +85,7 @@
 							      <th scope="col" class="text-center">Ngày tạo</th>
 							      <th scope="col" class="text-center" style="width: 50px;">Đã duyệt</th>
 							      <th scope="col" class="text-center" style="width: 166px;">
-							      	<a href="{{route('addplaceuser')}}" class="btn btn-sm btn-primary" id="myBtn">
+							      	<a href="{{route('addplaceuser')}}" class="btn btn-sm btn-primary" id="myBtn" style="border-radius: 0;background-color: #00a680;border:1px solid #00a680">
 							      		<i class="fas fa-plus"></i> Thêm mới
 							      	</a>
 							      </th>

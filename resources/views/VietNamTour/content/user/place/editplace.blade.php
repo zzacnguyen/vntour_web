@@ -106,7 +106,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2" style="">
-        <div class="list-sv" style="background-color: white;margin-top: 10px;">
+        <div class="list-sv" style="background-color: white;margin-top: 10px;position: fixed;width: 164px;">
           <h5 class="text-center" style="padding-top: 5px;margin-bottom: 0;">Dịch vụ</h5>
           <div class="div" style="height: 1px; width: 96%; background-color: red; margin-bottom: 10px;margin: 3px;padding-left: 3px;padding-right: 3px;display: block">
           </div>
@@ -115,17 +115,27 @@
             @if($data_sv != null)
               @foreach($data_sv as $sv)
                 <li>
-                    <a href=""><i class="far fa-check-circle"></i> {{$sv->name}}</a>
+                    <a href="service-user">
+                      @if($sv->sv_type == 1)
+                        <i class="far fa-check-circle"></i> 
+                      @elseif($sv->sv_type == -1)
+                        <i class="fas fa-exclamation-circle"></i>
+                      @else
+                        <i class="far fa-times-circle"></i>
+                      @endif
+                      
+                      {{$sv->name}}
+                    </a>
                     <div class="title-sv">
                         
                         <div class="content-sv">
-                          <img src="http://localhost/vntour_api/public/thumbnails/details1__2018_04_04_11_51_50.jpg" alt="">
+                          <img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image}}" alt="">
                           <div class="detail">
                             <ul style="padding:0;list-style-type: none;">
-                              <li><h6 style="max-width: 184px;">Cafe chất ff sdfdsf dsfds fdfd</h6></li>
-                              <li><i class="fas fa-star"></i> 122</li>
-                              <li><i class="fas fa-eye"></i> 122</li>
-                              <li><i class="fas fa-thumbs-up"></i> 122</li>
+                              <li><h6 style="max-width: 184px;">{{$sv->name}}</h6></li>
+                              <li><i style="color: yellow" class="fas fa-star"></i> {{$sv->rating}}</li>
+                              <li><i class="fas fa-eye"></i> {{$sv->view}}</li>
+                              <li><i class="fas fa-thumbs-up"></i> {{$sv->like}}</li>
                             </ul>
                           </div>
                         </div>
@@ -133,8 +143,9 @@
                </li>
               @endforeach
             @else
-              <li>Chưa có dịch vụ</li>
-            @endif
+              <li class="text-center">Chưa có dịch vụ</li>
+              <li><a href="service-user" class="btn btn-primary text-center" style="border-radius: 0;padding: 5px 10px;">Thêm dịch vụ ngay</a></li>
+            @endif 
               
           </ul>
 
@@ -256,7 +267,14 @@
 
 			</div>
 			<div class="col-md-2" style="position: fixed;top:110px;right: 78px;">
-        <img src="public/resource/images/icons/active-user.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Đã duyệt">   
+        @if($data->info[0]->pl_status == 1)
+          <img src="public/resource/images/icons/active-user.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Đã duyệt">   
+        @elseif($data->info[0]->pl_status == -1)
+          <img src="public/resource/images/icons/spam.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Bị đánh dấu spam">   
+        @else
+          <img src="public/resource/images/icons/unactive.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Chưa duyệt">   
+        @endif
+        
       </div>
 		</div>
 	</div>

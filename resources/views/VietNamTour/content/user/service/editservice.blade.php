@@ -221,8 +221,9 @@
 					<div class="" style="padding: 5px;padding-top: 0;position: fixed;top: 100px;">
 						<div class="" style="background-color: white;padding: 5px;">
 							<h6 class="text-center">Sự kiện đang diễn ra</h6>
+							{{-- <div class="div" style="height: 1px; width: 96%; background-color: red; margin-bottom: 10px;margin: 3px;padding-left: 3px;padding-right: 3px;"> --}}
 							<div class="content-event">
-								<ul style="padding: 0;list-style-type: none;">
+								<ul style="padding: 0;list-style-type: none;" id="list-sv">
 									<li style="color: red;"><marquee class="text"><i>Sinh nhật cafe Chất</i></marquee></li>
 								</ul>
 							</div>
@@ -280,7 +281,13 @@
 											    @endif
 											  </select>
 											  <div class="input-group-append" style="position: relative;">
-											    <button class="btn btn-outline-secondary" type="button" style="border-radius: 0;font-size: 14px;font-weight: 500;" id="btn-add-type-event">+</button>
+											  	@if($data->sv_status == 1)
+											  		<button class="btn btn-outline-secondary" type="button" style="border-radius: 0;font-size: 14px;font-weight: 500;" id="btn-add-type-event">+</button>
+											  	@else
+											  		<button disabled class="btn btn-outline-secondary" type="button" style="border-radius: 0;font-size: 14px;font-weight: 500;" id="btn-add-type-event">+</button>
+											  	@endif
+											    
+
 											    <div class="content-add-type" id="content-add-type" style="position: absolute;display: none;">
 											    	<form id="form-add-type">
 											    		<div class="form-group row" style="margin: 0;padding: 0">
@@ -739,7 +746,7 @@
 							// console.log(data_img);
 							if (i < 4) 
 							{
-								lam += '<li class="nho">';
+								lam += '<li class="nho" data-toggle="modal" data-target="#modal-upload" style="cursor: pointer;">';
 								lam += '<img src="'+ path + response.data[i] +'" alt="">';
 								lam += '</li>';
 							}
