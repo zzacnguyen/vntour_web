@@ -316,6 +316,13 @@
 	li.lan-can:hover{
 		background-color: #ddd;
 	}
+	button{
+		border-radius: 0 !important;
+	}
+
+	button:hover{
+		font-weight: 600;
+	}
 
 </style>
 
@@ -626,14 +633,14 @@
 										                		<form action="{{route('loginW')}}" method="GET" id="form-login">
 										                			<input type="hidden" value="detail/id={{$sv->sv_id}}&type={{$sv->sv_types}}" name="isremember">
 										                			Bạn cần đăng nhập để đánh giá dịch vụ này - 
-											                		<button class="btn btn-sm btn-outline-primary" type="submit">Đăng nhập ngay</button>
+											                		<button class="btn btn-sm" type="submit" style="background-color: #00a680;border:1px solid #00a680;color:white">Đăng nhập ngay</button>
 										                		</form>
 											                		
 										                	</div>
 										                @else
 										                	@if($checkUserRating == null)
 										                		<div class="ibox-content">
-												                	Bạn chưa đánh giá về địa điểm này - <button class="btn  btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter">Đánh giá ngay</button>
+												                	Bạn chưa đánh giá về địa điểm này - <button class="btn  btn-sm" data-toggle="modal" data-target="#exampleModalCenter" style="background-color: #00a680; color: white;">Đánh giá ngay</button>
 												                </div>
 																<!-- Modal -->
 																<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -722,7 +729,7 @@
 									                                        	@for($i = 0; $i < $ra->vr_rating; $i++)
 										                                        		<i style="color: yellow;" class="fas fa-star"></i>
 										                                        @endfor  - <span style="color: red;">Đánh giá của bạn</span>
-										                                        - <button class="btn  btn-sm btn-outline-primary" data-toggle="modal" data-target="#suadanhgia">Cập nhật đánh giá</button>
+										                                        - <button class="btn  btn-sm" data-toggle="modal" data-target="#suadanhgia" style="background-color: #00a680;color: white;">Cập nhật đánh giá</button>
 										                                    </a>
 									                                        <span class="message-date"> {{$ra->created_at}} </span>
 									                                        <span class="message-content">

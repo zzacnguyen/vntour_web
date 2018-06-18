@@ -73,7 +73,9 @@
 											<span style="color: red;">Tất cả</span>
 										@endif
 									</label>
-									<button class="btn btn-primary float-right" style="margin-left: 20px;" id="btntimquanhday" data-toggle="modal" data-target="#myModal">Tìm quanh đây</button>
+									<button class="btn btn-primary float-right" style="margin-left: 20px;border-radius: 0;background-color: #00a680;border: 1px solid #00a680" id="btntimquanhday" data-toggle="modal" data-target="#myModal">
+										Tìm quanh đây
+									</button>
 									<div id="myModal" class="modal fade" role="dialog" style="margin-top: 100px;">
 									  <div class="modal-dialog">
 
@@ -111,8 +113,9 @@
 									      </div>
 
 									      <div class="modal-footer">
-									        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 10px 12px !important;border-radius: 0px !important;" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-							        		<button type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;" id="btn-timquanhday-sub">Tìm kiếm</button>
+									        <button type="button" style="margin-bottom: 0;background: #de5959;padding: 6px 12px !important;border-radius: 0px !important;border:1px solid #de5959" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+							        		<button type="button" class="btn btn-primary" style="margin-bottom: 0;padding: 6px 41px !important;border-radius: 0px !important;margin-left: 9px;border: 1px solid #00a680;background-color: #00a680;" id="btn-timquanhday-sub">Tìm kiếm
+							        		</button>
 									      </div>
 										</form>
 									    </div>
@@ -226,7 +229,7 @@
 												<a>{{$r->rating}} <i class="far fa-star"></i></a>	
 												<a>{{$r->view}} <i class="fas fa-eye"></i></a>
 												<a>{{$r->like}} <i class="far fa-heart"></i></a>
-												<a>{{$r->point}} <i class="far fa-bookmark"></i></a>
+												<a>{{$r->point}} <i class="fas fa-share-alt"></i></a>
 											</div>
 											{{-- <input type="hidden" value="{{$r->id_service}}" id="id_service"> --}}
 										</div>

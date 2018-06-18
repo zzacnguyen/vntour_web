@@ -49,7 +49,7 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<button class="btn btn-primary" id="btnLoc">Lọc</button>
+							<button class="btn btn-primary" id="btnLoc" style="border-radius: 0;background-color: #00a680;border: 1px solid #00a680">Lọc</button>
 						</div>
 						{{-- <div class="col-md-1 text-right-filter"><span>Hiển thị</span></div>
 						<div class="col-md-1 float-right">
