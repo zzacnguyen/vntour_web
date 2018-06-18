@@ -191,7 +191,7 @@
 
 
 
-					<button type="button" class="btn btn-success col-md-12" id="btnaddplace" style="margin-top: 20px;">
+					<button type="button" class="btn btn-success col-md-12" id="btnaddplace" style="margin-top: 20px;background-color: #00a680; border: 1px solid #00a680;">
 						Thêm địa điểm mới
 					</button>
 

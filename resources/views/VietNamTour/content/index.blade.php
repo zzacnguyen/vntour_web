@@ -100,13 +100,16 @@
 							</a>
 							<div class="destination-name">
 								<h4>{{$see->name}}</h4>
-								<h5>{{$see->name_city}}</h5>
+								<h5 style="position: relative;">
+									<span class="badge badge-danger" style="color: white;">Top 1 <i class="fas fa-eye"></i></span> 
+									{{$see->name_city}}</h5>
+								
 							</div>
 							<div class="destination-icon">	
 								<a>{{$see->rating}} <i class="far fa-star"></i></a>
 								<a><span class="chuyenso">{{$see->view}}</span> <i class="fas fa-eye"></i></a>
 								<a><span class="chuyenso">{{$see->like}}</span> <i class="far fa-thumbs-up"></i></a>
-								{{-- <a><span class="chuyenso">{{$see->point}}</span> <i class="far fa-bookmark"></i></a> --}}
+								<a><span class="chuyenso">{{$see->point}}</span> <i class="fas fa-share-alt"></i></a>
 							</div>
 						</div>
 					</div>
@@ -151,7 +154,7 @@
 								<a>{{$eat->rating}} <i class="far fa-star"></i></a>	
 								<a><span class="chuyenso">{{$eat->view}}</span> <i class="fas fa-eye"></i></a>
 								<a><span class="chuyenso">{{$eat->like}}</span> <i class="far fa-thumbs-up"></i></a>
-								{{-- <a><span class="chuyenso">{{$eat->point}}</span> <i class="far fa-bookmark"></i></a> --}}
+								<a><span class="chuyenso">{{$eat->point}}</span> <i class="fas fa-share-alt"></i></a>
 							</div>
 						</div>
 					</div>
@@ -203,7 +206,7 @@
 									<a>{{$hotel->rating}}  <i class="far fa-star"></i></a>	
 									<a><span class="chuyenso">{{$hotel->view}}</span> <i class="fas fa-eye"></i></a>
 									<a><span class="chuyenso">{{$hotel->like}}</span> <i class="far fa-thumbs-up"></i></a>
-									{{-- <a><span class="chuyenso">{{$hotel->point}}</span> <i class="far fa-bookmark"></i></a> --}}
+									<a><span class="chuyenso">{{$hotel->point}}</span> <i class="fas fa-share-alt"></i></a>
 								</div>
 							</div>
 							<div class="hotel-right">
@@ -213,7 +216,7 @@
 								</div>
 								<div class="btn">
 									{{-- <a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$hotel['id_service']}}" class="btn btn-warning">Details</a> --}}
-									<a href="detail/id={{$hotel->id_service}}&type={{$hotel->sv_type}}" class="btn btn-warning click_view">
+									<a href="detail/id={{$hotel->id_service}}&type={{$hotel->sv_type}}" class="btn btn-warning click_view" style="border-radius: 0;background-color: #00a680;border: 1px solid #00a680;color: white;">
 										Chi tiết
 									</a>
 								</div>
@@ -260,7 +263,7 @@
 								<a>{{$enter->rating}} <i class="far fa-star"></i></a>	
 								<a><span class="chuyenso">{{$enter->view}}</span> <i class="fas fa-eye"></i></a>
 								<a><span class="chuyenso">{{$enter->like}}</span> <i class="far fa-thumbs-up"></i></a>
-								{{-- <a><span class="chuyenso">{{$enter->point}}</span> <i class="far fa-bookmark"></i></a> --}}
+								<a><span class="chuyenso">{{$enter->point}}</span> <i class="fas fa-share-alt"></i></a>
 							</div>
 						</div>
 					</div>
@@ -303,7 +306,7 @@
 								<a>{{$stran->rating}} <i class="far fa-star"></i></a>	
 								<a><span class="chuyenso">{{$stran->view}}</span> <i class="fas fa-eye"></i></a>
 								<a><span class="chuyenso">{{$stran->like}}</span> <i class="far fa-thumbs-up"></i></a>
-								{{-- <a><span class="chuyenso">{{$stran->point}}</span> <i class="far fa-bookmark"></i></a> --}}
+								<a><span class="chuyenso">{{$stran->point}}</span> <i class="fas fa-share-alt"></i></a>
 							</div>
 						</div>
 					</div>
