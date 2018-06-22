@@ -55,6 +55,9 @@ function timkiem() {
 				$('#list-serach-sv').html(lam);
 				
 			})
+			.fail(function (response) {
+				// body...
+			})
 		}
 		else
 		{
@@ -124,12 +127,26 @@ function newElement() {
   }
 }
 
+function list_dachon(id) {
+	var lamm = document.getElementsByClassName("lamlam");
+	var sv = new Array();
+	for (var i = 0; i < lamm.length; i++) {
+		if (id == lamm[i].getAttribute("data-id")) 
+		{
+			return true;
+		}
+		// sv.push(lamm[i].getAttribute("data-id"));
+	}
+	return false;
+}
+
 function add() {
 	var lamm = document.getElementsByClassName("chon-sv");
 	// console.log(lamm);
 	for (var i = 0; i < lamm.length; i++) {
 		lamm[i].onclick = function () {
 			var id = this.getAttribute("data-id");
+			if (list_dachon(id)) {alert('Dịch vụ này đã được chọn');return 1;}
 			var name = this.getAttribute("data-name");
 			var img = this.getAttribute("data-img");	
 			var loai = parseInt(this.getAttribute("data-type"));	
@@ -275,6 +292,9 @@ function add_lichtrinh() {
 									alert('Thêm thành công Lịch trình2');
 									location.reload();
 								}
+							})
+							.fail(function (response) {
+								return;
 							})
 						}	
 					}

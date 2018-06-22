@@ -98,10 +98,10 @@
 							<a href="detail/id={{$see->id_service}}&type={{$see->sv_type}}" class="click_view">
 								<img src="http://localhost/vntour_api/public/thumbnails/{{$see->image}}" alt="">
 							</a>
-							<div class="destination-name">
+							<div class="destination-name" data-id="{{$see->id_service}}">
 								<h4>{{$see->name}}</h4>
 								<h5 style="position: relative;">
-									<span class="badge badge-danger" style="color: white;">Top 1 <i class="fas fa-eye"></i></span> 
+									{{-- <span class="badge badge-danger" style="color: white;">Top 1 <i class="fas fa-eye"></i></span> --}} 
 									{{$see->name_city}}</h5>
 								
 							</div>
@@ -146,7 +146,7 @@
 							<a href="detail/id={{$eat->id_service}}&type={{$eat->sv_type}}" class="click_view">
 								<img src="http://localhost/vntour_api/public/thumbnails/{{$eat->image}}" alt="">
 							</a>
-							<div class="destination-name">
+							<div class="destination-name" data-id="{{$eat->id_service}}">
 								<h4>{{$eat->name}}</h4>
 								<h5>{{$eat->name_city}}</h5>
 							</div>
@@ -255,7 +255,7 @@
 							<a href="detail/id={{$hotel->id_service}}&type={{$hotel->sv_type}}" class="click_view">
 								<img src="http://localhost/vntour_api/public/thumbnails/{{$enter->image}}" alt="">
 							</a>
-							<div class="destination-name">
+							<div class="destination-name" data-id="{{$enter->id_service}}">
 								<h4>{{$enter->name}}</h4>
 								<h5>{{$enter->name_city}}</h5>
 							</div>
@@ -298,7 +298,7 @@
 							<a href="detail/id={{$stran->id_service}}&type={{$stran->sv_type}}" class="click_view">
 								<img src="http://localhost/vntour_api/public/thumbnails/{{$stran->image}}" alt="">
 							</a>
-							<div class="destination-name">
+							<div class="destination-name" data-id="{{$stran->id_service}}">
 								<h4>{{$stran->name}}</h4>
 								<h5>{{$stran->name_city}}</h5>
 							</div>

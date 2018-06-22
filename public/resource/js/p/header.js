@@ -32,6 +32,7 @@ $(document).ready(function () {
 			load_unseen_notification();
 		},5000);
 		click_old_event();
+		function_name();
 })
 
 function gantentinh() {
@@ -472,7 +473,7 @@ function load_unseen_notification(view = '') {
 		type: 'GET',
 		dataType: 'Json',
 		success: function (data) {
-			console.log(data);
+			// console.log(data);
 			var cuatui = new String();
 			var dichvu = new String();
 			if (parseInt(data.event_public) != 0 && data.event_public.length > 0) 
@@ -534,7 +535,7 @@ function load_unseen_notification(view = '') {
 
 
 function create_element_notification(arr) {
-	console.log($('input[name=user_id]').val());
+	// console.log($('input[name=user_id]').val());
 	var image;
 	if (arr.image_details_1 == null) {image = 'default.jpg';}
 	else{image = arr.image_details_1;}
@@ -694,4 +695,50 @@ function urlExists(url){
 	// .fail(function () {
 	// 	return false;
 	// })
+}
+
+function get_top(url) {
+	$.ajax({
+		url: url,
+		type:'GET'
+	})
+	.done(function (data) {
+		return data;
+		// console.log(data.length);
+	})
+	.fail(function (data) {
+		return null;
+	})
+}
+
+
+function function_name() {
+	var path = 'top-service-view';
+	// var lam = get_top(path);
+	$.ajax({
+		url: path,
+		type:'GET'
+	})
+	.done(function (data) {
+		// console.log(data)
+		var item = document.getElementsByClassName("destination-name");
+		for (var i = 0; i < data.length; i++) {
+			for (var j = 0; j < item.length; j++) {
+				if(item[j].getAttribute("data-id") == data[i].sv_id){
+					var span = document.createElement("span");
+					span.setAttribute("class","badge badge-danger");
+					var num = i+1;
+					span.innerHTML = 'Top '+ num +' <i class="fas fa-eye"></i>';
+
+					item[j].appendChild(span);
+				};
+				
+			}
+		}
+	})
+	.fail(function (data) {
+		return null;
+	})
+	// console.log(lam);
+			
 }
