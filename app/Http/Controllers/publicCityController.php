@@ -11,6 +11,7 @@ class publicCityController extends Controller
     public function getCity($idcity,$type,$current_page)
     {
         $service_city = $this::paginate($this::get_service_city_new($idcity,0,$type,1), $current_page,9);
+        // dd($service_city);
         $name_city = 
         $count_sv     = $this::count_service_all_and_type($idcity);
         $district      = $this::get_district_city($idcity);
@@ -23,7 +24,7 @@ class publicCityController extends Controller
             // foreach ($list_name_city as $value ) {
             //     $name_city = $value->province_city_name;
             // }
-            return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district','name_city'));
+            return view('VietNamTour.content.place_city', compact('service_city','count_sv','idcity','district','name_city','type','current_page'));
         }
     }
 

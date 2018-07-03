@@ -573,7 +573,7 @@ function check_schedule() {
 			var conf = confirm('Bạn có chắc chắn muốn đánh dấu hoàn thành lịch trình này?');
 			if (conf) 
 			{
-				// post_checkSchedule(1);
+				post_checkSchedule(1);
 			}
 		}
 	})

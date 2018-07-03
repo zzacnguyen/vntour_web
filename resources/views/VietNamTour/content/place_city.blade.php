@@ -10,6 +10,15 @@
 	.active-type{
 		color: #fec107 !important;
 	}
+	.page-item.active .page-link {
+	    z-index: 1;
+	    color: #fff;
+	    background-color: #00a680 !important;
+	    border-color: #00a680 !important;
+	}
+	.page-link {
+	    color: black;
+	}
 </style>
 <section class="place-inner" style="margin-top:120px;">
 	<div class="container">
@@ -100,9 +109,9 @@
 									</div>
 									<div class="destination-icon">
 										<a>{{$sv->rating}} <i class="far fa-star"></i></a>
-										<a>{{$sv->view}} <i class="fas fa-eye"></i></a>
-										<a>{{$sv->like}} <i class="far fa-heart"></i></a>
-										{{-- <a>{{$sv->point}} <i class="far fa-bookmark"></i></a> --}}
+										<a><span class="chuyenso">{{$sv->view}}</span> <i class="fas fa-eye"></i></a>
+										<a><span class="chuyenso">{{$sv->like}}</span> <i class="far fa-heart"></i></a>
+										<a><span class="chuyenso">{{$sv->point}}</span> <i class="fas fa-share-alt"></i></a>
 									</div>
 								</div>
 							</div>
@@ -113,64 +122,38 @@
 							
 					</div>
 				</div><!-- end place-list-content -->
-				{{-- <div class="pagination-inner">
-					<div class="row">
-						<div class="col-md-2 col-sm-2">
-							<div class="prev">
-								<!-- <a href=""><i class="fas fa-arrow-left"></i></a> -->
-							</div>
-						</div>
-						<div class="col-md-8 col-sm-8 col-12">
-							<div class="float-center">
-								<ul class="pagination">
-									@if($service_city['total_page'] > 1)
-										@if($service_city['current_page'] == 1)
-											<li class="page-item">
-												<a class="page-link" href="#" disabled="disabled" style="pointer-events: none;cursor: default;text-decoration: none;">
-													<i class="fas fa-arrow-left"></i>
-												</a>
-											</li>
-										@else
-										<li class="page-item">
-											<a class="page-link" href="city/{{$idcity}}&type=all&page={{$service_city['current_page'] - 1 }}" disabled="disabled" style="">
-												<i class="fas fa-arrow-left"></i>
-											</a>
-										</li>
-										@endif
 
-										@for($i = 1; $i <= $service_city['total_page']; $i++)
-											@if($service_city['current_page'] == $i)
-												<li class="page-item activee"><a class="page-link" href="city/{{$idcity}}&page={{$i}}">{{$i}}</a></li>
-											@else
-												<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$i}}">{{$i}}</a></li>
-											@endif
-										@endfor
+				<br>
+				<nav aria-label="...">
+				  <ul class="pagination pull-right" id="paginati">
+				  		@php
+							for ($i=1; $i < 6; $i++) { 
+								if ($type == $i) {
+									$link = "city/".$idcity."&type=".$i."&page=";
+								}
+								else{
+									$link = 'city/'.$idcity.'&type=all&page=';
+								}
+							}	
+							if ($service_city['total_page'] > 1) {
+								for($i = 1; $i <= $service_city['total_page']; $i++){
+									if ($current_page == $i) {
+										echo '<li class="page-item active">';
+									}
+									else{
+										echo '<li class="page-item">';
+									}
+									echo '<a class="page-link" href="'.$link.$i.'" >'.$i.'</a>';
+							    	echo '</li>';	
+								}
+							}
+						@endphp
+				  </ul>
+				</nav>
+					
 
-										@if($service_city['current_page'] == $service_city['total_page'])
-											<li class="page-item">
-												<a class="page-link" href="#" disabled="disabled" style="pointer-events: none;cursor: default;text-decoration: none;">
-													<i class="fas fa-arrow-right"></i>
-												</a>
-											</li>
-										@else
-										<li class="page-item">
-											<li class="page-item"><a class="page-link" href="city/{{$idcity}}&page={{$service_city['current_page'] + 1}}"><i class="fas fa-arrow-right"></i></a></li>
-										</li>
-										@endif
+				
 
-									@endif
-								</ul>
-							</div>
-
-						</div>
-						<div class="col-md-2 col-sm-2">
-							<div class="prev text-right float-right">
-								<!-- <a href=""><i class="fas fa-arrow-right"></i></a> -->
-							</div>
-						</div>
-					</div>
-
-				</div> --}}
 			</div><!-- end right -->
 		</div> <!-- end row -->
 	</div>
@@ -179,5 +162,6 @@
 	<!-- <script src="resource/js/lightbox.min.js"></script> -->
 	<!-- <script src="resource/js/menu-style.js"></script> -->
 	<script src="public/resource/js/p/place_city.js"></script>
+	<script src="public/resource/js/p/shareFun.js"></script>
 
 @include('VietNamTour.header-footer.footer')
