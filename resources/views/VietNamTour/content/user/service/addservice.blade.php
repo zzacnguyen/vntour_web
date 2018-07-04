@@ -167,6 +167,10 @@
 							</select>
 							
 						</div>
+						<div id="type_hotel" class="input-text" style="padding: 0;margin-bottom: 5px;">
+							{{-- <label>Loại khách sạn</label>
+							<input type="number" name="typehotel"> --}}
+						</div>
 						<div class="input-text col-md-12" style="margin-bottom: 10px; padding: 0">
 							<label class="col-md-2" style="padding: 0;">Tỉnh thành</label>
 							<select class="js-example-basic-single col-md-4" name="city" style="margin-left: 27px;">

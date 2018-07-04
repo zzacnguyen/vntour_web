@@ -224,7 +224,7 @@
 							{{-- <div class="div" style="height: 1px; width: 96%; background-color: red; margin-bottom: 10px;margin: 3px;padding-left: 3px;padding-right: 3px;"> --}}
 							<div class="content-event">
 								<ul style="padding: 0;list-style-type: none;" id="list-sv">
-									<li style="color: red;"><marquee class="text"><i>Sinh nhật cafe Chất</i></marquee></li>
+									{{-- <li style="color: red;"><marquee class="text"><i>Sinh nhật cafe Chất</i></marquee></li> --}}
 								</ul>
 							</div>
 						</div>
@@ -350,6 +350,7 @@
 					<h6 style="color: #bd1717;">Thông tin cơ bản</h6>
 					<input id="id_user" type="hidden" value="{{$user_id}}">
 					<input id="id_sv" type="hidden" value="{{$data->sv_id}}">
+					{{-- <input type="hidden" value="{{$data->sv_id}}" name="type_"> --}}
 					<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 					<form method="post" enctype='multipart/form-data' id="formAdd">
 						<input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -381,12 +382,17 @@
 								@else
 									<option  selected  value="5">Vui chơi</option>
 								@endif
-							
-					
-								
-							
 							</select>
 						</div>
+
+						@if($data->sv_type == 2)
+							<div id="type_hotel" class="input-text" style="padding: 0;margin-bottom: 5px;">
+								<label>Loại khách sạn</label>
+								<input type="number" name="typehotel" value="{{$data->type_hotel}}" min="1" max="5">
+								<p class="text-danger" id="null_typehotel" style="display: none;">Loại khách sạn có giá trị từ 1 đến 5</p>
+							</div>
+						@endif
+
 						<div class="input-text row" style="margin-bottom: 10px; padding: 0;padding-left: 14px;">
 							<label class="col-md-2" style="padding: 0;width: 150px; margin-right: 15px;">Tỉnh thành</label>
 							{{-- <select class="js-example-basic-single col-md-4" name="city" style="margin-left: 27px;" >
@@ -395,7 +401,7 @@
 								  <option value="{{$c->id}}">{{$c->province_city_name}}</option>
 								@endforeach
 							</select> --}}
-							<div class="col-md-3">
+							<div class="col-md-3" style="padding-right: 0;">
 								<input disabled="disabled" type="text" name="city_name" value="{{$city->name_city}}" style="width: 100%;">
 								<input type="hidden" name="city" value="{{$city->id_city}}">
 							</div>
@@ -405,8 +411,8 @@
 							{{-- <select class="js-example-basic-single col-md-3" name="districtt" id="district">
 	              				<option value="0">Chọn quận huyện</option>
 							</select> --}}
-							<div class="col-md-4">
-								<input disabled="disabled" type="text" name="districtt_name" value="{{$city->name_district}}">
+							<div class="col-md-4" style="padding-right: 0;">
+								<input disabled="disabled" type="text" name="districtt_name" value="{{$city->name_district}}" style="width: 100%;">
 								<input type="hidden" name="districtt" value="{{$city->id_district}}">
 							</div>
 								
@@ -417,7 +423,7 @@
 							<label class="col-md-2" style="padding: 0;width: 150px; margin-right: 15px;">Khu vực</label>
 							{{-- <select class="js-example-basic-single col-md-4" name="ward" id="ward" style="padding: 0; margin-left: 27px;">
 							</select> --}}
-							<div class="col-md-3">
+							<div class="col-md-3" style="padding-right: 0;">
 								<input disabled="disabled" type="text" name="ward_name" value="{{$city->name_ward}}" style="width: 100%;">
 								<input type="hidden" name="ward" value="{{$city->id_ward}}">
 							</div>
@@ -428,8 +434,8 @@
                                 <option value="{{$data->place[0]->tourist_places_id}}">{{$data->place[0]->pl_name}}</option>
 						
 							</select> --}}
-							<div class="col-md-4">
-								<input disabled="disabled" type="text" name="diadiem_name" value="{{$city->name_place}}">
+							<div class="col-md-4" style="padding-right: 0;">
+								<input disabled="disabled" type="text" name="diadiem_name" value="{{$city->name_place}}" style="width: 100%;">
 								<input type="hidden" name="diadiem" value="{{$city->id_place}}">
 							</div>
 						</div>
@@ -461,11 +467,11 @@
 						<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 						<div class="input-text">
 							<label>Giá thấp nhất</label>
-							<input name="sv_lowest_price" type="text" value="{{$data->sv_lowest_price}}">
+							<input name="sv_lowest_price" type="number" min="0" value="{{$data->sv_lowest_price}}">
 						</div>
 						<div class="input-text">
 							<label>Giá cao nhất</label>
-							<input name="sv_highest_price" type="text" value="{{$data->sv_highest_price}}">
+							<input name="sv_highest_price" type="number" min="0" value="{{$data->sv_highest_price}}">
 						</div>
 						<div class="input-text">
 							<p class="text-danger" id="price_error" style="display: none;">Gia thấp nhất không được lớn hơn giá cao nhất</p>

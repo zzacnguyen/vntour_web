@@ -2,6 +2,7 @@ $(document).ready(function () {
 	load_district();
 	load_ward();
 	// load_gallery();
+	add_hotel();
 	submitform();
 })
 
@@ -155,6 +156,7 @@ function submitform() {
         			sv_phone_number: $('input[name=sv_website]').val(),
         			sv_types: $('select[name=sv_types]').val(),
         			diadiem: $('select[name=diadiem]').val(),
+        			type_hotel: $('input[name=typehotel]').val()
         		},
         		beforeSend:function () {
 	            	$('#loader').css('display','block');
@@ -456,6 +458,22 @@ function scrolltop(height)
 {
     jQuery('html, body').animate({scrollTop: height}, 500);
     return false;
+}
+
+function add_hotel() {
+	$('select[name=sv_types]').change(function () {
+		if ($('select[name=sv_types]').val() == 2) 
+		{
+			var lam = '';
+			lam += '<label>Loại khách sạn</label>';
+			lam += '<input type="number" name="typehotel" min="1" max="5">';
+			$('#type_hotel').html(lam);
+		}
+		else{
+			$('#type_hotel').html('');
+		}
+			
+	})
 }
 
 

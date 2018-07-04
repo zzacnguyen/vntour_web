@@ -685,10 +685,10 @@
 	// active menu
 	function avtive_menu() {
 		var flag = $("input[name=flag_active]").val();
-		console.log(flag);
+		// console.log(flag);
 		var path = window.location.pathname;
 		var lam = document.querySelectorAll('.hover-menu a');
-		console.log(lam);
+		// console.log(lam);
 		for (var i = 0; i < lam.length; i++) {
 			// console.log(lam[i].classList);
 			lam[i].classList.remove('active-link');

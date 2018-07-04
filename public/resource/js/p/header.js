@@ -30,7 +30,7 @@ $(document).ready(function () {
 
 		setInterval(function () {
 			load_unseen_notification();
-		},5000);
+		},10000);
 		click_old_event();
 		function_name();
 })
@@ -321,6 +321,13 @@ function search() {
 			})
 			
 		}
+		else if(keyword.legnth == 0){
+			$('#search_eat').css('display','none');
+			$('#search_hotel').css('display','none');
+			$('#search_tran').css('display','none');
+			$('#search_see').css('display','none');
+			$('#search_enter').css('display','none');
+		}
 		else{
 			// $('#search_eat').html("");
 			// $('#search_hotel').html("");
@@ -345,7 +352,7 @@ function search_type(url, image,name,description) { //
 	eat += 	'<div class="content-search">';
 	eat +=	'<a href="' + url + '" class="searchdichvuCon" >';
 	eat +=	'<div class="left-content-search">';
-	eat +=	'<img src="public/thumbnails/'+ image +'" alt="">';
+	eat +=	'<img src="http://localhost/vntour_api/public/thumbnails/'+ image +'" alt="">';
 	eat +=	'</div>';
 	eat +=	'<div class="right-content-search">';
 	eat +=	'<p>'+ name +'</p>';
@@ -421,7 +428,7 @@ function list_tim_kiem() {
 					eat += 	'<div class="content-search">';
 					eat +=	'<a href="detail-search/id='+ data.sv_id +'&type=' + data.sv_type + '" class="" >';
 					eat +=	'<div class="left-content-search">';
-					eat +=	'<img src="public/thumbnails/'+ data.sv_image +'" alt="">';
+					eat +=	'<img src="http://localhost/vntour_api/public/thumbnails/'+ data.sv_image +'" alt="">';
 					eat +=	'</div>';
 					eat +=	'<div class="right-content-search">';
 					eat +=	'<p>'+ data.sv_name +'</p>';
@@ -433,6 +440,9 @@ function list_tim_kiem() {
 				$('#lichsusearch').html(eat);
 			}
 						
+		})
+		.fail(function (response) {
+			// body...
 		})
 }
 
@@ -453,7 +463,7 @@ function list_top_search() {
 				eat += 	'<div class="content-search">';
 				eat +=	'<a href="detail-search/id='+ data.sv_id +'&type=' + data.sv_type + '" class="" >';
 				eat +=	'<div class="left-content-search">';
-				eat +=	'<img src="public/thumbnails/'+ data.sv_image +'" alt="">';
+				eat +=	'<img src="http://localhost/vntour_api/public/thumbnails/'+ data.sv_image +'" alt="">';
 				eat +=	'</div>';
 				eat +=	'<div class="right-content-search">';
 				eat +=	'<p>'+ data.sv_name +'</p>';
@@ -463,6 +473,9 @@ function list_top_search() {
 				eat +=	'</div>';
 			})
 			$('#list-top-search').html(eat);		
+		})
+		.fail(function (response) {
+			// body...
 		})
 }
 

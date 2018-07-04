@@ -164,11 +164,16 @@ function submitform() {
 	            		
 	            		location.href = "service-user";
 	            	}
+	            	else{
+	            		alert('Lỗi không cập nhật được dịch vụ');
+	            		$('#loader').css('display','none');
+	            	}
 	            },
 	            error: function (e) {
 
-	                // $("#result").text(e.responseText);
+	                alert('Lỗi không cập nhật được dịch vụ');
 	                console.log("ERROR : ", e);
+	                $('#loader').css('display','none');
 	                // $("#btnSubmit").prop("disabled", false);
 
 	            }
@@ -233,15 +238,19 @@ function validateForm() {
 					if (editorText.length > 50) 
 					{
 						$('#null_chitiet').css('display','none');
-						// if (banner > 0 && details1 > 0 && details2 > 0) 
-						// {
-						// 	return 1;
-						// }
-						// else{
-						// 	$('#null_image').css('display','block');
-						// 	scrolltop(850);
-						// 	return -1;
-						// }
+						if ($('select[name=sv_types]').val() == 2) 
+						{
+							if ($('input[name=typehotel]').val() >=1 && $('input[name=typehotel]').val() <=5) 
+							{
+								return 1;
+							}
+							else{
+								$('#null_typehotel').css('display','block');
+								scrolltop(0);
+								return -1;
+							}
+						}
+						
 						return 1;
 					}
 					else
@@ -512,7 +521,7 @@ function load_event() {
 		// console.log(data);
 		if (data.length > 0){
 			var lam = new String();
-			lam += '<li style="color: red;"><marquee class="text"><i>'+ data[0].event_name +'</i></marquee></li>';
+			lam += '<li style="cursor: pointer; color: red;width: 150px;height: 28px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="'+ data[0].event_name +'">'+ data[0].event_name +'</li>';
 			$('#list-sv').html(lam);
 		}
 		else{
