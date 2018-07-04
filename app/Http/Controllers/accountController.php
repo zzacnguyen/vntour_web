@@ -354,7 +354,7 @@ class accountController extends Controller
         $lichtrinh = null;
         $id_lichtrinh = null;
         $dv = $this::get_service_lichtrinh();
-        // dd($danhsach);
+        Session::put('flag_active','tripchudule');
         return view('VietNamTour.content.user.tripschedule',compact('danhsach_CKT','danhsach_KT','chitiet','lichtrinh','dv','id_lichtrinh'));
     }
 
@@ -383,6 +383,7 @@ class accountController extends Controller
         }
         $dv = $this::get_service_lichtrinh();
         // dd($chitiet);
+        // Session::put('flag_active','tripchudule');
         return view('VietNamTour.content.user.tripschedule',compact('danhsach_CKT','danhsach_KT','chitiet','lichtrinh','dv','id_lichtrinh'));
     }
 
@@ -791,6 +792,7 @@ class accountController extends Controller
         $data=json_decode($response);
         // dd($data);
         $flag = 1;
+        Session::put('flag_active','service');
         return view('VietNamTour.content.user.service.service_user',compact('data','flag'));
     }
     public function edit_service_user($id)
@@ -899,6 +901,7 @@ class accountController extends Controller
         ]);
         $response = $client->request('GET',"get-place-user/{$user_id}")->getBody();
         $data= json_decode($response);
+        Session::put('flag_active','place');
         // return $data;
         return view('VietNamTour.content.user.place.place_user',compact('data'));
     }
@@ -912,6 +915,7 @@ class accountController extends Controller
             // You can set any number of default request options.
             'timeout'  => 20.0,
         ]);
+        // Session::put('flag_active','place');
         $response = $client->request('GET',"get-place-user/{$user_id}")->getBody();
         $data= $this::paginate(json_decode($response),$current_page,$limit);
         return $data;
@@ -1126,7 +1130,7 @@ class accountController extends Controller
                 'timeout'  => 20.0,
             ]);
         if ($type == "active") { $flag = 2; }else{ $flag = 3; }
-
+        Session::put('flag_active','service');
         $response = $client->request('GET',"get-service-user-active/{$user_id}&{$type}");
         $data=json_decode($response->getBody()->getContents());
         // dd($data);
@@ -1299,6 +1303,7 @@ class accountController extends Controller
 
         $response = $client->request('GET',"point-for-userw/{$user_id}");
         $data = json_decode($response->getBody()->getContents());
+        Session::put('flag_active','point');
         // return $user_id;
         // dd($data);
         return view('VietNamTour.content.user.point',compact('data'));

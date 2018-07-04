@@ -76,6 +76,9 @@
 		button{
 			/*border:1px solid #00a680 !important;*/
 		}
+		.con .right-menu-lam ul li a.active-link{
+			color: #00a680 !important;
+		}
 	</style>
 </head>
 <body>
@@ -113,6 +116,25 @@
 	<!-- ========== end icon =========== -->
 
 	<!-- ================== header ============= -->
+	@php
+		if(Session::has('flag_active')){
+			echo '<input type="hidden" value="'.Session::get('flag_active').'" name="flag_active">';
+		}
+		// elseif(Session::has('flag_active') && Session::get('flag_active') == 'index'){
+		// 	echo '<input type="hidden" value="index" name="flag_active">';
+		// }
+		// elseif(Session::has('flag_active') && Session::get('flag_active') == 'service'){
+		// 	echo '<input type="hidden" value="service" name="flag_active">';
+		// }
+		// elseif(Session::has('flag_active') && Session::get('flag_active') == 'place'){
+		// 	echo '<input type="hidden" value="place" name="flag_active">';
+		// }
+		else{
+			echo '<input type="hidden" value="0" name="flag_active">';
+		}
+
+	@endphp
+
 	<input type="hidden">
 	<section class="header">
 		<div class="img-carolsel">
@@ -366,11 +388,11 @@
 							<div class="col-md-10 col-6">
 								<div class="right-menu-lam">
 									<ul class="float-left ul-right-menu-lam">
-										<li class="">
-											<a href="" style="color: #00a680 !important;"><i class="fas fa-home"></i></a>
+										<li class="hover-menu">
+											<a data-m="index" href="" style="" class="active-link"><i class="fas fa-home"></i></a>
 										</li>
 										<li class="hover-menu hidden-xs">
-											<a href="{{route('gioi-thieu')}}">Giới thiệu</a>
+											<a data-m="gioithieu" href="{{route('gioi-thieu')}}">Giới thiệu</a>
 										</li>
 									
 										@if(Session::has('login') && Session::get('login') == true)
@@ -396,12 +418,12 @@
 
 												@if(Session::get('user_info')->level[$i] == 3 || Session::get('user_info')->level[$i] == 4)
 													<li class="hover-menu hidden-xs">
-														<a href="{{route('placeuser')}}" class="a-content-nofi">
+														<a data-m="place" href="{{route('placeuser')}}" class="a-content-nofi">
 															Địa điểm
 														</a>
 													</li>
 													<li class="hover-menu hidden-xs">
-														<a href="service-user" class="a-content-nofi">
+														<a data-m="service" href="service-user" class="a-content-nofi">
 															Dịch vụ	
 														</a>
 													</li>
@@ -409,14 +431,14 @@
 
 												@if(Session::get('user_info')->level[$i] == 5)
 													<li class="hover-menu hidden-xs">	
-													<a href="{{route('get_tripchudule')}}" class="a-content-nofi">
+													<a data-m="tripchudule" href="{{route('get_tripchudule')}}" class="a-content-nofi">
 														Lịch trình
 													</a>
 												</li>
 												@endif
 											@endfor
 											<li class="hover-menu hidden-xs">
-												<a href="{{route('point-for-user')}}">Điểm thưởng</a>
+												<a data-m="point" href="{{route('point-for-user')}}">Điểm thưởng</a>
 											</li>
 										@else
 											<input type="hidden" value="0" name="user_id">
@@ -653,8 +675,29 @@
 	// In your Javascript (external .js resource or <script> tag)
 	$(document).ready(function() {
 	    $('.js-example-basic-single').select2();
+	    avtive_menu();
 	});
 	$('#athongbao').click(function () {
 		$('#athongbao').removeClass("bell");
 	})
+
+
+	// active menu
+	function avtive_menu() {
+		var flag = $("input[name=flag_active]").val();
+		console.log(flag);
+		var path = window.location.pathname;
+		var lam = document.querySelectorAll('.hover-menu a');
+		console.log(lam);
+		for (var i = 0; i < lam.length; i++) {
+			// console.log(lam[i].classList);
+			lam[i].classList.remove('active-link');
+		}
+		for (var i = 0; i < lam.length; i++) {
+			if (flag == lam[i].getAttribute('data-m')) 
+			{
+				lam[i].classList.add('active-link');
+			}
+		}
+	}
 </script>

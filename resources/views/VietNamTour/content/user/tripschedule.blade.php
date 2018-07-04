@@ -203,6 +203,8 @@
 		}
 	</style>
 <body>
+	
+		
 	<section class="content-info" style="width: 100%;height: 100%;">
 		<div class="container">
 			<div class="content">

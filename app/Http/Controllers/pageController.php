@@ -36,7 +36,7 @@ class pageController extends Controller
         $services_enter   = $this::gettypeService(5,8);
 
         $checkLogin = $this::check_Login();
-        
+        Session::put('flag_active','index');
         // $litSearch = $this::get_user_search();
         // return $litSearch;
     	return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','checkLogin'));
@@ -44,6 +44,7 @@ class pageController extends Controller
 
     public function getgioithieu()
     {
+        Session::put('flag_active','gioithieu');
         return view('VietNamTour.content.gioithieu');
     }
 
