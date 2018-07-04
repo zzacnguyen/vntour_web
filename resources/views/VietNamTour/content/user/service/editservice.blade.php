@@ -212,6 +212,33 @@
 	button{
 		border-radius: 0 !important;
 	}
+	#list-sv li:hover .del-event{
+		display: block;
+	}
+	.del-event{
+	    position: absolute;
+	    top: 5px;
+	    right: 0;
+	    height: 17px;
+	    width: 17px;
+	    border: 2px solid #ddd;
+	    text-align: center;
+	    padding: 0;
+	    margin: 0;
+	    border-radius: 50%;
+	    display: none;
+	}
+	.del-event:hover{
+		border: 2px solid red;
+	}
+	.del-event::after{
+	    content: "\f00d";
+    	position: absolute;
+    	font-family: FontAwesome;
+    	top: -6px;
+    	left: 0;
+    	color: black;
+	}
 </style>
 
 <section class="addplace">
@@ -224,7 +251,10 @@
 							{{-- <div class="div" style="height: 1px; width: 96%; background-color: red; margin-bottom: 10px;margin: 3px;padding-left: 3px;padding-right: 3px;"> --}}
 							<div class="content-event">
 								<ul style="padding: 0;list-style-type: none;" id="list-sv">
-									{{-- <li style="color: red;"><marquee class="text"><i>Sinh nhật cafe Chất</i></marquee></li> --}}
+									
+									{{-- <li style="position: relative; cursor: pointer;width: 150px;height: 28px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="Khuyến mãi tưng bừng hè 2018">Khuyến mãi tưng bừng hè 2018
+										<span title="Xóa sự kiện" class="del-event"></span>
+									</li> --}}
 								</ul>
 							</div>
 						</div>

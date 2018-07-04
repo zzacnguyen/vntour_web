@@ -463,6 +463,8 @@ function sub_form_event() {
 						{
 							$('#form-event')[0].reset();
 							$('#eventModal').modal('hide');
+							alert('Thêm thành công sự kiện');
+							location.reload();
 						}
 						else{
 							alert('Lỗi không thêm được sự kiện!');
@@ -521,7 +523,7 @@ function load_event() {
 		// console.log(data);
 		if (data.length > 0){
 			var lam = new String();
-			lam += '<li style="cursor: pointer; color: red;width: 150px;height: 28px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="'+ data[0].event_name +'">'+ data[0].event_name +'</li>';
+			lam += '<li style="position: relative; cursor: pointer; color: red;width: 150px;height: 28px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="'+ data[0].event_name +'">'+ data[0].event_name +'<span onclick="del_sk('+ data[0].id_event +')" title="Xóa sự kiện" class="del-event"></span></li>';
 			$('#list-sv').html(lam);
 		}
 		else{
@@ -530,4 +532,25 @@ function load_event() {
 			$('#list-sv').html(lam);
 		}
 	})
+}
+
+function del_sk(id) {
+	var conf = confirm("Bạn có chắc chắn muốn xóa sự kiện vừa chọn");
+	if (conf) 
+	{
+		$.ajax({
+		   type: "GET",
+		   url: 'http://localhost/vntour_api/delete-event/' + id,
+		   dataType: 'Json'
+		}).done(function (data) {
+			console.log(data);
+			if (data > 0){
+				alert('Đã xóa sự kiện vừa chọn');
+				location.reload();
+			}
+			else{
+				alert('Lỗi không xóa được');
+			}
+		})
+	}
 }
