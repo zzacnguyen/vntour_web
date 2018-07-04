@@ -473,7 +473,7 @@ function load_unseen_notification(view = '') {
 		type: 'GET',
 		dataType: 'Json',
 		success: function (data) {
-			// console.log(data);
+			console.log(data);
 			var cuatui = new String();
 			var dichvu = new String();
 			if (parseInt(data.event_public) != 0 && data.event_public.length > 0) 
@@ -542,7 +542,7 @@ function create_element_notification(arr) {
 	var cuatui = new String();
 
 	//check seen event
-	if (arr.seen == null && arr.seen == $('input[name=user_id]').val()) { cuatui += '<li class="li-seen" data-id="'+ arr.id_event +'">'; }
+	if (arr.is_seen == 0) { cuatui += '<li class="li-seen" data-id="'+ arr.id_event +'">'; }
 	else{ cuatui += '<li data-id="'+ arr.id_event +'">'; }
 
 	// check

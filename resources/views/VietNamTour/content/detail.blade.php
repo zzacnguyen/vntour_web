@@ -1091,19 +1091,22 @@
 					})
 					.done(function (response) {
 						// console.log(response);
-						response.forEach(function (data){
-							var mang = {
-								lat: parseFloat(data.lat), 
-								lng:parseFloat(data.lng),
-								name: data.name,
-								img: data.image,
-								rating: data.rating,
-								type: data.sv_type,
-								id: data.id_service,
-								distance: (data.distance/1000).toFixed(2)
-							};
-							locations.push(mang);
-						})
+						if (response.length != 0) 
+						{
+							response.forEach(function (data){
+								var mang = {
+									lat: parseFloat(data.lat), 
+									lng:parseFloat(data.lng),
+									name: data.name,
+									img: data.image,
+									rating: data.rating,
+									type: data.sv_type,
+									id: data.id_service,
+									distance: (data.distance/1000).toFixed(2)
+								};
+								locations.push(mang);
+							})
+						}
 					});
 					return locations;
 				}
