@@ -15,7 +15,7 @@ class publicCityController extends Controller
         $name_city = 
         $count_sv     = $this::count_service_all_and_type($idcity);
         $district      = $this::get_district_city($idcity);
-        if ($service_city == null) {
+        if ($service_city['data'] == null) {
             return view('VietNamTour.404');
         }
         else{

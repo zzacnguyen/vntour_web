@@ -932,10 +932,16 @@ class accountController extends Controller
         ]);
         $response = $client->request('GET',"get-edit-place-user/{$user_id}/{$id}")->getBody();
          $data=json_decode($response);
-
+         // dd($data->info);
          $data_sv = $this::get_sv_idplace($id);
-         // dd ($data_sv);
-         return view('VietNamTour.content.user.place.editplace',compact('data','data_sv'));
+         if ($data->info == null) {
+            return view('VietNamTour.404');
+         }
+         else{
+            // dd($data->info);
+            return view('VietNamTour.content.user.place.editplace',compact('data','data_sv'));
+         }
+             
     }
 
     public function post_edit_place_user(edituserplace $request,$id)

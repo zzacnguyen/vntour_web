@@ -406,7 +406,7 @@
 								<div class="col-md-4 text-center">
 									<a title="Lượt xem">
 										<i class="fas fa-eye"></i>
-										{{$sv->sv_view}}
+										{{number_format($sv->sv_view)}}
 									</a>
 								</div>
 								<div class="col-md-4 text-center">
@@ -460,9 +460,9 @@
 										@if($sv->sv_lowest_price == 0 || $sv->sv_highest_price == 0)
 											<span id="giathapnhat">Đang cập nhật</span>
 										@else
-											<span id="giathapnhat">{{$sv->sv_lowest_price}}</span> {{-- gia thap nhat --}}
+											<span id="giathapnhat">{{number_format($sv->sv_lowest_price)}}</span> {{-- gia thap nhat --}}
 											<i class="fas fa-arrow-right"></i> 
-											<span id="giacaonhat">{{$sv->sv_highest_price}}</span>  {{-- gia cao nhat --}}
+											<span id="giacaonhat">{{number_format($sv->sv_highest_price)}}</span>  {{-- gia cao nhat --}}
 										@endif
 											
 									</li>

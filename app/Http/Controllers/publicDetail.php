@@ -15,6 +15,10 @@ class publicDetail extends Controller
 {
     public function get_detail($id,$type)
     {
+        if ((int)$type > 5 || !is_numeric($type) || (int)$type < 0) {
+            return view('VietNamTour.404');
+        }
+
         $this::addview($id);
     	$sv = $this::get_service_id($id,$type);
         // dd($sv);
@@ -54,6 +58,7 @@ class publicDetail extends Controller
             $quyen_u = null;
         }
         // return $checkUserRating;
+        
     	if ($sv == null) {
     		return view('VietNamTour.404');
     	}
@@ -71,6 +76,9 @@ class publicDetail extends Controller
     public function get_detail_search($id,$type)
     {
         // var_dump($id);
+        if ((int)$type > 5 || !is_numeric($type) || (int)$type < 0) {
+            return view('VietNamTour.404');
+        }
         $this::addview($id);
         // return 1;
         $sv = $this::get_service_id($id,$type);

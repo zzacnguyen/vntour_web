@@ -266,7 +266,7 @@ Route::post('img-test/{id}','accountController@img_la');
 Route::get('check-iage','accountController@check_iage');
 
 
-// test multiple uploat
+// test multiple upload
 Route::get('test-multiple','accountController@test_multiple');
 
 //================= EVENT ===================

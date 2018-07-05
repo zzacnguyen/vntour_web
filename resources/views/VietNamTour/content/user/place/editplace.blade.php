@@ -162,15 +162,15 @@
           			<input type="hidden" name="_token" value="{{csrf_token()}}">
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Tên địa điểm</label>
-	            		<input name="place_name" type="text" value="{{$data->info[0]->pl_name}}">
+	            		<input name="place_name" type="text" value="{{$data->info->pl_name}}">
 			            {{-- <p class="text-danger">{{$errors->first('place_name')}}</p> --}}
 			            <p class="text-danger" id="null_name" style="display: none;">Tên địa điểm phải có độ dài tối thiểu 5 ký tự</p>
 					</div>
-					<input type="hidden" value="{{$data->info[0]->id_ward}}" name="id_ward">
+					<input type="hidden" value="{{$data->info->id_ward}}" name="id_ward">
 
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Điện thoại</label>
-            <input name="place_phone" type="number" value="{{$data->info[0]->pl_phone_number=='Đang cập nhật'? "":$data->info[0]->pl_phone_number}}">
+            <input name="place_phone" type="number" value="{{$data->info->pl_phone_number=='Đang cập nhật'? "":$data->info->pl_phone_number}}">
             {{-- <p class="text-danger">{{$errors->first('place_phone')}}</p> --}}
 					</div>
 
@@ -202,7 +202,7 @@
 
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Địa chỉ</label>
-            			<input name="place_address" type="text" value="{{$data->info[0]->pl_address}}">
+            			<input name="place_address" type="text" value="{{$data->info->pl_address}}">
             			{{-- <p class="text-danger">{{$errors->first('place_address')}}</p> --}}
 					</div>
 
@@ -212,8 +212,8 @@
 
 					<div class="input-text col-md-12">
 						<label class="col-md-2" style="padding: 0;padding-left: 17px;">Vị trí</label>
-						<input type="text" name="vido" placeholder="Vĩ độ" class="col-md-4" value="{{$data->info[0]->pl_latitude}}" readonly="readonly">
-						<input type="text" name="kinhdo" placeholder="Kinh độ" class="col-md-4" value="{{$data->info[0]->pl_longitude}}" readonly="readonly">
+						<input type="text" name="vido" placeholder="Vĩ độ" class="col-md-4" value="{{$data->info->pl_latitude}}" readonly="readonly">
+						<input type="text" name="kinhdo" placeholder="Kinh độ" class="col-md-4" value="{{$data->info->pl_longitude}}" readonly="readonly">
 					</div>
           <div class="input-text col-md-12">
             <p class="text-danger" id="null_location" style="display: none;">Bạn chọn vị trí cho địa điểm</p>
@@ -267,9 +267,9 @@
 
 			</div>
 			<div class="col-md-2" style="position: fixed;top:110px;right: 78px;">
-        @if($data->info[0]->pl_status == 1)
+        @if($data->info->pl_status == 1)
           <img src="public/resource/images/icons/active-user.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Đã duyệt">   
-        @elseif($data->info[0]->pl_status == -1)
+        @elseif($data->info->pl_status == -1)
           <img src="public/resource/images/icons/spam.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Bị đánh dấu spam">   
         @else
           <img src="public/resource/images/icons/unactive.png" alt="" style="height: 50px;width: 50px;cursor: pointer;" title="Chưa duyệt">   
