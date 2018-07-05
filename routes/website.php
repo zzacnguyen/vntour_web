@@ -229,7 +229,7 @@ Route::post('add-service-user','accountController@post_add_service_user2')->name
 
 Route::get('service-user',['as'=>'service_user','uses'=>'accountController@get_service_user']);
 Route::get('service-user/add/{id}','accountController@addservice_user');
-Route::get('server-user-edit/{id}',['as'=>'edit_service_user','uses'=>'accountController@edit_service_user']);
+Route::get('service-user-edit/{id}',['as'=>'edit_service_user','uses'=>'accountController@edit_service_user']);
 Route::post('server-user-edit/{id}',['as'=>'post_edit_service_user','uses'=>'accountController@post_edit_service_user']);
 
 Route::get('load_place_ward/{id}','accountController@load_place_ward');

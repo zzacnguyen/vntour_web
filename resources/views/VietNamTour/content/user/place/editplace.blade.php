@@ -116,9 +116,9 @@
               @foreach($data_sv as $sv)
                 <li>
                     <a href="service-user">
-                      @if($sv->sv_type == 1)
+                      @if($sv->sv_status == 1)
                         <i class="far fa-check-circle"></i> 
-                      @elseif($sv->sv_type == -1)
+                      @elseif($sv->sv_status == -1)
                         <i class="fas fa-exclamation-circle"></i>
                       @else
                         <i class="far fa-times-circle"></i>

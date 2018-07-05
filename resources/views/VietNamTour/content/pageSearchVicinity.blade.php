@@ -107,7 +107,7 @@
 									@foreach($top_search as $top)
 									<li>
 										<a href="detail/id={{$top->sv_id}}&type={{$top->sv_type}}">
-											<img style="height: 50px;" src="public/thumbnails/{{$top->sv_image}}" alt="null">
+											<img style="height: 50px;" src="http://localhost/vntour_api/public/thumbnails/{{$top->sv_image}}" alt="null">
 											<span class="" style="width: 137px;">
 												<h6 class="lime-clam">{{$top->sv_name}}</h6>
 												<p style="color: #ddd; height: 15px;overflow: hidden;">{{$top->sv_description}}</p>
@@ -131,7 +131,7 @@
 									<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top: 0;">
 										<div class="destination-grid">
 											<a href="detail-search/id={{$s->id_service}}&type={{$s->sv_type}}" title="{{$s->name}}">
-												<img id="image345" style="height:265px;" src="public/thumbnails/{{$s->image}}" alt="null">
+												<img id="image345" style="height:265px;" src="http://localhost/vntour_api/public/thumbnails/{{$s->image}}" alt="null">
 											</a>
 											<div class="destination-name">
 												<h4>{{$s->name}}</h4>

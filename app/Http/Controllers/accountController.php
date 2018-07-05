@@ -934,6 +934,7 @@ class accountController extends Controller
          $data=json_decode($response);
          // dd($data->info);
          $data_sv = $this::get_sv_idplace($id);
+         // dd($data_sv);
          if ($data->info == null) {
             return view('VietNamTour.404');
          }

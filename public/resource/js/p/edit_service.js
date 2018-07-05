@@ -157,12 +157,10 @@ function submitform() {
 	            	console.log(data);
 	            	if (parseInt(data) > 0) 
 	            	{
-	            		// anh(parseInt(data));
-	            		
 	            		$('#lds-facebook').css('display','none');
 	            		$('#thanhcong').css('display','block');
-	            		
-	            		location.href = "service-user";
+	            		anh(parseInt(id_sv));
+	            		// location.reload();
 	            	}
 	            	else{
 	            		alert('Lỗi không cập nhật được dịch vụ');
@@ -188,7 +186,7 @@ function anh(id) {
 
 		// Create an FormData object 
         var data = new FormData(form);
-		var path_uplad_img = 'http://localhost/vntour_api/upload-image/' + id;
+		var path_uplad_img = 'http://localhost/vntour_api/edit-image-web/' + id;
 		$.ajax({
 			url: path_uplad_img, // Url to which the request is send
 			type: "POST",  
@@ -199,12 +197,24 @@ function anh(id) {
 			processData:false,        // To send DOMDocument or non processed data file it is set to false
 			success: function(data)   // A function to be called if request succeeds
 			{
-				show_toast();
-				setTimeout(function () {
-					location.href = "http://vntourweb/vntour_web/service-user";
-				},2000);
-				
-			}
+				console.log(data)
+				// show_toast();
+				// setTimeout(function () {
+				// 	location.href = "service-user";
+				// },2000);
+				location.reload();
+				return 1;
+			},
+			error: function (e) {
+
+	                // $("#result").text(e.responseText);
+	                console.log("ERROR : ", e);
+	                alert('Lỗi ảnh');
+	                location.reload();
+	                return -1;
+	                // $("#btnSubmit").prop("disabled", false);
+
+	            }
 		});
 }
 
@@ -313,9 +323,18 @@ function previewImagesBanner(){
         }
         else
         {
-          	var objectUrl = anyWindow.createObjectURL(fileList[i]);
-          	$('.preview-area2').html('<img src="' + objectUrl + '" />');
-          	window.URL.revokeObjectURL(fileList[i]);
+        	if (fileList[i].size > 2097152) 
+        	{
+        		alert('Kích thước ảnh không lớn hơn 2MB');
+        		var $el = $('#banner');
+			   	$el.wrap('<form>').closest('form').get(0).reset();
+			   	$el.unwrap();
+        	}
+        	else{
+        		var objectUrl = anyWindow.createObjectURL(fileList[i]);
+	          	$('.preview-area2').html('<img src="' + objectUrl + '" />');
+	          	window.URL.revokeObjectURL(fileList[i]);
+        	}
         } 
       }
 }
@@ -341,9 +360,19 @@ function previewImagesdetails1(){
         }
         else
         {
-          	var objectUrl = anyWindow.createObjectURL(fileList[i]);
-          	$('.preview-area3').html('<img src="' + objectUrl + '" />');
-          	window.URL.revokeObjectURL(fileList[i]);
+        	if (fileList[i].size > 2097152) 
+        	{
+        		alert('Kích thước ảnh không lớn hơn 2MB');
+        		var $el = $('#details1');
+			   	$el.wrap('<form>').closest('form').get(0).reset();
+			   	$el.unwrap();
+        	}
+        	else{
+        		var objectUrl = anyWindow.createObjectURL(fileList[i]);
+	          	$('.preview-area3').html('<img src="' + objectUrl + '" />');
+	          	window.URL.revokeObjectURL(fileList[i]);
+        	}
+	          	
         } 
       }
 }
@@ -369,9 +398,18 @@ function previewImagesdetails2(){
         }
         else
         {
-          	var objectUrl = anyWindow.createObjectURL(fileList[i]);
-          	$('.preview-area4').html('<img src="' + objectUrl + '" />');
-          	window.URL.revokeObjectURL(fileList[i]);
+        	if (fileList[i].size > 2097152) 
+        	{
+        		alert('Kích thước ảnh không lớn hơn 2MB');
+        		var $el = $('#details2');
+			   	$el.wrap('<form>').closest('form').get(0).reset();
+			   	$el.unwrap();
+        	}
+        	else{
+        		var objectUrl = anyWindow.createObjectURL(fileList[i]);
+	          	$('.preview-area4').html('<img src="' + objectUrl + '" />');
+	          	window.URL.revokeObjectURL(fileList[i]);
+        	} 	
         } 
       }
 }

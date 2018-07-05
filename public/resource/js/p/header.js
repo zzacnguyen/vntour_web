@@ -567,7 +567,14 @@ function create_element_notification(arr) {
 		cuatui += '<a id="" onclick="seen_event_user('+ arr.id_event +',2)" data-toggle="modal" data-target="#detail_event_Modal" class="a-content-nofi">';
 	}
 	else{
-		cuatui += '<a id="" onclick="seen_event_user('+ arr.id_event +',1,'+ arr.id_sv +')" class="a-content-nofi">';
+		var co = 0;
+		if (arr.event_name == "Dịch vụ của bạn đã được duyệt") {
+			co = 1;
+		}
+		else if(arr.event_name == "Địa điểm của bạn đã được duyệt"){
+			co = 2;
+		}
+		cuatui += '<a id="" onclick="seen_event_user('+ arr.id_event +',1,'+ arr.id_sv +','+ co +')" class="a-content-nofi">';
 	}
 		
 
@@ -608,7 +615,7 @@ function create_element_notification(arr) {
 }
 
 
-function seen_event_u(id_event,type,id_sv) {
+function seen_event_u(id_event,type,id_s) {
 	$.ajax({
 		url: 'seen-event-user',
 		type: 'POST',
@@ -626,7 +633,7 @@ function seen_event_u(id_event,type,id_sv) {
   	});
 }
 
-function seen_event_user(id_event, type, id_sv_pla = '') {
+function seen_event_user(id_event, type, id_sv_pla = '',co) {
 	$.ajax({
 		url: 'seen-event-user',
 		type: 'POST',
@@ -636,17 +643,25 @@ function seen_event_user(id_event, type, id_sv_pla = '') {
 		if (type == 1) 
 		{
 			var url_pl = 'edit-place-user/' + id_sv_pla;
-			var url_sv = 'server-user-edit/' + id_sv_pla;
-			$.ajax({
-				url: url_pl,
-				type:'GET'
-			})
-			.done(function () {
+			var url_sv = 'service-user-edit/' + id_sv_pla;
+			if (co == 2) 
+			{
 				location.href = url_pl;
-			})
-			.fail(function () {
+			}
+			else if (co == 1) 
+			{
 				location.href = url_sv;
-			})
+			}
+			// $.ajax({
+			// 	url: url_pl,
+			// 	type:'GET'
+			// })
+			// .done(function () {
+			// 	location.href = url_pl;
+			// })
+			// .fail(function () {
+			// 	location.href = url_sv;
+			// })
 		}
 		else{
 			console.log(data);

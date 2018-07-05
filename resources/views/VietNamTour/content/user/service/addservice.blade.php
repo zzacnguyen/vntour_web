@@ -129,7 +129,10 @@
 	    height: 26px;
 	  }
 	}
-	
+	#btnaddplace:hover{
+		font-weight: bold;
+		border: 1px solid red;
+	}
 </style>
 
 
@@ -305,7 +308,7 @@
 							
 						</div>
 
-						<button type="button" class="btn btn-success col-md-12" id="btnaddplace">Thêm dịch vụ</button>
+						<button style="background-color: #00a680;border: 1px solid #00a680" type="button" class="btn btn-success col-md-12" id="btnaddplace">Thêm dịch vụ</button>
 					</form>
 				</div>
 				<div class="col-md-2"></div>

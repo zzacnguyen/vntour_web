@@ -539,18 +539,21 @@
 									<input type="file" accept="image/*" style="width: 100%;" name="banner" id="banner">
 									<div class="preview-area2" style="width: 223px;height: 149px;">
 										<img src="http://vntourweb/vntour_api/public/thumbnails/{{$data->sv_image}}" alt="">
+										<input type="hidden" name="old_img" value="http://vntourweb/vntour_api/public/thumbnails/{{$data->sv_image}}">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<input type="file" accept="image/*" style="width: 100%;" name="details1" id="details1">
 									<div class="preview-area3" style="width: 223px;height: 149px;">
 										<img src="http://vntourweb/vntour_api/public/thumbnails/{{$data->image_banner}}" alt="">
+										<input type="hidden" name="old_img2" value="http://vntourweb/vntour_api/public/thumbnails/{{$data->image_banner}}">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<input type="file" accept="image/*" style="width: 100%;" name="details2" id="details2">
 									<div class="preview-area4" style="width: 223px;height: 149px;">
 										<img src="http://vntourweb/vntour_api/public/thumbnails/{{$data->image_details_2}}" alt="">
+										<input type="hidden" name="old_img3" value="http://vntourweb/vntour_api/public/thumbnails/{{$data->image_details_2}}">
 									</div>
 								</div>
 							</div>
