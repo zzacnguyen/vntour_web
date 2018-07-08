@@ -94,8 +94,9 @@
 				<h5 style="color: red;">Thông tin cơ bản</h5>
 				<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 
-				<form method="post" id="formAddPlace">
+				<form method="post" id="formAddPlace" name="frm">
           <input type="hidden" name="_token" value="{{csrf_token()}}">
+          <input type="hidden" value="{{$user_id}}" name="u_id">
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Tên địa điểm</label>
             <input name="place_name" type="text" value="{{old('place_name')}}">
@@ -106,6 +107,7 @@
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Điện thoại</label>
             <input name="place_phone" type="text" value="{{old('place_phone')}}">
+            <p class="text-danger" id="null_phone" style="display: none;">Định dạng số điện thoại không đúng</p>
             <p class="text-danger">{{$errors->first('place_phone')}}</p>
 					</div>
 

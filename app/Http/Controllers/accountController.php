@@ -932,7 +932,7 @@ class accountController extends Controller
         ]);
         $response = $client->request('GET',"get-edit-place-user/{$user_id}/{$id}")->getBody();
          $data=json_decode($response);
-         // dd($data->info);
+         // dd($data->address);
          $data_sv = $this::get_sv_idplace($id);
          // dd($data_sv);
          if ($data->info == null) {
@@ -978,6 +978,12 @@ class accountController extends Controller
 
     public function addplace()
     {
+        if (Session::has('user_info')) {
+            $user_id = Session::get('user_info')->id;
+        }
+        else
+            return view('VietNamTour.login');
+
         $client = new Client([
             // Base URI is used with relative requests
             'base_uri' => 'http://localhost/vntour_api/',
@@ -987,7 +993,7 @@ class accountController extends Controller
         $response = $client->request('GET',"get-add-place-user")->getBody();
          $data=json_decode($response);
         
-        return view('VietNamTour.content.user.place.addplace',compact('data'));
+        return view('VietNamTour.content.user.place.addplace',compact('data','user_id'));
     }
     public function post_addplace(edituserplace $request)
      {

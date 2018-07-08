@@ -40,7 +40,7 @@ function loadData(current_page) {
 				    lam += '</td>';
 				    lam += '<td class="text-center">';
 					lam += '<a class="btn btn-sm btn-info" href="edit-place-user/'+ data.id +' "><i class="far fa-edit"></i> Chi tiết</a>';
-				    lam += '<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>';
+				    // lam += '<button class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Xóa</button>';
 				    lam += '</td>';
 					lam += '</tr>';
 				})

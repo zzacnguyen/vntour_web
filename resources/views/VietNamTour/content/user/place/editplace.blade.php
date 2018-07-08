@@ -166,11 +166,13 @@
 			            {{-- <p class="text-danger">{{$errors->first('place_name')}}</p> --}}
 			            <p class="text-danger" id="null_name" style="display: none;">Tên địa điểm phải có độ dài tối thiểu 5 ký tự</p>
 					</div>
-					<input type="hidden" value="{{$data->info->id_ward}}" name="id_ward">
+          <input type="hidden" value="{{$data->info->id_ward}}" name="id_ward">
+					<input type="hidden" value="{{$data->address[0]->id_district}}" name="id_district2">
 
 					<div class="input-text col-md-12">
 						<label class="col-md-2">Điện thoại</label>
             <input name="place_phone" type="number" value="{{$data->info->pl_phone_number=='Đang cập nhật'? "":$data->info->pl_phone_number}}">
+            <p class="text-danger" id="null_phone" style="display: none;">Định dạng số điện thoại không đúng</p>
             {{-- <p class="text-danger">{{$errors->first('place_phone')}}</p> --}}
 					</div>
 
