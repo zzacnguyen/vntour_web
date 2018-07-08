@@ -51,13 +51,13 @@
 									<label style="margin-top: 5px; margin-left: 10px;">Tổng số kết quả: 
 										<span style="color: red;">{{$count}}</span>
 									</label>
-									<label style="margin-top: 5px; margin-left: 10px;">Mã Tỉnh thành phố:
+									{{-- <label style="margin-top: 5px; margin-left: 10px;">Mã Tỉnh thành phố:
 										@if($id_city == "all") 
 											<span style="color: red;">Tất cả</span>
 										@else
 											<span style="color: red;">{{$id_city}}</span>
 										@endif
-									</label>
+									</label> --}}
 									<label style="margin-top: 5px; margin-left: 10px;">Loại hình:
 										@if($id_type == 1) 
 											<span style="color: red;">Ăn uống</span>

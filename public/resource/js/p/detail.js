@@ -4,6 +4,7 @@ $(document).ready(function () {
 	paginate_rating();
 	deleteRating(); 
 	load_event();
+	count_fb();
 	// load_gallery();
 	// check_url_image();
 })
@@ -392,3 +393,17 @@ function check_url_image(img) {
        img.setAttribute('src','public/images/default.jpg')
     })
 }
+
+function count_fb() {
+	// var lam = 'https://www.facebook.com/lam.themen';
+	url = 'http://localhost/vntour_api/count-share/lam';
+	console.log(url);
+	$.ajax({
+	   type: "GET",
+	   url: url,
+	   dataType: 'Json'
+	}).done(function (data) {
+		console.log(data);
+	})
+}
+

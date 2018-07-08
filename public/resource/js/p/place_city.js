@@ -23,15 +23,15 @@ $(document).ready(function () {
 							lam += '<a href="detail/id=';
 							lam += data.sv_id;
 							lam += '&type=' + data.sv_type +'">';
-							lam += '<img src="thumbnails/' + data.image + '" alt="Error" style="min-height: 265px;">'
+							lam += '<img src="http://localhost/vntour_api/public/thumbnails/' + data.image + '" alt="Error" style="min-height: 265px;">'
 							lam += '</a>';
 							lam += '<div class="destination-name">';
 							lam += '<h4>' + data.name + '</h4>';
 							lam += '</div>';
 							lam += '<div class="destination-icon">';
 							lam += '<a>' + data.rating + ' <i class="far fa-star"></i></a>';
-							lam += '<a>' + data.view + ' <i class="fas fa-eye"></i></a>';
-							lam += '<a>' + data.like +' <i class="far fa-thumbs-up"></i></a>';
+							lam += '<a><span class="chuyenso">'+ data.view +'</span> <i class="fas fa-eye"></i></a>';
+							lam += '<a><span class="chuyenso">'+ data.like +'</span> <i class="far fa-thumbs-up"></i></a>';
 							lam += '<a>' + data.point + ' <i class="far fa-bookmark"></i></a>';
 							lam += '</div>';
 							lam += '</div>';
