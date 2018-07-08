@@ -969,7 +969,11 @@
 									@foreach($sv_lancan_hon as $top)
 									<li class="lan-can">
 										<a href="detail/id={{$top->id_service}}&type={{$top->sv_type}}">
-											<img style="height: 50px;" src="public/thumbnails/{{$top->image}}" alt="null">
+											@if($top->image == null)
+												<img style="height: 50px;width: 75px;" src="public/resource/images/default.jpg" alt="null">
+											@else
+												<img style="height: 50px;width: 75px;" src="http://localhost/vntour_api/public/thumbnails/{{$top->image}}" alt="null">
+											@endif
 											<span class="" style="width: 247px;">
 												<h6 class="lime-clam">{{$top->name}}</h6>
 
@@ -996,7 +1000,14 @@
 										<ul>
 											<li>
 												<a href="detail/id={{$s->sv_id}}&type={{$s->sv_type}}">
-													<img src="public/thumbnails/{{$s->image_banner}}" alt="loi" style="height: 100%;width: 110px;">
+													@if($s->image_banner == "null")
+														<img style="height: 50px;width: 75px;" src="public/resource/images/default.jpg" alt="null">
+													@elseif($s->image_banner == null)
+														<img style="height: 50px;width: 75px;" src="public/resource/images/default.jpg" alt="null">
+													@else
+														<img src="http://localhost/vntour_api/public/thumbnails/{{$s->image_banner}}" alt="loi" style="height: 100%;width: 110px;">
+													@endif
+														
 													<div class="text-item-cafe text-left">
 														<h6 style="margin-bottom: 0;display: inline-block;text-overflow: ellipsis;">	<b style="font-weight: 600;">{{$s->sv_name}}</b>
 														</h6>
@@ -1043,7 +1054,7 @@
 					    				<span>{{$s->name_city}}</span>
 					    			</div>
 						    		<a href="detail/id={{$s->id_service}}&type={{$s->sv_type}}" title="{{$s->name}}">
-						    			<img style="height: 214px" src="public/thumbnails/{{$s->image}}" onerror="this.src='public/images/default.jpg'" alt="">
+						    			<img style="height: 214px" src="http://localhost/vntour_api/public/thumbnails/{{$s->image}}" onerror="this.src='public/images/default.jpg'" alt="">
 						    		</a>
 						    	</div>
 						    	<div class="grid-content">

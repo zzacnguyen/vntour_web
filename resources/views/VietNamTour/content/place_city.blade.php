@@ -102,7 +102,7 @@
 							<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top:0;">
 								<div class="destination-grid">
 									<a href="detail/id={{$sv->id_service}}&type={{$sv->sv_type}}">
-										<img src="public/thumbnails/{{$sv->image}}" alt="" style="height:269px !important;">
+										<img src="http://localhost/vntour_api/public/thumbnails/{{$sv->image}}" alt="" style="height:269px !important;">
 									</a>
 									<div class="destination-name">
 										<h4>{{$sv->name}}</h4>

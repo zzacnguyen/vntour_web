@@ -79,6 +79,12 @@
 		.con .right-menu-lam ul li a.active-link{
 			color: #00a680 !important;
 		}
+		.searchdichvuCon:hover{
+			background-color: #ddd;
+		}
+		.content-search a:hover{
+			background-color: #ddd;
+		}
 	</style>
 </head>
 <body>
@@ -437,9 +443,9 @@
 												</li>
 												@endif
 											@endfor
-											<li class="hover-menu hidden-xs">
+											{{-- <li class="hover-menu hidden-xs">
 												<a data-m="point" href="{{route('point-for-user')}}">Điểm thưởng</a>
-											</li>
+											</li> --}}
 										@else
 											<input type="hidden" value="0" name="user_id">
 										@endif	

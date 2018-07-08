@@ -252,7 +252,7 @@
 				@foreach($services_enter as $enter)
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
-							<a href="detail/id={{$hotel->id_service}}&type={{$hotel->sv_type}}" class="click_view">
+							<a href="detail/id={{$enter->id_service}}&type={{$enter->sv_type}}" class="click_view">
 								<img src="http://localhost/vntour_api/public/thumbnails/{{$enter->image}}" alt="">
 							</a>
 							<div class="destination-name" data-id="{{$enter->id_service}}">
