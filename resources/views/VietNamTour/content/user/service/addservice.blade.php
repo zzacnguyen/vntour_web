@@ -247,7 +247,7 @@
 							<input name="sv_highest_price" type="number" min="0" value="0">
 						</div>
 						<div class="input-text">
-							<p class="text-danger" id="price_error" style="display: none;">Gia thấp nhất không được lớn hơn giá cao nhất</p>
+							<p class="text-danger" id="price_error" style="display: none;">Gía thấp nhất không được lớn hơn giá cao nhất</p>
 						</div>
 						<br>
 						{{-- //========================= CHI TIET =================== --}}
@@ -260,7 +260,7 @@
       						
 						</div>
 						<div class="input-text">
-							<p class="text-danger" id="null_chitiet" style="display: none;">Tên dịch vụ phải có độ dài tối thiểu 50 ký tự</p>
+							<p class="text-danger" id="null_chitiet" style="display: none;">Chi tiết dịch vụ phải có độ dài tối thiểu 50 ký tự</p>
 						</div>
 						<br>
 						<div class="input-text" class="col-md-12" style="padding: 0">

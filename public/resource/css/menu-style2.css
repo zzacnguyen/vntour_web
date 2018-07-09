@@ -180,13 +180,13 @@ form.form-search-menu {
 }
 
 #a-tinhTP:hover{
-	background-color: rgb(29, 161, 242);
+	background-color: #00a680 !important;
 	color: white !important;
 	font-weight: 500px;
 }
 
 #a-danhmuc:hover{
-	background-color: rgb(29, 161, 242);
+	background-color: #00a680;
 	color: white !important;
 	font-weight: 500px;
 }

@@ -615,7 +615,7 @@ function create_element_notification(arr) {
 }
 
 
-function seen_event_u(id_event,type,id_s) {
+function seen_event_u(id_event,type,id_sv) {
 	$.ajax({
 		url: 'seen-event-user',
 		type: 'POST',

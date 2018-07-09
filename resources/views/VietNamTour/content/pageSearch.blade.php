@@ -195,7 +195,7 @@
 									@foreach($top_search as $top)
 									<li>
 										<a href="detail/id={{$top->sv_id}}&type={{$top->sv_type}}">
-											<img style="height: 50px;" src="public/thumbnails/{{$top->sv_image}}" alt="null">
+											<img style="height: 50px;" src="http://localhost/vntour_api/public/thumbnails/{{$top->sv_image}}" alt="null">
 											<span class="" style="width: 137px;">
 												<h6 class="lime-clam">{{$top->sv_name}}</h6>
 												<p style="color: #ddd; height: 15px;overflow: hidden;">{{$top->sv_description}}</p>
@@ -220,7 +220,7 @@
 									<div class="col-md-4 col-sm-6 col-12 thumbnail-padding">
 										<div class="destination-grid">
 											{{-- detail-search/id=53&type=3 --}}
-											<a class="searchdichvu" href="detail-search/id={{$r->id_service}}&type={{$r->sv_type}}" data-id="{{$r->id_service}}" data-type="{{$r->sv_type}}"><img style="height: 265px; cursor: pointer;" src="public/thumbnails/{{$r->image}}" alt="" ></a>
+											<a class="searchdichvu" href="detail-search/id={{$r->id_service}}&type={{$r->sv_type}}" data-id="{{$r->id_service}}" data-type="{{$r->sv_type}}"><img style="height: 265px; cursor: pointer;" src="http://localhost/vntour_api/public/thumbnails/{{$r->image}}" alt="" ></a>
 											<div class="destination-name">
 												<h4>{{$r->name}}</h4>
 												<h5>{{$r->name_city}}</h5>
@@ -244,7 +244,7 @@
 								@foreach($mangghe as $rr)
 									<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" >
 										<div class="destination-grid">
-											<a href=""><img style="height: 265px;" src="public/thumbnails/{{$rr['image']}}" alt=""></a>
+											<a href=""><img style="height: 265px;" src="http://localhost/vntour_api/public/thumbnails/{{$rr['image']}}" alt=""></a>
 											<div class="destination-name">
 												<h4>{{$rr['name']}}</h4>
 												<h5>{{$rr['name']}}</h5>

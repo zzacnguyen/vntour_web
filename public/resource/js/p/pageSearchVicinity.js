@@ -89,7 +89,7 @@ $(document).ready(function (argument) {
 						lam += '<a href="detail-search/id=';
 						lam += data.id_service;
 						lam += '&type=' + data.sv_type +'">';
-						lam += '<img src="public/thumbnails/' + data.image + '" alt="Error" style="height: 265px;">'
+						lam += '<img src="http://localhost/vntour_api/public/thumbnails/' + data.image + '" alt="Error" style="height: 265px;">'
 						lam += '</a>';
 						lam += '<div class="destination-name">';
 						lam += '<h4>' + data.name + '</h4>';

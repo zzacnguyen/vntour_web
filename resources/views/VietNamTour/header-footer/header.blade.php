@@ -397,9 +397,9 @@
 										<li class="hover-menu">
 											<a data-m="index" href="" style="" class="active-link"><i class="fas fa-home"></i></a>
 										</li>
-										<li class="hover-menu hidden-xs">
+										{{-- <li class="hover-menu hidden-xs">
 											<a data-m="gioithieu" href="{{route('gioi-thieu')}}">Giới thiệu</a>
-										</li>
+										</li> --}}
 									
 										@if(Session::has('login') && Session::get('login') == true)
 											<input type="hidden" value="{{Session::get('user_info')->id}}" name="user_id">

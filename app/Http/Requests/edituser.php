@@ -26,7 +26,6 @@ class edituser extends FormRequest
         return [
             "name"=>"required",
             "email"=>"required|email",
-            "website"=>"required",
       
             "image"=>"image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ];
@@ -37,7 +36,6 @@ class edituser extends FormRequest
             "name.required"=>"Họ tên không được để trống",
             "email.required"=>"Email không được để trống",
             "email.email"=>"Email không hợp lệ",
-            "website.required"=>"Website không được để trống",
 
             'image.mimes' => 'Bạn phải chọn đúng định dạng ảnh ',
             'image.image' => 'Bạn phải chọn đúng kiểu hình ảnh ',

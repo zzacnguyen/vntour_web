@@ -1153,7 +1153,7 @@
 				          	}
 				          }
 				          else{
-				          	rating_sv = 'Chưa đó đánh giá';
+				          	rating_sv = 'Chưa có đánh giá';
 				          }
 				          
 				          var content = new String();
